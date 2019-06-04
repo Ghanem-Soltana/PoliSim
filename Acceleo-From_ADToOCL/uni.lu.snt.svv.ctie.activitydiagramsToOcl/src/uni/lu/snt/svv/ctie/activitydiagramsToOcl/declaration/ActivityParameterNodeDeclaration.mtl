@@ -1,0 +1,74 @@
+[comment encoding = UTF-8 /]
+[module ActivityParameterNodeDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')]
+
+[template public contextRule(anActivity : Activity)]
+context [anActivity.getValue(anActivity.getAppliedStereotype('CTIE_Profile_Final::context'),'context_class')->asOrderedSet()->first().toString()/] inv [anActivity.name/]:
+[/template]
+
+
+[template public DeclareAnActivityparameterNode(anActivity : Activity, anActivityParameterNode1: ActivityParameterNode)]
+[for ( aSteriotype :   Stereotype  | anActivityParameterNode1.getAppliedStereotypes()->reject(name='in'))]
+                                [if (aSteriotype.name.equalsIgnoreCase('fromrecord') or aSteriotype.name.equalsIgnoreCase('temp') )]
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [for ( aconstraint:Constraint | 	anActivity.eAllContents()->filter(Constraint))]
+                                        [if (aconstraint.name.equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))]
+
+[if (anActivityParameterNode1.parameter.upperValue.stringValue().oclIsUndefined())]
+let [anActivityParameterNode1.name.concat(':').concat(anActivityParameterNode1.type.name).concat(' = ').concat(aconstraint.specification.stringValue())/][if( aComment._body.index('OCL')=-1)] in[/if]														
+[else]
+[if(anActivityParameterNode1.parameter.upperValue.stringValue().endsWith('*'))]
+let [anActivityParameterNode1.name.concat(':Set(').concat(anActivityParameterNode1.type.name).concat(') = ').concat(aconstraint.specification.stringValue())/]	[if( aComment._body.index('OCL')=-1)] in[/if]														
+[else]
+let [anActivityParameterNode1.name.concat(':').concat(anActivityParameterNode1.type.name).concat(' = ').concat(aconstraint.specification.stringValue())/][if( aComment._body.index('OCL')=-1)] in[/if]																												
+[/if]
+[/if]
+
+[if(aComment._body.index('OCL')>-1)]
+/** TRACEABILITY: [aComment._body.substring(aComment._body.index('Source:')).replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').trim()/]  **/ in 									
+[/if]	
+
+										[/if]
+										[/for]
+										[/let]
+										[/if]
+								[/for]
+								[/for]
+                         					
+                      		[/if]
+		           			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+                            [if(aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'value_type').oclAsType(EnumerationLiteral).name.equalsIgnoreCase('LOOKUP_TABLE'))]
+let [anActivityParameterNode1.name.concat(':').concat(anActivityParameterNode1.type.name).concat(' = self.').concat(anActivityParameterNode1.name)/]  
+							[else]
+let [anActivityParameterNode1.name.concat(':').concat(anActivityParameterNode1.type.name).concat(' = ').concat('Constant::').concat(anActivityParameterNode1.name.toUpper()).concat('.oclAsType(').concat(anActivityParameterNode1.type.name).concat(')')/]  
+							[/if]
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').trim()/]  **/ in 								
+							[/if]
+								[/for]
+								[/for]
+
+                      		[/if]
+							[if (aSteriotype.name.equalsIgnoreCase('fromagent') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+let [anActivityParameterNode1.name.concat(':').concat(anActivityParameterNode1.type.name).concat(' = self.').concat(anActivityParameterNode1.name)/]  
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').trim()/]  **/ in									
+							[/if]
+								[/for]
+								[/for] 
+
+                      		[/if]
+		[/for]
+[/template]
+
+
+[query public activityParameterNodeToBedeclared(arg0 : Activity, arg1 : String, arg2 : Sequence(OclAny), arg3 : Sequence(OclAny)) : Sequence(ActivityParameterNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'activityParameterNodeToBedeclared(org.eclipse.uml2.uml.Activity, java.lang.String, java.util.List, java.util.List)', Sequence{arg0, arg1, arg2, arg3}) /]

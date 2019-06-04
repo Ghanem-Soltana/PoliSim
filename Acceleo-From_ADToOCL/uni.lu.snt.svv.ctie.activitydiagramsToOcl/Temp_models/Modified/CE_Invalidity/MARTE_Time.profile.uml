@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ProfileBase="http:///schemas/ProfileBase/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/ProfileBase/1 ProfileBase.profile.uml#_nwsfIHNCEeWkBaza2VKKuQ">
+  <uml:Profile xmi:id="_nwqDCXNCEeWkBaza2VKKuQ" name="Time" metamodelReference="_nwqpYnNCEeWkBaza2VKKuQ">
+    <eAnnotations xmi:id="_nwqDCnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_nwqDC3NCEeWkBaza2VKKuQ" name="Time" nsURI="http:///schemas/Time/_WHeH8Hr_EdyPbMD1sPyR5w/15" nsPrefix="Time">
+        <eAnnotations xmi:id="_nwqDDHNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+          <details xmi:id="_nwqDDXNCEeWkBaza2VKKuQ" key="documentation" value="Thales MARTE (Copyright (c) THALES 2007 All rights reserved) is free software; you can redistribute it and/or modify&#xD;&#xA;it under the terms of the Eclipse Public License as published in http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA;Thales MARTE is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied&#xD;&#xA;warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the Eclipse Public License for more details. "/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDDnNCEeWkBaza2VKKuQ" name="TimedDomain">
+          <eAnnotations xmi:id="_nwqDD3NCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwqpa3NCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDEHNCEeWkBaza2VKKuQ" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDEnNCEeWkBaza2VKKuQ" name="Clock">
+          <eAnnotations xmi:id="_nwqDE3NCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwqpfXNCEeWkBaza2VKKuQ"/>
+          <eOperations xmi:id="_nwqDFHNCEeWkBaza2VKKuQ" name="type">
+            <eAnnotations xmi:id="_nwqDFXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_nwqDFnNCEeWkBaza2VKKuQ" key="documentation" value="self.type->forAll(a | a.getAppliedStereotypes()->exists(s : Stereotype |&#xA;    s.allParents()->union(s->asBag())->exists(t : Classifier | t.oclIsKindOf(Stereotype) and&#xA;    t.qualifiedName='Time::ClockType')))"/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+            <eParameters xmi:id="_nwqDGHNCEeWkBaza2VKKuQ" name="diagnostics">
+              <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+            </eParameters>
+            <eParameters xmi:id="_nwqDGnNCEeWkBaza2VKKuQ" name="context">
+              <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+            </eParameters>
+          </eOperations>
+          <eOperations xmi:id="_nwqDHHNCEeWkBaza2VKKuQ" name="unit">
+            <eAnnotations xmi:id="_nwqDHXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_nwqDHnNCEeWkBaza2VKKuQ" key="documentation" value="self.unit->forAll(a | a.getAppliedStereotypes()->exists(s : Stereotype |&#xA;    s.allParents()->union(s->asBag())->exists(t : Classifier | t.oclIsKindOf(Stereotype) and&#xA;    t.qualifiedName='NFPs::Unit')))"/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+            <eParameters xmi:id="_nwqDIHNCEeWkBaza2VKKuQ" name="diagnostics">
+              <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+            </eParameters>
+            <eParameters xmi:id="_nwqDInNCEeWkBaza2VKKuQ" name="context">
+              <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+            </eParameters>
+          </eOperations>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDJHNCEeWkBaza2VKKuQ" name="standard" ordered="false" eType="_nwqDMHNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDJnNCEeWkBaza2VKKuQ" name="base_InstanceSpecification" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//InstanceSpecification"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDKHNCEeWkBaza2VKKuQ" name="unit" ordered="false">
+            <eAnnotations xmi:id="_nwqDKXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_nwqDKnNCEeWkBaza2VKKuQ" key="documentation" value="&lt;&lt;Unit>>"/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//EnumerationLiteral"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDLHNCEeWkBaza2VKKuQ" name="type" ordered="false" lowerBound="1">
+            <eAnnotations xmi:id="_nwqDLXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_nwqDLnNCEeWkBaza2VKKuQ" key="documentation" value="&lt;&lt;ClockType>>"/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_nwqDMHNCEeWkBaza2VKKuQ" name="InternalMarteLibrary_TimeStandardKind">
+          <eAnnotations xmi:id="_nwqDMXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nT3NCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eLiterals xmi:id="_nwqDMnNCEeWkBaza2VKKuQ" name="TAI"/>
+          <eLiterals xmi:id="_nwqDM3NCEeWkBaza2VKKuQ" name="UT0" value="1"/>
+          <eLiterals xmi:id="_nwqDNHNCEeWkBaza2VKKuQ" name="UT1" value="2"/>
+          <eLiterals xmi:id="_nwqDNXNCEeWkBaza2VKKuQ" name="UTC" value="3"/>
+          <eLiterals xmi:id="_nwqDNnNCEeWkBaza2VKKuQ" name="Local" value="4"/>
+          <eLiterals xmi:id="_nwqDN3NCEeWkBaza2VKKuQ" name="TT" value="5"/>
+          <eLiterals xmi:id="_nwqDOHNCEeWkBaza2VKKuQ" name="TDB" value="6"/>
+          <eLiterals xmi:id="_nwqDOXNCEeWkBaza2VKKuQ" name="TCG" value="7"/>
+          <eLiterals xmi:id="_nwqDOnNCEeWkBaza2VKKuQ" name="TCB" value="8"/>
+          <eLiterals xmi:id="_nwqDO3NCEeWkBaza2VKKuQ" name="Sideral" value="9"/>
+          <eLiterals xmi:id="_nwqDPHNCEeWkBaza2VKKuQ" name="GPS" value="10"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDPXNCEeWkBaza2VKKuQ" name="ClockType">
+          <eAnnotations xmi:id="_nwqDPnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwqpwnNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDP3NCEeWkBaza2VKKuQ" name="base_Class" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDQXNCEeWkBaza2VKKuQ" name="nature" ordered="false" lowerBound="1" eType="_nwqDU3NCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDQ3NCEeWkBaza2VKKuQ" name="unitType" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Enumeration"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDRXNCEeWkBaza2VKKuQ" name="isLogical" ordered="false" lowerBound="1" eType="_nwqDV3NCEeWkBaza2VKKuQ" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDR3NCEeWkBaza2VKKuQ" name="resolAttr" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDSXNCEeWkBaza2VKKuQ" name="maxValAttr" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDS3NCEeWkBaza2VKKuQ" name="offsetAttr" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDTXNCEeWkBaza2VKKuQ" name="getTime" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Operation"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDT3NCEeWkBaza2VKKuQ" name="setTime" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Operation"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDUXNCEeWkBaza2VKKuQ" name="indexToValue" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Operation"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_nwqDU3NCEeWkBaza2VKKuQ" name="InternalMarteLibrary_TimeNatureKind">
+          <eAnnotations xmi:id="_nwqDVHNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nOnNCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eLiterals xmi:id="_nwqDVXNCEeWkBaza2VKKuQ" name="discrete"/>
+          <eLiterals xmi:id="_nwqDVnNCEeWkBaza2VKKuQ" name="dense" value="1"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDV3NCEeWkBaza2VKKuQ" name="InternalMarteLibrary_Boolean">
+          <eAnnotations xmi:id="_nwqDWHNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Class" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nHHNCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDWXNCEeWkBaza2VKKuQ" name="value" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDW3NCEeWkBaza2VKKuQ" name="TimedValueSpecification" eSuperTypes="_nwqDYnNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDXHNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwqqTHNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDXXNCEeWkBaza2VKKuQ" name="interpretation" ordered="false" eType="_nwqDcHNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDX3NCEeWkBaza2VKKuQ" name="base_ValueSpecification" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//ValueSpecification"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDYnNCEeWkBaza2VKKuQ" name="TimedElement" abstract="true">
+          <eAnnotations xmi:id="_nwqDY3NCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrQdnNCEeWkBaza2VKKuQ"/>
+          <eOperations xmi:id="_nwqDZHNCEeWkBaza2VKKuQ" name="on">
+            <eAnnotations xmi:id="_nwqDZXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_nwqDZnNCEeWkBaza2VKKuQ" key="documentation" value="self.on->forAll(a | a.getAppliedStereotypes()->exists(s : Stereotype |&#xA;    s.allParents()->union(s->asBag())->exists(t : Classifier | t.oclIsKindOf(Stereotype) and&#xA;    t.qualifiedName='Time::Clock')))"/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+            <eParameters xmi:id="_nwqDaHNCEeWkBaza2VKKuQ" name="diagnostics">
+              <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+            </eParameters>
+            <eParameters xmi:id="_nwqDanNCEeWkBaza2VKKuQ" name="context">
+              <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+            </eParameters>
+          </eOperations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDbHNCEeWkBaza2VKKuQ" name="on" ordered="false" lowerBound="1" upperBound="-1">
+            <eAnnotations xmi:id="_nwqDbXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_nwqDbnNCEeWkBaza2VKKuQ" key="documentation" value="&lt;&lt;Clock>>"/>
+            </eAnnotations>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//InstanceSpecification"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_nwqDcHNCEeWkBaza2VKKuQ" name="InternalMarteLibrary_TimeInterpretationKind">
+          <eAnnotations xmi:id="_nwqDcXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nQ3NCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eLiterals xmi:id="_nwqDcnNCEeWkBaza2VKKuQ" name="duration"/>
+          <eLiterals xmi:id="_nwqDc3NCEeWkBaza2VKKuQ" name="instant" value="1"/>
+          <eLiterals xmi:id="_nwqDdHNCEeWkBaza2VKKuQ" name="any" value="2"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDdXNCEeWkBaza2VKKuQ" name="TimedConstraint" eSuperTypes="_nwqDYnNCEeWkBaza2VKKuQ _nwqDe3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDdnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrQl3NCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDd3NCEeWkBaza2VKKuQ" name="interpretation" ordered="false" lowerBound="1" eType="_nwqDcHNCEeWkBaza2VKKuQ"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDe3NCEeWkBaza2VKKuQ" name="NFPs_NfpConstraint">
+          <eAnnotations xmi:id="_nwqDfHNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Stereotype" href="MARTE_NFPs.profile.uml#_nwr4vnNCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDfXNCEeWkBaza2VKKuQ" name="kind" ordered="false" eType="_nwqDgXNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDf3NCEeWkBaza2VKKuQ" name="base_Constraint" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Constraint"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_nwqDgXNCEeWkBaza2VKKuQ" name="NFPs_ConstraintKind">
+          <eAnnotations xmi:id="_nwqDgnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Enumeration" href="MARTE_NFPs.profile.uml#_nwr4snNCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eLiterals xmi:id="_nwqDg3NCEeWkBaza2VKKuQ" name="required"/>
+          <eLiterals xmi:id="_nwqDhHNCEeWkBaza2VKKuQ" name="offered" value="1"/>
+          <eLiterals xmi:id="_nwqDhXNCEeWkBaza2VKKuQ" name="contract" value="2"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDhnNCEeWkBaza2VKKuQ" name="ClockConstraint" eSuperTypes="_nwqDYnNCEeWkBaza2VKKuQ _nwqDe3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDh3NCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrQo3NCEeWkBaza2VKKuQ"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDinNCEeWkBaza2VKKuQ" name="TimedObservation" abstract="true" eSuperTypes="_nwqDYnNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDi3NCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrQrHNCEeWkBaza2VKKuQ"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDjXNCEeWkBaza2VKKuQ" name="TimedInstantObservation" eSuperTypes="_nwqDinNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDjnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrQsnNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDj3NCEeWkBaza2VKKuQ" name="obsKind" ordered="false" eType="_nwqDlHNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDkXNCEeWkBaza2VKKuQ" name="base_TimeObservation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//TimeObservation"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EEnum" xmi:id="_nwqDlHNCEeWkBaza2VKKuQ" name="InternalMarteLibrary_EventKind">
+          <eAnnotations xmi:id="_nwqDlXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nc3NCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eLiterals xmi:id="_nwqDlnNCEeWkBaza2VKKuQ" name="start"/>
+          <eLiterals xmi:id="_nwqDl3NCEeWkBaza2VKKuQ" name="finish" value="1"/>
+          <eLiterals xmi:id="_nwqDmHNCEeWkBaza2VKKuQ" name="send" value="2"/>
+          <eLiterals xmi:id="_nwqDmXNCEeWkBaza2VKKuQ" name="receive" value="3"/>
+          <eLiterals xmi:id="_nwqDmnNCEeWkBaza2VKKuQ" name="consume" value="4"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDm3NCEeWkBaza2VKKuQ" name="TimedDurationObservation" eSuperTypes="_nwqDinNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDnHNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrQynNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDnXNCEeWkBaza2VKKuQ" name="obsKind" ordered="false" upperBound="2" eType="_nwqDlHNCEeWkBaza2VKKuQ">
+            <eAnnotations xmi:id="_nwqDnnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/emf/2002/GenModel">
+              <details xmi:id="_nwqDn3NCEeWkBaza2VKKuQ" key="documentation" value="* au lieu de [0..2]"/>
+            </eAnnotations>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDoXNCEeWkBaza2VKKuQ" name="base_DurationObservation" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//DurationObservation"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDpHNCEeWkBaza2VKKuQ" name="TimedEvent" eSuperTypes="_nwqDYnNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDpXNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrQ5XNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDpnNCEeWkBaza2VKKuQ" name="base_TimeEvent" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//TimeEvent"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDqHNCEeWkBaza2VKKuQ" name="repetition" ordered="false" eType="_nwqDrXNCEeWkBaza2VKKuQ" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDqnNCEeWkBaza2VKKuQ" name="every" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//ValueSpecification"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDrXNCEeWkBaza2VKKuQ" name="InternalMarteLibrary_Integer">
+          <eAnnotations xmi:id="_nwqDrnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <references xmi:type="uml:Class" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nFnNCEeWkBaza2VKKuQ"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_nwqDr3NCEeWkBaza2VKKuQ" name="value" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_nwqDsXNCEeWkBaza2VKKuQ" name="TimedProcessing" eSuperTypes="_nwqDYnNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqDsnNCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nwrREnNCEeWkBaza2VKKuQ"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDs3NCEeWkBaza2VKKuQ" name="base_Action" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Action"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDtXNCEeWkBaza2VKKuQ" name="base_Behavior" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Behavior"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDt3NCEeWkBaza2VKKuQ" name="base_Message" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Message"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDuXNCEeWkBaza2VKKuQ" name="start" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Event"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDu3NCEeWkBaza2VKKuQ" name="finish" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Event"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nwqDvXNCEeWkBaza2VKKuQ" name="duration" ordered="false">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//ValueSpecification"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <ownedComment xmi:id="_nwqDwHNCEeWkBaza2VKKuQ" annotatedElement="_nwqDCXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqDwXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqDwnNCEeWkBaza2VKKuQ" key="addedInVersion" value="15"/>
+      </eAnnotations>
+      <body>Thales MARTE (Copyright (c) THALES 2007 All rights reserved) is free software; you can redistribute it and/or modify&#xD;
+it under the terms of the Eclipse Public License as published in http://www.eclipse.org/legal/epl-v10.html&#xD;
+ &#xD;
+Thales MARTE is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied&#xD;
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the Eclipse Public License for more details. </body>
+    </ownedComment>
+    <packageImport xmi:id="_nwqDw3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqpYHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpYXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_nwqpYnNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqpY3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpZHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_nwqpZXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqpZnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpZ3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <importedPackage xmi:type="uml:Profile" href="MARTE_InternalMarteLibrary.profile.uml#_nw9mN3NCEeWkBaza2VKKuQ"/>
+    </packageImport>
+    <packageImport xmi:id="_nwqpaHNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqpaXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpanNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <importedPackage xmi:type="uml:Profile" href="MARTE_NFPs.profile.uml#_nwr4JnNCEeWkBaza2VKKuQ"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwqpa3NCEeWkBaza2VKKuQ" name="TimedDomain">
+      <eAnnotations xmi:id="_nwqpbHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpbXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_nwqpbnNCEeWkBaza2VKKuQ" name="base_Package" association="_nwqpd3NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpb3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpcHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+      <icon xmi:id="_nwqpcXNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpcnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpc3NCEeWkBaza2VKKuQ" key="addedInVersion" value="13"/>
+        </eAnnotations>
+      </icon>
+      <icon xmi:id="_nwqpdHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpdXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpdnNCEeWkBaza2VKKuQ" key="addedInVersion" value="13"/>
+        </eAnnotations>
+      </icon>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwqpd3NCEeWkBaza2VKKuQ" name="Package_TimedDomain" memberEnd="_nwqpenNCEeWkBaza2VKKuQ _nwqpbnNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqpeHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpeXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwqpenNCEeWkBaza2VKKuQ" name="extension_TimedDomain" type="_nwqpa3NCEeWkBaza2VKKuQ" aggregation="composite" association="_nwqpd3NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpe3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpfHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwqpfXNCEeWkBaza2VKKuQ" name="Clock">
+      <eAnnotations xmi:id="_nwqpfnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpf3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedRule xmi:id="_nwqpgHNCEeWkBaza2VKKuQ" name="type" constrainedElement="_nwqpfXNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpgXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpgnNCEeWkBaza2VKKuQ" key="addedInVersion" value="8"/>
+        </eAnnotations>
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_nwqpg3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqphHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqphXNCEeWkBaza2VKKuQ" key="addedInVersion" value="8"/>
+          </eAnnotations>
+          <language>OCL</language>
+          <body>self.type->forAll(a | a.getAppliedStereotypes()->exists(s : Stereotype |&#xA;    s.allParents()->union(s->asBag())->exists(t : Classifier | t.oclIsKindOf(Stereotype) and&#xA;    t.qualifiedName='Time::ClockType')))</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_nwqphnNCEeWkBaza2VKKuQ" name="unit" constrainedElement="_nwqpfXNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqph3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpiHNCEeWkBaza2VKKuQ" key="addedInVersion" value="8"/>
+        </eAnnotations>
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_nwqpiXNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqpinNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqpi3NCEeWkBaza2VKKuQ" key="addedInVersion" value="8"/>
+          </eAnnotations>
+          <language>OCL</language>
+          <body>self.unit->forAll(a | a.getAppliedStereotypes()->exists(s : Stereotype |&#xA;    s.allParents()->union(s->asBag())->exists(t : Classifier | t.oclIsKindOf(Stereotype) and&#xA;    t.qualifiedName='NFPs::Unit')))</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_nwqpjHNCEeWkBaza2VKKuQ" name="standard" visibility="public">
+        <eAnnotations xmi:id="_nwqpjXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpjnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nT3NCEeWkBaza2VKKuQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqpj3NCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqpkHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqpkXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqpknNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqpk3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqplHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqplXNCEeWkBaza2VKKuQ" name="base_InstanceSpecification" association="_nwqptnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqplnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpl3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InstanceSpecification"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqpmHNCEeWkBaza2VKKuQ" name="unit" visibility="public" aggregation="shared" association="_nwqpvHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpmXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpmnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <ownedComment xmi:id="_nwqpm3NCEeWkBaza2VKKuQ" annotatedElement="_nwqpmHNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqpnHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqpnXNCEeWkBaza2VKKuQ" key="addedInVersion" value="2"/>
+          </eAnnotations>
+          <body>&lt;&lt;Unit>></body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#EnumerationLiteral"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqpnnNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqpn3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqpoHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqpoXNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqponNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqpo3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqppHNCEeWkBaza2VKKuQ" name="type" visibility="public" aggregation="shared" association="_nwqqHHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqppXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqppnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <ownedComment xmi:id="_nwqpp3NCEeWkBaza2VKKuQ" annotatedElement="_nwqppHNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqpqHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqpqXNCEeWkBaza2VKKuQ" key="addedInVersion" value="2"/>
+          </eAnnotations>
+          <body>&lt;&lt;ClockType>></body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqpqnNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqpq3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqprHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqprXNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqprnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqpr3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <icon xmi:id="_nwqpsHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpsXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpsnNCEeWkBaza2VKKuQ" key="addedInVersion" value="13"/>
+        </eAnnotations>
+      </icon>
+      <icon xmi:id="_nwqps3NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqptHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqptXNCEeWkBaza2VKKuQ" key="addedInVersion" value="13"/>
+        </eAnnotations>
+      </icon>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwqptnNCEeWkBaza2VKKuQ" name="InstanceSpecification_Clock" memberEnd="_nwqpuXNCEeWkBaza2VKKuQ _nwqplXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqpt3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpuHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwqpuXNCEeWkBaza2VKKuQ" name="extension_Clock" type="_nwqpfXNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwqptnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpunNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpu3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqpvHNCEeWkBaza2VKKuQ" memberEnd="_nwqpmHNCEeWkBaza2VKKuQ _nwqpv3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqpvXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpvnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqpv3NCEeWkBaza2VKKuQ" name="clock" visibility="private" type="_nwqpfXNCEeWkBaza2VKKuQ" association="_nwqpvHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpwHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpwXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwqpwnNCEeWkBaza2VKKuQ" name="ClockType">
+      <eAnnotations xmi:id="_nwqpw3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqpxHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_nwqpxXNCEeWkBaza2VKKuQ" name="base_Class" association="_nwqqFnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpxnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpx3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqpyHNCEeWkBaza2VKKuQ" name="nature" visibility="public">
+        <eAnnotations xmi:id="_nwqpyXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpynNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nOnNCEeWkBaza2VKKuQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqpy3NCEeWkBaza2VKKuQ" name="unitType" visibility="public" aggregation="shared" association="_nwqqInNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqpzHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqpzXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Enumeration"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqpznNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqpz3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp0HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqp0XNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqp0nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp03NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqp1HNCEeWkBaza2VKKuQ" name="isLogical" visibility="public" aggregation="composite">
+        <eAnnotations xmi:id="_nwqp1XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqp1nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nHHNCEeWkBaza2VKKuQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_nwqp13NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqp2HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp2XNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+          <type xmi:type="uml:Class" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nHHNCEeWkBaza2VKKuQ"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqp2nNCEeWkBaza2VKKuQ" name="resolAttr" visibility="public" aggregation="shared" association="_nwqqKHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqp23NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqp3HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqp3XNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqp3nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp33NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqp4HNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqp4XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp4nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqp43NCEeWkBaza2VKKuQ" name="maxValAttr" visibility="public" aggregation="shared" association="_nwqqLnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqp5HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqp5XNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqp5nNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqp53NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp6HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqp6XNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqp6nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp63NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqp7HNCEeWkBaza2VKKuQ" name="offsetAttr" visibility="public" aggregation="shared" association="_nwqqNHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqp7XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqp7nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqp73NCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqp8HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp8XNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqp8nNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqp83NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp9HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqp9XNCEeWkBaza2VKKuQ" name="getTime" visibility="public" aggregation="shared" association="_nwqqOnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqp9nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqp93NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqp-HNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqp-XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp-nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqp-3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqp_HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqp_XNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqp_nNCEeWkBaza2VKKuQ" name="setTime" visibility="public" aggregation="shared" association="_nwqqQHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqp_3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqAHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqqAXNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqqAnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqqA3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqqBHNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqqBXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqqBnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwqqB3NCEeWkBaza2VKKuQ" name="indexToValue" visibility="public" aggregation="shared" association="_nwqqRnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqCHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqCXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqqCnNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqqC3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqqDHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwqqDXNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwqqDnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqqD3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <icon xmi:id="_nwqqEHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqEXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqEnNCEeWkBaza2VKKuQ" key="addedInVersion" value="13"/>
+        </eAnnotations>
+      </icon>
+      <icon xmi:id="_nwqqE3NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqFHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqFXNCEeWkBaza2VKKuQ" key="addedInVersion" value="13"/>
+        </eAnnotations>
+      </icon>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwqqFnNCEeWkBaza2VKKuQ" name="Class_ClockType" memberEnd="_nwqqGXNCEeWkBaza2VKKuQ _nwqpxXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqF3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqGHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwqqGXNCEeWkBaza2VKKuQ" name="extension_ClockType" type="_nwqpwnNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwqqFnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqGnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqG3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqHHNCEeWkBaza2VKKuQ" memberEnd="_nwqppHNCEeWkBaza2VKKuQ _nwqqH3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqHXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqHnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqH3NCEeWkBaza2VKKuQ" name="clock" visibility="private" type="_nwqpfXNCEeWkBaza2VKKuQ" association="_nwqqHHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqIHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqIXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqInNCEeWkBaza2VKKuQ" memberEnd="_nwqpy3NCEeWkBaza2VKKuQ _nwqqJXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqI3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqJHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqJXNCEeWkBaza2VKKuQ" name="clocktype" visibility="private" type="_nwqpwnNCEeWkBaza2VKKuQ" association="_nwqqInNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqJnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqJ3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqKHNCEeWkBaza2VKKuQ" memberEnd="_nwqp2nNCEeWkBaza2VKKuQ _nwqqK3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqKXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqKnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqK3NCEeWkBaza2VKKuQ" name="clocktype" visibility="private" type="_nwqpwnNCEeWkBaza2VKKuQ" association="_nwqqKHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqLHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqLXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqLnNCEeWkBaza2VKKuQ" memberEnd="_nwqp43NCEeWkBaza2VKKuQ _nwqqMXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqL3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqMHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqMXNCEeWkBaza2VKKuQ" name="clocktype" visibility="private" type="_nwqpwnNCEeWkBaza2VKKuQ" association="_nwqqLnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqMnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqM3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqNHNCEeWkBaza2VKKuQ" memberEnd="_nwqp7HNCEeWkBaza2VKKuQ _nwqqN3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqNXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqNnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqN3NCEeWkBaza2VKKuQ" name="clocktype" visibility="private" type="_nwqpwnNCEeWkBaza2VKKuQ" association="_nwqqNHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqOHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqOXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqOnNCEeWkBaza2VKKuQ" memberEnd="_nwqp9XNCEeWkBaza2VKKuQ _nwqqPXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqO3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqPHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqPXNCEeWkBaza2VKKuQ" name="clocktype" visibility="private" type="_nwqpwnNCEeWkBaza2VKKuQ" association="_nwqqOnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqPnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqP3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqQHNCEeWkBaza2VKKuQ" memberEnd="_nwqp_nNCEeWkBaza2VKKuQ _nwqqQ3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqQXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqQnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqQ3NCEeWkBaza2VKKuQ" name="clocktype" visibility="private" type="_nwqpwnNCEeWkBaza2VKKuQ" association="_nwqqQHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqRHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqRXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwqqRnNCEeWkBaza2VKKuQ" memberEnd="_nwqqB3NCEeWkBaza2VKKuQ _nwqqSXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwqqR3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqSHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwqqSXNCEeWkBaza2VKKuQ" name="clocktype" visibility="private" type="_nwqpwnNCEeWkBaza2VKKuQ" association="_nwqqRnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqSnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqS3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwqqTHNCEeWkBaza2VKKuQ" name="TimedValueSpecification">
+      <eAnnotations xmi:id="_nwqqTXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwqqTnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwqqT3NCEeWkBaza2VKKuQ" general="_nwrQdnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwqqUHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqUXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </generalization>
+      <ownedAttribute xmi:id="_nwqqUnNCEeWkBaza2VKKuQ" name="interpretation" visibility="public">
+        <eAnnotations xmi:id="_nwqqU3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwqqVHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nQ3NCEeWkBaza2VKKuQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwqqVXNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwqqVnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwqqV3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrQcHNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQcXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQcnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrQc3NCEeWkBaza2VKKuQ" name="base_ValueSpecification" association="_nwrQkXNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQdHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQdXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ValueSpecification"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrQdnNCEeWkBaza2VKKuQ" name="TimedElement" isAbstract="true">
+      <eAnnotations xmi:id="_nwrQd3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQeHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedRule xmi:id="_nwrQeXNCEeWkBaza2VKKuQ" name="on" constrainedElement="_nwrQdnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQenNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQe3NCEeWkBaza2VKKuQ" key="addedInVersion" value="8"/>
+        </eAnnotations>
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_nwrQfHNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQfXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQfnNCEeWkBaza2VKKuQ" key="addedInVersion" value="8"/>
+          </eAnnotations>
+          <language>OCL</language>
+          <body>self.on->forAll(a | a.getAppliedStereotypes()->exists(s : Stereotype |&#xA;    s.allParents()->union(s->asBag())->exists(t : Classifier | t.oclIsKindOf(Stereotype) and&#xA;    t.qualifiedName='Time::Clock')))</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_nwrQf3NCEeWkBaza2VKKuQ" name="on" visibility="public" aggregation="shared" association="_nwrQi3NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQgHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQgXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <ownedComment xmi:id="_nwrQgnNCEeWkBaza2VKKuQ" annotatedElement="_nwrQf3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQg3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQhHNCEeWkBaza2VKKuQ" key="addedInVersion" value="3"/>
+          </eAnnotations>
+          <body>&lt;&lt;Clock>></body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InstanceSpecification"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrQhXNCEeWkBaza2VKKuQ" value="*">
+          <eAnnotations xmi:id="_nwrQhnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQh3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrQiHNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrQiXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQinNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwrQi3NCEeWkBaza2VKKuQ" memberEnd="_nwrQf3NCEeWkBaza2VKKuQ _nwrQjnNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrQjHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQjXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwrQjnNCEeWkBaza2VKKuQ" name="timedelement" visibility="private" type="_nwrQdnNCEeWkBaza2VKKuQ" association="_nwrQi3NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQj3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQkHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwrQkXNCEeWkBaza2VKKuQ" name="ValueSpecification_TimedValueSpecification" memberEnd="_nwrQlHNCEeWkBaza2VKKuQ _nwrQc3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrQknNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQk3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwrQlHNCEeWkBaza2VKKuQ" name="extension_TimedValueSpecification" type="_nwqqTHNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwrQkXNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQlXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQlnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrQl3NCEeWkBaza2VKKuQ" name="TimedConstraint">
+      <eAnnotations xmi:id="_nwrQmHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQmXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwrQmnNCEeWkBaza2VKKuQ" general="_nwrQdnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQm3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQnHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </generalization>
+      <generalization xmi:id="_nwrQnXNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQnnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQn3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <general xmi:type="uml:Stereotype" href="MARTE_NFPs.profile.uml#_nwr4vnNCEeWkBaza2VKKuQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_nwrQoHNCEeWkBaza2VKKuQ" name="interpretation" visibility="public">
+        <eAnnotations xmi:id="_nwrQoXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQonNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nQ3NCEeWkBaza2VKKuQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrQo3NCEeWkBaza2VKKuQ" name="ClockConstraint">
+      <eAnnotations xmi:id="_nwrQpHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQpXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwrQpnNCEeWkBaza2VKKuQ" general="_nwrQdnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQp3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQqHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </generalization>
+      <generalization xmi:id="_nwrQqXNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQqnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQq3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <general xmi:type="uml:Stereotype" href="MARTE_NFPs.profile.uml#_nwr4vnNCEeWkBaza2VKKuQ"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrQrHNCEeWkBaza2VKKuQ" name="TimedObservation" isAbstract="true">
+      <eAnnotations xmi:id="_nwrQrXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQrnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwrQr3NCEeWkBaza2VKKuQ" general="_nwrQdnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQsHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQsXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrQsnNCEeWkBaza2VKKuQ" name="TimedInstantObservation">
+      <eAnnotations xmi:id="_nwrQs3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQtHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwrQtXNCEeWkBaza2VKKuQ" general="_nwrQrHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQtnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQt3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </generalization>
+      <ownedAttribute xmi:id="_nwrQuHNCEeWkBaza2VKKuQ" name="obsKind" visibility="public">
+        <eAnnotations xmi:id="_nwrQuXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQunNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nc3NCEeWkBaza2VKKuQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrQu3NCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrQvHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQvXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrQvnNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQv3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQwHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrQwXNCEeWkBaza2VKKuQ" name="base_TimeObservation" association="_nwrQxHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQwnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQw3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TimeObservation"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwrQxHNCEeWkBaza2VKKuQ" name="TimeObservation_TimedInstantObservation" memberEnd="_nwrQx3NCEeWkBaza2VKKuQ _nwrQwXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrQxXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQxnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwrQx3NCEeWkBaza2VKKuQ" name="extension_TimedInstantObservation" type="_nwrQsnNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwrQxHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQyHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQyXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrQynNCEeWkBaza2VKKuQ" name="TimedDurationObservation">
+      <eAnnotations xmi:id="_nwrQy3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQzHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwrQzXNCEeWkBaza2VKKuQ" general="_nwrQrHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQznNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQz3NCEeWkBaza2VKKuQ" key="addedInVersion" value="3"/>
+        </eAnnotations>
+      </generalization>
+      <ownedAttribute xmi:id="_nwrQ0HNCEeWkBaza2VKKuQ" name="obsKind" visibility="public">
+        <eAnnotations xmi:id="_nwrQ0XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQ0nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <ownedComment xmi:id="_nwrQ03NCEeWkBaza2VKKuQ" annotatedElement="_nwrQ0HNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQ1HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQ1XNCEeWkBaza2VKKuQ" key="addedInVersion" value="3"/>
+          </eAnnotations>
+          <body>* au lieu de [0..2]</body>
+        </ownedComment>
+        <type xmi:type="uml:Enumeration" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nc3NCEeWkBaza2VKKuQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrQ1nNCEeWkBaza2VKKuQ" value="2">
+          <eAnnotations xmi:id="_nwrQ13NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQ2HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrQ2XNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQ2nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQ23NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrQ3HNCEeWkBaza2VKKuQ" name="base_DurationObservation" association="_nwrQ33NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQ3XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQ3nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DurationObservation"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwrQ33NCEeWkBaza2VKKuQ" name="DurationObservation_TimedDurationObservation" memberEnd="_nwrQ4nNCEeWkBaza2VKKuQ _nwrQ3HNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrQ4HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQ4XNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwrQ4nNCEeWkBaza2VKKuQ" name="extension_TimedDurationObservation" type="_nwrQynNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwrQ33NCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQ43NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQ5HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrQ5XNCEeWkBaza2VKKuQ" name="TimedEvent">
+      <eAnnotations xmi:id="_nwrQ5nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrQ53NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwrQ6HNCEeWkBaza2VKKuQ" general="_nwrQdnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQ6XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQ6nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </generalization>
+      <ownedAttribute xmi:id="_nwrQ63NCEeWkBaza2VKKuQ" name="base_TimeEvent" association="_nwrRAHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQ7HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQ7XNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TimeEvent"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrQ7nNCEeWkBaza2VKKuQ" name="repetition" visibility="public" aggregation="composite">
+        <eAnnotations xmi:id="_nwrQ73NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQ8HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="MARTE_InternalMarteLibrary.profile.uml#_nw9nFnNCEeWkBaza2VKKuQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrQ8XNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrQ8nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQ83NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrQ9HNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQ9XNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQ9nNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrQ93NCEeWkBaza2VKKuQ" name="every" visibility="public" aggregation="shared" association="_nwrRBnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrQ-HNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrQ-XNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ValueSpecification"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrQ-nNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrQ-3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQ_HNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrQ_XNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrQ_nNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrQ_3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwrRAHNCEeWkBaza2VKKuQ" name="TimeEvent_TimedEvent" memberEnd="_nwrRA3NCEeWkBaza2VKKuQ _nwrQ63NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRAXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRAnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwrRA3NCEeWkBaza2VKKuQ" name="extension_TimedEvent" type="_nwrQ5XNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwrRAHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRBHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRBXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwrRBnNCEeWkBaza2VKKuQ" memberEnd="_nwrQ93NCEeWkBaza2VKKuQ _nwrRCXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRB3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRCHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwrRCXNCEeWkBaza2VKKuQ" name="timedevent" visibility="private" type="_nwrQ5XNCEeWkBaza2VKKuQ" association="_nwrRBnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRCnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRC3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrRDHNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrRDXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRDnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrRD3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrREHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrREXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nwrREnNCEeWkBaza2VKKuQ" name="TimedProcessing">
+      <eAnnotations xmi:id="_nwrRE3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRFHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <generalization xmi:id="_nwrRFXNCEeWkBaza2VKKuQ" general="_nwrQdnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRFnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRF3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </generalization>
+      <ownedAttribute xmi:id="_nwrRGHNCEeWkBaza2VKKuQ" name="base_Action" association="_nwrRPHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRGXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRGnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrRG3NCEeWkBaza2VKKuQ" name="base_Behavior" association="_nwrRQnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRHHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRHXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrRHnNCEeWkBaza2VKKuQ" name="base_Message" association="_nwrRSHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRH3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRIHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Message"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrRIXNCEeWkBaza2VKKuQ" name="start" visibility="public" aggregation="shared" association="_nwrRTnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRInNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRI3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Event"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrRJHNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrRJXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRJnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrRJ3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrRKHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRKXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrRKnNCEeWkBaza2VKKuQ" name="finish" visibility="public" aggregation="shared" association="_nwrRVHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRK3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRLHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Event"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrRLXNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrRLnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRL3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrRMHNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrRMXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRMnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_nwrRM3NCEeWkBaza2VKKuQ" name="duration" visibility="public" aggregation="shared" association="_nwrRWnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRNHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRNXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ValueSpecification"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrRNnNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrRN3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrROHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrROXNCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrROnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRO3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwrRPHNCEeWkBaza2VKKuQ" name="Action_TimedProcessing" memberEnd="_nwrRP3NCEeWkBaza2VKKuQ _nwrRGHNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRPXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRPnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwrRP3NCEeWkBaza2VKKuQ" name="extension_TimedProcessing" type="_nwrREnNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwrRPHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRQHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRQXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwrRQnNCEeWkBaza2VKKuQ" name="Behavior_TimedProcessing" memberEnd="_nwrRRXNCEeWkBaza2VKKuQ _nwrRG3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRQ3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRRHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwrRRXNCEeWkBaza2VKKuQ" name="extension_TimedProcessing" type="_nwrREnNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwrRQnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRRnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRR3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nwrRSHNCEeWkBaza2VKKuQ" name="Message_TimedProcessing" memberEnd="_nwrRS3NCEeWkBaza2VKKuQ _nwrRHnNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRSXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRSnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nwrRS3NCEeWkBaza2VKKuQ" name="extension_TimedProcessing" type="_nwrREnNCEeWkBaza2VKKuQ" aggregation="composite" association="_nwrRSHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRTHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRTXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwrRTnNCEeWkBaza2VKKuQ" memberEnd="_nwrRIXNCEeWkBaza2VKKuQ _nwrRUXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRT3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRUHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwrRUXNCEeWkBaza2VKKuQ" name="timedprocessing" visibility="private" type="_nwrREnNCEeWkBaza2VKKuQ" association="_nwrRTnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRUnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRU3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwrRVHNCEeWkBaza2VKKuQ" memberEnd="_nwrRKnNCEeWkBaza2VKKuQ _nwrRV3NCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRVXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRVnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwrRV3NCEeWkBaza2VKKuQ" name="timedprocessing" visibility="private" type="_nwrREnNCEeWkBaza2VKKuQ" association="_nwrRVHNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRWHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRWXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_nwrRWnNCEeWkBaza2VKKuQ" memberEnd="_nwrRM3NCEeWkBaza2VKKuQ _nwrRXXNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRW3NCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRXHNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_nwrRXXNCEeWkBaza2VKKuQ" name="timedprocessing" visibility="private" type="_nwrREnNCEeWkBaza2VKKuQ" association="_nwrRWnNCEeWkBaza2VKKuQ">
+        <eAnnotations xmi:id="_nwrRXnNCEeWkBaza2VKKuQ" source="uml2.extensions">
+          <details xmi:id="_nwrRX3NCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nwrRYHNCEeWkBaza2VKKuQ" value="1">
+          <eAnnotations xmi:id="_nwrRYXNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRYnNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </upperValue>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nwrRY3NCEeWkBaza2VKKuQ">
+          <eAnnotations xmi:id="_nwrRZHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+            <details xmi:id="_nwrRZXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+          </eAnnotations>
+        </lowerValue>
+      </ownedEnd>
+    </packagedElement>
+    <profileApplication xmi:id="_nwrRZnNCEeWkBaza2VKKuQ">
+      <eAnnotations xmi:id="_nwrRZ3NCEeWkBaza2VKKuQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="ProfileBase.profile.uml#_nwsfIHNCEeWkBaza2VKKuQ"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_nwrRaHNCEeWkBaza2VKKuQ" source="uml2.extensions">
+        <details xmi:id="_nwrRaXNCEeWkBaza2VKKuQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <appliedProfile href="ProfileBase.profile.uml#_nwsfHnNCEeWkBaza2VKKuQ"/>
+    </profileApplication>
+  </uml:Profile>
+  <ProfileBase:ProfileConstraint xmi:id="_nwrRanNCEeWkBaza2VKKuQ" base_Constraint="_nwqpgHNCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ProfileConstraint xmi:id="_nwrRa3NCEeWkBaza2VKKuQ" base_Constraint="_nwqphnNCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ProfileConstraint xmi:id="_nwrRbHNCEeWkBaza2VKKuQ" base_Constraint="_nwrQeXNCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ExtendedImage xmi:id="_nwrRbXNCEeWkBaza2VKKuQ" data="47494638396120002000F700001717171D1D1D2828283535353E3E3E4747474F4F4F5555555C5C5C5D5D5D5F5F5F6161616363636464646666666767676868686969696A6A6A6B6B6B6C6C6C6D6D6D6E6E6E6F6F6F7070707171717272727373737474747575757676767777777878787979797A7A7A7B7B7B7C7C7C7D7D7D7E7E7E7F7F7F8080808181818282828383838787878888888989898A8A8A8B8B8B8C8C8C8D8D8D8F8F8F9090909292929393939494949595959696969797979898989999999A9A9A9B9B9B9C9C9C9D9D9D9E9E9E9F9F9FA0A0A0A2A2A2A3A3A3A4A4A4A5A5A5A6A6A6A7A7A7A8A8A8ACACACADADADAEAEAEB0B0B0B1B1B1B2B2B2B4B4B4B5B5B5B6B6B6B8B8B8B9B9B9BABABABCBCBCBDBDBDBEBEBEBFBFBFC1C1C1C2C2C2C4C4C4C6C6C6C7C7C7C8C8C8C9C9C9CBCBCBCDCDCDCECECECFCFCFD0D0D0D1D1D1D2D2D2D3D3D3D5D5D5D6D6D6D7D7D7D8D8D8DADADADBDBDBDCDCDCDDDDDDDEDEDEDFDFDFE0E0E0E1E1E1E2E2E2E3E3E3E4E4E4E5E5E5E6E6E6E7E7E7E8E8E8E9E9E9EAEAEAEBEBEBECECECEDEDEDEEEEEEEFEFEFF0F0F0F1F1F1F2F2F2F3F3F3F4F4F4F5F5F5F6F6F6F7F7F7F8F8F8F9F9F9FAFAFAFBFBFBFCFCFCFDFDFDFEFEFEFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000021F904010000940021FE322043726561746564207769746820496E6B73636170652028687474703A2F2F7777772E696E6B73636170652E6F72672F2920002C00000000200020000008FE0029091C48B0A0C183081136E2E3464D1A367106454A489192243E5074C8D810C1018511377A7C4134A962413E4A3884E85041869226424C6020F121C51645262D7A592101458E32800ECD0163A8109E29314070B091A7A2A32817400481E3E851A3474018E871E40892A12E2C42986093705214091BAE2CB2DAA891233A6014B575FB884F8F0B21DE20F4626143184773DB3ACA330670604785806C50E1C7201F151FB2183ECCC2C01DB6731D11D211C2C8C48193924020C22870DB47730A00103279EEA3382538A021C827430A3998E742923240400241A64F3B019103D2C027207EE40EEC860A08318782BBE5F301451D818E726050B3DC351D1590A4FEB75DA4840218817C60541824DEAD1C15AD4D43CA82E148C937157820BA1ADF3D7CF18B4032C60A274CE4C6024F30A2470C60B456082375ACD09D2381AC40451C3574E008256F20304523768C20996B5CF800430279847758202C5861C70D1A3042891B0C3021D721A505160814040490C31D570507491B337CF008257178004374D25565C40138BCF08319873C8219246090E0C24483D400C11FED3982870D91F0A1C50C2E5C71478E8F5411411403F1B081172A4A87081E7421C2C60F4B140258223D5460C6405F6460835C611EE6C8208BB805C7052D00325022B199D15D7B6EB5C5480F1C2051D01613D030487F985E25860823F451D022354C4084229EA4361A1C6A276490C541788800811288E4E6881443EC17186A3C0121E3416C701001107B60F6C80E2408EB1623649C20810D865004C70914AC8005709140B248228F40028922740421C205401C62921F45547081095070B1061E7BCC31C6154360A081085A3492132590A48183080A50F0820D36D47042030FB080441F250D2CD023758061C4081854B0010B519C0148C5161734892456412209C9090504003B" usageHint="Icon" imageName="clock.gif" base_Image="_nwqpsHNCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ExtendedImage xmi:id="_nwrRbnNCEeWkBaza2VKKuQ" data="3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554462D3822207374616E64616C6F6E653D226E6F223F3E0A3C212D2D2043726561746564207769746820496E6B73636170652028687474703A2F2F7777772E696E6B73636170652E6F72672F29202D2D3E0A3C7376670A202020786D6C6E733A64633D22687474703A2F2F7075726C2E6F72672F64632F656C656D656E74732F312E312F220A202020786D6C6E733A63633D22687474703A2F2F7765622E7265736F757263652E6F72672F63632F220A202020786D6C6E733A7264663D22687474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D73796E7461782D6E7323220A202020786D6C6E733A7376673D22687474703A2F2F7777772E77332E6F72672F323030302F737667220A202020786D6C6E733D22687474703A2F2F7777772E77332E6F72672F323030302F737667220A202020786D6C6E733A736F6469706F64693D22687474703A2F2F736F6469706F64692E736F75726365666F7267652E6E65742F4454442F736F6469706F64692D302E647464220A202020786D6C6E733A696E6B73636170653D22687474703A2F2F7777772E696E6B73636170652E6F72672F6E616D657370616365732F696E6B7363617065220A20202069643D2273766732323131220A202020736F6469706F64693A76657273696F6E3D22302E3332220A202020696E6B73636170653A76657273696F6E3D22302E34352E31220A20202077696474683D223530220A2020206865696768743D223530220A20202076657273696F6E3D22312E30220A202020736F6469706F64693A646F63626173653D22433A5C446F63756D656E747320616E642053657474696E67735C54303038313638365C49424D5C726174696F6E616C736470372E305C776F726B73706163655C4D415254455F5253785C70726F66696C655C69636F6E735C54696D65220A202020736F6469706F64693A646F636E616D653D22636C6F636B2E737667220A202020696E6B73636170653A6F75747075745F657874656E73696F6E3D226F72672E696E6B73636170652E6F75747075742E7376672E696E6B7363617065223E0A20203C6D657461646174610A202020202069643D226D6574616461746132323136223E0A202020203C7264663A5244463E0A2020202020203C63633A576F726B0A2020202020202020207264663A61626F75743D22223E0A20202020202020203C64633A666F726D61743E696D6167652F7376672B786D6C3C2F64633A666F726D61743E0A20202020202020203C64633A747970650A20202020202020202020207264663A7265736F757263653D22687474703A2F2F7075726C2E6F72672F64632F64636D69747970652F5374696C6C496D61676522202F3E0A2020202020203C2F63633A576F726B3E0A202020203C2F7264663A5244463E0A20203C2F6D657461646174613E0A20203C646566730A202020202069643D22646566733232313422202F3E0A20203C736F6469706F64693A6E616D6564766965770A2020202020696E6B73636170653A77696E646F772D6865696768743D22363436220A2020202020696E6B73636170653A77696E646F772D77696474683D2231303630220A2020202020696E6B73636170653A70616765736861646F773D2232220A2020202020696E6B73636170653A706167656F7061636974793D22302E30220A20202020206775696465746F6C6572616E63653D2231302E30220A202020202067726964746F6C6572616E63653D2231302E30220A20202020206F626A656374746F6C6572616E63653D2231302E30220A2020202020626F726465726F7061636974793D22312E30220A2020202020626F72646572636F6C6F723D2223363636363636220A202020202070616765636F6C6F723D2223666666666666220A202020202069643D2262617365220A2020202020696E6B73636170653A7A6F6F6D3D22352E35343431313736220A2020202020696E6B73636170653A63783D2235382E373335343332220A2020202020696E6B73636170653A63793D2231362E393036383636220A2020202020696E6B73636170653A77696E646F772D783D223232220A2020202020696E6B73636170653A77696E646F772D793D223239220A2020202020696E6B73636170653A63757272656E742D6C617965723D226732313637220A202020202077696474683D2235307078220A20202020206865696768743D223530707822202F3E0A20203C670A202020202069643D226733323530220A20202020207472616E73666F726D3D227472616E736C617465282D36322E3034373734352C342E31343835343129220A20202020207374796C653D227374726F6B653A23383038303830223E0A202020203C670A2020202020202069643D226732313637220A202020202020207472616E73666F726D3D226D617472697828302E383033323935322C302C302C302E383033323935322C382E313539363832382C2D332E3133333430313229220A202020202020207374796C653D2266696C6C3A23663966396639223E0A2020202020203C706174680A2020202020202020207472616E73666F726D3D226D617472697828302E393933353933352C302C302C302E393837313632352C36322E3435323031362C2D312E3932343837353729220A202020202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A202020202020202020736F6469706F64693A72793D2232372E383637333734220A202020202020202020736F6469706F64693A72783D2232372E363837303032220A202020202020202020736F6469706F64693A63793D2233322E313936323835220A202020202020202020736F6469706F64693A63783D2233352E393834303835220A20202020202020202069643D227061746833323236220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E303039373230383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020736F6469706F64693A747970653D2261726322202F3E0A2020202020203C706174680A202020202020202020736F6469706F64693A747970653D22617263220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E30343634333739383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020202069643D227061746832323230220A202020202020202020736F6469706F64693A63783D2233352E393834303835220A202020202020202020736F6469706F64693A63793D2233322E313936323835220A202020202020202020736F6469706F64693A72783D2232372E363837303032220A202020202020202020736F6469706F64693A72793D2232372E383637333734220A202020202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A2020202020202020207472616E73666F726D3D226D617472697828302E393231373037322C302C302C302E393135373431342C36342E3937383438362C302E343334393036392922202F3E0A2020202020203C706174680A20202020202020202069643D227061746833323132220A202020202020202020643D224D2039382E3132323031362C31332E353237383532204C2039382E3132323031362C33362E363135333835220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A3122202F3E0A2020202020203C706174680A20202020202020202069643D227061746833323134220A202020202020202020643D224D2039332E3235313938392C33302E333032333837204C203131322E33373133352C33382E303538333536220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A3122202F3E0A2020202020203C706174680A202020202020202020736F6469706F64693A6E6F646574797065733D226373636363220A20202020202020202069643D227061746833323136220A202020202020202020643D224D203130302E38333238352C31392E3238393839342043203130302E36393431362C31392E3532353632332039382E3333333235322C31382E3136343935312039382E3035393730322C31382E313631353620432039372E3738363135322C31382E31353831372039352E3437343936342C31392E3631333733382039352E3334343734342C31392E33373434333820432039362E3233303030372C31372E3738353336392039362E3934383333322C31352E3137353832372039372E3934323837372C31332E36353331393220432039382E3834343435312C31352E323031353338203130302E30313835322C31372E363932323232203130302E38333238352C31392E323839383934207A20220A2020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A3122202F3E0A2020202020203C670A20202020202020202069643D226732313638220A2020202020202020207374796C653D227374726F6B653A233161316131613B66696C6C3A23316131613161223E0A20202020202020203C706174680A2020202020202020202020736F6469706F64693A747970653D22617263220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020202069643D227061746833323138220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A20202020202020202020207472616E73666F726D3D227472616E736C6174652834342E3031303631312C31362E3035333035312922202F3E0A20202020202020203C706174680A20202020202020202020207472616E73666F726D3D227472616E736C6174652836322E35383838362C2D342E3530393238333529220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020202069643D227061746833323230220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202020202020736F6469706F64693A747970653D2261726322202F3E0A20202020202020203C706174680A20202020202020202020207472616E73666F726D3D227472616E736C6174652838322E3937303832332C31352E383732363829220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020202069643D227061746833323232220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202020202020736F6469706F64693A747970653D2261726322202F3E0A20202020202020203C706174680A2020202020202020202020736F6469706F64693A747970653D22617263220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020202069643D227061746833323234220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A20202020202020202020207472616E73666F726D3D227472616E736C6174652836322E3430383438392C33352E3533333135372922202F3E0A20202020202020203C706174680A20202020202020202020207472616E73666F726D3D226D617472697828312E373130313331322C302C302C312E353134363837362C33372E3238363937392C31312E39313130353429220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020202069643D227061746833323238220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202020202020736F6469706F64693A747970653D2261726322202F3E0A2020202020203C2F673E0A202020203C2F673E0A20203C2F673E0A3C2F7376673E0A" usageHint="ShapeImage" imageName="clock.svg" base_Image="_nwqps3NCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ExtendedImage xmi:id="_nwrRb3NCEeWkBaza2VKKuQ" data="47494638396120002000F70000383838525252636566646464616568696A6A6B6C6E6B6D6E6B6D6F6C6C6C6C6D6D6F71736C707570737674767877797B76797C76797D75797E7878787979797B7B7B787A7C797B7D797B7E7D7E7E7D83887F848983838380838582848584858586868683868981868C81878C82878D868A8F888888898989898A8B8C8D8E8D8E8E8A8F93888E958F92968E949B90909090909190919191919190919291919292929292929393939493949493949694949497979793979B95969895979A90969E96989A96999D9B9B9B9D9D9D9F9F9FA09F9F959CA3969CA2979EA59A9EA2999FA49FA0A199A0A79BA0A69AA1A99AA2A99AA2AA9BA2AA9CA3AB9CA4AC9FA6AEA0A0A0A2A2A1A2A2A2A4A3A3A1A5A8A1A7ADA2A8AEA3A8AEA9A9A9AAAAAAACACACADADACADADADA8ADB3ABAFB2AEAFB0ABB0B6ACB1B5AEB1B4AEB2B6A8B0B8A9B2BBB4B4B3B2B8BFBABABABBBBBBBDBDBDBFBFBFB5BDC4B6BDC5B4BDC6B7BFC8B6BFC9B7C0CABBC3CBB8C2CCBCC3CCC1C1C1C5C5C5C6C6C6C7C7C7CACACACBCBCBCBCCCCCCCCCCCECECECFCFCFC4CDD6C4CED8C5CED8C4CED9C6D0DBC8D1DBCCD5DFD0D0D0D1D1D1D2D2D2D5D5D5D6D6D6D7D7D7D8D8D8D9D9D9DBDBDBDCDBDBDDDDDDDEDEDDDEDEDEDFDFDFCBD5E0CCD6E0CDD7E0CED7E0CFD8E3CFD9E5D0D9E4D1DBE5D0DBE6D1DCE7D2DCE7D5DFEBD6E0EBD7E2EDD9E4EFD9E4F0DAE4F0DAE5F0DAE5F1DBE6F2DCE7F3DDE7F3DDE8F4DDE9F5DEE9F5DFEAF5DEE9F6DFEAF6DFEAF7DFEBF7E1E1E1E2E2E2E3E3E3E5E5E5E8E8E8E9E9E9EBEBEBEDEDEDEEEEEEEFEFEFE0EBF7E1EDF9E2EEFAF1F1F1F2F2F2F3F3F3F4F4F4F5F5F4F5F5F5F6F6F6F7F7F7F8F8F8F9F9F9FAFAFAFBFBFBFCFCFCFDFDFDFEFEFEFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000021F904010000D40021FE322043726561746564207769746820496E6B73636170652028687474703A2F2F7777772E696E6B73636170652E6F72672F2920002C00000000200020000008FE00A9091C48B0A0C18308132A5CC8B0A1C38709A3212B46B1A2C58B1831329B46CD91800810428A1C49B2E4C806199251F3A3A115AA973063CA9C093355A607C4A8FD1111EC95CF9F40830AFD09CBD3859C7F46089BC5B4A9D3A7509BD20A8501A9044485B26ADD5AE8D021AE600FD97190131001294ED2AA4DFB448A142446984C89B2762D941F0780E9DCD0EA94DFBFA7569592C305CD18335A0C9D4A05D82FAA4C1690F2140A2B51901856F8B8D923A3C79652B182163DAA7332D059841014D9D50C931767CA1E4D58412A3451A3927BFE8C05AA810E63CE9C090271ACD9B34B0A8EB4023A3A377336448A39336E02C02068C621CD5064FB55F3D2BA5FFEC51AD52110F666CEDE0CD835BDD9B22A4ABA7FDF193E96A60F947E316B060D178767CD34C34C2F5FB4C01C6EE011C509198CE8E00B34950C41C132001253C31A67A8721B69F4EDB6C912B74C928C33BCBC10801E922CC30C267064C1CA86CEF9144B27062C224D80CFEC1246235FB471C9343B94201F821DFA048B2A3C80116080CC28F30C33B900C38B09710CC9A1693ED542070A96B4B78C313836D34608A35819E34FAE94214425CE3C23C915CF3873CC1E391032CB81578667A42962A480852E93F4C14B24270071072CA21149C230B634EA6830B2E4918407095450800F4D7C124C308E361A8C2855ADC4001E75946A6AA976CC41050B2CB890861D27769C7AAA1A0BE4A40B0D30E4AAEBAE31D880030E37E0BAEBB02A74D10C44C826ABECB2CC221B10003B" usageHint="Icon" imageName="clockType.gif" base_Image="_nwqqEHNCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ExtendedImage xmi:id="_nwrRcHNCEeWkBaza2VKKuQ" data="3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554462D3822207374616E64616C6F6E653D226E6F223F3E0A3C212D2D2043726561746564207769746820496E6B73636170652028687474703A2F2F7777772E696E6B73636170652E6F72672F29202D2D3E0A3C7376670A202020786D6C6E733A64633D22687474703A2F2F7075726C2E6F72672F64632F656C656D656E74732F312E312F220A202020786D6C6E733A63633D22687474703A2F2F7765622E7265736F757263652E6F72672F63632F220A202020786D6C6E733A7264663D22687474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D73796E7461782D6E7323220A202020786D6C6E733A7376673D22687474703A2F2F7777772E77332E6F72672F323030302F737667220A202020786D6C6E733D22687474703A2F2F7777772E77332E6F72672F323030302F737667220A202020786D6C6E733A736F6469706F64693D22687474703A2F2F736F6469706F64692E736F75726365666F7267652E6E65742F4454442F736F6469706F64692D302E647464220A202020786D6C6E733A696E6B73636170653D22687474703A2F2F7777772E696E6B73636170652E6F72672F6E616D657370616365732F696E6B7363617065220A20202069643D2273766732323131220A202020736F6469706F64693A76657273696F6E3D22302E3332220A202020696E6B73636170653A76657273696F6E3D22302E34352E31220A20202077696474683D223530220A2020206865696768743D223530220A20202076657273696F6E3D22312E30220A202020736F6469706F64693A646F63626173653D22433A5C446F63756D656E747320616E642053657474696E67735C54303038313638365C49424D5C726174696F6E616C736470372E305C776F726B73706163655C4D415254455F5253785C70726F66696C655C69636F6E735C54696D65220A202020736F6469706F64693A646F636E616D653D22636C6F636B547970652E737667220A202020696E6B73636170653A6F75747075745F657874656E73696F6E3D226F72672E696E6B73636170652E6F75747075742E7376672E696E6B7363617065223E0A20203C6D657461646174610A202020202069643D226D6574616461746132323136223E0A202020203C7264663A5244463E0A2020202020203C63633A576F726B0A2020202020202020207264663A61626F75743D22223E0A20202020202020203C64633A666F726D61743E696D6167652F7376672B786D6C3C2F64633A666F726D61743E0A20202020202020203C64633A747970650A20202020202020202020207264663A7265736F757263653D22687474703A2F2F7075726C2E6F72672F64632F64636D69747970652F5374696C6C496D61676522202F3E0A2020202020203C2F63633A576F726B3E0A202020203C2F7264663A5244463E0A20203C2F6D657461646174613E0A20203C646566730A202020202069643D22646566733232313422202F3E0A20203C736F6469706F64693A6E616D6564766965770A2020202020696E6B73636170653A77696E646F772D6865696768743D22363436220A2020202020696E6B73636170653A77696E646F772D77696474683D2231303630220A2020202020696E6B73636170653A70616765736861646F773D2232220A2020202020696E6B73636170653A706167656F7061636974793D22302E30220A20202020206775696465746F6C6572616E63653D2231302E30220A202020202067726964746F6C6572616E63653D2231302E30220A20202020206F626A656374746F6C6572616E63653D2231302E30220A2020202020626F726465726F7061636974793D22312E30220A2020202020626F72646572636F6C6F723D2223363636363636220A202020202070616765636F6C6F723D2223666666666666220A202020202069643D2262617365220A2020202020696E6B73636170653A7A6F6F6D3D22352E35343431313736220A2020202020696E6B73636170653A63783D2235382E373335343332220A2020202020696E6B73636170653A63793D2233312E313137363833220A2020202020696E6B73636170653A77696E646F772D783D223232220A2020202020696E6B73636170653A77696E646F772D793D223239220A2020202020696E6B73636170653A63757272656E742D6C617965723D226732313736220A202020202077696474683D2235307078220A20202020206865696768743D223530707822202F3E0A20203C670A202020202069643D226732313831220A20202020207472616E73666F726D3D226D617472697828302E373236333831362C302C302C302E373236333831362C2D31322E3037383231372C2D302E3431373537353829220A20202020207374796C653D227374726F6B653A23316131613161223E0A202020203C726563740A20202020202020793D2231312E353433373636220A20202020202020783D2232302E353632333334220A202020202020206865696768743D2234362E383936353533220A2020202020202077696474683D2236302E393635353139220A2020202020202069643D227265637432313737220A202020202020207374796C653D2266696C6C3A236464653866343B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A3122202F3E0A202020203C706174680A2020202020202069643D227061746832313739220A20202020202020643D224D2032302E3734323730352C32322E303035333035204C2038312E3532373835322C32322E303035333035220A202020202020207374796C653D2266696C6C3A6E6F6E653B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A3122202F3E0A20203C2F673E0A20203C670A202020202069643D226733323530220A20202020207472616E73666F726D3D226D617472697828302E343130373638332C302C302C302E343130373638332C2D31352E3333393733352C31362E35323330343229220A20202020207374796C653D227374726F6B653A23316131613161223E0A202020203C706174680A20202020202020736F6469706F64693A747970653D22617263220A202020202020207374796C653D2266696C6C3A236666666666663B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E303039373230383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202069643D227061746833323236220A20202020202020736F6469706F64693A63783D2233352E393834303835220A20202020202020736F6469706F64693A63793D2233322E313936323835220A20202020202020736F6469706F64693A72783D2232372E363837303032220A20202020202020736F6469706F64693A72793D2232372E383637333734220A20202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A202020202020207472616E73666F726D3D226D617472697828302E393933353933352C302C302C302E393837313632352C36322E3435323031362C2D312E393234383735372922202F3E0A202020203C706174680A202020202020207472616E73666F726D3D226D617472697828302E393231373037322C302C302C302E393135373431342C36342E3937383438362C302E3433343930363929220A20202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A20202020202020736F6469706F64693A72793D2232372E383637333734220A20202020202020736F6469706F64693A72783D2232372E363837303032220A20202020202020736F6469706F64693A63793D2233322E313936323835220A20202020202020736F6469706F64693A63783D2233352E393834303835220A2020202020202069643D227061746832323230220A202020202020207374796C653D2266696C6C3A236666666666663B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E30343634333739383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020736F6469706F64693A747970653D2261726322202F3E0A202020203C706174680A202020202020207374796C653D2266696C6C3A6E6F6E653B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A31220A20202020202020643D224D2039382E3132323031362C31332E353237383532204C2039382E3132323031362C33362E363135333835220A2020202020202069643D22706174683332313222202F3E0A202020203C706174680A202020202020207374796C653D2266696C6C3A6E6F6E653B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A31220A20202020202020643D224D2039332E3235313938392C33302E333032333837204C203131322E33373133352C33382E303538333536220A2020202020202069643D22706174683332313422202F3E0A202020203C706174680A202020202020207374796C653D2266696C6C3A233030303030303B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020643D224D203130302E38333238352C31392E3238393839342043203130302E36393431362C31392E3532353632332039382E3333333235322C31382E3136343935312039382E3035393730322C31382E313631353620432039372E3738363135322C31382E31353831372039352E3437343936342C31392E3631333733382039352E3334343734342C31392E33373434333820432039362E3233303030372C31372E3738353336392039362E3934383333322C31352E3137353832372039372E3934323837372C31332E36353331393220432039382E3834343435312C31352E323031353338203130302E30313835322C31372E363932323232203130302E38333238352C31392E323839383934207A20220A2020202020202069643D227061746833323136220A20202020202020736F6469706F64693A6E6F646574797065733D22637363636322202F3E0A202020203C706174680A20202020202020736F6469706F64693A747970653D22617263220A202020202020207374796C653D2266696C6C3A233030303030303B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202069643D227061746833323138220A20202020202020736F6469706F64693A63783D2233352E343635353139220A20202020202020736F6469706F64693A63793D2231332E333234393334220A20202020202020736F6469706F64693A72783D22302E3639383933383937220A20202020202020736F6469706F64693A72793D22302E3738393132343637220A20202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A202020202020207472616E73666F726D3D227472616E736C6174652834342E3031303631312C31362E3035333035312922202F3E0A202020203C706174680A202020202020207472616E73666F726D3D227472616E736C6174652836322E35383838362C2D342E3530393238333529220A20202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A20202020202020736F6469706F64693A72793D22302E3738393132343637220A20202020202020736F6469706F64693A72783D22302E3639383933383937220A20202020202020736F6469706F64693A63793D2231332E333234393334220A20202020202020736F6469706F64693A63783D2233352E343635353139220A2020202020202069643D227061746833323230220A202020202020207374796C653D2266696C6C3A233030303030303B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020736F6469706F64693A747970653D2261726322202F3E0A202020203C706174680A202020202020207472616E73666F726D3D227472616E736C6174652838322E3937303832332C31352E383732363829220A20202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A20202020202020736F6469706F64693A72793D22302E3738393132343637220A20202020202020736F6469706F64693A72783D22302E3639383933383937220A20202020202020736F6469706F64693A63793D2231332E333234393334220A20202020202020736F6469706F64693A63783D2233352E343635353139220A2020202020202069643D227061746833323232220A202020202020207374796C653D2266696C6C3A233030303030303B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020736F6469706F64693A747970653D2261726322202F3E0A202020203C706174680A20202020202020736F6469706F64693A747970653D22617263220A202020202020207374796C653D2266696C6C3A233030303030303B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202069643D227061746833323234220A20202020202020736F6469706F64693A63783D2233352E343635353139220A20202020202020736F6469706F64693A63793D2231332E333234393334220A20202020202020736F6469706F64693A72783D22302E3639383933383937220A20202020202020736F6469706F64693A72793D22302E3738393132343637220A20202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A202020202020207472616E73666F726D3D227472616E736C6174652836322E3430383438392C33352E3533333135372922202F3E0A202020203C706174680A202020202020207472616E73666F726D3D226D617472697828312E373130313331322C302C302C312E353134363837362C33372E3238363937392C31312E39313130353429220A20202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A20202020202020736F6469706F64693A72793D22302E3738393132343637220A20202020202020736F6469706F64693A72783D22302E3639383933383937220A20202020202020736F6469706F64693A63793D2231332E333234393334220A20202020202020736F6469706F64693A63783D2233352E343635353139220A2020202020202069643D227061746833323238220A202020202020207374796C653D2266696C6C3A233030303030303B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020736F6469706F64693A747970653D2261726322202F3E0A20203C2F673E0A20203C670A20202020207374796C653D227374726F6B653A23316131613161220A20202020207472616E73666F726D3D226D617472697828302E373236333831362C302C302C302E373236333831362C2D31322E3037383231372C2D302E3431373537353829220A202020202069643D226732313730223E0A202020203C726563740A202020202020207374796C653D2266696C6C3A236464653866343B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202069643D227265637432313732220A2020202020202077696474683D2236302E393635353139220A202020202020206865696768743D2234362E383936353533220A20202020202020783D2232302E353632333334220A20202020202020793D2231312E35343337363622202F3E0A202020203C706174680A202020202020207374796C653D2266696C6C3A6E6F6E653B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A31220A20202020202020643D224D2032302E3734323730352C32322E303035333035204C2038312E3532373835322C32322E303035333035220A2020202020202069643D22706174683231373422202F3E0A20203C2F673E0A20203C670A20202020207374796C653D227374726F6B653A233161316131613B66696C6C3A23663966396639220A20202020207472616E73666F726D3D226D617472697828302E343130373638332C302C302C302E343130373638332C2D31352E3333393733352C31362E35323330343229220A202020202069643D226732313736223E0A202020203C706174680A202020202020207472616E73666F726D3D226D617472697828302E393933353933352C302C302C302E393837313632352C36322E3435323031362C2D312E3932343837353729220A20202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A20202020202020736F6469706F64693A72793D2232372E383637333734220A20202020202020736F6469706F64693A72783D2232372E363837303032220A20202020202020736F6469706F64693A63793D2233322E313936323835220A20202020202020736F6469706F64693A63783D2233352E393834303835220A2020202020202069643D227061746832313738220A202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E303039373230383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020736F6469706F64693A747970653D2261726322202F3E0A202020203C706174680A20202020202020736F6469706F64693A747970653D22617263220A202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E30343634333739383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202069643D227061746832313830220A20202020202020736F6469706F64693A63783D2233352E393834303835220A20202020202020736F6469706F64693A63793D2233322E313936323835220A20202020202020736F6469706F64693A72783D2232372E363837303032220A20202020202020736F6469706F64693A72793D2232372E383637333734220A20202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A202020202020207472616E73666F726D3D226D617472697828302E393231373037322C302C302C302E393135373431342C36342E3937383438362C302E343334393036392922202F3E0A202020203C706174680A2020202020202069643D227061746832313832220A20202020202020643D224D2039382E3132323031362C31332E353237383532204C2039382E3132323031362C33362E363135333835220A202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A3122202F3E0A202020203C706174680A2020202020202069643D227061746832313834220A20202020202020643D224D2039332E3235313938392C33302E333032333837204C203131322E33373133352C33382E303538333536220A202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A3122202F3E0A202020203C706174680A20202020202020736F6469706F64693A6E6F646574797065733D226373636363220A2020202020202069643D227061746832313836220A20202020202020643D224D203130302E38333238352C31392E3238393839342043203130302E36393431362C31392E3532353632332039382E3333333235322C31382E3136343935312039382E3035393730322C31382E313631353620432039372E3738363135322C31382E31353831372039352E3437343936342C31392E3631333733382039352E3334343734342C31392E33373434333820432039362E3233303030372C31372E3738353336392039362E3934383333322C31352E3137353832372039372E3934323837372C31332E36353331393220432039382E3834343435312C31352E323031353338203130302E30313835322C31372E363932323232203130302E38333238352C31392E323839383934207A20220A202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A3122202F3E0A202020203C670A2020202020202069643D226732313834220A202020202020207374796C653D2266696C6C3A233161316131613B7374726F6B653A23316131613161223E0A2020202020203C706174680A202020202020202020736F6469706F64693A747970653D22617263220A2020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020202069643D227061746832313838220A202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020736F6469706F64693A63793D2231332E333234393334220A202020202020202020736F6469706F64693A72783D22302E3639383933383937220A202020202020202020736F6469706F64693A72793D22302E3738393132343637220A202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020207472616E73666F726D3D227472616E736C6174652834342E3031303631312C31362E3035333035312922202F3E0A2020202020203C706174680A2020202020202020207472616E73666F726D3D227472616E736C6174652836322E35383838362C2D342E3530393238333529220A202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A202020202020202020736F6469706F64693A72793D22302E3738393132343637220A202020202020202020736F6469706F64693A72783D22302E3639383933383937220A202020202020202020736F6469706F64693A63793D2231332E333234393334220A202020202020202020736F6469706F64693A63783D2233352E343635353139220A20202020202020202069643D227061746832313930220A2020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020736F6469706F64693A747970653D2261726322202F3E0A2020202020203C706174680A2020202020202020207472616E73666F726D3D227472616E736C6174652838322E3937303832332C31352E383732363829220A202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A202020202020202020736F6469706F64693A72793D22302E3738393132343637220A202020202020202020736F6469706F64693A72783D22302E3639383933383937220A202020202020202020736F6469706F64693A63793D2231332E333234393334220A202020202020202020736F6469706F64693A63783D2233352E343635353139220A20202020202020202069643D227061746832313932220A2020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020736F6469706F64693A747970653D2261726322202F3E0A2020202020203C706174680A202020202020202020736F6469706F64693A747970653D22617263220A2020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020202069643D227061746832313934220A202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020736F6469706F64693A63793D2231332E333234393334220A202020202020202020736F6469706F64693A72783D22302E3639383933383937220A202020202020202020736F6469706F64693A72793D22302E3738393132343637220A202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020207472616E73666F726D3D227472616E736C6174652836322E3430383438392C33352E3533333135372922202F3E0A2020202020203C706174680A2020202020202020207472616E73666F726D3D226D617472697828312E373130313331322C302C302C312E353134363837362C33372E3238363937392C31312E39313130353429220A202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A202020202020202020736F6469706F64693A72793D22302E3738393132343637220A202020202020202020736F6469706F64693A72783D22302E3639383933383937220A202020202020202020736F6469706F64693A63793D2231332E333234393334220A202020202020202020736F6469706F64693A63783D2233352E343635353139220A20202020202020202069643D227061746832313936220A2020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020736F6469706F64693A747970653D2261726322202F3E0A202020203C2F673E0A20203C2F673E0A3C2F7376673E0A" usageHint="ShapeImage" imageName="clockType.svg" base_Image="_nwqqE3NCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ExtendedImage xmi:id="_nwrRcXNCEeWkBaza2VKKuQ" data="47494638396120002000F700003636365757575E5E5E5C5F62696A6A6A6E736D70736E7276707377767677727578767879777879767A7F777B7F787878787A7B797A7B7A7A7B7B7C7D7B7C7E7B7D7F7C7C7C7C7E7F7E7E7E787D827C7E807C80867D82877D82887E82887E838883838380828583858684848485858586868687878784888D8989898C8C8C8F8F8F878B90878D93878D94888C908A8E93888E958A8F948A8F958F919292929293939390939693949497979791979D93979C92979E92989E93999F97999C979B9F9A9A9A999C9E949AA0959BA1999DA29D9EA09FA1A29AA0A69DA0A49EA1A49EA4ABA1A1A1A3A3A3A1A2A4A4A4A4A6A7A7A3A7ABA5A7AAA4A7ABA2A7ADA3A8AEA4A8ACA5AAAFAAAAAAABACADA9ACAEADADADADAEAFAEAEAEAFAFB0ACAFB3AFB0B1ABB0B5AAB1B8ADB3B9AFB4BAB0B0B0B4B4B4B7B7B7B0B7BEB8B8B8BBBBBBBFBEBEBFBFBFC0C0BFB2BBC4B3BBC5B5BDC5B4BDC7B8BFC7B8C0C8BCC4CDBCC6D0BEC6D0BFC7D1BFC8D1C2C2C2C3C3C3C5C5C5C9C9C9CCCCCCCDCDCDCECECEC1C8D0C1C9D2C0C9D3C1C9D3C2C9D2C3CCD7C6CED7C4CDD8C4CED8C6CFD9C6D0DBC8D1DBCAD3DCCAD3DDCAD3DED0D0D0D3D3D3D4D4D4D6D6D6D7D6D6D7D7D6D8D8D8D9D9D8D9D9D9DADADADADADBDADBDBDBDBDBDDDDDDDEDEDEDEDEDFDFDFDFCBD5E0CBD5E1CCD6E0CCD6E1CDD6E1CDD7E2CDD8E3CED8E2CED8E3CED9E4D2DBE5D3DCE6D2DCE7D3DDE7D2DDE8D4DFEAD6E0EBD7E1ECD7E1EDDAE4F0DAE5F0DAE5F1DBE5F1DBE6F2DCE7F3DDE8F4DDE8F5DDE9F5DEE9F5DEE9F6DEEAF6DFEAF6DFEAF7E0E0E0E1E1E1E3E3E3E4E4E4E7E8E8E8E8E8E9E9E9ECECECEDEDECEDEDEDEEEEEEEFEFEFE0EBF7E0ECF8E1ECF8E1EDF9E2EDF9F0F0F0F1F1F1F2F2F2F3F3F3F4F4F4F6F6F6F7F7F7F8F8F8F9F9F9FAFAFAFBFBFBFCFCFCFDFDFDFEFEFEFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000021F904010000E00021FE322043726561746564207769746820496E6B73636170652028687474703A2F2F7777772E696E6B73636170652E6F72672F2920002C00000000200020000008FE00C1091C48B0A0C18308132A5CC8B0A1C38709A76DC142B1A2458A5FA841D474004E9B8F2043BA41E00962250FCF78A95CC9F217874D102D7D70A6ABA6CD9BBE38708A99C1D5AA9F4083B672F0A81AB5A348931EC52670D300182CA24A9DDAA2C08F2A50B26ADD0A0549936FE034354864A8ACD9B2871211AA1308112952A0E2CA8D2B8A0E846EE02A7D80E6ABAF5F5FCC628501232588172A736EF962A9D2172A0D782D756086ABB2E55B801448E0D2670DA414134EA8D265B972AE5217224F2E8D6BD79F194B9065F3C4651BB6482892A4DA55FA746A7092295BF675A7829A6CDAB4F931512DDBB6643856BC226D1AB56AE1B872CDD251C35A36E72500FEF8E1968D9BA6046F7857FF1DDCF2AE500C2691776E46C0B06DDFB90171D1DB3AF0D595E9324817CA34E75C3020E0F71D359164C10A75BE5DE79E185A6C72C535DA18930606DB68938D354CA0518422BDAC276165BB9CC185329760A3CD323404B08731F8512289118CF062E27FD8E952C813C9CCB70D272AE4914619C574E34814D3EDD81E8AA72CE088821F1EB38D349414A34D0D2F50979D7F4F5A768405D178E81C79DA6CC30D1F0408A2DE97EC0188E2283690314D87C2F491DC369EDC30C52CB95816218FACEDB2880F236C424D307864930C1B0F80018B977046E64133B964AAE92EA6C41081137AE0810709212821CB2E9A66AACB29BF55B2412E4AB4C42A2B2DB6C862471C561031861C8DDC52CBACB1D6F2090578016380103D24ABACB24308B1430E3C34BBECB43288E00D38DA74824926DC76EBEDB7E07A7B093110956BEEB9E81E1410003B" usageHint="Icon" imageName="timedDomain.gif" base_Image="_nwqpcXNCEeWkBaza2VKKuQ"/>
+  <ProfileBase:ExtendedImage xmi:id="_nwrRcnNCEeWkBaza2VKKuQ" data="3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554462D3822207374616E64616C6F6E653D226E6F223F3E0A3C212D2D2043726561746564207769746820496E6B73636170652028687474703A2F2F7777772E696E6B73636170652E6F72672F29202D2D3E0A3C7376670A202020786D6C6E733A64633D22687474703A2F2F7075726C2E6F72672F64632F656C656D656E74732F312E312F220A202020786D6C6E733A63633D22687474703A2F2F7765622E7265736F757263652E6F72672F63632F220A202020786D6C6E733A7264663D22687474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D73796E7461782D6E7323220A202020786D6C6E733A7376673D22687474703A2F2F7777772E77332E6F72672F323030302F737667220A202020786D6C6E733D22687474703A2F2F7777772E77332E6F72672F323030302F737667220A202020786D6C6E733A736F6469706F64693D22687474703A2F2F736F6469706F64692E736F75726365666F7267652E6E65742F4454442F736F6469706F64692D302E647464220A202020786D6C6E733A696E6B73636170653D22687474703A2F2F7777772E696E6B73636170652E6F72672F6E616D657370616365732F696E6B7363617065220A20202069643D2273766732323131220A202020736F6469706F64693A76657273696F6E3D22302E3332220A202020696E6B73636170653A76657273696F6E3D22302E34352E31220A20202077696474683D223530220A2020206865696768743D223530220A20202076657273696F6E3D22312E30220A202020736F6469706F64693A646F63626173653D22433A5C446F63756D656E747320616E642053657474696E67735C54303038313638365C49424D5C726174696F6E616C736470372E305C776F726B73706163655C4D415254455F5253785C70726F66696C655C69636F6E735C54696D65220A202020736F6469706F64693A646F636E616D653D2274696D6564446F6D61696E2E737667220A202020696E6B73636170653A6F75747075745F657874656E73696F6E3D226F72672E696E6B73636170652E6F75747075742E7376672E696E6B7363617065223E0A20203C6D657461646174610A202020202069643D226D6574616461746132323136223E0A202020203C7264663A5244463E0A2020202020203C63633A576F726B0A2020202020202020207264663A61626F75743D22223E0A20202020202020203C64633A666F726D61743E696D6167652F7376672B786D6C3C2F64633A666F726D61743E0A20202020202020203C64633A747970650A20202020202020202020207264663A7265736F757263653D22687474703A2F2F7075726C2E6F72672F64632F64636D69747970652F5374696C6C496D61676522202F3E0A2020202020203C2F63633A576F726B3E0A202020203C2F7264663A5244463E0A20203C2F6D657461646174613E0A20203C646566730A202020202069643D22646566733232313422202F3E0A20203C736F6469706F64693A6E616D6564766965770A2020202020696E6B73636170653A77696E646F772D6865696768743D22363436220A2020202020696E6B73636170653A77696E646F772D77696474683D2231303630220A2020202020696E6B73636170653A70616765736861646F773D2232220A2020202020696E6B73636170653A706167656F7061636974793D22302E30220A20202020206775696465746F6C6572616E63653D2231302E30220A202020202067726964746F6C6572616E63653D2231302E30220A20202020206F626A656374746F6C6572616E63653D2231302E30220A2020202020626F726465726F7061636974793D22312E30220A2020202020626F72646572636F6C6F723D2223363636363636220A202020202070616765636F6C6F723D2223666666666666220A202020202069643D2262617365220A2020202020696E6B73636170653A7A6F6F6D3D22352E35343431313736220A2020202020696E6B73636170653A63783D2235382E373335343332220A2020202020696E6B73636170653A63793D2232342E3132313732220A2020202020696E6B73636170653A77696E646F772D783D223232220A2020202020696E6B73636170653A77696E646F772D793D223239220A2020202020696E6B73636170653A63757272656E742D6C617965723D226733323530220A202020202077696474683D2235307078220A20202020206865696768743D223530707822202F3E0A20203C670A202020202069643D226734313132223E0A202020203C670A202020202020207472616E73666F726D3D226D617472697828302E373233393636312C302C302C302E373233393636312C2D302E353835343131372C302E32363333373729220A2020202020202069643D226734313038223E0A2020202020203C726563740A2020202020202020207374796C653D2266696C6C3A236464653866343B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020202069643D227265637432313737220A20202020202020202077696474683D2236312E303532333837220A2020202020202020206865696768743D2233392E303437303831220A202020202020202020783D22342E38323635393135220A202020202020202020793D2231392E36313730343322202F3E0A2020202020203C726563740A2020202020202020207374796C653D2266696C6C3A236464653866343B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020202069643D227265637432313834220A20202020202020202077696474683D2232392E333535363836220A2020202020202020206865696768743D22392E38373535373839220A202020202020202020783D22342E38303232363337220A202020202020202020793D22392E3637323238383922202F3E0A202020203C2F673E0A202020203C670A202020202020207374796C653D227374726F6B653A233161316131613B66696C6C3A23663966396639220A202020202020207472616E73666F726D3D226D617472697828302E343233363533392C302C302C302E343233363533392C2D31362E3630353137322C31362E33353035303429220A2020202020202069643D226733323530223E0A2020202020203C706174680A2020202020202020207472616E73666F726D3D226D617472697828302E393933353933352C302C302C302E393837313632352C36322E3435323031362C2D312E3932343837353729220A202020202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A202020202020202020736F6469706F64693A72793D2232372E383637333734220A202020202020202020736F6469706F64693A72783D2232372E363837303032220A202020202020202020736F6469706F64693A63793D2233322E313936323835220A202020202020202020736F6469706F64693A63783D2233352E393834303835220A20202020202020202069643D227061746833323236220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E303039373230383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020736F6469706F64693A747970653D2261726322202F3E0A2020202020203C706174680A202020202020202020736F6469706F64693A747970653D22617263220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A312E30343634333739383B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A20202020202020202069643D227061746832323230220A202020202020202020736F6469706F64693A63783D2233352E393834303835220A202020202020202020736F6469706F64693A63793D2233322E313936323835220A202020202020202020736F6469706F64693A72783D2232372E363837303032220A202020202020202020736F6469706F64693A72793D2232372E383637333734220A202020202020202020643D224D2036332E3637313038372033322E31393632383520412032372E3638373030322032372E3836373337342030203120312020382E323937303832392C33322E31393632383520412032372E3638373030322032372E383637333734203020312031202036332E3637313038372033322E313936323835207A220A2020202020202020207472616E73666F726D3D226D617472697828302E393231373037322C302C302C302E393135373431342C36342E3937383438362C302E343334393036392922202F3E0A2020202020203C706174680A20202020202020202069643D227061746833323132220A202020202020202020643D224D2039382E3132323031362C31332E353237383532204C2039382E3132323031362C33362E363135333835220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A3122202F3E0A2020202020203C706174680A20202020202020202069643D227061746833323134220A202020202020202020643D224D2039332E3235313938392C33302E333032333837204C203131322E33373133352C33382E303538333536220A2020202020202020207374796C653D2266696C6C3A236639663966393B66696C6C2D72756C653A6576656E6F64643B7374726F6B653A233161316131613B7374726F6B652D77696474683A3170783B7374726F6B652D6C696E656361703A627574743B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6F7061636974793A3122202F3E0A2020202020203C670A20202020202020202069643D226732313731220A2020202020202020207374796C653D2266696C6C3A233161316131613B7374726F6B653A23316131613161223E0A20202020202020203C706174680A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202020202020643D224D203130302E38333238352C31392E3238393839342043203130302E36393431362C31392E3532353632332039382E3333333235322C31382E3136343935312039382E3035393730322C31382E313631353620432039372E3738363135322C31382E31353831372039352E3437343936342C31392E3631333733382039352E3334343734342C31392E33373434333820432039362E3233303030372C31372E3738353336392039362E3934383333322C31352E3137353832372039372E3934323837372C31332E36353331393220432039382E3834343435312C31352E323031353338203130302E30313835322C31372E363932323232203130302E38333238352C31392E323839383934207A20220A202020202020202020202069643D227061746833323136220A2020202020202020202020736F6469706F64693A6E6F646574797065733D22637363636322202F3E0A20202020202020203C706174680A2020202020202020202020736F6469706F64693A747970653D22617263220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020202069643D227061746833323138220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A20202020202020202020207472616E73666F726D3D227472616E736C6174652834342E3031303631312C31362E3035333035312922202F3E0A20202020202020203C706174680A20202020202020202020207472616E73666F726D3D227472616E736C6174652836322E35383838362C2D342E3530393238333529220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020202069643D227061746833323230220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202020202020736F6469706F64693A747970653D2261726322202F3E0A20202020202020203C706174680A20202020202020202020207472616E73666F726D3D227472616E736C6174652838322E3937303832332C31352E383732363829220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020202069643D227061746833323232220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202020202020736F6469706F64693A747970653D2261726322202F3E0A20202020202020203C706174680A2020202020202020202020736F6469706F64693A747970653D22617263220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A202020202020202020202069643D227061746833323234220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A20202020202020202020207472616E73666F726D3D227472616E736C6174652836322E3430383438392C33352E3533333135372922202F3E0A20202020202020203C706174680A20202020202020202020207472616E73666F726D3D226D617472697828312E373130313331322C302C302C312E353134363837362C33372E3238363937392C31312E39313130353429220A2020202020202020202020643D224D2033362E3136343435382031332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033342E37363635382C31332E333234393334204120302E363938393338393720302E3738393132343637203020312031202033362E3136343435382031332E333234393334207A220A2020202020202020202020736F6469706F64693A72793D22302E3738393132343637220A2020202020202020202020736F6469706F64693A72783D22302E3639383933383937220A2020202020202020202020736F6469706F64693A63793D2231332E333234393334220A2020202020202020202020736F6469706F64693A63783D2233352E343635353139220A202020202020202020202069643D227061746833323238220A20202020202020202020207374796C653D2266696C6C3A233161316131613B66696C6C2D6F7061636974793A313B7374726F6B653A233161316131613B7374726F6B652D77696474683A313B7374726F6B652D6C696E656A6F696E3A6D697465723B7374726F6B652D6D697465726C696D69743A343B7374726F6B652D6461736861727261793A6E6F6E653B7374726F6B652D646173686F66667365743A303B7374726F6B652D6F7061636974793A31220A2020202020202020202020736F6469706F64693A747970653D2261726322202F3E0A2020202020203C2F673E0A202020203C2F673E0A20203C2F673E0A3C2F7376673E0A" usageHint="ShapeImage" imageName="timedDomain.svg" base_Image="_nwqpdHNCEeWkBaza2VKKuQ"/>
+</xmi:XMI>

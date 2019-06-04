@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_0R6ooFLBEeOx7rZCF5ouIw/307" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_0R6ooFLBEeOx7rZCF5ouIw/307 ../FD/CTIE_Profile_Final.profile.uml#__xwJjFtDEeO906rg1C6Lng">
+  <uml:Package xmi:id="_KlqgFltFEeO906rg1C6Lng" name="FD">
+    <packageImport xmi:id="_KlqgF1tFEeO906rg1C6Lng">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_KlqgGFtFEeO906rg1C6Lng">
+      <importedPackage href="CTIE_Library.uml#_KlrurFtFEeO906rg1C6Lng"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_KlqgGVtFEeO906rg1C6Lng" name="FD_TravelExpenses">
+      <ownedComment xmi:id="_KlqgGltFEeO906rg1C6Lng" annotatedElement="_KlqgNltFEeO906rg1C6Lng">
+        <body>&lt;p>self.incomes-&amp;gt;select(income: Income | income.year = current_taxation_year)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_KlqgG1tFEeO906rg1C6Lng" annotatedElement="_KlqgmFtFEeO906rg1C6Lng">
+        <body>&lt;p>self.current_taxation_year&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_KlqgHFtFEeO906rg1C6Lng" annotatedElement="_KlqgOFtFEeO906rg1C6Lng _KlqgOltFEeO906rg1C6Lng _KlqgPFtFEeO906rg1C6Lng _KlqgPltFEeO906rg1C6Lng">
+        <body>&lt;p>&lt;b>source:&amp;nbsp;&lt;/b>Art.&amp;nbsp;105bis&amp;nbsp;of&amp;nbsp;the&amp;nbsp;income&amp;nbsp;tax&amp;nbsp;law&lt;/p>&lt;p>&lt;b>type:&amp;nbsp;&lt;/b>Fixed&amp;nbsp;value&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_KlqgHVtFEeO906rg1C6Lng" annotatedElement="_KlqggFtFEeO906rg1C6Lng">
+        <body>&lt;p>income.distance_declared_in_january&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_KlqgHltFEeO906rg1C6Lng" annotatedElement="_KlqggltFEeO906rg1C6Lng">
+        <body>&lt;p>&lt;b>source: &lt;/b>Règlement ministériel du 6 février 2012 &lt;/p>&lt;p>&lt;b>type: &lt;/b>Lookup table&lt;/p>&lt;p>&lt;b>parameters: &lt;/b>CTIE_String address source, CTIE_String address destination&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_KlqgH1tFEeO906rg1C6Lng" annotatedElement="_KlqgmltFEeO906rg1C6Lng">
+        <body>&lt;p>&lt;/p>&lt;p>&lt;b>agent&amp;nbsp;type:&lt;/b>&amp;nbsp;officer&lt;/p>&lt;p>&lt;b>question:&lt;/b>&amp;nbsp;When&amp;nbsp;was&amp;nbsp;the&amp;nbsp;request&amp;nbsp;postmarked?&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_KlqgIFtFEeO906rg1C6Lng" name="incomes_fromrecord" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgIVtFEeO906rg1C6Lng">
+          <language></language>
+          <body>self.incomes->select(income |&#xA;income.year = current_taxation_year) </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_KlqgIltFEeO906rg1C6Lng" name="current_taxation_year_fromrecord" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgI1tFEeO906rg1C6Lng">
+          <language></language>
+          <body>self.current_taxation_year</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_KlqgJFtFEeO906rg1C6Lng" name="distance_declared_in_january_fromrecord" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgJVtFEeO906rg1C6Lng">
+          <language></language>
+          <body>income.getDeductionForFD().distance_declared_in_january</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_KlqgJltFEeO906rg1C6Lng" name="fromrecord_curent_taxation_year_FD" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgJ1tFEeO906rg1C6Lng">
+          <language></language>
+          <body>self.current_taxation_year</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_KlqgKFtFEeO906rg1C6Lng" name="fromrecord_incomes_FD" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgKVtFEeO906rg1C6Lng">
+          <language></language>
+          <body>self.incomes->select(income: Income | income.year = current_taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_KlqgKltFEeO906rg1C6Lng" name="fromrecord_distance_declared_in_january" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgK1tFEeO906rg1C6Lng">
+          <language></language>
+          <body>income.distance_declared_in_january</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_KlqgLFtFEeO906rg1C6Lng" name="Parameter1"/>
+      <ownedParameter xmi:id="_KlqgLVtFEeO906rg1C6Lng" name="incomes">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_Klruu1tFEeO906rg1C6Lng"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_KlqgLltFEeO906rg1C6Lng" name="Parameter3">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_KlqgL1tFEeO906rg1C6Lng" name="Parameter4">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_KlqgMFtFEeO906rg1C6Lng" name="Parameter5">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_KlqgMVtFEeO906rg1C6Lng" name="Parameter6">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_KlqgMltFEeO906rg1C6Lng" name="current_taxation_year">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_KlqgM1tFEeO906rg1C6Lng" name="test_date_of_request">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+      </ownedParameter>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgNFtFEeO906rg1C6Lng" name="TaxPayer" parameter="_KlqgLFtFEeO906rg1C6Lng">
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgNVtFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgNltFEeO906rg1C6Lng" name="incomes" outgoing="_KlqgnVtFEeO906rg1C6Lng" parameter="_KlqgLVtFEeO906rg1C6Lng">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_Klruu1tFEeO906rg1C6Lng"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgN1tFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgOFtFEeO906rg1C6Lng" name="maximum_distance_in_units" parameter="_KlqgLltFEeO906rg1C6Lng">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgOVtFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgOltFEeO906rg1C6Lng" name="minimum_distance_in_units" parameter="_KlqgL1tFEeO906rg1C6Lng">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgO1tFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgPFtFEeO906rg1C6Lng" name="flat_maximum_distance_in_units" parameter="_KlqgMFtFEeO906rg1C6Lng">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgPVtFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgPltFEeO906rg1C6Lng" name="flat_rate_per_unit" parameter="_KlqgMVtFEeO906rg1C6Lng">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgP1tFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:ExpansionRegion" xmi:id="_KlqgQFtFEeO906rg1C6Lng" name="FD per income" incoming="_KlqgoFtFEeO906rg1C6Lng" inputElement="_KlqgfltFEeO906rg1C6Lng">
+        <ownedComment xmi:id="_KlqgQVtFEeO906rg1C6Lng" annotatedElement="_Klqgh1tFEeO906rg1C6Lng">
+          <body>&lt;p>&amp;nbsp;flat_rate_per_unit&amp;nbsp;*&amp;nbsp;flat_maximum_distance_in_units&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_KlqgQltFEeO906rg1C6Lng" annotatedElement="_KlqgiltFEeO906rg1C6Lng">
+          <body>&lt;p>flat_rate_per_unit * units_of_distance&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_KlqgQ1tFEeO906rg1C6Lng" annotatedElement="_KlqgjVtFEeO906rg1C6Lng">
+          <body>&lt;p>flat_rate_per_unit * minimum_distance_in_units&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_KlqgRFtFEeO906rg1C6Lng" annotatedElement="_KlqgkFtFEeO906rg1C6Lng">
+          <body>&lt;p>income.getDeductionForFD().deduced_amount&amp;nbsp;=&amp;nbsp;result&lt;/p></body>
+        </ownedComment>
+        <localPrecondition xmi:id="_KlqgRVtFEeO906rg1C6Lng" name="formule_minimal_flat_rate_for_travel_expenses" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgRltFEeO906rg1C6Lng">
+            <language></language>
+            <body>flat_rate_per_unit * minimum_distance_in_units</body>
+          </specification>
+        </localPrecondition>
+        <localPrecondition xmi:id="_KlqgR1tFEeO906rg1C6Lng" name="formule_maximal_flat_rate_for_travel_expenses" constrainedElement="_KlqgGVtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgSFtFEeO906rg1C6Lng">
+            <language></language>
+            <body> flat_rate_per_unit * flat_maximum_distance_in_units</body>
+          </specification>
+        </localPrecondition>
+        <localPostcondition xmi:id="_KlqgSVtFEeO906rg1C6Lng" name="Eligible_income" constrainedElement="_KlqghFtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgSltFEeO906rg1C6Lng">
+            <language>Analysis</language>
+            <body>(income.type.oclIsTypeOf(EmploymentIncome) or income.type.oclIsTypeOf(PensionAndAnnuitiesIncome) or )income.type.oclIsTypeOf(Rentals_and_Leases)</body>
+          </specification>
+        </localPostcondition>
+        <ownedRule xmi:id="_KlqgS1tFEeO906rg1C6Lng" name="calculate_maximal_flat_rate_for_FD" constrainedElement="_KlqgQFtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgTFtFEeO906rg1C6Lng">
+            <language></language>
+            <body> flat_rate_per_unit * flat_maximum_distance_in_units</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_KlqgTVtFEeO906rg1C6Lng" name="calculate_normal_rate_for_FD" constrainedElement="_KlqgQFtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgTltFEeO906rg1C6Lng">
+            <language></language>
+            <body>flat_rate_per_unit * &#xA;units_of_distance</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_KlqgT1tFEeO906rg1C6Lng" name="calculate_minimal_flat_rate_for_FD" constrainedElement="_KlqgQFtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgUFtFEeO906rg1C6Lng">
+            <language></language>
+            <body>flat_rate_per_unit * minimum_distance_in_units</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_KlqgUVtFEeO906rg1C6Lng" name="check_correctness_for_FD" constrainedElement="_KlqgQFtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgUltFEeO906rg1C6Lng">
+            <language></language>
+            <body>income.getDeductionForFD().deduced_amount = result</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_KlqgU1tFEeO906rg1C6Lng" name="formule_normal_rate_computed_per_unit_for_declared_units_of_distance" constrainedElement="_KlqgQFtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgVFtFEeO906rg1C6Lng">
+            <language></language>
+            <body>flat_rate_per_unit * units_of_distance</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_KlqgVVtFEeO906rg1C6Lng" name="Assert_check" constrainedElement="_KlqgQFtFEeO906rg1C6Lng">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KlqgVltFEeO906rg1C6Lng">
+            <language></language>
+            <body>income.getDeductionForFD().deduced_amount = result</body>
+          </specification>
+        </ownedRule>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgV1tFEeO906rg1C6Lng" name="yes" source="_KlqghFtFEeO906rg1C6Lng" target="_KlqghVtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgWFtFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgWVtFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgWltFEeO906rg1C6Lng" name="yes" source="_KlqghVtFEeO906rg1C6Lng" target="_KlqghltFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgW1tFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgXFtFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgXVtFEeO906rg1C6Lng" name="yes" source="_Klqgk1tFEeO906rg1C6Lng" target="_Klqgh1tFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgXltFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgX1tFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgYFtFEeO906rg1C6Lng" name="no" source="_Klqgk1tFEeO906rg1C6Lng" target="_KlqgiltFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgYVtFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgYltFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgY1tFEeO906rg1C6Lng" name="no" source="_KlqghltFEeO906rg1C6Lng" target="_KlqgjVtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgZFtFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgZVtFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_KlqgZltFEeO906rg1C6Lng" visibility="public" source="_KlqgiFtFEeO906rg1C6Lng" target="_KlqglVtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgZ1tFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgaFtFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_KlqgaVtFEeO906rg1C6Lng" visibility="public" source="_KlqgjltFEeO906rg1C6Lng" target="_KlqglVtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgaltFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_Klqga1tFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgbFtFEeO906rg1C6Lng" name="no" source="_KlqghVtFEeO906rg1C6Lng" target="_KlqglFtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgbVtFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgbltFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Klqgb1tFEeO906rg1C6Lng" name="no" source="_KlqghFtFEeO906rg1C6Lng" target="_KlqglFtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgcFtFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgcVtFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgcltFEeO906rg1C6Lng" name="yes" source="_KlqghltFEeO906rg1C6Lng" target="_Klqgk1tFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_Klqgc1tFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgdFtFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_KlqgdVtFEeO906rg1C6Lng" source="_KlqglVtFEeO906rg1C6Lng" target="_KlqgkVtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgdltFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_Klqgd1tFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgeFtFEeO906rg1C6Lng" source="_Klqgl1tFEeO906rg1C6Lng" target="_KlqghFtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgeVtFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgeltFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_Klqge1tFEeO906rg1C6Lng" source="_Klqgi1tFEeO906rg1C6Lng" target="_KlqglVtFEeO906rg1C6Lng">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgfFtFEeO906rg1C6Lng">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgfVtFEeO906rg1C6Lng" value="1"/>
+        </edge>
+        <node xmi:type="uml:ExpansionNode" xmi:id="_KlqgfltFEeO906rg1C6Lng" name="income" incoming="_KlqgnVtFEeO906rg1C6Lng" regionAsInput="_KlqgQFtFEeO906rg1C6Lng">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Klqgf1tFEeO906rg1C6Lng" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_KlqggFtFEeO906rg1C6Lng" name="distance_declared_in_january">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqggVtFEeO906rg1C6Lng" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_KlqggltFEeO906rg1C6Lng" name="units_of_distance">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Klqgg1tFEeO906rg1C6Lng" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_KlqghFtFEeO906rg1C6Lng" name="Eligible income type" outgoing="_KlqgV1tFEeO906rg1C6Lng _Klqgb1tFEeO906rg1C6Lng" incoming="_KlqgeFtFEeO906rg1C6Lng"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_KlqghVtFEeO906rg1C6Lng" name="units_of_distance > distance_delcared_in_january" outgoing="_KlqgWltFEeO906rg1C6Lng _KlqgbFtFEeO906rg1C6Lng" incoming="_KlqgV1tFEeO906rg1C6Lng"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_KlqghltFEeO906rg1C6Lng" name="units_of_distance > minimum_distance_in_units" outgoing="_KlqgY1tFEeO906rg1C6Lng _KlqgcltFEeO906rg1C6Lng" incoming="_KlqgWltFEeO906rg1C6Lng"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_Klqgh1tFEeO906rg1C6Lng" name="Calculate maximal flat rate for travel expenses" incoming="_KlqgXVtFEeO906rg1C6Lng">
+          <outputValue xmi:id="_KlqgiFtFEeO906rg1C6Lng" outgoing="_KlqgZltFEeO906rg1C6Lng">
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgiVtFEeO906rg1C6Lng" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_KlqgiltFEeO906rg1C6Lng" name="Calculate normal rate computed per unit for declared units of distance" incoming="_KlqgYFtFEeO906rg1C6Lng">
+          <outputValue xmi:id="_Klqgi1tFEeO906rg1C6Lng" outgoing="_Klqge1tFEeO906rg1C6Lng">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_Klrus1tFEeO906rg1C6Lng"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgjFtFEeO906rg1C6Lng" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_KlqgjVtFEeO906rg1C6Lng" name="Calculate minimal flat rate for travel expenses" incoming="_KlqgY1tFEeO906rg1C6Lng">
+          <outputValue xmi:id="_KlqgjltFEeO906rg1C6Lng" outgoing="_KlqgaVtFEeO906rg1C6Lng">
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Klqgj1tFEeO906rg1C6Lng" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_KlqgkFtFEeO906rg1C6Lng" name="Check correctness of travel expense deduction">
+          <inputValue xmi:id="_KlqgkVtFEeO906rg1C6Lng" incoming="_KlqgdVtFEeO906rg1C6Lng">
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgkltFEeO906rg1C6Lng" value="1"/>
+          </inputValue>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_Klqgk1tFEeO906rg1C6Lng" name="units_of_distance > maximum_distance_in_units" outgoing="_KlqgYFtFEeO906rg1C6Lng _KlqgXVtFEeO906rg1C6Lng" incoming="_KlqgcltFEeO906rg1C6Lng"/>
+        <node xmi:type="uml:FlowFinalNode" xmi:id="_KlqglFtFEeO906rg1C6Lng" incoming="_KlqgbFtFEeO906rg1C6Lng _Klqgb1tFEeO906rg1C6Lng"/>
+        <node xmi:type="uml:CentralBufferNode" xmi:id="_KlqglVtFEeO906rg1C6Lng" name="result" outgoing="_KlqgdVtFEeO906rg1C6Lng" incoming="_KlqgZltFEeO906rg1C6Lng _KlqgaVtFEeO906rg1C6Lng _Klqge1tFEeO906rg1C6Lng">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_Klrus1tFEeO906rg1C6Lng"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqglltFEeO906rg1C6Lng" value="1"/>
+        </node>
+        <node xmi:type="uml:InitialNode" xmi:id="_Klqgl1tFEeO906rg1C6Lng" outgoing="_KlqgeFtFEeO906rg1C6Lng"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgmFtFEeO906rg1C6Lng" name="current_taxation_year" parameter="_KlqgMltFEeO906rg1C6Lng">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_KlqgmVtFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_KlqgmltFEeO906rg1C6Lng" name="test_date_of_request" parameter="_KlqgM1tFEeO906rg1C6Lng">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_KlrusVtFEeO906rg1C6Lng"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Klqgm1tFEeO906rg1C6Lng" value="1"/>
+      </node>
+      <node xmi:type="uml:InitialNode" xmi:id="_KlqgnFtFEeO906rg1C6Lng" outgoing="_KlqgoFtFEeO906rg1C6Lng"/>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_KlqgnVtFEeO906rg1C6Lng" source="_KlqgNltFEeO906rg1C6Lng" target="_KlqgfltFEeO906rg1C6Lng">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgnltFEeO906rg1C6Lng">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_Klqgn1tFEeO906rg1C6Lng" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_KlqgoFtFEeO906rg1C6Lng" source="_KlqgnFtFEeO906rg1C6Lng" target="_KlqgQFtFEeO906rg1C6Lng">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_KlqgoVtFEeO906rg1C6Lng">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_KlqgoltFEeO906rg1C6Lng" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_Klqgo1tFEeO906rg1C6Lng">
+      <eAnnotations xmi:id="_KlqgpFtFEeO906rg1C6Lng" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_KlqgpVtFEeO906rg1C6Lng">
+      <eAnnotations xmi:id="_KlqgpltFEeO906rg1C6Lng" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_KlrJultFEeO906rg1C6Lng"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_KlrJuFtFEeO906rg1C6Lng"/>
+    </profileApplication>
+    <profileApplication xmi:id="_Klqgp1tFEeO906rg1C6Lng">
+      <eAnnotations xmi:id="_KlqgqFtFEeO906rg1C6Lng" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_KmeYnVtFEeO906rg1C6Lng"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_KmeYm1tFEeO906rg1C6Lng"/>
+    </profileApplication>
+    <profileApplication xmi:id="_KlqgqVtFEeO906rg1C6Lng">
+      <eAnnotations xmi:id="_KlqgqltFEeO906rg1C6Lng" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_KmEKa1tFEeO906rg1C6Lng"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_KmEKaVtFEeO906rg1C6Lng"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:context xmi:id="_Klqgq1tFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgNFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:calculate xmi:id="_KlqgrFtFEeO906rg1C6Lng" base_OpaqueAction="_Klqgh1tFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:calculate xmi:id="_KlqgrVtFEeO906rg1C6Lng" base_OpaqueAction="_KlqgiltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:calculate xmi:id="_KlqgrltFEeO906rg1C6Lng" base_OpaqueAction="_KlqgjVtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:assert xmi:id="_Klqgr1tFEeO906rg1C6Lng" base_OpaqueAction="_KlqgkFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:constraint xmi:id="_KlqgsFtFEeO906rg1C6Lng" constraint="_KlqgVVtFEeO906rg1C6Lng" base_Comment="_KlqgRFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:formula xmi:id="_KlqgsVtFEeO906rg1C6Lng" constraint="_KlqgRVtFEeO906rg1C6Lng" base_Comment="_KlqgQ1tFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:formula xmi:id="_KlqgsltFEeO906rg1C6Lng" constraint="_KlqgRVtFEeO906rg1C6Lng" base_Comment="_KlqgQVtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:formula xmi:id="_Klqgs1tFEeO906rg1C6Lng" constraint="_KlqgU1tFEeO906rg1C6Lng" base_Comment="_KlqgQltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_KlqgtFtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgNltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_KlqgtVtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgNltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_KlqgtltFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgmFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_Klqgt1tFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgmFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_KlqguFtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgOFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_KlqguVtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgOFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_KlqgultFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgOltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_Klqgu1tFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgOltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_KlqgvFtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgPFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_KlqgvVtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgPFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_KlqgvltFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgPltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_Klqgv1tFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgPltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_KlqgwFtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgmltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_KlqgwVtFEeO906rg1C6Lng" base_ActivityParameterNode="_KlqgmltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_KlqgwltFEeO906rg1C6Lng" base_Pin="_KlqggFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_Klqgw1tFEeO906rg1C6Lng" base_Pin="_KlqggFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_KlqgxFtFEeO906rg1C6Lng" base_Pin="_KlqggltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:in xmi:id="_KlqgxVtFEeO906rg1C6Lng" base_Pin="_KlqggltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:query xmi:id="_KlqgxltFEeO906rg1C6Lng" agent_type="OFFICER" question="When was the request postmarked?" source="" base_Comment="_KlqgH1tFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:query xmi:id="_Klqgx1tFEeO906rg1C6Lng" question="No question" source="Art. 105bis of the income tax law" type="FIXED_VALUE" base_Comment="_KlqgHFtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:query xmi:id="_KlqgyFtFEeO906rg1C6Lng" question="" source="" constraint="_KlqgJltFEeO906rg1C6Lng" base_Comment="_KlqgG1tFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:query xmi:id="_KlqgyVtFEeO906rg1C6Lng" question="" source="" constraint="_KlqgKFtFEeO906rg1C6Lng" base_Comment="_KlqgGltFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:query xmi:id="_KlqgyltFEeO906rg1C6Lng" question="" source="" constraint="_KlqgKltFEeO906rg1C6Lng" base_Comment="_KlqgHVtFEeO906rg1C6Lng"/>
+  <CTIE_Profile_Final:query xmi:id="_Klqgy1tFEeO906rg1C6Lng" question="No question" source="Règlement ministériel du 6 février 2012 " type="LOOKUP_TABLE" base_Comment="_KlqgHltFEeO906rg1C6Lng">
+    <parameters>CTIE_String address source</parameters>
+    <parameters>CTIE_String address destination</parameters>
+  </CTIE_Profile_Final:query>
+</xmi:XMI>

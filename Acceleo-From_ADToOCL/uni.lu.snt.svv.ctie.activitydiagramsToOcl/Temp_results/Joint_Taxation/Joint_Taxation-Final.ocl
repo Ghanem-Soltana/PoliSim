@@ -1,0 +1,176 @@
+Size = 111
+operation getIsTaxedJointly (year : Integer):Boolean
+{
+body:
+let is_married:Boolean = if(self.getLegalUnionRecord(year).oclIsUndefined()) then false else self.getLegalUnionRecord(year).oclIsTypeOf(Marriage_Record) endif in													
+/** Description: - **/	
+if (is_married) = false then
+   let is_in_partnership_relation:Boolean = if(self.getLegalUnionRecord(year).oclIsUndefined()) then false else self.getLegalUnionRecord(year).oclIsTypeOf(Partnership_Record) endif in													
+   /** Description: -  **/	
+   if (is_in_partnership_relation) = false then
+   false
+   else
+     if (is_in_partnership_relation) = true then
+          let joint_tax_has_been_requested:Boolean = true in													
+          /** Description: -  **/	
+          if (joint_tax_has_been_requested) = true then
+                  let is_couple_living_apart:Boolean = false in													
+                  /** Description: -  **/	
+                  let relation_lasted_for_the_taxation_year:Boolean = true  in													
+                  /** Description: -  **/	
+                  if (relation_lasted_for_the_taxation_year and not is_couple_living_apart) = false then
+                  false
+                  else
+                    if (relation_lasted_for_the_taxation_year and not is_couple_living_apart) = true then
+                              let are_both_spouses_resident:Boolean = (self.getSpouse(year).oclIsTypeOf(Resident_Tax_Payer) or self.getSpouse(year).oclIsTypeOf(Physical_Person)) and self.oclIsTypeOf(Resident_Tax_Payer) in													
+                              /** Description: -  **/	
+                              if (are_both_spouses_resident) = true then
+                              true
+                              else
+                                 if (are_both_spouses_resident) = false then
+                                             let are_both_spouses_non_resident:Boolean = (self.getSpouse(year).oclIsTypeOf(Non_Resident_Tax_Payer) or self.getSpouse(year).oclIsTypeOf(Physical_Person)) and self.oclIsTypeOf(Non_Resident_Tax_Payer) in													
+                                             /** Description: -  **/	
+                                             if (are_both_spouses_non_resident) = false then
+                                             false
+                                             else
+                                                if (are_both_spouses_non_resident) = true then
+                                                               if (true) = true then
+                                                               true
+                                                               else
+                                                                 if (true) = false then
+                                                                 false
+                                                                 else
+                                                                 invalid
+                                                                 endif
+                                                               endif
+                                                else
+                                                invalid
+                                                endif
+                                             endif
+                                 else
+                                 invalid
+                                 endif
+                              endif
+                    else
+                    invalid
+                    endif
+                  endif
+          else
+             if (joint_tax_has_been_requested) = false then
+             false
+             else
+             invalid
+             endif
+          endif
+     else
+     invalid
+     endif
+   endif
+else
+   if (is_married) = true then
+     let are_both_spouses_resident:Boolean = (self.getSpouse(year).oclIsTypeOf(Resident_Tax_Payer) or self.getSpouse(year).oclIsTypeOf(Physical_Person)) and self.oclIsTypeOf(Resident_Tax_Payer) in													
+     /** Description: -  **/	
+     if (are_both_spouses_resident) = true then
+     true
+     else
+        if (are_both_spouses_resident) = false then
+             let are_both_spouses_non_resident:Boolean = (self.getSpouse(year).oclIsTypeOf(Non_Resident_Tax_Payer) or self.getSpouse(year).oclIsTypeOf(Physical_Person)) and self.oclIsTypeOf(Non_Resident_Tax_Payer) in													
+             /** Description: -  **/	
+             if (are_both_spouses_non_resident) = true then
+                    let is_couple_assimilated_to_residents:Boolean = true in													
+                    /** Description: -  **/	
+                    if (is_couple_assimilated_to_residents) = true then
+                    true
+                    else
+                       if (is_couple_assimilated_to_residents) = false then
+                                 let is_couple_living_apart:Boolean = false in													
+                                 /** Description: -  **/	
+                                 if (is_couple_living_apart) = true then
+                                 false
+                                 else
+                                   if (is_couple_living_apart) = false then
+                                                let my_incomes:Set(Income) = self.incomes->select(i:Income|i.year=year and (i.income_type.oclIsTypeOf(Trade_and_Business_Income) or i.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or i.income_type.oclIsTypeOf(Employment_Income) or i.income_type.oclIsTypeOf(Capital_and_Investments_Income))and i.oclIsTypeOf(Local_Income)) 	in													
+                                                /** Description: -  **/	
+                                                let spouse_incomes:Set(Income) = if(self.getSpouse(year).oclIsKindOf(Tax_Payer)) then self.getSpouse(year).oclAsType(Tax_Payer).incomes->select(i:Income|i.year=year and (i.income_type.oclIsTypeOf(Trade_and_Business_Income) or i.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or i.income_type.oclIsTypeOf(Employment_Income) or i.income_type.oclIsTypeOf(Capital_and_Investments_Income))and i.oclIsTypeOf(Local_Income)) else OrderedSet{} endif	in													
+                                                /** Description: -  **/	
+                                                let both_spouses_have_professional_income:Boolean = if(my_incomes->oclIsInvalid() or spouse_incomes->oclIsInvalid()) then false else my_incomes->size()>0 and spouse_incomes->size()>0 endif in													
+                                                /** Description: -  **/	
+                                                if (both_spouses_have_professional_income) = true then
+                                                               let local_professional_household_income:Real = self.getProfetionalIncomeHouseholdLuxembourg(year) in													
+                                                               /** Description: -  **/	
+                                                               let total_professional_household_income:Real = self.getProfetionalIncomeHousehold(year) in													
+                                                               /** Description: -  **/	
+                                                               if (local_professional_household_income   > total_professional_household_income * 0.5) = false then
+                                                               false
+                                                               else
+                                                                 if (local_professional_household_income   > total_professional_household_income * 0.5) = true then
+                                                                 true
+                                                                 else
+                                                                 invalid
+                                                                 endif
+                                                               endif
+                                                else
+                                                  if (both_spouses_have_professional_income) = false then
+                                                  false
+                                                  else
+                                                  invalid
+                                                  endif
+                                                endif
+                                   else
+                                   invalid
+                                   endif
+                                 endif
+                       else
+                       invalid
+                       endif
+                    endif
+             else
+               if (are_both_spouses_non_resident) = false then
+                       let is_couple_living_apart:Boolean = false in													
+                       /** Description: -  **/	
+                       if (is_couple_living_apart) = true then
+                       false
+                       else
+                         if (is_couple_living_apart) = false then
+                                   if (true) = true then
+                                                let my_incomes:Set(Income) = self.incomes->select(i:Income|i.year=year and (i.income_type.oclIsTypeOf(Trade_and_Business_Income) or i.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or i.income_type.oclIsTypeOf(Employment_Income) or i.income_type.oclIsTypeOf(Capital_and_Investments_Income))and i.oclIsTypeOf(Local_Income)) 	in													
+                                                /** Description: -  **/	
+                                                let spouse_incomes:Set(Income) = if(self.getSpouse(year).oclIsKindOf(Tax_Payer)) then self.getSpouse(year).oclAsType(Tax_Payer).incomes->select(i:Income|i.year=year and (i.income_type.oclIsTypeOf(Trade_and_Business_Income) or i.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or i.income_type.oclIsTypeOf(Employment_Income) or i.income_type.oclIsTypeOf(Capital_and_Investments_Income))and i.oclIsTypeOf(Local_Income)) else OrderedSet{} endif	in													
+                                                /** Description: -  **/	
+                                                let total_professional_household_income:Real = self.getProfetionalIncomeHousehold(year) in													
+                                                /** Description: -  **/	
+                                                let professional_income_resident_taxpayer:Real = if(self.oclIsTypeOf(Resident_Tax_Payer)) then if(my_incomes->oclIsInvalid()) then 0.0 else my_incomes.income_amount->sum() endif else if(spouse_incomes->oclIsInvalid()) then 0.0 else spouse_incomes.income_amount->sum() endif endif in													
+                                                /** Description: -  **/	
+                                                if (professional_income_resident_taxpayer > total_professional_household_income * 0.9) = false then
+                                                false
+                                                else
+                                                  if (professional_income_resident_taxpayer > total_professional_household_income * 0.9) = true then
+                                                  true
+                                                  else
+                                                  invalid
+                                                  endif
+                                                endif
+                                   else
+                                      if (true) = false then
+                                      false
+                                      else
+                                      invalid
+                                      endif
+                                   endif
+                         else
+                         invalid
+                         endif
+                       endif
+               else
+               invalid
+               endif
+             endif
+        else
+        invalid
+        endif
+     endif
+   else
+   invalid
+   endif
+endif
+;}

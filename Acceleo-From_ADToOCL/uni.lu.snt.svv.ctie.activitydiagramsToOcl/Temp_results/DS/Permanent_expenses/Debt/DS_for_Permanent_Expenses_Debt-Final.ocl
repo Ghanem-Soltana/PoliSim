@@ -1,0 +1,27 @@
+Size = 40
+context Tax_Payer inv DS_for_Permanent_Expenses_Debt:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ 									
+let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in													
+/** Description: The incomes of a given taxpayer for the studied tax year. - **/	
+incomes -> forAll (income:Income|
+let declared_debts:OrderedSet(Expense) = income.expenses->select(e:Expense| e.year_expense_was_incurred_in= taxation_year and e.expense_purpose= Expense_Purpose::RECURRENT_DEPT) in														
+/** Description: collection of declared debts. - **/	
+let sum_of_eligible_debts: Real = declared_debts->iterate(declared_debt: Expense; acc2:Real = 0 |
+let is_eligible_debt:Boolean = declared_debt.from_agent.is_eligible_debt in
+/** TRACEABILITY: The agent should provide his judgment about the declared debt. An eligible debt should adhere to the following: - * Les arr rages de rentes et de charges permanentes dues en vertu d'une obligation particuli re, notamment d'un contrat r gulier en bonne et due forme, d'une disposition l gale ou d'une d cision de justice, sont d ductibles au titre de d penses sp ciales dans la mesure o ces arr rages ne sont pas en rapport conomique avec des revenus exempt s et ne sont pas consid rer comme d penses d'exploitation ou frais d'obtention. <br>* Toutefois, les arr rages servis des personnes qui, si elles taient dans le besoin, seraient en droit d'apr s les dispositions du code civil, de r clamer des aliments au contribuable, ne constituent des d penses sp ciales qu'au cas o ils sont stipul s l'occasion d'une transmission de biens et qu'ils ne sont pas excessifs par rapport la valeur des biens transmis. <br> - **/						
+if (is_eligible_debt) = false then
+acc2+0
+else
+   if (is_eligible_debt) = true then
+   let amount:Real = declared_debt.declared_amount in
+   /** Description: Amount of the recurrent debt.  -  **/							
+   acc2+amount
+   else
+   acc2+0
+   endif
+endif
+) in
+let calcuated_deduction:Real = sum_of_eligible_debts * 0.5 in
+income.tax_card.deduction_DS_Debt_yearly->any(true).oclIsUndefined()
+)

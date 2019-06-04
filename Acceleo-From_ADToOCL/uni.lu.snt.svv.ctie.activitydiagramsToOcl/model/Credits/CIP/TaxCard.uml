@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2 Default.profile.uml#_xjnneJezEeOBeaAb9MJyhQ">
+  <uml:Package xmi:id="_ximT5JezEeOBeaAb9MJyhQ" name="TaxCard">
+    <packageImport xmi:id="_ximT5ZezEeOBeaAb9MJyhQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_ximT5pezEeOBeaAb9MJyhQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_ximT55ezEeOBeaAb9MJyhQ" name="Tax_Card_Domain">
+      <packageImport xmi:id="_ximT6JezEeOBeaAb9MJyhQ" importedPackage="_xim5gpezEeOBeaAb9MJyhQ"/>
+      <packageImport xmi:id="_ximT6ZezEeOBeaAb9MJyhQ" importedPackage="_ximT7pezEeOBeaAb9MJyhQ"/>
+      <packageImport xmi:id="_ximT6pezEeOBeaAb9MJyhQ" importedPackage="_xim5bJezEeOBeaAb9MJyhQ"/>
+      <packageImport xmi:id="_ximT65ezEeOBeaAb9MJyhQ" importedPackage="_ximU7pezEeOBeaAb9MJyhQ"/>
+      <packageImport xmi:id="_ximT7JezEeOBeaAb9MJyhQ" importedPackage="_ximVMJezEeOBeaAb9MJyhQ"/>
+      <packageImport xmi:id="_ximT7ZezEeOBeaAb9MJyhQ" importedPackage="_xim5HpezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_ximT7pezEeOBeaAb9MJyhQ" name="Tax_Payer_Concepts">
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximT75ezEeOBeaAb9MJyhQ" name="taxed under" memberEnd="_ximUn5ezEeOBeaAb9MJyhQ _ximU3pezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximT8JezEeOBeaAb9MJyhQ" name="Income_Tax">
+        <ownedAttribute xmi:id="_ximT8ZezEeOBeaAb9MJyhQ" name="taxPayer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_ximU25ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximT8pezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximT85ezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximT9JezEeOBeaAb9MJyhQ" name="tax_amount" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximT9ZezEeOBeaAb9MJyhQ" name="tax_year" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximT9pezEeOBeaAb9MJyhQ" name="Address">
+        <ownedAttribute xmi:id="_ximT95ezEeOBeaAb9MJyhQ" name="taxPayer" visibility="private" type="_ximUR5ezEeOBeaAb9MJyhQ" association="_ximU0pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximT-JezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximT-ZezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximT-pezEeOBeaAb9MJyhQ" name="country" visibility="public" type="_xim4uJezEeOBeaAb9MJyhQ">
+          <defaultValue xmi:type="uml:InstanceValue" xmi:id="_ximT-5ezEeOBeaAb9MJyhQ" name="LU" type="_xim4uJezEeOBeaAb9MJyhQ" instance="_xim4uZezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximT_JezEeOBeaAb9MJyhQ" name="street" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximT_ZezEeOBeaAb9MJyhQ" name="zipCode" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximT_pezEeOBeaAb9MJyhQ" name="city" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximT_5ezEeOBeaAb9MJyhQ" name="Dependent">
+        <generalization xmi:id="_ximUAJezEeOBeaAb9MJyhQ" general="_ximUR5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximUAZezEeOBeaAb9MJyhQ" name="dependent_type" visibility="public" type="_xim43ZezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximUApezEeOBeaAb9MJyhQ" name="household" visibility="private" type="_ximULpezEeOBeaAb9MJyhQ" association="_ximU2ZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUA5ezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUBJezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUBZezEeOBeaAb9MJyhQ" name="responsible_person" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_ximU2JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUBpezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUB5ezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUCJezEeOBeaAb9MJyhQ" name="continued_studies" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximUCZezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUCpezEeOBeaAb9MJyhQ" name="expense" visibility="private" type="_xim4npezEeOBeaAb9MJyhQ" association="_ximU2pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUC5ezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUDJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUDZezEeOBeaAb9MJyhQ" name="tax_Payer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_ximU15ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUDpezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUD5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximUEJezEeOBeaAb9MJyhQ" name="compute_if_dependent_receives_allowances_eligible_for_CIM">
+          <eAnnotations xmi:id="_ximUEZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUEpezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_ximUE5ezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUFJezEeOBeaAb9MJyhQ" name="compute_if_dependent_receives_allowances_eligible_for_DS">
+          <eAnnotations xmi:id="_ximUFZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUFpezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_ximUF5ezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUGJezEeOBeaAb9MJyhQ" name="compute_if_dependent_receives_allowances_eligible_for_CE_dependance_and_care">
+          <eAnnotations xmi:id="_ximUGZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUGpezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_ximUG5ezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUHJezEeOBeaAb9MJyhQ" name="is_dependent_following_continued_studies" postcondition="_ximUH5ezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximUHZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUHpezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximUH5ezEeOBeaAb9MJyhQ" name="is_dependent_following_continued_studies" constrainedElement="_ximUHJezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUIJezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.continued_studies = IN_continued_studies&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximUIZezEeOBeaAb9MJyhQ" name="IN_continued_studies">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUIpezEeOBeaAb9MJyhQ" name="External_Allowance">
+        <ownedAttribute xmi:id="_ximUI5ezEeOBeaAb9MJyhQ" name="amount" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUJJezEeOBeaAb9MJyhQ" name="grantor" visibility="public" type="_xim4sJezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximUJZezEeOBeaAb9MJyhQ" name="person" visibility="private" type="_ximUR5ezEeOBeaAb9MJyhQ" association="_ximU05ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUJpezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUJ5ezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUKJezEeOBeaAb9MJyhQ" name="valid_from_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUKZezEeOBeaAb9MJyhQ" name="valid_until_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUKpezEeOBeaAb9MJyhQ" name="Fiscal_Address">
+        <generalization xmi:id="_ximUK5ezEeOBeaAb9MJyhQ" general="_ximT9pezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximULJezEeOBeaAb9MJyhQ" name="Habitual_Address">
+        <generalization xmi:id="_ximULZezEeOBeaAb9MJyhQ" general="_ximT9pezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximULpezEeOBeaAb9MJyhQ" name="Household">
+        <ownedAttribute xmi:id="_ximUL5ezEeOBeaAb9MJyhQ" name="tax_Payer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_ximU1pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUMJezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUMZezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUMpezEeOBeaAb9MJyhQ" name="dependent" visibility="private" type="_ximT_5ezEeOBeaAb9MJyhQ" association="_ximU2ZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUM5ezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUNJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUNZezEeOBeaAb9MJyhQ" name="Legal_Union_Record">
+        <ownedComment xmi:id="_ximUNpezEeOBeaAb9MJyhQ" annotatedElement="_ximUNZezEeOBeaAb9MJyhQ">
+          <body>&lt;p>&lt;span style=&quot;font-size:16pt;&quot;>When&amp;nbsp;a&amp;nbsp;decision&amp;nbsp;for&amp;nbsp;Dates&amp;nbsp;would&amp;nbsp;be&amp;nbsp;taken,&amp;nbsp;&lt;/span>&lt;/p>&lt;p>&lt;span style=&quot;font-size:16pt;&quot;>we&amp;nbsp;must&amp;nbsp;take&amp;nbsp;into&amp;nbsp;account&amp;nbsp;that&amp;nbsp;all&amp;nbsp;marriages&amp;nbsp;and&amp;nbsp;partnerships&amp;nbsp;are&amp;nbsp;mutually&amp;nbsp;exclusive.&lt;/span>&lt;/p></body>
+        </ownedComment>
+        <ownedRule xmi:id="_ximUN5ezEeOBeaAb9MJyhQ" name="Legal_Union-different_people-constraint" constrainedElement="_ximUNZezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUOJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>if self.end_date.oclIsUndefined() then&#xA;/**LEGAL UNION IS VALID**/&#xA;self.individual_A.SSNo &lt;> self.individual_B.SSNo&#xA;and&#xA;self.individual_A->size()=1 and&#xA;self.individual_B->size()=1&#xA;else&#xA;/**LEGAL UNION IS AUTHORIZED WITH ONLY ONE PERSON**/&#xA;false&#xA;endif&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:id="_ximUOZezEeOBeaAb9MJyhQ" name="start_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUOpezEeOBeaAb9MJyhQ" name="end_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUO5ezEeOBeaAb9MJyhQ" name="individual_A" visibility="private" type="_ximUR5ezEeOBeaAb9MJyhQ" association="_ximU1ZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUPJezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUPZezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUPpezEeOBeaAb9MJyhQ" name="individual_B" visibility="private" type="_ximUR5ezEeOBeaAb9MJyhQ" association="_ximU1JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUP5ezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUQJezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUQZezEeOBeaAb9MJyhQ" name="Marriage_Record">
+        <generalization xmi:id="_ximUQpezEeOBeaAb9MJyhQ" general="_ximUNZezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUQ5ezEeOBeaAb9MJyhQ" name="Non_Resident_Tax_Payer">
+        <generalization xmi:id="_ximURJezEeOBeaAb9MJyhQ" general="_ximUbpezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximURZezEeOBeaAb9MJyhQ" name="Partnership_Record">
+        <generalization xmi:id="_ximURpezEeOBeaAb9MJyhQ" general="_ximUNZezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUR5ezEeOBeaAb9MJyhQ" name="Physical_Person">
+        <ownedAttribute xmi:id="_ximUSJezEeOBeaAb9MJyhQ" name="name" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUSZezEeOBeaAb9MJyhQ" name="is_assisting_spouse" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUSpezEeOBeaAb9MJyhQ" name="SSNo" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUS5ezEeOBeaAb9MJyhQ" name="allowances" visibility="private" type="_ximUIpezEeOBeaAb9MJyhQ" association="_ximU05ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUTJezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUTZezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUTpezEeOBeaAb9MJyhQ" name="addresses" visibility="private" type="_ximT9pezEeOBeaAb9MJyhQ" association="_ximU0pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUT5ezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUUJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUUZezEeOBeaAb9MJyhQ" name="legal_union_A" visibility="private" type="_ximUNZezEeOBeaAb9MJyhQ" association="_ximU1ZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUUpezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUU5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUVJezEeOBeaAb9MJyhQ" name="legal_union_B" visibility="private" type="_ximUNZezEeOBeaAb9MJyhQ" association="_ximU1JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUVZezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUVpezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUV5ezEeOBeaAb9MJyhQ" name="age" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUWJezEeOBeaAb9MJyhQ" name="disability_percentage" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_ximUWZezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUWpezEeOBeaAb9MJyhQ" name="is_affiliated_personnaly_to_social_security" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximUW5ezEeOBeaAb9MJyhQ" name="is_separated_from">
+          <eAnnotations xmi:id="_ximUXJezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUXZezEeOBeaAb9MJyhQ" key="computaion"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_ximUXpezEeOBeaAb9MJyhQ" name="IN_person" type="_ximUR5ezEeOBeaAb9MJyhQ"/>
+          <ownedParameter xmi:id="_ximUX5ezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUYJezEeOBeaAb9MJyhQ" name="is_person_assisting_spouse" postcondition="_ximUY5ezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximUYZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUYpezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximUY5ezEeOBeaAb9MJyhQ" name="is_assisting_spouse" constrainedElement="_ximUYJezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUZJezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.is_assisting_spouse = IN_assisting_spouse&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximUZZezEeOBeaAb9MJyhQ" name="IN_assisting_spouse">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUZpezEeOBeaAb9MJyhQ" name="is_person_affiliated_personnaly_to_social_security" postcondition="_ximUaZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximUZ5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUaJezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximUaZezEeOBeaAb9MJyhQ" name="is_person_affiliated_personnaly_affiliated_to_social_security" constrainedElement="_ximUZpezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUapezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.is_affiliated_personnaly_to_social_security = IN_personnaly_affiliated&#xA;&#xA;&#xA;&#xA;&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximUa5ezEeOBeaAb9MJyhQ" name="IN_personnaly_affiliated">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUbJezEeOBeaAb9MJyhQ" name="Resident_Tax_Payer">
+        <generalization xmi:id="_ximUbZezEeOBeaAb9MJyhQ" general="_ximUbpezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximUbpezEeOBeaAb9MJyhQ" name="Tax_Payer">
+        <ownedRule xmi:id="_ximUb5ezEeOBeaAb9MJyhQ" name="NonResidentTaxPayer-constraint" constrainedElement="_ximUQ5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUcJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>&#x9;self.addresses->exists( fiscal_add:Address | &#xA;&#x9;&#x9;fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country&lt;>Country::LU) and&#xA;&#x9;self.addresses->exists( hab_add:Address | &#xA;&#x9;&#x9;hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country&lt;>Country::LU) and&#xA;&#x9;self.incomes->exists(inc:Income_Concepts::Income | inc.oclIsTypeOf(Income_Concepts::Local_Income))&#xA;implies&#xA;&#x9;self.oclIsTypeOf(Non_Resident_Tax_Payer)&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUcZezEeOBeaAb9MJyhQ" name="ResidentTaxPayer-constraint" constrainedElement="_ximUbJezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUcpezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>&#x9;self.addresses->exists( fiscal_add:Address | &#xA;&#x9;&#x9;fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country=Country::LU) or&#xA;&#x9;self.addresses->exists( hab_add:Address | &#xA;&#x9;&#x9;hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country=Country::LU) &#xA;implies&#xA;&#x9;self.oclIsTypeOf(Resident_Tax_Payer)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUc5ezEeOBeaAb9MJyhQ" name="SubjectToIncomeTax-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUdJezEeOBeaAb9MJyhQ" name="subjectToIncomeTax ">
+            <language>OCL</language>
+            <body>&#x9;self.incomes->exists(inc:Income_Concepts::Income |&#xA;&#x9;&#x9; inc.oclIsTypeOf(Income_Concepts::Local_Income) or inc.oclIsTypeOf(Income_Concepts::Foreign_Income))&#xA;implies&#xA;&#x9;not self.incomeTax->isEmpty()&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUdZezEeOBeaAb9MJyhQ" name="TaxCredit-CIS-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUdpezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let   employement_income: Set(Income_Concepts::Income) = &#xA;      &#x9;self.incomes->select(inc|&#xA;      &#x9;&#x9;inc.oclIsTypeOf(Income_Concepts::Local_Income) and&#xA;      &#x9;&#x9;not inc.oclAsType(Income_Concepts::Local_Income).tax_card->isEmpty() and&#xA;   &#x9;   &#x9;&#x9;inc.income_type.oclIsTypeOf(Income_Concepts::Employment_Income) and&#xA;       &#x9;&#x9;inc.start_date_within_taxation_year=self.incomeTax.tax_year),&#xA;       &#x9;total_income: Integer = employement_income.income_amount->sum(),&#xA;&#x9;&#x9;tax_liability :Integer = self^^get_tax_liability_in_days(self.incomeTax.tax_year.oclAsType(Integer))->first().result in&#xA;&#x9;&#x9;&#x9; &#x9;&#x9; &#xA;&#x9;&#x9; if(employement_income->size()>0 and total_income.div(tax_liability)>=3 and total_income.mod(tax_liability)>12 and total_income>936) then&#xA;&#x9;&#x9; &#x9;&#x9;     &#xA;&#x9;&#x9; let set_of_CIS: Set(Income_Tax_Credit_Concepts::Income_Tax_Credit) = self.income_Tax_Credit->select(type|type.oclIsTypeOf(Income_Tax_Credit_Concepts::CIS) and type.tax_year=self.incomeTax.tax_year),&#xA;&#x9;&#x9;&#x9;size_set_of_CIS :Integer = set_of_CIS->size(),&#xA;&#x9;&#x9;&#x9; a_CIS: Income_Tax_Credit_Concepts::Income_Tax_Credit = set_of_CIS->any(true) in&#xA;&#x9; &#x9;    &#xA;&#x9; &#x9;    size_set_of_CIS = 1 and&#xA;&#x9;&#x9;/**CIS IS CREDITED TO THE TAX PAYER**/&#xA;&#x9;&#x9;&#x9;/**CIS CREDITED FOR THE SALARY PER DAY**/&#xA;&#x9;&#x9;&#x9;a_CIS.daily=Constants::FLAT_RATE_CIS_DAILY and&#xA;&#x9;&#x9;&#x9;a_CIS.monthly = Constants::FLAT_RATE_CIS_MONTHLY and&#xA;&#x9;&#x9;&#x9;a_CIS.yearly = Constants::FLAT_RATE_CIS_YEARLY&#xA;&#x9;&#x9;&#x9;&#xA;      &#x9;else&#xA;      &#x9;&#x9;/**ERROR CIS CANNOT BE CREDITED**/&#xA;      &#x9;&#x9;false&#xA;      &#x9;endif&#x9;&#xA;      &#x9;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUd5ezEeOBeaAb9MJyhQ" name="TaxCredit-CIP-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUeJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let   employement_income: Set(Income_Concepts::Income) = &#xA;      &#x9;self.incomes->select(inc|&#xA;      &#x9;&#x9;inc.oclIsTypeOf(Income_Concepts::Local_Income) and&#xA;      &#x9;&#x9;not inc.oclAsType(Income_Concepts::Local_Income).tax_card->isEmpty() and&#xA;   &#x9;   &#x9;&#x9;inc.income_type.oclIsTypeOf(Income_Concepts::Pensions_and_Annuities_Income) and&#xA;       &#x9;&#x9;inc.start_date_within_taxation_year=self.incomeTax.tax_year),&#xA;       &#x9;total_income: Integer = employement_income.income_amount->sum(),&#xA;&#x9;&#x9;days:Integer = self^^get_tax_liability_in_days(self.incomeTax.tax_year.oclAsType(Integer))->first().result in&#xA;&#x9;&#x9;&#x9; &#x9;&#x9; &#xA;&#x9;&#x9; if(employement_income->size()>0 and total_income.div(days)>=1) then&#xA;&#x9;&#x9;     &#xA;&#x9;&#x9; let set_of_CIP: Set(Income_Tax_Credit_Concepts::Income_Tax_Credit) = self.income_Tax_Credit->select(type|type.oclIsTypeOf(Income_Tax_Credit_Concepts::CIP) and type.tax_year=self.incomeTax.tax_year),&#xA;&#x9;&#x9;&#x9;size_set_of_CIP :Integer = set_of_CIP->size(),&#xA;&#x9;&#x9;&#x9; a_CIP: Income_Tax_Credit_Concepts::Income_Tax_Credit = set_of_CIP->any(true) in&#xA;&#x9; &#x9;    &#xA;&#x9; &#x9;    size_set_of_CIP = 1 and&#xA;&#x9;&#x9;&#x9;/**CIP IS CREDITED TO THE TAX PAYER**/&#xA;&#x9;&#x9;&#x9;/**CIP CREDITED FOR THE PENSION AND ANNUITIES PER DAY**/&#xA;&#x9;&#x9;&#x9;a_CIP.daily=Constants::FLAT_RATE_CIP_DAILY and&#xA;&#x9;&#x9;&#x9;a_CIP.monthly = Constants::FLAT_RATE_CIP_MONTHLY and&#xA;&#x9;&#x9;&#x9;a_CIP.yearly = Constants::FLAT_RATE_CIP_YEARLY&#xA;&#x9;&#x9;&#x9;&#xA;      &#x9;else&#xA;      &#x9;&#x9;/**ERROR CIP CANNOT BE CREDITED**/&#xA;      &#x9;&#x9;false&#xA;      &#x9;endif&#x9;&#xA;   </body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUeZezEeOBeaAb9MJyhQ" name="TaxCredit-CIM-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUepezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let current_tax_class: Tax_Class = self.tax_class->select(tc|tc.valid_until_date->isEmpty())->any(true),&#xA;&#x9; set_of_CIM: Set(Income_Tax_Credit_Concepts::Income_Tax_Credit) = self.income_Tax_Credit->select(&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type|type.oclIsTypeOf(Income_Tax_Credit_Concepts::CIM) and &#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year),&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9; size_set_of_CIM:Integer = set_of_CIM->size(),&#xA;&#x9; a_CIM: Income_Tax_Credit_Concepts::Income_Tax_Credit = set_of_CIM->any(true),&#xA;&#x9; current_tax_classes_category_two: Set(Tax_Class) = self.tax_class->select(tc|tc.valid_from_date = self.incomeTax.tax_year and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;tc.valid_until_date=self.incomeTax.tax_year and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;tc.tax_class=Tax_Class_Category::Two),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;current_employement_income: Set(Income_Concepts::Income) = &#xA;      &#x9;self.incomes->select(inc|&#xA;      &#x9;&#x9;inc.oclIsTypeOf(Income_Concepts::Local_Income) and&#xA;      &#x9;&#x9;not inc.oclAsType(Income_Concepts::Local_Income).tax_card->isEmpty() and&#xA;       &#x9;&#x9;inc.start_date_within_taxation_year=self.incomeTax.tax_year) in&#xA;       &#x9;&#x9;&#xA;&#xA;       if (current_employement_income->size()>0 and self.oclIsTypeOf(Resident_Tax_Payer)) then&#xA;&#x9;&#x9;&#x9;if current_tax_class.tax_class = Tax_Class_Category::One_A and current_tax_classes_category_two->size()=0 then&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;let child_with_allowances : Set(Dependent) = self.dependents->select(dep:Dependent|dep.dependent_type=Dependent_Type::CHILD and dep^^compute_if_dependent_receives_allowances_eligible_for_CIM()->first().result=true and&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;   dep.allowances->exists(al|al.valid_from_date=self.incomeTax.tax_year and al.valid_until_date = self.incomeTax.tax_year)=true) in&#xA;&#x9;&#x9;&#x9;&#x9;size_set_of_CIM = 1 and&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9; if  child_with_allowances ->size()>0 then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;/**CIM ALLOWED**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;a_CIM.daily = Constants::FLAT_RATE_CIM_DAILY and /**2,5**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;a_CIM.monthly = Constants::FLAT_RATE_CIM_MONTHLY and /**62,5**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;a_CIM.yearly= Constants::FLAT_RATE_CIM_YEARLY&#x9;&#xA;&#x9;&#x9;&#x9;&#x9; else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;/**TAX PAYER CANNOT RECEIVE CIM, MISSING CHILD ALLOWANCE**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9; endif&#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;/**TAX PAYER CANNOT RECEIVE CIM, NOT TAX CLASS 1A**/&#xA;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;endif&#xA;&#x9;else&#xA;&#x9;&#x9;/**TAX PAYER CANNOT RECEIVE CIM, NOT ELIGIBLE INCOME*/&#xA;&#x9;&#x9;false&#xA;&#x9;endif&#xA;&#x9;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUe5ezEeOBeaAb9MJyhQ" name="Legal_Union-monogamus-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUfJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let legal_union: Set(Legal_Union_Record) = self.legal_union_A->select(couple|couple.end_date->isEmpty()) in&#xA;if (legal_union->size()=1) then&#x9;&#xA;&#x9;/**YOU ARE IN LIGEL UNION WITH ONLY ONE PERSON**/&#xA;&#x9;true&#xA;else&#xA;&#x9;/**ERROR YOU CANNOT BE IN LEGAL UNION WITH MORE THAN ONE PERSON**/&#xA;&#x9;false&#xA;endif&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUfZezEeOBeaAb9MJyhQ" name="TaxClass-unique-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUfpezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let tax_classes: Set(Tax_Class) = self.tax_class->select(tax_classe|tax_class.valid_until_date->isEmpty()) in&#xA;if tax_classes->size()=1 then&#x9;&#xA;&#x9;/**ONLY ONE TAX CLASS AT TIME**/&#xA;&#x9;true&#xA;else&#xA;&#x9;/**ERROR YOU CANNOT HAVE SEVERAL TAX CLASSES AT TIME**/&#xA;&#x9;false&#xA;endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUf5ezEeOBeaAb9MJyhQ" name="TaxDeduction-CE-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUgJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let set_of_CE: Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction) = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::CE) and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year),&#xA;&#x9; CE_invalidity:Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction)=set_of_CE->select(ce|&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;ce.oclAsType(Income_Tax_Deduction_Concepts::CE).ce_deduction_type=&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CE_Type::INALIDITY_AND_INFIRMITY),&#xA;&#x9; CE_dependence:Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction)=set_of_CE->select(ce|ce.oclAsType(Income_Tax_Deduction_Concepts::CE).ce_deduction_type=&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CE_Type::DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD),&#xA;&#x9; CE_child_not_part_of_household:Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction)=set_of_CE->select(ce|ce.oclAsType(Income_Tax_Deduction_Concepts::CE).ce_deduction_type=&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CE_Type::CARE_FOR_CHILDREN_NOT_BEING_PART_OF_HOUSEHOLD),&#xA;&#x9; income_subject_to_witholding_tax : Set(Income_Concepts::Income) = self.incomes->select(income|income.oclIsTypeOf(Income_Concepts::Local_Income) and&#xA;      &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not income.oclAsType(Income_Concepts::Local_Income).tax_card->isEmpty() and&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;income.start_date_within_taxation_year = self.incomeTax.tax_year),&#xA; &#x9; extraordinary_expenses : &#x9;Set(Expense_Concepts::Expense) = self.expenses->select(exp|&#xA; &#x9;  &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;exp.oclIsTypeOf(Expense_Concepts::Extraordinary_Expense_CE)),&#x9;&#xA; &#x9; extraordinary_expense_invalidity_and_infirmity  : &#x9;Set(Expense_Concepts::Expense) = extraordinary_expenses->select(exp|&#xA; &#x9;  &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;exp.oclAsType(Expense_Concepts::Extraordinary_Expense_CE).ce_type = CE_Type::INALIDITY_AND_INFIRMITY),&#xA; &#x9; extraordinary_expense_dependence_and_care : &#x9;Set(Expense_Concepts::Expense) = extraordinary_expenses->select(exp|&#xA; &#x9;  &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;exp.oclAsType(Expense_Concepts::Extraordinary_Expense_CE).ce_type = CE_Type::DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD), &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA; &#x9; extraordinary_expense_care_for_children_not_part_of_the_household : &#x9;Set(Expense_Concepts::Expense) = extraordinary_expenses->select(exp|&#xA; &#x9;  &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;exp.oclAsType(Expense_Concepts::Extraordinary_Expense_CE).ce_type = CE_Type::CARE_FOR_CHILDREN_NOT_BEING_PART_OF_HOUSEHOLD),  &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#xA;&#x9; declared_expense:Integer=extraordinary_expenses.declared_amount->sum(),&#xA;&#x9; &#xA;&#x9; caclulated_deduction_due_to_dependence_and_care: Integer = 0, &#xA;&#x9; calculated_rate_for_children_not_part_of_household : Integer=0 in&#xA;&#x9;&#xA;&#x9;if (income_subject_to_witholding_tax->size()>0) then&#xA;&#x9;&#x9;if (extraordinary_expenses->any(true).oclAsType(Expense_Concepts::Extraordinary_Expense_CE)^^is_above_thresholded_deduction_percentage_for_CE()->first().result()=true) then&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;if extraordinary_expense_invalidity_and_infirmity->size()>0 then &#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;if self.oclIsTypeOf(Resident_Tax_Payer) then&#xA;&#x9;&#x9;&#x9;&#x9;/**CE FOR INVALIDITY AND INFIRMITY ON THE TAX CARD**/&#xA;&#x9;&#x9;&#x9;&#x9;CE_invalidity->size() = 1&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;CE_invalidity->any(true).deductible_amount = CE_invalidity->any(true).oclAsType(Income_Tax_Deduction_Concepts::CE).disability_flat_rate&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if  extraordinary_expense_dependence_and_care ->size()>0 then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;CE_dependence->size()=1 and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expenses_for_dependence_care: Set(Expense_Concepts::Expense) = extraordinary_expense_dependence_and_care->select(expense|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self^^is_dependent_part_of_the_household(expense.dependent)->first().result = true and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.expense_purpose=Expense_Purpose::DEPENDENCE_CARE) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; expenses_for_house_care: Set(Expense_Concepts::Expense) = extraordinary_expense_dependence_and_care->select(expense|expense.expense_purpose=Expense_Purpose::HOUSE_CARE) ,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; expenses_for_child_care: Set(Expense_Concepts::Expense) = extraordinary_expense_dependence_and_care->select(expense|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self^^is_dependent_part_of_the_household(expense.dependent)->first().result = true and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.expense_purpose=Expense_Purpose::CHILD_CARE) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(expenses_for_house_care->size()>0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;/**CE  FOR HOUSE CARE**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;caclulated_deduction_due_to_dependence_and_care=caclulated_deduction_due_to_dependence_and_care + expenses_for_house_care.declared_amount->sum()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let sum_of_expenses:Integer = 0 in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(expenses_for_child_care->size()>0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;/**CE FOR CHILD CARE, CHILDREN BEING PART OF THE HOUSHOLD**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;sum_of_expenses = expenses_for_child_care->select(expense|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.dependent^^compute_if_dependent_receives_allowances_eligible_for_CE_dependance_and_care()->first().result =true and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.dependent.dependent_type=Dependent_Type::CHILD and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(expense.dependent.oclAsType(Physical_Person).age&lt;14) or&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.dependent.oclAsType(Physical_Person).disability_percentage>0).declared_amount->sum()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; if(caclulated_deduction_due_to_dependence_and_care + sum_of_expenses)>Constants::MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE.oclAsType(Integer) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;caclulated_deduction_due_to_dependence_and_care = Constants::MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;caclulated_deduction_due_to_dependence_and_care=caclulated_deduction_due_to_dependence_and_care + sum_of_expenses&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(expenses_for_dependence_care->size()>0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;/**CE FOR CLOSE RELATIVE DEPENDENCE CARE**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;caclulated_deduction_due_to_dependence_and_care=&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;caclulated_deduction_due_to_dependence_and_care +&#x9;CE_dependence->any(true).oclAsType(Income_Tax_Deduction_Concepts::CE).dependent_relative_flat_rate&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;/**the dependent relative flat rate is the sum of all flat rates for each dependent relative**/&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CE_dependence->any(true).deductible_amount = caclulated_deduction_due_to_dependence_and_care&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if  CE_child_not_part_of_household->size()>0 then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; CE_child_not_part_of_household->size()= 1 and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;/**CARE FOR CHILDREN NOT BEING PART OF THE HOUSEHOLD**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expenses_for_child_not_part_of_houselod_care: Set(Expense_Concepts::Expense) = self.expenses->select(expense|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not self^^is_dependent_part_of_the_household(expense.dependent)->first().result = true and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.expense_purpose=Expense_Purpose::CHILD_CARE),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;sum_expenses_for_children:Integer = expenses_for_child_not_part_of_houselod_care->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.dependent^^compute_if_dependent_receives_allowances_eligible_for_CE_dependance_and_care()->first().result =false and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;((expense.dependent.age&lt;=21) or&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(expense.dependent.age>21 and expense.dependent.continued_studies=true and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense.dependent.tax_Payer.incomes.income_amount->sum()&lt;0.6*Constants::MINIMUM_SALARY.oclAsType(Integer)))).declared_amount->sum() in&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; if(sum_expenses_for_children>Constants::MAXIMUM_CE_RATE_FOR_CHILD_NOT_BEING_PART_OF_HOUSEHOLD.oclAsType(Integer)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;calculated_rate_for_children_not_part_of_household =Constants::MAXIMUM_CE_RATE_FOR_CHILD_NOT_BEING_PART_OF_HOUSEHOLD.oclAsType(Integer)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;calculated_rate_for_children_not_part_of_household=calculated_rate_for_children_not_part_of_household + sum_expenses_for_children&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; CE_child_not_part_of_household->any(true).deductible_amount = calculated_rate_for_children_not_part_of_household&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif &#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif &#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;/*use it to fill the tax card, temporary until decision on how to model the tax card with respect to the tax payer&#xA;&#x9;&#x9;&#x9;CE_invalidity->any(true).deductible_amount +&#xA;&#x9;&#x9;&#x9;caclulated_deduction_due_to_dependence_and_care + &#xA;&#x9;&#x9;&#x9;calculated_rate_for_children_not_part_of_household  */&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;endif&#xA;&#x9;else&#xA;&#x9;&#x9;/**TAX PAYER CANNOT RECEIVE CE, NOT SUBJECT TO WITHOLDING**/&#xA;&#x9;&#x9;false&#xA;&#x9;endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUgZezEeOBeaAb9MJyhQ" name="TaxDeduction-AC-extra_professional-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUgpezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let set_of_AC: Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction) = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::AC) and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year),&#xA;&#x9;ac: Income_Tax_Deduction_Concepts::AC = set_of_AC->any(true).oclAsType(Income_Tax_Deduction_Concepts::AC),&#xA;&#x9;spouse: Physical_Person = self.legal_union_A->select(couple|couple.end_date->isEmpty())->any(true).individual_B,&#xA;&#x9;taxpayer_income_eligible_type : Boolean = self.incomes->exists(inc|ac^^is_eligible_income_for_AC(inc)->first().result),&#xA;&#x9;spouse_income_eligible_type : Boolean = spouse.oclAsType(Tax_Payer_Concepts::Tax_Payer).incomes->exists(inc|ac^^is_eligible_income_for_AC(inc)->first().result),&#xA;&#x9;&#xA;&#x9;taxpayer_income_eligible_type_assisting_spouse : Boolean = self.incomes->exists(inc|ac^^is_eligible_income_for_AC_assisting_spouse(inc)->first().result),&#xA;&#x9;spouse_income_eligible_type_assisting_spouse : Boolean = spouse.oclAsType(Tax_Payer_Concepts::Tax_Payer).incomes->exists(inc|ac^^is_eligible_income_for_AC_assisting_spouse(inc)->first().result),&#xA;&#x9;&#xA;&#x9;taxpayer_personnaly_affiliated_to_social_security : Boolean = self.is_affiliated_personnaly_to_social_security,&#xA;&#x9;taxpayer_assisting_spouse: Boolean = self.is_assisting_spouse,&#xA;&#x9;&#xA;&#x9;spouse_personnaly_affiliated_to_social_security : Boolean = spouse.is_affiliated_personnaly_to_social_security,&#xA;&#x9;spouse_assisting_spouse: Boolean =  spouse.is_assisting_spouse&#xA;&#x9;in&#xA;&#x9; &#xA;&#x9; if taxpayer_income_eligible_type=true and spouse_income_eligible_type=true then&#xA;&#x9; &#x9;if taxpayer_personnaly_affiliated_to_social_security=true  and spouse_personnaly_affiliated_to_social_security = true then&#xA;&#x9; &#x9;&#x9;ac.deductible_amount= Constants::FLAT_RATE_FOR_EXTRA_PROFESSIONAL_DEDUCTION&#xA;&#x9; &#x9;else&#xA;&#x9; &#x9;&#x9;false&#xA;&#x9; &#x9;endif&#xA;&#x9; else&#xA;&#x9; &#x9;&#x9;if taxpayer_income_eligible_type=true xor spouse_income_eligible_type=true then&#x9; &#x9;&#x9;&#xA;&#x9; &#x9;&#x9;&#x9;if  self.incomes->exists(inc|inc.income_type.oclIsTypeOf(Income_Concepts::Pensions_and_Annuities_Income) and inc^^compute_duration_of_contract()->first().result &lt;=36) xor&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;spouse.oclAsType(Tax_Payer_Concepts::Tax_Payer).incomes->&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;exists(inc|inc.income_type.oclIsTypeOf(Income_Concepts::Pensions_and_Annuities_Income)  and inc^^compute_duration_of_contract()->first().result &lt;=36) then&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;true&#x9; &#x9;&#x9;&#x9;&#x9;&#xA;&#x9; &#x9;&#x9;&#x9;else&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;ac.deductible_amount=0 &#xA;&#x9; &#x9;&#x9;&#x9;endif&#x9;&#xA;&#x9; &#x9;&#x9;&#x9;&#xA;&#x9; &#x9;&#x9;else&#xA;&#x9; &#x9;&#x9;&#x9; if taxpayer_income_eligible_type_assisting_spouse=true xor taxpayer_income_eligible_type_assisting_spouse=true then&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;if (taxpayer_personnaly_affiliated_to_social_security=true and spouse_personnaly_affiliated_to_social_security = false)  xor &#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;(taxpayer_personnaly_affiliated_to_social_security=false and spouse_personnaly_affiliated_to_social_security = true) then&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;else&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;ac.deductible_amount=0&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9; else&#xA;&#x9; &#x9;&#x9;&#x9;&#x9;ac.deductible_amount =0 &#xA;&#x9;&#x9;&#x9; endif&#xA;&#x9; &#x9;endif&#xA;&#x9; endif&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUg5ezEeOBeaAb9MJyhQ" name="TaxDeduction-DS-1-permanent_expense" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUhJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let &#xA;permanent_expense: Set(Expense_Concepts::Expense) = self.expenses->select(expense|expense.oclIsTypeOf(Expense_Concepts::Permanent_Expense) and expense.year_expense_was_incurred_in=self.incomeTax.tax_year),&#xA;alimony: Set(Expense_Concepts::Expense) = permanent_expense->select(alimony|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;alimony.oclAsType(Expense_Concepts::Permanent_Expense).category = Expense_Concepts::Category_of_Permanent_Expense::ALIMONY and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;alimony.oclAsType(Expense_Concepts::Permanent_Expense).is_eligible_for_deduction = true),&#xA;debt: Set(Expense_Concepts::Expense) = permanent_expense->select(debt|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;debt.oclAsType(Expense_Concepts::Permanent_Expense).category = Expense_Concepts::Category_of_Permanent_Expense::MISCELLANEOUS_DEBT),&#xA;ds_alimony: Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclAsType(Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense).permanent_expense_category =  Expense_Concepts::Category_of_Permanent_Expense::ALIMONY and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense),&#xA;tax_liability : Integer = self^^get_tax_liability_in_months()->first().result(),&#xA;ds_debt: Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclAsType(Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense).permanent_expense_category =  Expense_Concepts::Category_of_Permanent_Expense::MISCELLANEOUS_DEBT and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Permanent_Expense)&#xA;&#x9;   in&#x9;&#xA;&#xA;if permanent_expense->size()>0 then&#xA;&#x9;if debt->size()>0 then&#xA;&#x9;&#x9;ds_debt.deductible_amount = debt.declared_amount->sum()/2 * tax_liability&#xA;&#x9;else&#xA;&#x9;&#x9;false&#xA;&#x9;endif and&#xA;&#x9;if alimony->size()>0 then&#xA;&#x9;&#x9;alimony->forAll(al|self^^is_separated_from(al.dependent)->first().result()=true)&#xA;&#x9;&#x9;and&#xA;&#x9;&#x9;let sum_alimony: Integer = alimony.declared_amount->sum() * tax_liability in&#xA;&#x9;&#x9;if sum_alimony&lt;=Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ALIMONY_EXPENSE.oclAsType(Integer) then&#xA;&#x9;&#x9;&#x9;ds_alimony.deductible_amount = sum_alimony&#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;ds_alimony.deductible_amount = Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ALIMONY_EXPENSE.oclAsType(Integer) &#xA;&#x9;&#x9;endif&#xA;&#x9;else&#xA;&#x9;&#x9;&#x9;false&#xA;&#x9;endif&#xA;else&#xA;&#x9;false&#xA;endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUhZezEeOBeaAb9MJyhQ" name="TaxDeduction-DS-2-interest_expense" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUhpezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let &#xA;interest_expense: Set(Expense_Concepts::Expense) = self.expenses->select(expense|expense.oclIsTypeOf(Expense_Concepts::Interest_Expense) and expense.year_expense_was_incurred_in=self.incomeTax.tax_year),&#xA;ds_interest_expense: Income_Tax_Deduction_Concepts::DS_for_Interest_Expense = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Interest_Expense) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Interest_Expense),&#xA;dependent_children_with_allowances: Set(Dependent) = self.dependents->select(deps|deps^^compute_if_dependent_receives_allowances_eligible_for_DS()->first().result =true),&#xA;tax_liability : Integer = self^^get_tax_liability_in_months()->first().result() in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;if interest_expense->size()>0 then&#xA;&#x9;let sum_interest_expense: Integer = interest_expense.declared_amount->sum() in&#xA;&#x9;if sum_interest_expense&lt;=ds_interest_expense.maximum_deductible_amount then&#xA;&#x9;&#xA;&#x9;&#x9;ds_interest_expense.deductible_amount = sum_interest_expense * tax_liability&#xA;&#x9;else&#xA;&#x9;&#x9;ds_interest_expense.deductible_amount = ds_interest_expense.maximum_deductible_amount * tax_liability&#x9;&#x9;&#xA;&#x9;endif&#xA;else&#xA;&#x9;false&#xA;endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUh5ezEeOBeaAb9MJyhQ" name="TaxDeduction-DS-3-health_and_pension_insurance" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUiJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let &#xA;mandatory_health_and_pension_insurance: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Health_and_Pension_Insurance) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Health_and_Pension_Insurance).category =&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Health_and_Pension_Insurances::MANDATORY_HEALTH_AND_PENSION_INSURANCE&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Health_and_Pension_Insurance).is_related_to_additional_salary=true),&#xA;additional_pension_insurance: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Health_and_Pension_Insurance) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Health_and_Pension_Insurance).category =&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Health_and_Pension_Insurances::ADDITIONAL_EMPLOYERS_PENSION_INSURANCE),&#xA;continued_health_and_pension_insurance: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Health_and_Pension_Insurance) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Health_and_Pension_Insurance).category =&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Health_and_Pension_Insurances::CONTINUED_HEALTH_AND_PENSION_INSURANCE),&#xA;employment_incomes: Set (Income_Concepts::Income) = self.incomes->select(income|income.income_type.oclIsTypeOf(Income_Concepts::Employment_Income)),&#xA;ds_mandatory_health_and_pension : Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclAsType(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance).insurance_category = &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Health_and_Pension_Insurances::MANDATORY_HEALTH_AND_PENSION_INSURANCE and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance),&#xA;ds_additional_pension_insurance : Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclAsType(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance).insurance_category = &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Health_and_Pension_Insurances::ADDITIONAL_EMPLOYERS_PENSION_INSURANCE and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance),&#xA;ds_continued_health_and_pension_insurance : Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclAsType(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance).insurance_category = &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Health_and_Pension_Insurances::CONTINUED_HEALTH_AND_PENSION_INSURANCE and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Health_and_Pension_Insurance),&#xA;tax_liability : Integer = self^^get_tax_liability_in_months()->first().result()  in &#xA;&#xA;if mandatory_health_and_pension_insurance->size()>0 then&#xA;&#x9;if employment_incomes->size()>0 then&#xA;&#x9;let sum_mandatory_health_and_pension_insurance : Integer = mandatory_health_and_pension_insurance.declared_amount->sum() in&#xA;&#x9;&#x9;ds_mandatory_health_and_pension.deductible_amount = sum_mandatory_health_and_pension_insurance&#xA;&#x9;else&#xA;&#x9;&#x9;false&#xA;&#x9;endif&#xA;else&#xA;&#x9;false&#xA;endif and&#xA;if additional_pension_insurance->size()>0 then&#xA;&#x9;if employment_incomes->size()>0 then&#xA;&#x9;let sum_additional_pension_insurance : Integer = additional_pension_insurance.declared_amount->sum() in&#xA;&#x9;&#x9;if&#x9;sum_additional_pension_insurance &lt;= Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANCE.oclAsType(Integer) then&#xA;&#x9;&#x9;&#x9;ds_additional_pension_insurance.deductible_amount = sum_additional_pension_insurance&#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;ds_additional_pension_insurance.deductible_amount = Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANCE.oclAsType(Integer)&#xA;&#x9;&#x9;endif&#xA;&#x9;else&#xA;&#x9;&#x9;false&#xA;&#x9;endif&#xA;else&#xA;&#x9;false&#xA;endif and&#xA;if continued_health_and_pension_insurance->size()>0 then&#xA;&#x9;let sum_continued_health_and_pension_insurance : Integer = continued_health_and_pension_insurance.declared_amount->sum() in&#xA;&#x9;&#x9;ds_continued_health_and_pension_insurance.deductible_amount = tax_liability * sum_continued_health_and_pension_insurance&#xA;else&#xA;&#x9;false&#xA;endif&#xA;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUiZezEeOBeaAb9MJyhQ" name="TaxDeduction-DS-4-private_insurance_and_plan" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUipezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let &#xA;insurance_and_plan: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Health_and_Pension_Insurance) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).category &lt;>&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).category &lt;>&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Private_Insurance_and_Plan::PRIVATE_LIFE_INSURANCE&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).is_private_insurance_and_plan_eligible_for_deduction=true),&#xA;life_insurance: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Health_and_Pension_Insurance) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).category =&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Private_Insurance_and_Plan::PRIVATE_LIFE_INSURANCE&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).is_private_insurance_and_plan_eligible_for_deduction=true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).duration_of_contract >=10),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;old_age_pension_plan: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Health_and_Pension_Insurance) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).category =&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).is_private_insurance_and_plan_eligible_for_deduction=true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Private_Insurance_and_Plan).duration_of_contract >=10),&#xA;ds_private_insurance_and_plan: Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclAsType(Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan).private_insurance_and_plan_category &lt;> &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan),&#xA;ds_old_age_pension_plan: Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclAsType(Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan).private_insurance_and_plan_category = &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Expense_Concepts::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Private_Insurance_and_Plan),&#xA;tax_liability : Integer = self^^get_tax_liability_in_months()->first().result()   in&#xA;&#xA;if insurance_and_plan->size()>0 then&#xA;let sum_insurance_and_plan : Integer = insurance_and_plan.declared_amount->sum() in&#xA;&#x9;if life_insurance.declared_amount->size()>0 then&#xA;      sum_insurance_and_plan =sum_insurance_and_plan + life_insurance.declared_amount->sum() + &#xA;      &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;ds_private_insurance_and_plan.increase_for_life_insurance&#xA;      &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;else&#xA;&#x9;&#x9;false&#xA;&#x9;endif&#xA;&#x9;and&#xA;&#x9;if&#x9;sum_insurance_and_plan &lt;= ds_private_insurance_and_plan.maximum_deductible_amount_for_private_insurance then&#xA;&#x9;&#x9;&#x9;ds_private_insurance_and_plan.deductible_amount = sum_insurance_and_plan&#xA;&#x9;else&#xA;&#x9;&#x9;&#x9;ds_private_insurance_and_plan.deductible_amount = ds_private_insurance_and_plan.maximum_deductible_amount_for_private_insurance&#x9;&#x9;&#xA;&#x9;endif&#xA;else&#xA;&#x9;false&#xA;endif&#xA;and&#xA;if old_age_pension_plan->size()>0 then&#xA;let sum_old_age_pension_plan : Integer = old_age_pension_plan.declared_amount->sum() in&#xA;&#xA;&#x9;if&#x9;sum_old_age_pension_plan &lt;= ds_old_age_pension_plan.maximum_deductible_amount_for_old_age_pension_plan then&#xA;&#x9;&#x9;&#x9;ds_old_age_pension_plan.deductible_amount = sum_old_age_pension_plan&#xA;&#x9;else&#xA;&#x9;&#x9;&#x9;ds_old_age_pension_plan.deductible_amount = ds_old_age_pension_plan.maximum_deductible_amount_for_private_insurance&#x9;&#x9;&#xA;&#x9;endif&#xA;else&#xA;&#x9;false&#xA;endif&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUi5ezEeOBeaAb9MJyhQ" name="TaxDeduction-DS-5-donation" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUjJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let &#xA;donations: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Donation)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Donation).is_beneficiary_eligible=true),&#xA;ds_donation: Income_Tax_Deduction_Concepts::DS_for_Donation = self.income_Tax_Deduction->select(type|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Donation) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Donation) in &#x9;&#x9;&#x9;&#x9;&#x9;&#xA;if donations->size()>0 then&#xA;&#x9;let sum_donation: Integer = donations.declared_amount->sum() in&#xA;&#x9;if sum_donation >= Constants::MINIMUM_DEDUCTIBLE_AMOUNT_FOR_DONATIONS.oclAsType(Integer) then&#xA;&#x9;&#x9;if sum_donation &lt;= ds_donation.maximum_deductible_amount then&#xA;&#x9;&#x9;ds_donation.deductible_amount = sum_donation&#xA;&#x9;else&#xA;&#x9;&#x9;ds_donation.deductible_amount = ds_donation.maximum_deductible_amount&#xA;&#x9;endif&#x9;&#xA;&#x9;else&#xA;&#x9;&#x9;false&#xA;&#x9;endif&#xA;else&#xA;&#x9;false&#xA;endif&#xA;&#xA; </body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUjZezEeOBeaAb9MJyhQ" name="TaxDeduction-DS-6-loss_carryforward" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUjpezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let &#xA;losses: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Loss_Carryforward) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Loss_Carryforward).regular_accountability = true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Loss_Carryforward).compensation_by_other_means=false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Loss_Carryforward).tax_payer_has_been_partner_in_business = false),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;losses_successor: Set(Expense_Concepts::Expense) = self.expenses->select(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expense|expense.oclIsTypeOf(Expense_Concepts::Loss_Carryforward) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.year_expense_was_incurred_in=self.incomeTax.tax_year&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Loss_Carryforward).regular_accountability = true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Loss_Carryforward).compensation_by_other_means=false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Loss_Carryforward).tax_payer_has_been_partner_in_business = true &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and expense.oclAsType(Expense_Concepts::Loss_Carryforward).tax_payer_has_inherited_business_ownership = true),&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;ds_loss: Income_Tax_Deduction_Concepts::DS_for_Loss_Carryforward = self.income_Tax_Deduction->select(type| &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS_for_Loss_Carryforward) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(Income_Tax_Deduction_Concepts::DS_for_Loss_Carryforward) in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;if losses->size()>0 then&#xA;&#x9;ds_loss.deductible_amount =  losses.declared_amount->sum()&#xA;else&#xA;&#x9;if losses_successor->size()>0 then&#xA;&#x9;&#x9;ds_loss.deductible_amount = losses_successor.declared_amount->sum() &#xA;&#x9;else&#xA;&#x9;&#x9;false&#xA;&#x9;endif&#xA;endif&#xA; </body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUj5ezEeOBeaAb9MJyhQ" name="TaxCard-unique-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUkJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>self.incomes->forAll(income|income.tax_card->select(tc|tc.validity=true)->size() &lt;= 1)&#xA;/**THE INCOME CAN HAVE AT MOST ONE VALID TAX CARD, IF THE CONTRACT HAS ENDED THAN IT IS ZERO VALID**/&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUkZezEeOBeaAb9MJyhQ" name="TaxDeduction-FD-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUkpezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>true&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximUk5ezEeOBeaAb9MJyhQ" name="TaxDeduction-FO-constraint" constrainedElement="_ximUbpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUlJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>true&#xA;</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="_ximUlZezEeOBeaAb9MJyhQ" general="_ximUR5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximUlpezEeOBeaAb9MJyhQ" name="incomes" visibility="private" type="_ximVD5ezEeOBeaAb9MJyhQ" association="_xim4t5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUl5ezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUmJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUmZezEeOBeaAb9MJyhQ" name="incomeTax" visibility="private" type="_ximT8JezEeOBeaAb9MJyhQ" association="_ximU25ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUmpezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUm5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUnJezEeOBeaAb9MJyhQ" name="income_Tax_Credit" visibility="private" type="_xim5c5ezEeOBeaAb9MJyhQ" association="_xim4v5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUnZezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUnpezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUn5ezEeOBeaAb9MJyhQ" name="tax_class" visibility="private" type="_ximU3JezEeOBeaAb9MJyhQ" association="_ximT75ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUoJezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUoZezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUopezEeOBeaAb9MJyhQ" name="household" visibility="private" type="_ximULpezEeOBeaAb9MJyhQ" association="_ximU1pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUo5ezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUpJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUpZezEeOBeaAb9MJyhQ" name="dependents" visibility="private" type="_ximT_5ezEeOBeaAb9MJyhQ" association="_ximU2JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUppezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUp5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUqJezEeOBeaAb9MJyhQ" name="income_Tax_Deduction" visibility="private" type="_xim59JezEeOBeaAb9MJyhQ" association="_xim445ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUqZezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUqpezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUq5ezEeOBeaAb9MJyhQ" name="taxed_jointly" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUrJezEeOBeaAb9MJyhQ" name="expenses" visibility="private" type="_xim4npezEeOBeaAb9MJyhQ" association="_xim45JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUrZezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUrpezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUr5ezEeOBeaAb9MJyhQ" name="dependent" visibility="private" type="_ximT_5ezEeOBeaAb9MJyhQ" association="_ximU15ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUsJezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUsZezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximUspezEeOBeaAb9MJyhQ" name="tax_Card" visibility="private" type="_xim5H5ezEeOBeaAb9MJyhQ" aggregation="shared" association="_ximU0ZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximUs5ezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximUtJezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximUtZezEeOBeaAb9MJyhQ" name="get_tax_liability_in_days" postcondition="_ximUuJezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximUtpezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUt5ezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximUuJezEeOBeaAb9MJyhQ" name="working_days" constrainedElement="_ximUtZezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUuZezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>result=1</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximUupezEeOBeaAb9MJyhQ" name="IN_year">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_ximUu5ezEeOBeaAb9MJyhQ" name="">
+              <language></language>
+              <body></body>
+            </defaultValue>
+          </ownedParameter>
+          <ownedParameter xmi:id="_ximUvJezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_ximUvZezEeOBeaAb9MJyhQ" name="">
+              <language></language>
+              <body></body>
+            </defaultValue>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUvpezEeOBeaAb9MJyhQ" name="is_dependent_part_of_the_household" postcondition="_ximUwZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximUv5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUwJezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximUwZezEeOBeaAb9MJyhQ" name="is_child_part_of_household" constrainedElement="_ximUvpezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUwpezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>let responsible_person: Tax_Payer = IN_dependent.responsible_person,&#xA;     household_tax_payer_same_as_respnsible: Boolean = IN_dependent.household.tax_Payer.oclAsType(Physical_Person).SSNo = responsible_person.oclAsType(Physical_Person).SSNo in&#xA;if (responsible_person->notEmpty() and household_tax_payer_same_as_respnsible) then&#xA;&#x9;/**THE CHILD IS PART OF THE TAX PAYERS HOUSEHOLD**/&#xA;&#x9;result = true&#xA;else &#xA;&#x9;/**THE CHILD IS NOT PART OF THE TAX PAYERS HOUSEHOLD**/&#xA;&#x9;result = false&#xA;endif&#xA;&#xA;&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximUw5ezEeOBeaAb9MJyhQ" name="IN_dependent" type="_ximT_5ezEeOBeaAb9MJyhQ"/>
+          <ownedParameter xmi:id="_ximUxJezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUxZezEeOBeaAb9MJyhQ" name="number_of_months_of_allowance" postcondition="_ximUyJezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximUxpezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUx5ezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximUyJezEeOBeaAb9MJyhQ" name="number_od_months_of_allowance" constrainedElement="_ximUxZezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUyZezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>result = 1&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximUypezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximUy5ezEeOBeaAb9MJyhQ" name="get_tax_liability_in_months" postcondition="_ximUzpezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximUzJezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximUzZezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximUzpezEeOBeaAb9MJyhQ" name="tax_liability" constrainedElement="_ximUy5ezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximUz5ezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>result = 1 </body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximU0JezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU0ZezEeOBeaAb9MJyhQ" name="" memberEnd="_ximUspezEeOBeaAb9MJyhQ _xim5WpezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU0pezEeOBeaAb9MJyhQ" name="located at" memberEnd="_ximUTpezEeOBeaAb9MJyhQ _ximT95ezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU05ezEeOBeaAb9MJyhQ" name="receives" memberEnd="_ximUS5ezEeOBeaAb9MJyhQ _ximUJZezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU1JezEeOBeaAb9MJyhQ" name="person B" memberEnd="_ximUPpezEeOBeaAb9MJyhQ _ximUVJezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU1ZezEeOBeaAb9MJyhQ" name="person A" memberEnd="_ximUO5ezEeOBeaAb9MJyhQ _ximUUZezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU1pezEeOBeaAb9MJyhQ" name="maintains" memberEnd="_ximUopezEeOBeaAb9MJyhQ _ximUL5ezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU15ezEeOBeaAb9MJyhQ" name="as tax payer" memberEnd="_ximUDZezEeOBeaAb9MJyhQ _ximUr5ezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU2JezEeOBeaAb9MJyhQ" name="supports" memberEnd="_ximUpZezEeOBeaAb9MJyhQ _ximUBZezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU2ZezEeOBeaAb9MJyhQ" name="is part of" memberEnd="_ximUApezEeOBeaAb9MJyhQ _ximUMpezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU2pezEeOBeaAb9MJyhQ" name="incurred over" memberEnd="_xim4pZezEeOBeaAb9MJyhQ _ximUCpezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU25ezEeOBeaAb9MJyhQ" name="is subject to" memberEnd="_ximUmZezEeOBeaAb9MJyhQ _ximT8ZezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximU3JezEeOBeaAb9MJyhQ" name="Tax_Class">
+        <ownedAttribute xmi:id="_ximU3ZezEeOBeaAb9MJyhQ" name="tax_class" visibility="public" type="_xim40pezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximU3pezEeOBeaAb9MJyhQ" name="tax_Payer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_ximT75ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximU35ezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximU4JezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximU4ZezEeOBeaAb9MJyhQ" name="valid_from_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximU4pezEeOBeaAb9MJyhQ" name="valid_until_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximU45ezEeOBeaAb9MJyhQ" name="tax_card" visibility="private" type="_xim5H5ezEeOBeaAb9MJyhQ" association="_xim44pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximU5JezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximU5ZezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximU5pezEeOBeaAb9MJyhQ" name="current_tax_class" visibility="private" type="_ximU3JezEeOBeaAb9MJyhQ" association="_ximU7JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximU55ezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximU6JezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximU6ZezEeOBeaAb9MJyhQ" name="prev" visibility="private" type="_ximU3JezEeOBeaAb9MJyhQ" association="_ximU7JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximU6pezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximU65ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximU7JezEeOBeaAb9MJyhQ" name="replaced by" memberEnd="_ximU5pezEeOBeaAb9MJyhQ _ximU6ZezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximU7ZezEeOBeaAb9MJyhQ" name="Set(Dependent)"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_ximU7pezEeOBeaAb9MJyhQ" name="Income_Concepts">
+      <ownedComment xmi:id="_ximU75ezEeOBeaAb9MJyhQ" annotatedElement="_ximVCZezEeOBeaAb9MJyhQ">
+        <body>&lt;p> Art.91, alinea 1, numero 2&lt;/p></body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximU8JezEeOBeaAb9MJyhQ" name="Income_Type">
+        <ownedAttribute xmi:id="_ximU8ZezEeOBeaAb9MJyhQ" name="subjectToWithholdingTax" visibility="private">
+          <ownedComment xmi:id="_ximU8pezEeOBeaAb9MJyhQ" annotatedElement="_ximU8ZezEeOBeaAb9MJyhQ">
+            <body>&lt;p>The&amp;nbsp;following&amp;nbsp;types&amp;nbsp;of&amp;nbsp;income&amp;nbsp;are&amp;nbsp;subject&amp;nbsp;to&amp;nbsp;withholding&amp;nbsp;tax:&lt;/p>&lt;p>Employment&lt;/p>&lt;p>Pensions&amp;nbsp;and&amp;nbsp;Annuities&lt;/p>&lt;p>Investments&amp;nbsp;(not&amp;nbsp;all&amp;nbsp;types&amp;nbsp;might&amp;nbsp;be&amp;nbsp;subject&amp;nbsp;to&amp;nbsp;withholding.&amp;nbsp;The&amp;nbsp;types&amp;nbsp;subject&amp;nbsp;to&amp;nbsp;withholding&amp;nbsp;have&amp;nbsp;been&amp;nbsp;elaborated&amp;nbsp;on&amp;nbsp;page&amp;nbsp;15&amp;nbsp;of&amp;nbsp;the&amp;nbsp;memento)&lt;/p>&lt;p>&lt;/p></body>
+          </ownedComment>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximU85ezEeOBeaAb9MJyhQ" name="income" visibility="private" type="_ximVD5ezEeOBeaAb9MJyhQ" association="_ximVCpezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximU9JezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximU9ZezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximU9pezEeOBeaAb9MJyhQ" name="Trade_and_Business_Income">
+        <generalization xmi:id="_ximU95ezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximU-JezEeOBeaAb9MJyhQ" name="Agriculture_and_Forestry_Income">
+        <generalization xmi:id="_ximU-ZezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximU-pezEeOBeaAb9MJyhQ" name="Independent_Professional_Services_Income">
+        <generalization xmi:id="_ximU-5ezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximU_JezEeOBeaAb9MJyhQ" name="Pensions_and_Annuities_Income">
+        <generalization xmi:id="_ximU_ZezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximU_pezEeOBeaAb9MJyhQ" name="occasional_payement" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximU_5ezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVAJezEeOBeaAb9MJyhQ" name="Capital_and_Investments_Income">
+        <generalization xmi:id="_ximVAZezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVApezEeOBeaAb9MJyhQ" name="Employment_Income">
+        <generalization xmi:id="_ximVA5ezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVBJezEeOBeaAb9MJyhQ" name="Rentals_and_Leases_Income">
+        <generalization xmi:id="_ximVBZezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVBpezEeOBeaAb9MJyhQ" name="Sundry_Income">
+        <generalization xmi:id="_ximVB5ezEeOBeaAb9MJyhQ" general="_ximU8JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVCJezEeOBeaAb9MJyhQ" name="Directors_Fee">
+        <generalization xmi:id="_ximVCZezEeOBeaAb9MJyhQ" general="_ximU-pezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ximVCpezEeOBeaAb9MJyhQ" name="has as type" memberEnd="_ximVHpezEeOBeaAb9MJyhQ _ximU85ezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVC5ezEeOBeaAb9MJyhQ" name="Foreign_Income">
+        <generalization xmi:id="_ximVDJezEeOBeaAb9MJyhQ" general="_ximVD5ezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVDZezEeOBeaAb9MJyhQ" name="Local_Income">
+        <generalization xmi:id="_ximVDpezEeOBeaAb9MJyhQ" general="_ximVD5ezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVD5ezEeOBeaAb9MJyhQ" name="Income">
+        <ownedRule xmi:id="_ximVEJezEeOBeaAb9MJyhQ" name="Tax_Deduction_FD-constraint" constrainedElement="_ximVD5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVEZezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>(self .income_type.oclIsTypeOf(Income_Concepts::Pensions_and_Annuities_Income) or&#xA;self.income_type.oclIsTypeOf(Income_Concepts::Employment_Income) or&#xA;self.income_type.oclIsTypeOf(Income_Concepts::Rentals_and_Leases_Income)) = true&#xA;and&#xA;self.start_date_within_taxation_year = self.taxPayer.incomeTax.tax_year &#xA;and&#xA;let fd_expenses : Set(Expense_Concepts::Expense) = self.expenses->select(exp|exp.oclIsTypeOf(Expense_Concepts::Travel_Expense_FD) and exp.year_expense_was_incurred_in = self.start_date_within_taxation_year) in&#xA;     fd_expenses->notEmpty()&#xA;     &#xA;implies&#xA;&#xA;&#x9; fd_expenses->forAll(a_FD|&#x9; &#xA;&#x9; if  (a_FD.deduction.oclAsType(Income_Tax_Deduction_Concepts::FD).calculated_distance>a_FD.deduction.oclAsType(Income_Tax_Deduction_Concepts::FD).distance_declared_in_january) then&#xA;&#x9;&#x9;if  (a_FD.deduction.oclAsType(Income_Tax_Deduction_Concepts::FD).calculated_distance>Constants::MINIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION.oclAsType(Integer)) then&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;if (a_FD.deduction.oclAsType(Income_Tax_Deduction_Concepts::FD).calculated_distance>Constants::MAXIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION.oclAsType(Integer)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;/**MAXIMAL FLAT DISTANCE FOR TRAVEL EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;a_FD.deduction.deductible_amount = Constants::FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT.oclAsType(Integer) * Constants::MAXIMAL_FLAT_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION.oclAsType(Integer)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;/**REAL DISTANCE FOR TRAVEL EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;a_FD.deduction.deductible_amount = Constants::FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT.oclAsType(Integer) * a_FD.deduction.oclAsType(Income_Tax_Deduction_Concepts::FD).calculated_distance&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;/**MINIMAL FLAT DISTANCE FOR TRAVEL EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/&#xA;&#x9;&#x9;&#x9;&#x9;a_FD.deduction.deductible_amount = Constants::FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT.oclAsType(Integer) * Constants::MINIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION.oclAsType(Integer)&#xA;&#x9;&#x9;&#x9;endif &#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;/*NO CHANGES FOR FD, TRAVEL EXPENSE IS ALREADY DEDUCED FROM TAXABLE INCOME**/&#xA;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;endif&#xA;&#x9;&#x9;and&#xA;&#x9;&#x9;a_FD.deduction.yearly=  a_FD.deduction.deductible_amount and&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;a_FD.deduction.monthly = a_FD.deduction.deductible_amount/12 and&#xA;&#x9;&#x9;a_FD.deduction.daily = a_FD.deduction.monthly/25&#xA;)&#xA;&#x9; </body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ximVEpezEeOBeaAb9MJyhQ" name="Tax_Deduction_FO-constraint" constrainedElement="_ximVD5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVE5ezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>(self.income_type.oclIsTypeOf(Income_Concepts::Pensions_and_Annuities_Income) or&#xA;self.income_type.oclIsTypeOf(Income_Concepts::Employment_Income) or&#xA;self.income_type.oclIsTypeOf(Income_Concepts::Rentals_and_Leases_Income)) = true&#xA;and&#xA;self.start_date_within_taxation_year = self.taxPayer.incomeTax.tax_year&#xA;and&#xA;let fo_expenses : Set(Expense_Concepts::Expense) = self.expenses->select(exp|exp.oclIsTypeOf(Expense_Concepts::Miscellaneous_Expense_FO) and exp.year_expense_was_incurred_in = self.start_date_within_taxation_year),&#xA;&#x9;declared_expense : Integer = fo_expenses.declared_amount->sum() in&#xA;&#x9;&#xA;     fo_expenses->notEmpty()&#xA;&#xA;implies&#xA;&#xA;&#x9;fo_expenses->forAll(fo|&#xA;&#x9;&#x9;&#x9;/*do we want to care about this, or up to the agent to decide*/&#xA;&#x9;&#x9;&#x9;let spouse_FO: Income_Tax_Deduction_Concepts::FO =  self.taxPayer.legal_union_A.individual_B.oclAsType(Tax_Payer_Concepts::Tax_Payer).income_Tax_Deduction->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;select(type|type.oclIsTypeOf(Income_Tax_Deduction_Concepts::FO))->any(true).oclAsType(Income_Tax_Deduction_Concepts::FO),&#xA;&#x9;&#x9;&#x9;&#x9; spouse_declared_expense:Integer=self.taxPayer.legal_union_A.individual_B.oclAsType(Tax_Payer_Concepts::Tax_Payer).expenses->select(exp|exp.oclIsTypeOf(Expense_Concepts::Miscellaneous_Expense_FO))->any(true).declared_amount in&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;if(fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .rate_type_for_FO = Type_of_Rate::REAL_COST) then &#xA;&#x9;&#x9;&#x9;&#x9;if(self.taxPayer.taxed_jointly) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(spouse_FO.rate_type_for_FO= Type_of_Rate::REAL_COST) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .rate_type_for_FO = Type_of_Rate::REGULAR&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(declared_expense>fo.oclAsType(Income_Tax_Deduction_Concepts::FO) .regular_flat_rate_for_FO) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .rate_type_for_FO = Type_of_Rate::REAL_COST&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif &#xA;&#x9;&#x9;&#x9;endif&#x9;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;if (fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .rate_type_for_FO = Type_of_Rate::REGULAR) then&#xA;&#x9;&#x9;&#x9;/*FLAT RATE FOR FO EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/&#xA;&#x9;&#x9;&#x9;&#x9;fo.deduction.deductible_amount = fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .regular_flat_rate_for_FO+fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .disability_flat_rate_for_FO&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;/**REAL COST FOR FO EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/&#xA;&#x9;&#x9;&#x9;&#x9;fo.deduction.deductible_amount = declared_expense+fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .disability_flat_rate_for_FO&#xA;&#x9;&#x9;endif&#xA;&#x9;&#x9;and&#xA;&#x9;&#x9;fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .yearly=  fo.deduction.deductible_amount and&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .monthly = fo.deduction.deductible_amount/12 and&#xA;&#x9;&#x9;fo.deduction.oclAsType(Income_Tax_Deduction_Concepts::FO) .daily = fo.deduction.monthly/25 &#x9;&#xA;&#x9;) </body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:id="_ximVFJezEeOBeaAb9MJyhQ" name="taxPayer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_xim4t5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximVFZezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximVFpezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVF5ezEeOBeaAb9MJyhQ" name="income_amount" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVGJezEeOBeaAb9MJyhQ" name="start_date_within_taxation_year" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVGZezEeOBeaAb9MJyhQ" name="start_date_of_contract" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVGpezEeOBeaAb9MJyhQ" name="end_date_within_taxation_year" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVG5ezEeOBeaAb9MJyhQ" name="tax_card" visibility="private" type="_xim5H5ezEeOBeaAb9MJyhQ" association="_xim43JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximVHJezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximVHZezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVHpezEeOBeaAb9MJyhQ" name="income_type" visibility="private" type="_ximU8JezEeOBeaAb9MJyhQ" association="_ximVCpezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximVH5ezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximVIJezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVIZezEeOBeaAb9MJyhQ" name="expenses" visibility="private" type="_xim4npezEeOBeaAb9MJyhQ" association="_xim4nZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ximVIpezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ximVI5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximVJJezEeOBeaAb9MJyhQ" name="compute_duration_of_contract" postcondition="_ximVJ5ezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVJZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVJpezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVJ5ezEeOBeaAb9MJyhQ" name="get_duration" constrainedElement="_ximVJJezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVKJezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>result=1&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVKZezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximVKpezEeOBeaAb9MJyhQ" name="compute_duration_of_contract_within_taxation_year">
+          <eAnnotations xmi:id="_ximVK5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVLJezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_ximVLZezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_ximVLpezEeOBeaAb9MJyhQ" name="IN_date">
+            <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVL5ezEeOBeaAb9MJyhQ" name="Set(Income)"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_ximVMJezEeOBeaAb9MJyhQ" name="Expense_Concepts">
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVMZezEeOBeaAb9MJyhQ" name="Permanent_Expense">
+        <generalization xmi:id="_ximVMpezEeOBeaAb9MJyhQ" general="_ximVP5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVM5ezEeOBeaAb9MJyhQ" name="category" visibility="public" type="_xim4kJezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVNJezEeOBeaAb9MJyhQ" name="is_eligible_for_deduction" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximVNZezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximVNpezEeOBeaAb9MJyhQ" name="is_expense_eligible_for_deduction" postcondition="_ximVOZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVN5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVOJezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVOZezEeOBeaAb9MJyhQ" name="is_eligible" constrainedElement="_ximVNpezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVOpezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.is_eligible_for_deduction = IN_agent_response and&#xA;result = IN_agent_response&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVO5ezEeOBeaAb9MJyhQ" name="IN_agent_response">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_ximVPJezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVPZezEeOBeaAb9MJyhQ" name="Interest_Expense">
+        <generalization xmi:id="_ximVPpezEeOBeaAb9MJyhQ" general="_ximVP5ezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVP5ezEeOBeaAb9MJyhQ" name="Special_Expense_DS">
+        <generalization xmi:id="_ximVQJezEeOBeaAb9MJyhQ" general="_xim4npezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVQZezEeOBeaAb9MJyhQ" name="Private_Insurance_and_Plan">
+        <generalization xmi:id="_ximVQpezEeOBeaAb9MJyhQ" general="_ximVP5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVQ5ezEeOBeaAb9MJyhQ" name="category" visibility="public" type="_xim4k5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVRJezEeOBeaAb9MJyhQ" name="duration_of_contract" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVRZezEeOBeaAb9MJyhQ" name="is_private_insurance_and_plan_eligible_for_deduction" visibility="public" isDerived="true">
+          <eAnnotations xmi:id="_ximVRpezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximVR5ezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximVSJezEeOBeaAb9MJyhQ" name="is_private_insurance_and_plan_eligible_for_deduction" postcondition="_ximVS5ezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVSZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVSpezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVS5ezEeOBeaAb9MJyhQ" name="is_private_insurance_and_plan_eligible_for_deduction" constrainedElement="_ximVSJezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVTJezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.is_private_insurance_and_plan_eligible_for_deduction = IN_eligible_plan&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVTZezEeOBeaAb9MJyhQ" name="IN_eligible_plan">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVTpezEeOBeaAb9MJyhQ" name="Health_and_Pension_Insurance">
+        <generalization xmi:id="_ximVT5ezEeOBeaAb9MJyhQ" general="_ximVP5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVUJezEeOBeaAb9MJyhQ" name="category" visibility="public" type="_xim4mZezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVUZezEeOBeaAb9MJyhQ" name="is_related_to_additional_salary" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximVUpezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVU5ezEeOBeaAb9MJyhQ" name="Donation">
+        <generalization xmi:id="_ximVVJezEeOBeaAb9MJyhQ" general="_ximVP5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVVZezEeOBeaAb9MJyhQ" name="beneficiary" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVVpezEeOBeaAb9MJyhQ" name="is_beneficiary_eligible" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximVV5ezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximVWJezEeOBeaAb9MJyhQ" name="get_beneficiary_eligibility_for_deduction" postcondition="_ximVW5ezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVWZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVWpezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVW5ezEeOBeaAb9MJyhQ" name="is_leagaly_approved_beneficiary" constrainedElement="_ximVWJezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVXJezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>is_beneficiary_eligible = IN_eligibility&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVXZezEeOBeaAb9MJyhQ" name="IN_eligibility">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVXpezEeOBeaAb9MJyhQ" name="Loss_Carryforward">
+        <ownedRule xmi:id="_ximVX5ezEeOBeaAb9MJyhQ" name="ExpensePossibleOnlyIfCertainIncomeType-constraint" constrainedElement="_ximVXpezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVYJezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>self.oclIsTypeOf(Loss_Carryforward) implies&#xA;self.income.income_type.oclIsTypeOf(Income_Concepts::Agriculture_and_Forestry_Income) or &#xA;self.income.income_type.oclIsTypeOf(Income_Concepts::Independent_Professional_Services_Income) or&#xA;self.income.income_type.oclIsTypeOf(Income_Concepts::Trade_and_Business_Income)&#xA;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="_ximVYZezEeOBeaAb9MJyhQ" general="_ximVP5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVYpezEeOBeaAb9MJyhQ" name="regular_accountability" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVY5ezEeOBeaAb9MJyhQ" name="compensation_by_other_means" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVZJezEeOBeaAb9MJyhQ" name="tax_payer_has_inherited_business_ownership" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximVZZezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVZpezEeOBeaAb9MJyhQ" name="tax_payer_has_been_partner_in_business" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ximVZ5ezEeOBeaAb9MJyhQ" value="true">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_ximVaJezEeOBeaAb9MJyhQ" name="is_accountability_regular" postcondition="_ximVa5ezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVaZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVapezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVa5ezEeOBeaAb9MJyhQ" name="is_accounatbility_regular" constrainedElement="_ximVaJezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVbJezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.regular_accountability = IN_regularity&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVbZezEeOBeaAb9MJyhQ" name="IN_regularity">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximVbpezEeOBeaAb9MJyhQ" name="is_compensated_by_other_means" postcondition="_ximVcZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVb5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVcJezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVcZezEeOBeaAb9MJyhQ" name="is_compensated_by_other_means" constrainedElement="_ximVbpezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVcpezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.compensation_by_other_means = IN_compensated</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVc5ezEeOBeaAb9MJyhQ" name="IN_compensated">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximVdJezEeOBeaAb9MJyhQ" name="has_been_tax_payer_partner_in_business" postcondition="_ximVd5ezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVdZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVdpezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVd5ezEeOBeaAb9MJyhQ" name="partner_in_business" constrainedElement="_ximVdJezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVeJezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.tax_payer_has_been_partner_in_business = IN_has_been_partner_in_business&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVeZezEeOBeaAb9MJyhQ" name="IN_has_been_partner_in_business">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximVepezEeOBeaAb9MJyhQ" name="has_tax_payer_inherited_business_ownership" postcondition="_ximVfZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVe5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVfJezEeOBeaAb9MJyhQ" key="agent"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVfZezEeOBeaAb9MJyhQ" name="inherited_business_ownership" constrainedElement="_ximVepezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVfpezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.tax_payer_has_inherited_business_ownership = IN_inherited_business_ownership</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVf5ezEeOBeaAb9MJyhQ" name="IN_inherited_business_ownership">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVgJezEeOBeaAb9MJyhQ" name="Spousal_Expense_AC">
+        <generalization xmi:id="_ximVgZezEeOBeaAb9MJyhQ" general="_xim4npezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVgpezEeOBeaAb9MJyhQ" name="Extraordinary_Expense_CE">
+        <generalization xmi:id="_ximVg5ezEeOBeaAb9MJyhQ" general="_xim4npezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_ximVhJezEeOBeaAb9MJyhQ" name="thresholded_deduction_percentage" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ximVhZezEeOBeaAb9MJyhQ" name="ce_type" visibility="public" type="_xim46JezEeOBeaAb9MJyhQ"/>
+        <ownedOperation xmi:id="_ximVhpezEeOBeaAb9MJyhQ" name="is_above_thresholded_deduction_percentage_for_CE">
+          <eAnnotations xmi:id="_ximVh5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximViJezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_ximViZezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ximVipezEeOBeaAb9MJyhQ" name="compute_thresholded_deduction_percentage_for_CE" postcondition="_ximVjZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_ximVi5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_ximVjJezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_ximVjZezEeOBeaAb9MJyhQ" name="thresholded_deduction_percentage" constrainedElement="_ximVipezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_ximVjpezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.thresholded_deduction_percentage = IN_thresholded_deduction_percentage&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_ximVj5ezEeOBeaAb9MJyhQ" name="IN_thresholded_deduction_percentage">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVkJezEeOBeaAb9MJyhQ" name="Travel_Expense_FD">
+        <generalization xmi:id="_ximVkZezEeOBeaAb9MJyhQ" general="_ximVlJezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVkpezEeOBeaAb9MJyhQ" name="Miscellaneous_Expense_FO">
+        <generalization xmi:id="_ximVk5ezEeOBeaAb9MJyhQ" general="_ximVlJezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ximVlJezEeOBeaAb9MJyhQ" name="Professional_Expense">
+        <generalization xmi:id="_ximVlZezEeOBeaAb9MJyhQ" general="_xim4npezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4kJezEeOBeaAb9MJyhQ" name="Category_of_Permanent_Expense">
+        <ownedLiteral xmi:id="_xim4kZezEeOBeaAb9MJyhQ" name="MISCELLANEOUS_DEBT" classifier="_xim4kJezEeOBeaAb9MJyhQ"/>
+        <ownedLiteral xmi:id="_xim4kpezEeOBeaAb9MJyhQ" name="ALIMONY" classifier="_xim4kJezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4k5ezEeOBeaAb9MJyhQ" name="Category_of_Private_Insurance_and_Plan">
+        <ownedLiteral xmi:id="_xim4lJezEeOBeaAb9MJyhQ" name="PRIVATE_INSURANCE" classifier="_xim4k5ezEeOBeaAb9MJyhQ"/>
+        <ownedLiteral xmi:id="_xim4lZezEeOBeaAb9MJyhQ" name="PRIVATE_LIFE_INSURANCE" classifier="_xim4mZezEeOBeaAb9MJyhQ"/>
+        <ownedLiteral xmi:id="_xim4lpezEeOBeaAb9MJyhQ" name="COMPANY_MEMBERS_PRIVATE_INSURANCE" classifier="_xim4k5ezEeOBeaAb9MJyhQ"/>
+        <ownedLiteral xmi:id="_xim4l5ezEeOBeaAb9MJyhQ" name="HOUSING_SAVING_PLAN" classifier="_xim4mZezEeOBeaAb9MJyhQ"/>
+        <ownedLiteral xmi:id="_xim4mJezEeOBeaAb9MJyhQ" name="OLD_AGE_PENSION_PLAN" classifier="_xim4mZezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4mZezEeOBeaAb9MJyhQ" name="Category_of_Health_and_Pension_Insurances">
+        <ownedLiteral xmi:id="_xim4mpezEeOBeaAb9MJyhQ" name="MANDATORY_HEALTH_AND_PENSION_INSURANCE" classifier="_xim4mZezEeOBeaAb9MJyhQ"/>
+        <ownedLiteral xmi:id="_xim4m5ezEeOBeaAb9MJyhQ" name="ADDITIONAL_EMPLOYERS_PENSION_INSURANCE" classifier="_xim4mZezEeOBeaAb9MJyhQ"/>
+        <ownedLiteral xmi:id="_xim4nJezEeOBeaAb9MJyhQ" name="CONTINUED_HEALTH_AND_PENSION_INSURANCE" classifier="_xim4mZezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xim4nZezEeOBeaAb9MJyhQ" name="influences" memberEnd="_xim4qZezEeOBeaAb9MJyhQ _ximVIZezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim4npezEeOBeaAb9MJyhQ" name="Expense">
+        <ownedAttribute xmi:id="_xim4n5ezEeOBeaAb9MJyhQ" name="tax_Payer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_xim45JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim4oJezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim4oZezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim4opezEeOBeaAb9MJyhQ" name="declared_amount" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim4o5ezEeOBeaAb9MJyhQ" name="expense_purpose" visibility="public" type="_xim47JezEeOBeaAb9MJyhQ">
+          <defaultValue xmi:type="uml:InstanceValue" xmi:id="_xim4pJezEeOBeaAb9MJyhQ" name="OTHER" type="_xim47JezEeOBeaAb9MJyhQ" instance="_xim48JezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim4pZezEeOBeaAb9MJyhQ" name="dependent" visibility="private" type="_ximT_5ezEeOBeaAb9MJyhQ" association="_ximU2pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim4ppezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim4p5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim4qJezEeOBeaAb9MJyhQ" name="year_expense_was_incurred_in" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim4qZezEeOBeaAb9MJyhQ" name="income" visibility="private" type="_ximVD5ezEeOBeaAb9MJyhQ" association="_xim4nZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim4qpezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim4q5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim4rJezEeOBeaAb9MJyhQ" name="deduction" visibility="private" type="_xim59JezEeOBeaAb9MJyhQ" association="_xim6A5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim4rZezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim4rpezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim4r5ezEeOBeaAb9MJyhQ" name="Set(Expense)"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4sJezEeOBeaAb9MJyhQ" name="Grantor">
+      <ownedLiteral xmi:id="_xim4sZezEeOBeaAb9MJyhQ" name="ACD" classifier="_xim4sJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4spezEeOBeaAb9MJyhQ" name="Employer" classifier="_xim4sJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4s5ezEeOBeaAb9MJyhQ" name="CNPF" classifier="_xim4sJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4tJezEeOBeaAb9MJyhQ" name="CEDIES" classifier="_xim4sJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4tZezEeOBeaAb9MJyhQ" name="SNJ" classifier="_xim4sJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4tpezEeOBeaAb9MJyhQ" name="CNAP" classifier="_xim4sJezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xim4t5ezEeOBeaAb9MJyhQ" name="earns" memberEnd="_ximUlpezEeOBeaAb9MJyhQ _ximVFJezEeOBeaAb9MJyhQ"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4uJezEeOBeaAb9MJyhQ" name="Country">
+      <ownedLiteral xmi:id="_xim4uZezEeOBeaAb9MJyhQ" name="LU" classifier="_xim4uJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4upezEeOBeaAb9MJyhQ" name="FR" classifier="_xim4uJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4u5ezEeOBeaAb9MJyhQ" name="BE" classifier="_xim4uJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4vJezEeOBeaAb9MJyhQ" name="DE" classifier="_xim4uJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4vZezEeOBeaAb9MJyhQ" name="NL" classifier="_xim4uJezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4vpezEeOBeaAb9MJyhQ" name="OTHER" classifier="_xim4uJezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xim4v5ezEeOBeaAb9MJyhQ" name="credited for" memberEnd="_ximUnJezEeOBeaAb9MJyhQ _xim5dZezEeOBeaAb9MJyhQ"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xim4wJezEeOBeaAb9MJyhQ" name="Date">
+      <ownedAttribute xmi:id="_xim4wZezEeOBeaAb9MJyhQ" name="day" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim4wpezEeOBeaAb9MJyhQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim4w5ezEeOBeaAb9MJyhQ" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_xim4xJezEeOBeaAb9MJyhQ" name="month" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_xim4xZezEeOBeaAb9MJyhQ" name="year" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4xpezEeOBeaAb9MJyhQ" name="Job_Activity">
+      <ownedLiteral xmi:id="_xim4x5ezEeOBeaAb9MJyhQ" name="Salary" classifier="_xim4xpezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4yJezEeOBeaAb9MJyhQ" name="Pension" classifier="_xim4xpezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4yZezEeOBeaAb9MJyhQ" name="Annuity" classifier="_xim4xpezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4ypezEeOBeaAb9MJyhQ" name="Tax_Card_Type">
+      <ownedLiteral xmi:id="_xim4y5ezEeOBeaAb9MJyhQ" name="Principal" classifier="_xim4ypezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4zJezEeOBeaAb9MJyhQ" name="Additional" classifier="_xim4ypezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim4zZezEeOBeaAb9MJyhQ" name="Tax_Office">
+      <ownedLiteral xmi:id="_xim4zpezEeOBeaAb9MJyhQ" name="RTS_2" classifier="_xim4zZezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim4z5ezEeOBeaAb9MJyhQ" name="RTS_3" classifier="_xim4zZezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim40JezEeOBeaAb9MJyhQ" name="RTS_Esch" classifier="_xim4zZezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim40ZezEeOBeaAb9MJyhQ" name="RTS_Ettelbruck" classifier="_xim4zZezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim40pezEeOBeaAb9MJyhQ" name="Tax_Class_Category">
+      <ownedLiteral xmi:id="_xim405ezEeOBeaAb9MJyhQ" name="One" classifier="_xim40pezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim41JezEeOBeaAb9MJyhQ" name="One_A" classifier="_xim40pezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim41ZezEeOBeaAb9MJyhQ" name="Two" classifier="_xim40pezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim41pezEeOBeaAb9MJyhQ" name="Town">
+      <ownedLiteral xmi:id="_xim415ezEeOBeaAb9MJyhQ" name="Luxembourg_city" classifier="_xim41pezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim42JezEeOBeaAb9MJyhQ" name="Bertrange" classifier="_xim41pezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim42ZezEeOBeaAb9MJyhQ" name="Strassen" classifier="_xim41pezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim42pezEeOBeaAb9MJyhQ" name="Bettembourg" classifier="_xim41pezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim425ezEeOBeaAb9MJyhQ" name="Beaufort" classifier="_xim41pezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xim43JezEeOBeaAb9MJyhQ" name="linked to" memberEnd="_ximVG5ezEeOBeaAb9MJyhQ _xim5NJezEeOBeaAb9MJyhQ"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim43ZezEeOBeaAb9MJyhQ" name="Dependent_Type">
+      <ownedLiteral xmi:id="_xim43pezEeOBeaAb9MJyhQ" name="CHILD" classifier="_xim43ZezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim435ezEeOBeaAb9MJyhQ" name="SPOUSE" classifier="_xim43ZezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim44JezEeOBeaAb9MJyhQ" name="RELATIVE" classifier="_xim43ZezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim44ZezEeOBeaAb9MJyhQ" name="OTHER_FAMILY_MEMBER" classifier="_xim43ZezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xim44pezEeOBeaAb9MJyhQ" name="provides" memberEnd="_xim5N5ezEeOBeaAb9MJyhQ _ximU45ezEeOBeaAb9MJyhQ"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xim445ezEeOBeaAb9MJyhQ" name="receives" memberEnd="_ximUqJezEeOBeaAb9MJyhQ _xim5-ZezEeOBeaAb9MJyhQ"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xim45JezEeOBeaAb9MJyhQ" name="declares" memberEnd="_ximUrJezEeOBeaAb9MJyhQ _xim4n5ezEeOBeaAb9MJyhQ"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim45ZezEeOBeaAb9MJyhQ" name="Type_of_Rate">
+      <ownedLiteral xmi:id="_xim45pezEeOBeaAb9MJyhQ" name="REGULAR" classifier="_xim45ZezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim455ezEeOBeaAb9MJyhQ" name="REAL_COST" classifier="_xim45ZezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim46JezEeOBeaAb9MJyhQ" name="CE_Type">
+      <ownedLiteral xmi:id="_xim46ZezEeOBeaAb9MJyhQ" name="INALIDITY_AND_INFIRMITY" classifier="_xim46JezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim46pezEeOBeaAb9MJyhQ" name="DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD" classifier="_xim46JezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim465ezEeOBeaAb9MJyhQ" name="CARE_FOR_CHILDREN_NOT_BEING_PART_OF_HOUSEHOLD" classifier="_xim46JezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim47JezEeOBeaAb9MJyhQ" name="Expense_Purpose">
+      <ownedLiteral xmi:id="_xim47ZezEeOBeaAb9MJyhQ" name="HOUSE_CARE" classifier="_xim47JezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim47pezEeOBeaAb9MJyhQ" name="CHILD_CARE" classifier="_xim47JezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim475ezEeOBeaAb9MJyhQ" name="DEPENDENCE_CARE" classifier="_xim47JezEeOBeaAb9MJyhQ"/>
+      <ownedLiteral xmi:id="_xim48JezEeOBeaAb9MJyhQ" name="OTHER" classifier="_xim47JezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_xim48ZezEeOBeaAb9MJyhQ" name="Constants">
+      <ownedLiteral xmi:id="_xim48pezEeOBeaAb9MJyhQ" name="MAXIMUM_CE_RATE_FOR_CHILD_NOT_BEING_PART_OF_HOUSEHOLD" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim485ezEeOBeaAb9MJyhQ" value="3480"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim49JezEeOBeaAb9MJyhQ" name="MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim49ZezEeOBeaAb9MJyhQ" value="3600"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim49pezEeOBeaAb9MJyhQ" name="MINIMUM_SALARY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim495ezEeOBeaAb9MJyhQ" value="1500"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim4-JezEeOBeaAb9MJyhQ" name="FLAT_RATE_FOR_EXTRA_PROFESSIONAL_DEDUCTION" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim4-ZezEeOBeaAb9MJyhQ" value="4500"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim4-pezEeOBeaAb9MJyhQ" name="MAXIMUM_DEDUCTIBLE_PERCENTAGE_FOR_DONATIONS" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim4-5ezEeOBeaAb9MJyhQ" value="20"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim4_JezEeOBeaAb9MJyhQ" name="MINIMUM_DEDUCTIBLE_AMOUNT_FOR_DONATIONS" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim4_ZezEeOBeaAb9MJyhQ" value="120"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim4_pezEeOBeaAb9MJyhQ" name="MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANCE" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim4_5ezEeOBeaAb9MJyhQ"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5AJezEeOBeaAb9MJyhQ" name="MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ALIMONY_EXPENSE" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5AZezEeOBeaAb9MJyhQ" value="24000"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5ApezEeOBeaAb9MJyhQ" name="FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5A5ezEeOBeaAb9MJyhQ" value="99"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5BJezEeOBeaAb9MJyhQ" name="MAXIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5BZezEeOBeaAb9MJyhQ" value="26"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5BpezEeOBeaAb9MJyhQ" name="MAXIMAL_FLAT_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5B5ezEeOBeaAb9MJyhQ" value="30"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5CJezEeOBeaAb9MJyhQ" name="MINIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5CZezEeOBeaAb9MJyhQ" value="4"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5CpezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIM_DAILY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5C5ezEeOBeaAb9MJyhQ" value="2"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5DJezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIM_MONTHLY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5DZezEeOBeaAb9MJyhQ" value="62"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5DpezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIM_YEARLY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5D5ezEeOBeaAb9MJyhQ" value="750"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5EJezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIP_DAILY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5EZezEeOBeaAb9MJyhQ" value="1"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5EpezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIP_MONTHLY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5E5ezEeOBeaAb9MJyhQ" value="25"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5FJezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIP_YEARLY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5FZezEeOBeaAb9MJyhQ" value="300"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5FpezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIS_DAILY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5F5ezEeOBeaAb9MJyhQ" value="1"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5GJezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIS_MONTHLY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5GZezEeOBeaAb9MJyhQ" value="25"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5GpezEeOBeaAb9MJyhQ" name="FLAT_RATE_CIS_YEARLY" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5G5ezEeOBeaAb9MJyhQ" value="300"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_xim5HJezEeOBeaAb9MJyhQ" name="MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS" classifier="_xim48ZezEeOBeaAb9MJyhQ">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_xim5HZezEeOBeaAb9MJyhQ" value="480"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xim5HpezEeOBeaAb9MJyhQ" name="Tax_Card_Concepts">
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5H5ezEeOBeaAb9MJyhQ" name="Tax_Card">
+        <ownedRule xmi:id="_xim5IJezEeOBeaAb9MJyhQ" name="SubjectToWithholdingTax-constraint" constrainedElement="_xim5H5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5IZezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>not self.oclIsUndefined() &#xA;implies&#xA;(self.income.income_type.oclIsTypeOf(Income_Concepts::Employment_Income) or &#xA;self.income.income_type.oclIsTypeOf(Income_Concepts::Pensions_and_Annuities_Income) or&#xA;self.income.income_type.oclIsTypeOf(Income_Concepts::Capital_and_Investments_Income) or&#xA;self.income.income_type.oclIsTypeOf(Income_Concepts::Directors_Fee)&#xA;)&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_xim5IpezEeOBeaAb9MJyhQ" name="Tax_Credits-constraint" constrainedElement="_xim5H5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5I5ezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>self.tax_card_type = Tax_Card_Type::Principal &#xA;&#xA;implies&#xA;&#xA;let cim : Income_Tax_Credit_Concepts::CIM = self.income_Tax_Credit->select(c|c.oclIsTypeOf(Income_Tax_Credit_Concepts::CIM) and c.tax_year = self.valid_from_date)->any(true).oclAsType(Income_Tax_Credit_Concepts::CIM),&#xA;&#x9;cis : Income_Tax_Credit_Concepts::CIS = self.income_Tax_Credit->select(cis|cis.oclIsTypeOf(Income_Tax_Credit_Concepts::CIS) and cis.tax_year = self.valid_from_date)->any(true).oclAsType(Income_Tax_Credit_Concepts::CIS),&#xA;&#x9;cip : Income_Tax_Credit_Concepts::CIP = self.income_Tax_Credit->select(cip|cip.oclIsTypeOf(Income_Tax_Credit_Concepts::CIP) and cip.tax_year = self.valid_from_date)->any(true).oclAsType(Income_Tax_Credit_Concepts::CIP) in&#xA;&#x9;&#xA;(not cis.oclIsUndefined()) xor (not cip.oclIsUndefined()) = true&#xA;and&#xA;if not cim.oclIsUndefined() then &#xA;&#x9;self.credit_CIM_daily = cim.daily and&#xA;&#x9;self.credit_CIM_monthly = cim.monthly &#xA;else&#xA;&#x9;true&#xA;endif&#xA;and&#xA;if not cis.oclIsUndefined()then&#xA;&#x9;self.credit_CIS_daily = cis.daily and&#xA;&#x9;self.credit_CIS_monthly = cis.monthly &#xA;else&#xA;&#x9;true&#xA;endif&#xA;and&#xA;if not cip.oclIsUndefined()then&#xA;&#x9;self.credit_CIP_monthly = cip.monthly &#xA;else&#xA;&#x9;true&#xA;endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_xim5JJezEeOBeaAb9MJyhQ" name="Tax_Card_AC-constraint" constrainedElement="_xim5H5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5JZezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let set_ac : Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(Income_Tax_Deduction_Concepts::AC) and deduction.tax_year = self.valid_from_date),&#xA;&#x9;ac : Income_Tax_Deduction_Concepts::AC = set_ac->any(true).oclAsType(Income_Tax_Deduction_Concepts::AC),&#xA;&#x9;set_fo : Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(Income_Tax_Deduction_Concepts::FO) and deduction.tax_year = self.valid_from_date),&#xA;&#x9;set_ds : Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(Income_Tax_Deduction_Concepts::DS) and deduction.tax_year = self.valid_from_date) in&#xA;&#x9;&#xA;set_ac->size() = 1 &#xA;implies&#xA;&#xA;self.tax_card_type=Tax_Card_Type::Additional and&#xA;self.tax_Payer.taxed_jointly and&#xA;self.deduction_AC_yearly = ac.deductible_amount and&#xA;self.deduction_AC_monthly = ac.deductible_amount/12 and&#xA;self.deduction_AC_daily = self.deduction_AC_monthly/25 /**25 working days per month**/ and&#xA;&#xA;if(set_ds->size()>0) then&#xA;&#x9;set_ds->size() =1 and&#xA;&#x9;self.deduction_DS_yearly->notEmpty() and&#xA;&#x9;self.deduction_DS_yearly = set_ds.deductible_amount ->sum()&#xA;else&#xA;&#x9;true&#xA;endif&#xA;&#xA;and&#xA;&#xA;if(set_fo->size()>0) then&#xA;&#x9;set_fo->size() = 1 and&#xA;&#x9;self.deduction_FO_yearly->notEmpty() and&#xA;&#x9;self.deduction_FO_yearly = set_fo.deductible_amount ->sum()&#xA;else&#xA;&#x9;true&#xA;endif&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_xim5JpezEeOBeaAb9MJyhQ" name="Tax_Card_FD-constraint" constrainedElement="_xim5H5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5J5ezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>not self.oclIsUndefined()&#xA;implies&#xA;self.income.taxPayer.income_Tax_Deduction->select(d|d.oclIsTypeOf(Income_Tax_Deduction_Concepts::FD) and d.tax_year = self.valid_from_date)->size() = 1&#xA;&#xA;and &#xA;let fd : Income_Tax_Deduction_Concepts::FD = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(Income_Tax_Deduction_Concepts::FD) and d.tax_year = self.valid_from_date)->any(true).oclAsType(Income_Tax_Deduction_Concepts::FD) in&#xA;self.deduction_FD_daily = fd.daily and&#xA;self.deduction_FD_monthly = fd.monthly and&#xA;self.deduction_FD_yearly = fd.yearly&#xA;&#xA;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_xim5KJezEeOBeaAb9MJyhQ" name="Tax_Card_DS-constraint" constrainedElement="_xim5H5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5KZezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let set_ds : Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction) = self.income_Tax_Deduction->select(d|d.oclIsTypeOf( Income_Tax_Deduction_Concepts::DS) and d.tax_year = self.valid_from_date),&#xA;&#x9;total_ds : Integer = set_ds.deductible_amount->sum()  in&#xA;set_ds->size()>0 and&#xA;self.tax_card_type = Tax_Card_Type::Principal&#xA;&#xA;implies&#xA;&#xA;if total_ds > Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS.oclAsType(Integer) then&#xA; &#x9;/**THE DIFFERENCE BETWEEN THE MINIMUM AND THE TOTAL DS AMOUNT IS WRITTEN ON THE TAX CARD**/&#xA; &#x9;self.deduction_DS_monthly = (total_ds - Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS.oclAsType(Integer))/self.income^^compute_duration_of_contract_within_taxation_year(self.valid_from_date)->first().result&#xA; else&#xA; &#x9;/**NO NEED TO PUT DETAILS ON THE TAX CARD**/&#xA; &#x9;false&#xA; endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_xim5KpezEeOBeaAb9MJyhQ" name="Tax_Card_CE-constraint" constrainedElement="_xim5H5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5K5ezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>let set_ce : Set(Income_Tax_Deduction_Concepts::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(Income_Tax_Deduction_Concepts::CE) and deduction.tax_year = self.valid_from_date),&#xA;&#x9;ce : Income_Tax_Deduction_Concepts::CE = set_ce->any(true).oclAsType(Income_Tax_Deduction_Concepts::CE) in&#xA;&#x9;&#xA;&#x9;set_ce->size() = 1 &#xA;implies&#xA;&#xA;self.tax_card_type=Tax_Card_Type::Principal and&#xA;self.deduction_CE_yearly = ce.deductible_amount and&#xA;self.deduction_CE_monthly = ce.deductible_amount/12 and&#xA;self.deduction_CE_daily = self.deduction_CE_monthly/25 /**25 working days per month**/&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_xim5LJezEeOBeaAb9MJyhQ" name="Tax_Card_FO-constraint" constrainedElement="_xim5H5ezEeOBeaAb9MJyhQ">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5LZezEeOBeaAb9MJyhQ">
+            <language>OCL</language>
+            <body>not self.oclIsUndefined()&#xA;implies&#xA;self.income.taxPayer.income_Tax_Deduction->select(d|d.oclIsTypeOf(Income_Tax_Deduction_Concepts::FO) and d.tax_year = self.valid_from_date)->size() = 1&#xA;&#xA;and &#xA;&#xA;let fo : Income_Tax_Deduction_Concepts::FO = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(Income_Tax_Deduction_Concepts::FO) and d.tax_year = self.valid_from_date)->any(true).oclAsType(Income_Tax_Deduction_Concepts::FO) in&#xA;self.deduction_FO_daily = fo.daily and&#xA;self.deduction_FO_monthly = fo.monthly and&#xA;self.deduction_FO_yearly = fo.yearly&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:id="_xim5LpezEeOBeaAb9MJyhQ" name="card_identifier" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5L5ezEeOBeaAb9MJyhQ" name="tax_card_type" visibility="public" type="_xim4ypezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5MJezEeOBeaAb9MJyhQ" name="tax_office" visibility="public" type="_xim4zZezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5MZezEeOBeaAb9MJyhQ" name="valid_from_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5MpezEeOBeaAb9MJyhQ" name="valid_until_date" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="MARTELibrary.uml#_xioHLJezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5M5ezEeOBeaAb9MJyhQ" name="percentage_of_witholding" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5NJezEeOBeaAb9MJyhQ" name="income" visibility="private" type="_ximVD5ezEeOBeaAb9MJyhQ" association="_xim43JezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5NZezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5NpezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5N5ezEeOBeaAb9MJyhQ" name="tax_Class" visibility="private" type="_ximU3JezEeOBeaAb9MJyhQ" association="_xim44pezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5OJezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5OZezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5OpezEeOBeaAb9MJyhQ" name="tax_payers_SSno" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5O5ezEeOBeaAb9MJyhQ" name="tax_payers_name_surname" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5PJezEeOBeaAb9MJyhQ" value="2"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5PZezEeOBeaAb9MJyhQ" value="2"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5PpezEeOBeaAb9MJyhQ" name="tax_payers_partner_name_surname" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5P5ezEeOBeaAb9MJyhQ" value="2"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5QJezEeOBeaAb9MJyhQ" value="2"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5QZezEeOBeaAb9MJyhQ" name="tax_payers_address" visibility="public" type="_ximT9pezEeOBeaAb9MJyhQ" isDerived="true"/>
+        <ownedAttribute xmi:id="_xim5QpezEeOBeaAb9MJyhQ" name="jobs_Employer_SSNo" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5Q5ezEeOBeaAb9MJyhQ" name="jobs_employers_name" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5RJezEeOBeaAb9MJyhQ" name="jobs_activity_type" visibility="public" type="_xim4xpezEeOBeaAb9MJyhQ" isDerived="true"/>
+        <ownedAttribute xmi:id="_xim5RZezEeOBeaAb9MJyhQ" name="jobs_place_of_work" visibility="public" type="_xim41pezEeOBeaAb9MJyhQ" isDerived="true"/>
+        <ownedAttribute xmi:id="_xim5RpezEeOBeaAb9MJyhQ" name="deduction_FD_daily" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5R5ezEeOBeaAb9MJyhQ" name="deduction_FD_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5SJezEeOBeaAb9MJyhQ" name="deduction_FD_yearly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5SZezEeOBeaAb9MJyhQ" name="deduction_AC_daily" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5SpezEeOBeaAb9MJyhQ" name="deduction_AC_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5S5ezEeOBeaAb9MJyhQ" name="deduction_AC_yearly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5TJezEeOBeaAb9MJyhQ" name="deduction_CE_daily" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5TZezEeOBeaAb9MJyhQ" name="deduction_CE_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5TpezEeOBeaAb9MJyhQ" name="deduction_CE_yearly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5T5ezEeOBeaAb9MJyhQ" name="deduction_DS_daily" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5UJezEeOBeaAb9MJyhQ" name="deduction_DS_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5UZezEeOBeaAb9MJyhQ" name="deduction_DS_yearly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5UpezEeOBeaAb9MJyhQ" name="deduction_FO_daily" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5U5ezEeOBeaAb9MJyhQ" name="deduction_FO_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5VJezEeOBeaAb9MJyhQ" name="deduction_FO_yearly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5VZezEeOBeaAb9MJyhQ" name="credit_CIS_daily" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5VpezEeOBeaAb9MJyhQ" name="credit_CIS_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5V5ezEeOBeaAb9MJyhQ" name="credit_CIP_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5WJezEeOBeaAb9MJyhQ" name="credit_CIM_daily" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5WZezEeOBeaAb9MJyhQ" name="credit_CIM_monthly" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5WpezEeOBeaAb9MJyhQ" name="tax_Payer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_ximU0ZezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5W5ezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5XJezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5XZezEeOBeaAb9MJyhQ" name="income_Tax_Credit" visibility="private" type="_xim5c5ezEeOBeaAb9MJyhQ" aggregation="shared" association="_xim5apezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5XpezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5X5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5YJezEeOBeaAb9MJyhQ" name="income_Tax_Deduction" visibility="private" type="_xim59JezEeOBeaAb9MJyhQ" aggregation="shared" association="_xim585ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5YZezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5YpezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5Y5ezEeOBeaAb9MJyhQ" name="validity" visibility="protected">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5ZJezEeOBeaAb9MJyhQ" name="previous" visibility="private" type="_xim5H5ezEeOBeaAb9MJyhQ" association="_xim5a5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5ZZezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5ZpezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5Z5ezEeOBeaAb9MJyhQ" name="current_tax_card" visibility="private" type="_xim5H5ezEeOBeaAb9MJyhQ" association="_xim5a5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5aJezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5aZezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xim5apezEeOBeaAb9MJyhQ" name="include" memberEnd="_xim5f5ezEeOBeaAb9MJyhQ _xim5XZezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xim5a5ezEeOBeaAb9MJyhQ" name="invalidated by" memberEnd="_xim5ZJezEeOBeaAb9MJyhQ _xim5Z5ezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xim5bJezEeOBeaAb9MJyhQ" name="Income_Tax_Credit_Concepts">
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5bZezEeOBeaAb9MJyhQ" name="CIM">
+        <generalization xmi:id="_xim5bpezEeOBeaAb9MJyhQ" general="_xim5c5ezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5b5ezEeOBeaAb9MJyhQ" name="CIP">
+        <generalization xmi:id="_xim5cJezEeOBeaAb9MJyhQ" general="_xim5c5ezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5cZezEeOBeaAb9MJyhQ" name="CIS">
+        <generalization xmi:id="_xim5cpezEeOBeaAb9MJyhQ" general="_xim5c5ezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5c5ezEeOBeaAb9MJyhQ" name="Income_Tax_Credit">
+        <ownedAttribute xmi:id="_xim5dJezEeOBeaAb9MJyhQ" name="grantedBy" visibility="public" type="_xim4sJezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5dZezEeOBeaAb9MJyhQ" name="taxPayer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_xim4v5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5dpezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5d5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5eJezEeOBeaAb9MJyhQ" name="tax_year" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5eZezEeOBeaAb9MJyhQ" name="yearly" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_xim5epezEeOBeaAb9MJyhQ" value="300">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5e5ezEeOBeaAb9MJyhQ" name="monthly" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_xim5fJezEeOBeaAb9MJyhQ" value="25">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5fZezEeOBeaAb9MJyhQ" name="daily" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_xim5fpezEeOBeaAb9MJyhQ" value="1">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5f5ezEeOBeaAb9MJyhQ" name="taxation_Frame" visibility="private" type="_xim5H5ezEeOBeaAb9MJyhQ" association="_xim5apezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5gJezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5gZezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xim5gpezEeOBeaAb9MJyhQ" name="Income_Tax_Deduction_Concepts">
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5g5ezEeOBeaAb9MJyhQ" name="FD">
+        <generalization xmi:id="_xim5hJezEeOBeaAb9MJyhQ" general="_xim57pezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5hZezEeOBeaAb9MJyhQ" name="distance_declared_in_january" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5hpezEeOBeaAb9MJyhQ" name="calculated_distance" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_xim5h5ezEeOBeaAb9MJyhQ" name="compute_distance_unit_between_home_and_workpalce">
+          <eAnnotations xmi:id="_xim5iJezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5iZezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_xim5ipezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5i5ezEeOBeaAb9MJyhQ" name="FO">
+        <generalization xmi:id="_xim5jJezEeOBeaAb9MJyhQ" general="_xim57pezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5jZezEeOBeaAb9MJyhQ" name="regular_flat_rate_for_FO" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_xim5jpezEeOBeaAb9MJyhQ">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5j5ezEeOBeaAb9MJyhQ" name="disability_flat_rate_for_FO" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5kJezEeOBeaAb9MJyhQ" name="rate_type_for_FO" visibility="public" type="_xim45ZezEeOBeaAb9MJyhQ" isDerived="true"/>
+        <ownedOperation xmi:id="_xim5kZezEeOBeaAb9MJyhQ" name="compute_disability_flat_rate">
+          <eAnnotations xmi:id="_xim5kpezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5k5ezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+        </ownedOperation>
+        <ownedOperation xmi:id="_xim5lJezEeOBeaAb9MJyhQ" name="compute_regular_flat_rate">
+          <eAnnotations xmi:id="_xim5lZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5lpezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5l5ezEeOBeaAb9MJyhQ" name="CE">
+        <eAnnotations xmi:id="_xim5mJezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+        <generalization xmi:id="_xim5mZezEeOBeaAb9MJyhQ" general="_xim59JezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5mpezEeOBeaAb9MJyhQ" name="ce_deduction_type" visibility="public" type="_xim46JezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5m5ezEeOBeaAb9MJyhQ" name="dependent_relative_flat_rate" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5nJezEeOBeaAb9MJyhQ" name="disability_flat_rate" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_xim5nZezEeOBeaAb9MJyhQ" name="compute_disability_flat_rate_for_CE" postcondition="_xim5oJezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim5npezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5n5ezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim5oJezEeOBeaAb9MJyhQ" name="compute_disability_flat_rate" constrainedElement="_xim5nZezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5oZezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>if self.ce_deduction_type = CE_Type::INALIDITY_AND_INFIRMITY then&#xA;&#x9;self.disability_flat_rate = IN_disability_flat_rate&#xA;else&#xA;&#x9;false&#xA;endif&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_xim5opezEeOBeaAb9MJyhQ" name="IN_disability_flat_rate">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_xim5o5ezEeOBeaAb9MJyhQ" name="compute_dependent_relative_flat_rate_for_CE" postcondition="_xim5ppezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim5pJezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5pZezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim5ppezEeOBeaAb9MJyhQ" name="dependent_relative_flat_rate" constrainedElement="_xim5o5ezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5p5ezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>if self.ce_deduction_type = CE_Type::DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD then&#xA;&#x9;self.dependent_relative_flat_rate = IN_dependent_relative_flat_rate&#xA;else&#x9;&#xA;&#x9;false&#xA;endif&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_xim5qJezEeOBeaAb9MJyhQ" name="IN_dependent_relative_flat_rate">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5qZezEeOBeaAb9MJyhQ" name="AC">
+        <generalization xmi:id="_xim5qpezEeOBeaAb9MJyhQ" general="_xim59JezEeOBeaAb9MJyhQ"/>
+        <ownedOperation xmi:id="_xim5q5ezEeOBeaAb9MJyhQ" name="is_eligible_income_for_AC" postcondition="_xim5rpezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim5rJezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5rZezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim5rpezEeOBeaAb9MJyhQ" name="is_eligible_income_for_AC" constrainedElement="_xim5q5ezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5r5ezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>if IN_income.income_type.oclIsTypeOf(Income_Concepts::Employment_Income) or&#xA;&#x9;IN_income.income_type.oclIsTypeOf(Income_Concepts::Independent_Professional_Services_Income) or&#xA;&#x9;IN_income.income_type.oclIsTypeOf(Income_Concepts::Agriculture_and_Forestry_Income) or&#xA;&#x9;IN_income.income_type.oclIsTypeOf(Income_Concepts::Trade_and_Business_Income) then&#xA;&#x9;result = true&#xA;else&#xA;&#x9;result=false&#xA;endif&#xA; </body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_xim5sJezEeOBeaAb9MJyhQ" name="IN_income" type="_ximVD5ezEeOBeaAb9MJyhQ"/>
+          <ownedParameter xmi:id="_xim5sZezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_xim5spezEeOBeaAb9MJyhQ" name="is_eligible_income_for_AC_assisting_spouse" postcondition="_xim5tZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim5s5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5tJezEeOBeaAb9MJyhQ" key="computation"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim5tZezEeOBeaAb9MJyhQ" name="is_eligible_income_for_AC_assisting_spouse" constrainedElement="_xim5spezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5tpezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>if  IN_income.income_type.oclIsTypeOf(Income_Concepts::Independent_Professional_Services_Income) or&#xA;&#x9;IN_income.income_type.oclIsTypeOf(Income_Concepts::Trade_and_Business_Income) then&#xA;&#x9;result = true&#xA;else&#xA;&#x9;result=false&#xA;endif&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_xim5t5ezEeOBeaAb9MJyhQ" name="IN_income" type="_ximVD5ezEeOBeaAb9MJyhQ"/>
+          <ownedParameter xmi:id="_xim5uJezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5uZezEeOBeaAb9MJyhQ" name="DS_for_Permanent_Expense">
+        <generalization xmi:id="_xim5upezEeOBeaAb9MJyhQ" general="_xim58JezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5u5ezEeOBeaAb9MJyhQ" name="permanent_expense_category" visibility="public" type="_xim4kJezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5vJezEeOBeaAb9MJyhQ" name="DS_for_Interest_Expense">
+        <generalization xmi:id="_xim5vZezEeOBeaAb9MJyhQ" general="_xim58JezEeOBeaAb9MJyhQ"/>
+        <ownedOperation xmi:id="_xim5vpezEeOBeaAb9MJyhQ" name="compute_maximum_deductible_amount" postcondition="_xim5wZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim5v5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim5wJezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim5wZezEeOBeaAb9MJyhQ" name="maximum_deductible_amount" constrainedElement="_xim5vpezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim5wpezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>result = 1 and&#xA;self.maximum_deductible_amount = 1&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_xim5w5ezEeOBeaAb9MJyhQ" name="result" isOrdered="true" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_xim5xJezEeOBeaAb9MJyhQ" name="IN_children_with_allowances" type="_ximT_5ezEeOBeaAb9MJyhQ">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5xZezEeOBeaAb9MJyhQ" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5xpezEeOBeaAb9MJyhQ"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_xim5x5ezEeOBeaAb9MJyhQ" name="IN_legal_union" type="_ximUNZezEeOBeaAb9MJyhQ">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5yJezEeOBeaAb9MJyhQ" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5yZezEeOBeaAb9MJyhQ"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5ypezEeOBeaAb9MJyhQ" name="DS_for_Health_and_Pension_Insurance">
+        <generalization xmi:id="_xim5y5ezEeOBeaAb9MJyhQ" general="_xim58JezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5zJezEeOBeaAb9MJyhQ" name="insurance_category" visibility="public" type="_xim4mZezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim5zZezEeOBeaAb9MJyhQ" name="DS_for_Private_Insurance_and_Plan">
+        <generalization xmi:id="_xim5zpezEeOBeaAb9MJyhQ" general="_xim58JezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim5z5ezEeOBeaAb9MJyhQ" name="private_insurance_and_plan_category" visibility="public" type="_xim4k5ezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim50JezEeOBeaAb9MJyhQ" name="increase_for_life_insurance" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim50ZezEeOBeaAb9MJyhQ" name="maximum_deductible_amount_for_private_insurance" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim50pezEeOBeaAb9MJyhQ" name="maximum_deductible_amount_for_old_age_pension_plan" visibility="public" isDerived="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_xim505ezEeOBeaAb9MJyhQ" name="compute_increase_for_life_insurance" postcondition="_xim51pezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim51JezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim51ZezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim51pezEeOBeaAb9MJyhQ" name="get_increase_for_life_insurance" constrainedElement="_xim505ezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim515ezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>result = 1&#xA;and self.increase_for_life_insurance = 1&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_xim52JezEeOBeaAb9MJyhQ" name="result" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_xim52ZezEeOBeaAb9MJyhQ" name="compute_maximum_deductible_amount_for_private_insruance" postcondition="_xim53JezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim52pezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim525ezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim53JezEeOBeaAb9MJyhQ" name="get_maximum_deductible_amount_for_private_insurance" constrainedElement="_xim52ZezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim53ZezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>self.maximum_deductible_amount_for_private_insurance = 1&#xA;</body>
+            </specification>
+          </ownedRule>
+        </ownedOperation>
+        <ownedOperation xmi:id="_xim53pezEeOBeaAb9MJyhQ" name="compute_maximum_deductible_amount_for_old_age_pension_plan" postcondition="_xim54ZezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim535ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim54JezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim54ZezEeOBeaAb9MJyhQ" name="maximum_deductible_amount_for_old_age_pension_plan" constrainedElement="_xim53pezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim54pezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>maximum_deductible_amount_for_old_age_pension_plan = 1&#xA;</body>
+            </specification>
+          </ownedRule>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim545ezEeOBeaAb9MJyhQ" name="DS_for_Loss_Carryforward">
+        <generalization xmi:id="_xim55JezEeOBeaAb9MJyhQ" general="_xim58JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim55ZezEeOBeaAb9MJyhQ" name="DS_for_Donation">
+        <generalization xmi:id="_xim55pezEeOBeaAb9MJyhQ" general="_xim58JezEeOBeaAb9MJyhQ"/>
+        <ownedOperation xmi:id="_xim555ezEeOBeaAb9MJyhQ" name="compute_maximum_deductible_amount_for_donation" postcondition="_xim56pezEeOBeaAb9MJyhQ">
+          <eAnnotations xmi:id="_xim56JezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_xim56ZezEeOBeaAb9MJyhQ" key="lookup"/>
+          </eAnnotations>
+          <ownedRule xmi:id="_xim56pezEeOBeaAb9MJyhQ" name="maximum_deductible_amount" constrainedElement="_xim555ezEeOBeaAb9MJyhQ">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_xim565ezEeOBeaAb9MJyhQ">
+              <language>OCL</language>
+              <body>if IN_maximum_percentage = Constants::MAXIMUM_DEDUCTIBLE_PERCENTAGE_FOR_DONATIONS then&#xA;&#x9;self.maximum_deductible_amount = IN_maximum_percentage.oclAsType(Integer)/100 * IN_total_tax_payer_income&#xA;else&#xA;&#x9;false&#xA;endif&#xA;</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_xim57JezEeOBeaAb9MJyhQ" name="IN_maximum_percentage" type="_xim48ZezEeOBeaAb9MJyhQ"/>
+          <ownedParameter xmi:id="_xim57ZezEeOBeaAb9MJyhQ" name="IN_total_tax_payer_income">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim57pezEeOBeaAb9MJyhQ" name="Professional_Expenses_Deduction">
+        <generalization xmi:id="_xim575ezEeOBeaAb9MJyhQ" general="_xim59JezEeOBeaAb9MJyhQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim58JezEeOBeaAb9MJyhQ" name="DS">
+        <generalization xmi:id="_xim58ZezEeOBeaAb9MJyhQ" general="_xim59JezEeOBeaAb9MJyhQ"/>
+        <ownedAttribute xmi:id="_xim58pezEeOBeaAb9MJyhQ" name="maximum_deductible_amount" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xim585ezEeOBeaAb9MJyhQ" name="considers" memberEnd="_xim5_ZezEeOBeaAb9MJyhQ _xim5YJezEeOBeaAb9MJyhQ"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xim59JezEeOBeaAb9MJyhQ" name="Income_Tax_Deduction">
+        <ownedAttribute xmi:id="_xim59ZezEeOBeaAb9MJyhQ" name="tax_year" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim59pezEeOBeaAb9MJyhQ" name="daily" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim595ezEeOBeaAb9MJyhQ" name="monthly" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5-JezEeOBeaAb9MJyhQ" name="yearly" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5-ZezEeOBeaAb9MJyhQ" name="tax_Payer" visibility="private" type="_ximUbpezEeOBeaAb9MJyhQ" association="_xim445ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5-pezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5-5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5_JezEeOBeaAb9MJyhQ" name="deductible_amount" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim5_ZezEeOBeaAb9MJyhQ" name="tax_card" visibility="private" type="_xim5H5ezEeOBeaAb9MJyhQ" association="_xim585ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim5_pezEeOBeaAb9MJyhQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim5_5ezEeOBeaAb9MJyhQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xim6AJezEeOBeaAb9MJyhQ" name="expenses" visibility="private" type="_xim4npezEeOBeaAb9MJyhQ" association="_xim6A5ezEeOBeaAb9MJyhQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xim6AZezEeOBeaAb9MJyhQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xim6ApezEeOBeaAb9MJyhQ" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xim6A5ezEeOBeaAb9MJyhQ" name="is computed based on" memberEnd="_xim6AJezEeOBeaAb9MJyhQ _xim4rJezEeOBeaAb9MJyhQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="_xim6BJezEeOBeaAb9MJyhQ">
+      <eAnnotations xmi:id="_xim6BZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_xim6BpezEeOBeaAb9MJyhQ">
+      <eAnnotations xmi:id="_xim6B5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_xjnneJezEeOBeaAb9MJyhQ"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_xjnndpezEeOBeaAb9MJyhQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_xim6CJezEeOBeaAb9MJyhQ">
+      <eAnnotations xmi:id="_xim6CZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_xjlympezEeOBeaAb9MJyhQ"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_xjlymJezEeOBeaAb9MJyhQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_xim6CpezEeOBeaAb9MJyhQ">
+      <eAnnotations xmi:id="_xim6C5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="MARTE_VSL.profile.uml#_xjnAP5ezEeOBeaAb9MJyhQ"/>
+      </eAnnotations>
+      <appliedProfile href="MARTE_VSL.profile.uml#_xjnAPZezEeOBeaAb9MJyhQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_xim6DJezEeOBeaAb9MJyhQ">
+      <eAnnotations xmi:id="_xim6DZezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="MARTE_Time.profile.uml#_xjmaF5ezEeOBeaAb9MJyhQ"/>
+      </eAnnotations>
+      <appliedProfile href="MARTE_Time.profile.uml#_xjmaFZezEeOBeaAb9MJyhQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_xim6DpezEeOBeaAb9MJyhQ">
+      <eAnnotations xmi:id="_xim6D5ezEeOBeaAb9MJyhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_xjIgUZezEeOBeaAb9MJyhQ"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_xjIgT5ezEeOBeaAb9MJyhQ"/>
+    </profileApplication>
+  </uml:Package>
+  <Default:Documentation xmi:id="_xim6EJezEeOBeaAb9MJyhQ" base_Comment="_ximU8pezEeOBeaAb9MJyhQ"/>
+  <Default:Documentation xmi:id="_xim6EZezEeOBeaAb9MJyhQ" base_Comment="_ximUNpezEeOBeaAb9MJyhQ"/>
+</xmi:XMI>

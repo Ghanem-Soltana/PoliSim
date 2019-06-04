@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="TaxCard" nsURI="http:///TaxCard.ecore" nsPrefix="TaxCard">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EEnum" name="Grantor">
+    <eLiterals name="ACD"/>
+    <eLiterals name="Employer" value="1"/>
+    <eLiterals name="CNPF" value="2"/>
+    <eLiterals name="CEDIES" value="3"/>
+    <eLiterals name="SNJ" value="4"/>
+    <eLiterals name="CNAP" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Country">
+    <eLiterals name="LU"/>
+    <eLiterals name="FR" value="1"/>
+    <eLiterals name="BE" value="2"/>
+    <eLiterals name="DE" value="3"/>
+    <eLiterals name="NL" value="4"/>
+    <eLiterals name="OTHER" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Tax_Card_Type">
+    <eLiterals name="Principal"/>
+    <eLiterals name="Additional" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Tax_Office">
+    <eLiterals name="RTS_2"/>
+    <eLiterals name="RTS_3" value="1"/>
+    <eLiterals name="RTS_Esch" value="2"/>
+    <eLiterals name="RTS_Ettelbruck" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Tax_Class_Category">
+    <eLiterals name="One"/>
+    <eLiterals name="One_A" value="1"/>
+    <eLiterals name="Two" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Job_Activity">
+    <eLiterals name="Salary"/>
+    <eLiterals name="Pension" value="1"/>
+    <eLiterals name="Annuity" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Town">
+    <eLiterals name="Luxembourg_city"/>
+    <eLiterals name="Bertrange" value="1"/>
+    <eLiterals name="Strassen" value="2"/>
+    <eLiterals name="Bettembourg" value="3"/>
+    <eLiterals name="Beaufort" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Type_of_Rate">
+    <eLiterals name="REGULAR"/>
+    <eLiterals name="REAL_COST" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CE_Type">
+    <eLiterals name="INALIDITY_AND_INFIRMITY"/>
+    <eLiterals name="DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD"
+        value="1"/>
+    <eLiterals name="CARE_FOR_CHILDREN_NOT_BEING_PART_OF_HOUSEHOLD" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Expense_Purpose">
+    <eLiterals name="HOUSE_CARE"/>
+    <eLiterals name="CHILD_CARE" value="1"/>
+    <eLiterals name="DEPENDENCE_CARE" value="2"/>
+    <eLiterals name="OTHER" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Dependent_Type">
+    <eLiterals name="CHILD"/>
+    <eLiterals name="SPOUSE" value="1"/>
+    <eLiterals name="RELATIVE" value="2"/>
+    <eLiterals name="OTHER_FAMILY_MEMBER" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Constants">
+    <eLiterals name="MAXIMUM_CE_RATE_FOR_CHILD_NOT_BEING_PART_OF_HOUSEHOLD" value="3480"/>
+    <eLiterals name="MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE"
+        value="3600"/>
+    <eLiterals name="MINIMUM_SALARY" value="1500"/>
+    <eLiterals name="FLAT_RATE_FOR_EXTRA_PROFESSIONAL_DEDUCTION" value="4500"/>
+    <eLiterals name="MAXIMUM_DEDUCTIBLE_PERCENTAGE_FOR_DONATIONS" value="20"/>
+    <eLiterals name="MINIMUM_DEDUCTIBLE_AMOUNT_FOR_DONATIONS" value="120"/>
+    <eLiterals name="MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANCE"/>
+    <eLiterals name="MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ALIMONY_EXPENSE" value="24000"/>
+    <eLiterals name="FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT" value="99"/>
+    <eLiterals name="MAXIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION" value="26"/>
+    <eLiterals name="MAXIMAL_FLAT_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION" value="30"/>
+    <eLiterals name="MINIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION" value="4"/>
+    <eLiterals name="FLAT_RATE_CIM_DAILY" value="2"/>
+    <eLiterals name="FLAT_RATE_CIM_MONTHLY" value="62"/>
+    <eLiterals name="FLAT_RATE_CIM_YEARLY" value="750"/>
+    <eLiterals name="FLAT_RATE_CIP_DAILY" value="1"/>
+    <eLiterals name="FLAT_RATE_CIP_MONTHLY" value="25"/>
+    <eLiterals name="FLAT_RATE_CIP_YEARLY" value="300"/>
+    <eLiterals name="FLAT_RATE_CIS_DAILY" value="1"/>
+    <eLiterals name="FLAT_RATE_CIS_MONTHLY" value="25"/>
+    <eLiterals name="FLAT_RATE_CIS_YEARLY" value="300"/>
+    <eLiterals name="MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS" value="480"/>
+    <eLiterals name="FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE" value="22"/>
+    <eLiterals name="DISABILITY_FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE" value="23"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FromAgent">
+    <eLiterals name="taxation_year" value="2014"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Income_Tax">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taxPayer" lowerBound="1"
+        eType="#//Tax_Payer" eOpposite="#//Tax_Payer/incomeTax"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_amount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_year" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tax_Payer" eSuperTypes="#//Physical_Person">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="Legal_Union_monogamus_constraint NonResidentTaxPayer_constraint SubjectToIncomeTax_constraint TaxCard_unique_constraint TaxClass_unique_constraint"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="invariant"/>
+      </eAnnotations>
+      <details key="Legal_Union_monogamus_constraint" value="let legal_union: Set(Legal_Union_Record) = self.legal_union_A->select(couple|couple.end_date->isEmpty()) in if (legal_union->size()=1) then true else false endif"/>
+      <details key="NonResidentTaxPayer_constraint" value="self.addresses->exists( fiscal_add:Address |    fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country&lt;>TaxCard::Country::LU) and  self.addresses->exists( hab_add:Address |    hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country&lt;>TaxCard::Country::LU) and  self.incomes->exists(inc:TaxCard::Income | inc.oclIsTypeOf(TaxCard::Local_Income)) implies  self.oclIsTypeOf(Non_Resident_Tax_Payer)"/>
+      <details key="SubjectToIncomeTax_constraint" value="  self.incomes->exists(inc:TaxCard::Income |    inc.oclIsTypeOf(TaxCard::Local_Income) or inc.oclIsTypeOf(TaxCard::Foreign_Income)) implies  not self.incomeTax->isEmpty()"/>
+      <details key="TaxCard_unique_constraint" value="self.incomes->forAll(income|income.tax_card->select(tc|tc.validity=true)->size() &lt;= 1)"/>
+      <details key="TaxClass_unique_constraint" value="let tax_classes: Set(Tax_Class) = self.tax_class->select(tax_classe|tax_class.valid_until_date->isEmpty()) in if tax_classes->size()=1 then   /**ONLY ONE TAX CLASS AT TIME**/  true else  /**ERROR YOU CANNOT HAVE SEVERAL TAX CLASSES AT TIME**/  false endif"/>
+    </eAnnotations>
+    <eOperations name="is_dependent_part_of_the_household" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let responsible_person: Tax_Payer = IN_dependent.responsible_person, household_tax_payer_same_as_respnsible: Boolean = IN_dependent.household.tax_Payer.oclAsType(Physical_Person).SSNo = responsible_person.oclAsType(Physical_Person).SSNo&#xA;in if (responsible_person->notEmpty() and household_tax_payer_same_as_respnsible) then true else  false endif"/>
+      </eAnnotations>
+      <eParameters name="IN_dependent" lowerBound="1" eType="#//Dependent"/>
+    </eOperations>
+    <eOperations name="number_of_months_of_allowance" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomes" ordered="false"
+        upperBound="-1" eType="#//Income" eOpposite="#//Income/taxPayer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_class" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Tax_Class" eOpposite="#//Tax_Class/tax_Payer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Card" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Tax_Card" eOpposite="#//Tax_Card/tax_Payer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income_Tax_Credit" ordered="false"
+        upperBound="-1" eType="#//Income_Tax_Credit" eOpposite="#//Income_Tax_Credit/taxPayer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expenses" ordered="false"
+        upperBound="-1" eType="#//Expense" eOpposite="#//Expense/tax_Payer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="household" eType="#//Household"
+        eOpposite="#//Household/tax_Payer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependents" ordered="false"
+        upperBound="-1" eType="#//Dependent" eOpposite="#//Dependent/responsible_person"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependent" eType="#//Dependent"
+        eOpposite="#//Dependent/tax_Payer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income_Tax_Deduction" ordered="false"
+        upperBound="-1" eType="#//Income_Tax_Deduction" eOpposite="#//Income_Tax_Deduction/tax_Payer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="taxed_jointly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="taxation_year" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomeTax" eType="#//Income_Tax"
+        eOpposite="#//Income_Tax/taxPayer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Physical_Person">
+    <eOperations name="is_separated_from" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="IN_person" lowerBound="1" eType="#//Physical_Person"/>
+    </eOperations>
+    <eOperations name="is_person_affiliated_personnaly_to_social_security" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is_assisting_spouse" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="SSNo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allowances" ordered="false"
+        upperBound="-1" eType="#//External_Allowance" eOpposite="#//External_Allowance/person"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="addresses" ordered="false"
+        upperBound="-1" eType="#//Address" eOpposite="#//Address/taxPayer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legal_union_A" ordered="false"
+        upperBound="-1" eType="#//Legal_Union_Record" eOpposite="#//Legal_Union_Record/individual_A"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legal_union_B" ordered="false"
+        upperBound="-1" eType="#//Legal_Union_Record" eOpposite="#//Legal_Union_Record/individual_B"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disability_percentage"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is_affiliated_personnaly_to_social_security"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="External_Allowance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="grantor" lowerBound="1"
+        eType="#//Grantor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid_from_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid_until_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="person" lowerBound="1"
+        eType="#//Physical_Person" eOpposite="#//Physical_Person/allowances"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Address">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="country" lowerBound="1"
+        eType="#//Country" defaultValueLiteral="LU"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="street" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zipCode" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taxPayer" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Physical_Person" eOpposite="#//Physical_Person/addresses"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Legal_Union_Record">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="Legal_Union_different_people_constraint"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="invariant"/>
+      </eAnnotations>
+      <details key="Legal_Union_different_people_constraint" value="if self.end_date.oclIsUndefined() then self.individual_A.SSNo &lt;> self.individual_B.SSNo and self.individual_A->size()=1 and self.individual_B->size()=1 else false endif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individual_B" lowerBound="1"
+        eType="#//Physical_Person" eOpposite="#//Physical_Person/legal_union_B"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individual_A" lowerBound="1"
+        eType="#//Physical_Person" eOpposite="#//Physical_Person/legal_union_A"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tax_Class">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_class" lowerBound="1"
+        eType="#//Tax_Class_Category"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Payer" lowerBound="1"
+        eType="#//Tax_Payer" eOpposite="#//Tax_Payer/tax_class"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid_from_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid_until_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="current_tax_class" lowerBound="1"
+        eType="#//Tax_Class" eOpposite="#//Tax_Class/prev"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" eType="#//Tax_Class"
+        eOpposite="#//Tax_Class/current_tax_class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_card" ordered="false"
+        upperBound="-1" eType="#//Tax_Card" eOpposite="#//Tax_Card/tax_Class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependent" eSuperTypes="#//Physical_Person">
+    <eOperations name="compute_if_dependent_receives_allowances_eligible_for_CIM"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="compute_if_dependent_receives_allowances_eligible_for_DS" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="compute_if_dependent_receives_allowances_eligible_for_CE_dependance_and_care"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="is_dependent_following_continued_studies" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="IN_continued_studies" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependent_type" lowerBound="1"
+        eType="#//Dependent_Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="household" lowerBound="1"
+        eType="#//Household" eOpposite="#//Household/dependent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="responsible_person" lowerBound="1"
+        eType="#//Tax_Payer" eOpposite="#//Tax_Payer/dependents"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="continued_studies" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Payer" eType="#//Tax_Payer"
+        eOpposite="#//Tax_Payer/dependent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expense" ordered="false"
+        upperBound="-1" eType="#//Expense" eOpposite="#//Expense/dependent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Household">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Payer" lowerBound="1"
+        eType="#//Tax_Payer" eOpposite="#//Tax_Payer/household"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependent" ordered="false"
+        upperBound="-1" eType="#//Dependent" eOpposite="#//Dependent/household"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Fiscal_Address" eSuperTypes="#//Address"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Habitual_Address" eSuperTypes="#//Address"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Marriage_Record" eSuperTypes="#//Legal_Union_Record"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Non_Resident_Tax_Payer" eSuperTypes="#//Tax_Payer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Partnership_Record" eSuperTypes="#//Legal_Union_Record"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Resident_Tax_Payer" eSuperTypes="#//Tax_Payer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Income_Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subjectToWithholdingTax"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income" ordered="false"
+        upperBound="-1" eType="#//Income" eOpposite="#//Income/income_type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trade_and_Business_Income" eSuperTypes="#//Income_Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Agriculture_and_Forestry_Income" eSuperTypes="#//Income_Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Independent_Professional_Services_Income"
+      eSuperTypes="#//Income_Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Pensions_and_Annuities_Income" eSuperTypes="#//Income_Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="occasional_payement" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Capital_and_Investments_Income" eSuperTypes="#//Income_Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Employment_Income" eSuperTypes="#//Income_Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Rentals_and_Leases_Income" eSuperTypes="#//Income_Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Sundry_Income" eSuperTypes="#//Income_Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Directors_Fee" eSuperTypes="#//Independent_Professional_Services_Income"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Foreign_Income" eSuperTypes="#//Income"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Local_Income" eSuperTypes="#//Income"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Income">
+    <eOperations name="compute_duration_of_contract" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="compute_duration_of_contract_within_taxation_year" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eParameters name="IN_date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income_type" lowerBound="1"
+        eType="#//Income_Type" eOpposite="#//Income_Type/income"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="income_amount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start_date_within_taxation_year"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start_date_of_contract"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end_date_within_taxation_year"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_card" ordered="false"
+        upperBound="-1" eType="#//Tax_Card" eOpposite="#//Tax_Card/income"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expenses" ordered="false"
+        upperBound="-1" eType="#//Expense" eOpposite="#//Expense/income"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_liability" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taxPayer" lowerBound="1"
+        eType="#//Tax_Payer" eOpposite="#//Tax_Payer/incomes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tax_Card">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="Taxpayer_is_eligible_To_have_a_taxcard Tax_Card_AC_constraint Tax_Card_CE_constraint Tax_Card_DS_constraint Tax_Card_FD_constraint Tax_Card_FO_constraint Tax_Credits_constraint"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="invariant *"/>
+      </eAnnotations>
+      <details key="Taxpayer_is_eligible_To_have_a_taxcard" value="not self.oclIsUndefined() implies (self.income.income_type.oclIsTypeOf(TaxCard::Employment_Income) or  self.income.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income) or self.income.income_type.oclIsTypeOf(TaxCard::Capital_and_Investments_Income) or self.income.income_type.oclIsTypeOf(TaxCard::Directors_Fee))"/>
+      <details key="Tax_Card_AC_constraint" value="let set_ac : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::AC) and deduction.tax_year = self.valid_from_date), ac : TaxCard::AC = set_ac->any(true).oclAsType(TaxCard::AC), set_fo : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::FO) and deduction.tax_year = self.valid_from_date), set_ds : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::DS) and deduction.tax_year = self.valid_from_date) in&#xA;set_ac->size() = 1 implies self.tax_card_type=TaxCard::Tax_Card_Type::Additional and self.tax_Payer.taxed_jointly and self.deduction_AC_yearly = ac.deductible_amount and self.deduction_AC_monthly = ac.deductible_amount/12 and self.deduction_AC_daily = self.deduction_AC_monthly/25 /**25 working days per month**/ and if(set_ds->size()>0) then set_ds->size() =1 and self.deduction_DS_yearly->notEmpty() and self.deduction_DS_yearly = set_ds.deductible_amount ->sum() else true endif&#xA;and if(set_fo->size()>0) then set_fo->size() = 1 and self.deduction_FO_yearly->notEmpty() and self.deduction_FO_yearly = set_fo.deductible_amount ->sum() else true endif"/>
+      <details key="Tax_Card_CE_constraint" value="let set_ce : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::CE) and deduction.tax_year = self.valid_from_date), ce : TaxCard::CE = set_ce->any(true).oclAsType(TaxCard::CE) in set_ce->size() = 1  implies self.tax_card_type=TaxCard::Tax_Card_Type::Principal and self.deduction_CE_yearly = ce.deductible_amount and self.deduction_CE_monthly = ce.deductible_amount/12 and self.deduction_CE_daily = self.deduction_CE_monthly/25"/>
+      <details key="Tax_Card_DS_constraint" value="let set_ds : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::DS) and d.tax_year = self.valid_from_date), total_ds : Integer = set_ds.deductible_amount->sum()  in set_ds->size()>0 and self.tax_card_type = TaxCard::Tax_Card_Type::Principal implies if total_ds > TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS.oclAsType(Integer) then self.deduction_DS_monthly = (total_ds - TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS.oclAsType(Integer))/(self.income.compute_duration_of_contract_within_taxation_year(self.valid_from_date)) else false endif"/>
+      <details key="Tax_Card_FD_constraint" value="not self.oclIsUndefined() implies self.income.taxPayer.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FD) and d.tax_year = self.valid_from_date)->size() = 1 and let fd : TaxCard::FD = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FD) and d.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::FD) in self.deduction_FD_daily = fd.daily and self.deduction_FD_monthly = fd.monthly and self.deduction_FD_yearly = fd.yearly"/>
+      <details key="Tax_Card_FO_constraint" value="not self.oclIsUndefined() implies self.income.taxPayer.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FO) and d.tax_year = self.valid_from_date)->size() = 1 and let fo : TaxCard::FO = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FO) and d.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::FO) in self.deduction_FO_daily = fo.daily and self.deduction_FO_monthly = fo.monthly and self.deduction_FO_yearly = fo.yearly"/>
+      <details key="Tax_Credits_constraint" value="self.tax_card_type = TaxCard::Tax_Card_Type::Principal implies let cim : TaxCard::CIM = self.income_Tax_Credit->select(c|c.oclIsTypeOf(TaxCard::CIM) and c.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::CIM), cis : TaxCard::CIS = self.income_Tax_Credit->select(cis|cis.oclIsTypeOf(TaxCard::CIS) and cis.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::CIS), cip : TaxCard::CIP = self.income_Tax_Credit->select(cip|cip.oclIsTypeOf(TaxCard::CIP) and cip.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::CIP) in (not cis.oclIsUndefined()) xor (not cip.oclIsUndefined()) = true&#xA;and if not cim.oclIsUndefined() then self.credit_CIM_daily = cim.daily and self.credit_CIM_monthly = cim.monthly else true endif and if not cis.oclIsUndefined()then self.credit_CIS_daily = cis.daily and self.credit_CIS_monthly = cis.monthly  else true endif and if not cip.oclIsUndefined()then self.credit_CIP_monthly = cip.monthly  else true endif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="card_identifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_card_type" lowerBound="1"
+        eType="#//Tax_Card_Type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_office" lowerBound="1"
+        eType="#//Tax_Office"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid_from_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid_until_date" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage_of_witholding"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Class" lowerBound="1"
+        eType="#//Tax_Class" eOpposite="#//Tax_Class/tax_card"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_payers_SSno" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_payers_name_surname"
+        ordered="false" lowerBound="2" upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_payers_partner_name_surname"
+        ordered="false" lowerBound="2" upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_payers_address" lowerBound="1"
+        eType="#//Address" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jobs_Employer_SSNo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jobs_employers_name" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jobs_activity_type" lowerBound="1"
+        eType="#//Job_Activity" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jobs_place_of_work" lowerBound="1"
+        eType="#//Town" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_FD_daily" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_FD_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_FD_yearly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_AC_daily" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_AC_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_AC_yearly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_CE_daily" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_CE_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_CE_yearly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_DS_daily" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_DS_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_DS_yearly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_FO_daily" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_FO_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deduction_FO_yearly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit_CIS_daily" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit_CIS_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit_CIP_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit_CIM_daily" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit_CIM_monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Payer" lowerBound="1"
+        eType="#//Tax_Payer" eOpposite="#//Tax_Payer/tax_Card"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income_Tax_Credit" ordered="false"
+        upperBound="-1" eType="#//Income_Tax_Credit" eOpposite="#//Income_Tax_Credit/taxation_Frame"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income_Tax_Deduction" ordered="false"
+        upperBound="-1" eType="#//Income_Tax_Deduction" eOpposite="#//Income_Tax_Deduction/tax_card"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" eType="#//Tax_Card"
+        eOpposite="#//Tax_Card/current_tax_card"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="current_tax_card" lowerBound="1"
+        eType="#//Tax_Card" eOpposite="#//Tax_Card/previous"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income" lowerBound="1"
+        eType="#//Income" eOpposite="#//Income/tax_card"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CIM" eSuperTypes="#//Income_Tax_Credit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CIP" eSuperTypes="#//Income_Tax_Credit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CIS" eSuperTypes="#//Income_Tax_Credit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Income_Tax_Credit">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="grantedBy" lowerBound="1"
+        eType="#//Grantor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taxPayer" eType="#//Tax_Payer"
+        eOpposite="#//Tax_Payer/income_Tax_Credit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_year" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yearly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="300"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="25"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="daily" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taxation_Frame" eType="#//Tax_Card"
+        eOpposite="#//Tax_Card/income_Tax_Credit"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FD" eSuperTypes="#//Professional_Expenses_Deduction">
+    <eOperations name="compute_distance_unit_between_home_and_workpalce" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance_declared_in_january"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="calculated_distance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Professional_Expenses_Deduction" eSuperTypes="#//Income_Tax_Deduction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FO" eSuperTypes="#//Professional_Expenses_Deduction">
+    <eOperations name="compute_disability_flat_rate" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="compute_regular_flat_rate" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rate_type_for_FO" lowerBound="1"
+        eType="#//Type_of_Rate" volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CE" eSuperTypes="#//Income_Tax_Deduction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ce_deduction_type" lowerBound="1"
+        eType="#//CE_Type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependent_relative_flat_rate"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disability_flat_rate" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AC" eSuperTypes="#//Income_Tax_Deduction">
+    <eOperations name="is_eligible_income_for_AC" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if IN_income.income_type.oclIsTypeOf(Employment_Income) or&#xA;&#x9;&#x9;&#x9;  &#x9;IN_income.income_type.oclIsTypeOf(Independent_Professional_Services_Income) or&#xA;&#x9;&#x9;&#x9;  &#x9;IN_income.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or&#xA;&#x9;&#x9;&#x9;  &#x9;IN_income.income_type.oclIsTypeOf(Trade_and_Business_Income) then&#xA;&#x9;&#x9;&#x9;      true&#xA;&#x9;&#x9;&#x9;  else&#xA;&#x9;&#x9;&#x9;  &#x9;false&#xA;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+      <eParameters name="IN_income" lowerBound="1" eType="#//Income"/>
+    </eOperations>
+    <eOperations name="is_eligible_income_for_AC_assisting_spouse" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if  IN_income.income_type.oclIsTypeOf(Independent_Professional_Services_Income) or&#xA;&#x9;&#x9;&#x9;  &#x9;IN_income.income_type.oclIsTypeOf(Trade_and_Business_Income) then&#xA;&#x9;&#x9;&#x9;    true&#xA;&#x9;&#x9;&#x9;     else&#xA;&#x9;&#x9;&#x9;  &#x9;false&#xA;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+      <eParameters name="IN_income" lowerBound="1" eType="#//Income"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DS_for_Permanent_Expense" eSuperTypes="#//DS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="permanent_expense_category"
+        lowerBound="1" eType="#//Category_of_Permanent_Expense"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DS" eSuperTypes="#//Income_Tax_Deduction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximum_deductible_amount"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DS_for_Interest_Expense" eSuperTypes="#//DS">
+    <eOperations name="compute_maximum_deductible_amount" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eParameters name="IN_children_with_allowances" ordered="false" upperBound="-1"
+          eType="#//Dependent"/>
+      <eParameters name="IN_legal_union" ordered="false" upperBound="-1" eType="#//Legal_Union_Record"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DS_for_Health_and_Pension_Insurance"
+      eSuperTypes="#//DS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="insurance_category" lowerBound="1"
+        eType="#//Category_of_Health_and_Pension_Insurances"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DS_for_Private_Insurance_and_Plan" eSuperTypes="#//DS">
+    <eOperations name="compute_increase_for_life_insurance" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="compute_maximum_deductible_amount_for_private_insruance"/>
+    <eOperations name="compute_maximum_deductible_amount_for_old_age_pension_plan"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="private_insurance_and_plan_category"
+        lowerBound="1" eType="#//Category_of_Private_Insurance_and_Plan"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="increase_for_life_insurance"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximum_deductible_amount_for_private_insurance"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximum_deductible_amount_for_old_age_pension_plan"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DS_for_Loss_Carryforward" eSuperTypes="#//DS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DS_for_Donation" eSuperTypes="#//DS">
+    <eOperations name="compute_maximum_deductible_amount_for_donation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eParameters name="IN_maximum_percentage" lowerBound="1" eType="#//Constants"/>
+      <eParameters name="IN_total_tax_payer_income" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Income_Tax_Deduction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expenses" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Expense" eOpposite="#//Expense/deduction"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_year" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="daily" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="monthly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yearly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Payer" eType="#//Tax_Payer"
+        eOpposite="#//Tax_Payer/income_Tax_Deduction"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deductible_amount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_card" eType="#//Tax_Card"
+        eOpposite="#//Tax_Card/income_Tax_Deduction"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Permanent_Expense" eSuperTypes="#//Special_Expense_DS">
+    <eOperations name="is_expense_eligible_for_deduction" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="IN_agent_response" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" lowerBound="1"
+        eType="#//Category_of_Permanent_Expense"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is_eligible_for_deduction"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" defaultValueLiteral="false" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Special_Expense_DS" eSuperTypes="#//Expense"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expense">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tax_Payer" lowerBound="1"
+        eType="#//Tax_Payer" eOpposite="#//Tax_Payer/expenses"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="declared_amount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expense_purpose" lowerBound="1"
+        eType="#//Expense_Purpose" defaultValueLiteral="OTHER"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependent" eType="#//Dependent"
+        eOpposite="#//Dependent/expense"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="year_expense_was_incurred_in"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="income" eType="#//Income"
+        eOpposite="#//Income/expenses"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deduction" eType="#//Income_Tax_Deduction"
+        eOpposite="#//Income_Tax_Deduction/expenses"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interest_Expense" eSuperTypes="#//Special_Expense_DS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Private_Insurance_and_Plan" eSuperTypes="#//Special_Expense_DS">
+    <eOperations name="is_private_insurance_and_plan_eligible_for_deduction">
+      <eParameters name="IN_eligible_plan" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" lowerBound="1"
+        eType="#//Category_of_Private_Insurance_and_Plan"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration_of_contract" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is_private_insurance_and_plan_eligible_for_deduction"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" defaultValueLiteral="false" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Category_of_Private_Insurance_and_Plan">
+    <eLiterals name="PRIVATE_INSURANCE"/>
+    <eLiterals name="PRIVATE_LIFE_INSURANCE" value="1"/>
+    <eLiterals name="COMPANY_MEMBERS_PRIVATE_INSURANCE" value="2"/>
+    <eLiterals name="HOUSING_SAVING_PLAN" value="3"/>
+    <eLiterals name="OLD_AGE_PENSION_PLAN" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Health_and_Pension_Insurance" eSuperTypes="#//Special_Expense_DS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" lowerBound="1"
+        eType="#//Category_of_Health_and_Pension_Insurances"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is_related_to_additional_salary"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Category_of_Health_and_Pension_Insurances">
+    <eLiterals name="MANDATORY_HEALTH_AND_PENSION_INSURANCE"/>
+    <eLiterals name="ADDITIONAL_EMPLOYERS_PENSION_INSURANCE" value="1"/>
+    <eLiterals name="CONTINUED_HEALTH_AND_PENSION_INSURANCE" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Donation" eSuperTypes="#//Special_Expense_DS">
+    <eOperations name="get_beneficiary_eligibility_for_deduction">
+      <eParameters name="IN_eligibility" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beneficiary" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is_beneficiary_eligible"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" defaultValueLiteral="false" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is_donation_reported" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Loss_Carryforward" eSuperTypes="#//Special_Expense_DS">
+    <eOperations name="is_accountability_regular" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="IN_regularity" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="is_compensated_by_other_means">
+      <eParameters name="IN_compensated" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="has_been_tax_payer_partner_in_business">
+      <eParameters name="IN_has_been_partner_in_business" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="has_tax_payer_inherited_business_ownership">
+      <eParameters name="IN_inherited_business_ownership" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regular_accountability"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compensation_by_other_means"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_payer_has_inherited_business_ownership"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" defaultValueLiteral="false" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tax_payer_has_been_partner_in_business"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        volatile="true" defaultValueLiteral="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Spousal_Expense_AC" eSuperTypes="#//Expense"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Extraordinary_Expense_CE" eSuperTypes="#//Expense">
+    <eOperations name="is_above_thresholded_deduction_percentage_for_CE" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="compute_thresholded_deduction_percentage_for_CE">
+      <eParameters name="IN_thresholded_deduction_percentage" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="thresholded_deduction_percentage"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ce_type" lowerBound="1"
+        eType="#//CE_Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Travel_Expense_FD" eSuperTypes="#//Professional_Expense"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Professional_Expense" eSuperTypes="#//Expense"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Miscellaneous_Expense_FO" eSuperTypes="#//Professional_Expense"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Category_of_Permanent_Expense">
+    <eLiterals name="MISCELLANEOUS_DEBT"/>
+    <eLiterals name="ALIMONY" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>

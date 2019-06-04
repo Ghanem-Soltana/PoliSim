@@ -1,0 +1,34 @@
+context TaxPayer inv CIS:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let employement_income:Set(Income) = self.incomes->select(inc: Income | inc.year = taxation_year and inc.tax_card->notEmpty() and inc.income_type.oclIsTypeOf(Employement_Income)) in														
+let income_under_withholding_taxation:Boolean = employement_income->size()>0 in														
+if (income_under_withholding_taxation) = false then
+let expected_credit:MonetaryValue = 0 in
+let actual_credit:MonetaryValue = self.getCIS(taxation_year).yearly in														
+actual_credit = expected_credit
+else
+   if (income_under_withholding_taxation) = true then
+     let tax_liability:Numeric = employement_income.tax_liability->sum() in														
+     let total_income:MonetaryValue = employement_income.income_amount->sum() in														
+     let CIS_minimum:MonetaryValue = Constant::CIS_MINIMUM.oclAsType(MonetaryValue) 
+     /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - **/ in 								
+     if (total_income > (CIS_minimum_income * tax_liability)) = true then
+     let flat_rate_CIS_yearly:MonetaryValue = Constant::FLAT_RATE_CIS_YEARLY.oclAsType(MonetaryValue) 
+     /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - **/ in 								
+     let expected_credit:MonetaryValue = flat_rate_CIS_yearly * tax_liability in
+     let actual_credit:MonetaryValue = self.getCIS(taxation_year).yearly in														
+     actual_credit = expected_credit
+     else
+        if (total_income > (CIS_minimum_income * tax_liability)) = false then
+        let expected_credit:MonetaryValue = 0 in
+        let actual_credit:MonetaryValue = self.getCIS(taxation_year).yearly in														
+        actual_credit = expected_credit
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif

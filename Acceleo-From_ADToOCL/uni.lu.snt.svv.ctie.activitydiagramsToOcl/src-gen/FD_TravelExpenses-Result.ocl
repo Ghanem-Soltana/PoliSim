@@ -1,0 +1,325 @@
+context TaxPayer inv FD_TravelExpenses:
+
+
+
+
+
+
+
+
+
+let taxation_year:Date = self.taxation_year  
+/** TRACEABILITY: Agent type: officer - Question: When was the request postmarked? -  **/ in									
+
+
+
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+
+
+                         					
+
+incomes -> forAll (income:Income|
+ 
+
+
+
+let is_income_eligible:Boolean = income.income_type.oclIsTypeOf(EmploymentIncome) or income.income_type.oclIsTypeOf(PensionAndAnnuitiesIncome) or income.income_type.oclIsTypeOf(Rentals_and_Leases) in
+
+ 									
+                         					
+
+if (is_income_eligible) = true then
+ 
+     
+     
+     
+     let units_of_distance:DistanceUnit = income.units_of_distance
+     
+     /** TRACEABILITY: Source: Reglement ministeriel du 6 fevrier 2012 -  **/ in								
+      									
+                              					
+     
+     
+     
+     
+     let distance_declared_in_january:DistanceUnit = income.distance_declared_in_january in
+     
+      									
+                              					
+     
+     if (units_of_distance > distance_declared_in_january) = true then
+      
+               
+               let minimum_distance_in_units:DistanceUnit = Constant::MINIMUM_DISTANCE_IN_UNITS.oclAsType(DistanceUnit)  
+               /** TRACEABILITY: Source: Art. 105bis of the income tax law -  **/ in 								
+               
+               
+               if (units_of_distance > minimum_distance_in_units) = true then
+                
+                              
+                              let maximum_distance_in_units:DistanceUnit = Constant::MAXIMUM_DISTANCE_IN_UNITS.oclAsType(DistanceUnit)  
+                              /** TRACEABILITY: Source: Art. 105bis of the income tax law -  **/ in 								
+                              
+                              
+                              if (units_of_distance > maximum_distance_in_units) = true then
+                              
+                              
+                              
+                              
+                              
+                              
+                              let flat_rate_per_unit:MonetaryValue = Constant::FLAT_RATE_PER_UNIT.oclAsType(MonetaryValue)  
+                              /** TRACEABILITY: Source: Art. 105bis of the income tax law -  **/ in 								
+                              
+                              
+                              
+                              let flat_maximum_distance_in_units:MonetaryValue = Constant::FLAT_MAXIMUM_DISTANCE_IN_UNITS.oclAsType(MonetaryValue)  
+                              /** TRACEABILITY: Source: Art. 105bis of the income tax law -  **/ in 								
+                              
+                              
+                              let expected_deduction:MonetaryValue =  flat_rate_per_unit * flat_maximum_distance_in_units in
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              let actual_deduction:MonetaryValue = income.getDeductionForFD(taxation_year).deduced_amount in
+                              
+                               									
+                                                       					
+                              
+                              actual_deduction = expected_deduction
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              else
+                                   if (units_of_distance > maximum_distance_in_units) = false then
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   let flat_rate_per_unit:MonetaryValue = Constant::FLAT_RATE_PER_UNIT.oclAsType(MonetaryValue)  
+                                   /** TRACEABILITY: Source: Art. 105bis of the income tax law -  **/ in 								
+                                   
+                                   
+                                   let expected_deduction:MonetaryValue = flat_rate_per_unit * units_of_distance in
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   let actual_deduction:MonetaryValue = income.getDeductionForFD(taxation_year).deduced_amount in
+                                   
+                                    									
+                                                            					
+                                   
+                                   actual_deduction = expected_deduction
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   else
+                                   false
+               
+               
+               
+               
+               
+               
+                                   endif
+               
+               
+                              endif
+               
+               
+               else
+                    if (units_of_distance > minimum_distance_in_units) = false then
+                    
+                    
+                    
+                    
+                    
+                    
+                    let flat_rate_per_unit:MonetaryValue = Constant::FLAT_RATE_PER_UNIT.oclAsType(MonetaryValue)  
+                    /** TRACEABILITY: Source: Art. 105bis of the income tax law -  **/ in 								
+                    
+                    
+                    let expected_deduction:MonetaryValue = flat_rate_per_unit * minimum_distance_in_units in
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    let actual_deduction:MonetaryValue = income.getDeductionForFD(taxation_year).deduced_amount in
+                    
+                     									
+                                             					
+                    
+                    actual_deduction = expected_deduction
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    else
+                    false
+     
+     
+     
+     
+     
+     
+                    endif
+     
+     
+               endif
+     
+     
+     else
+          if (units_of_distance > distance_declared_in_january) = false then
+          
+          
+          
+          
+          
+          let expected_deduction:MonetaryValue = 0 in
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          let actual_deduction:MonetaryValue = income.getDeductionForFD(taxation_year).deduced_amount in
+          
+           									
+                                   					
+          
+          actual_deduction = expected_deduction
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          else
+          false
+
+
+
+
+
+
+          endif
+
+
+     endif
+
+
+else
+     if (is_income_eligible) = false then
+     
+     
+     
+     
+     
+     let expected_deduction:MonetaryValue = 0 in
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     let actual_deduction:MonetaryValue = income.getDeductionForFD(taxation_year).deduced_amount in
+     
+      									
+                              					
+     
+     actual_deduction = expected_deduction
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     else
+     false
+
+
+
+
+
+
+     endif
+
+
+endif
+
+
+
+)
+
+
+
+ 
+ 

@@ -1,0 +1,29 @@
+[comment encoding = UTF-8 /]
+[module MatlabInputExpansionNodeDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')] 
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::declaration::MatlabActivityParameterNodeDeclaration/]
+
+
+[template public declareanExpansionNode(anExpansionNode : ExpansionNode)]
+[if (anExpansionNode.owner.oclIsTypeOf(ExpansionRegion))]
+[let expansionRegion:ExpansionRegion=anExpansionNode.owner.oclAsType(ExpansionRegion)]
+[let possibleExpansion:Set(ExpansionNode)=expansionRegion.eAllContents()->filter(ExpansionNode)->excluding(anExpansionNode)->asSet()]
+[for (exp:ExpansionNode | possibleExpansion)]
+[let objectFlows:Set(ObjectFlow)=expansionRegion.owner.eAllContents()->filter(ObjectFlow)->asSet()]
+[let flows:Set(ObjectFlow)= objectFlows->select(target.oclIsTypeOf(ExpansionNode) and target.oclAsType(ExpansionNode).name.equalsIgnoreCase(exp.name))]
+[for (flow:ObjectFlow | flows )]
+[if(flow.source.owner = expansionRegion.owner)]
+[anExpansionNode.name/] = [exp.name/].[anExpansionNode.name/];% We will see later
+[/if]
+[/for]
+[/let]
+[/let]
+[/for]
+[/let]
+[/let]
+[else]
+[anExpansionNode.name/]= ;% We will see later
+[/if]
+[/template]
+
+[query public expansionNodeToBedeclared(anActivity:Activity,arg0 : ExpansionRegion, arg1 : String, arg2 : Sequence(ExpansionNode), arg3 : Sequence(ExpansionNode)) : Sequence(ExpansionNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'expansionNodeToBedeclared(org.eclipse.uml2.uml.Activity,org.eclipse.uml2.uml.ExpansionRegion, java.lang.String, java.util.List, java.util.List)', Sequence{anActivity,arg0, arg1, arg2, arg3}) /]

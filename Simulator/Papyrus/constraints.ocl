@@ -1,0 +1,642 @@
+import 'TaxCard.uml'
+/**TaxPayer  constraints**/
+
+package TaxCard
+
+context Tax_Payer inv Tax_class:
+self.getTaxClass(2015) = invalid
+
+
+context Tax_Payer inv AEP:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+let is_taxed_jointly:Boolean = self.getIsTaxedJointly(taxation_year) and self.getIsMaried(taxation_year)
+ in													
+/** Description: Returns yes if the taxpayer is taxed-jointly;no otherwises - **/	
+if (is_taxed_jointly) = false then
+let expected_AEP:Real = 0 in
+self.AEP_deduction->any(true).oclIsUndefined()
+else
+   if (is_taxed_jointly) = true then
+     let spouse:Tax_Payer = self.getSpouse(taxation_year).oclAsType(Tax_Payer) in													
+     /** Description: Returns the spouse of the taxpayer -  **/	
+     let has_highest_revenue_in_household:Boolean = self.incomes.income_per_year()->max() > spouse.incomes.income_per_year()->max() in													
+     /** Description: Returns yes if the taxpayer has the highest revenue -  within the household, in which he is taxed jointly otherwise no -  **/	
+     if (has_highest_revenue_in_household) = true then
+     let expected_AEP:Real = 0 in
+     self.AEP_deduction->any(true).oclIsUndefined()
+     else
+        if (has_highest_revenue_in_household) = false then
+             let has_professional_income :Boolean = self.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or income_type.oclIsTypeOf(Employment_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income)) in													
+             /** Description: Returns yes if the taxpayer has a professional income; otherwise no -  **/	
+             let spouse_has_professional_income:Boolean = spouse.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or income_type.oclIsTypeOf(Employment_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income)) in													
+             /** Description: Returns yes if the spouse  has a professional income; otherwise no -  **/	
+             let is_spouse_affiliated_to_social_security:Boolean = spouse.incomes.details->any(is_contributing_CNS).oclIsUndefined()=false in													
+             /** Description: Returns yes if the taxpayer is affiliated to public or private social security; otherwise no -  **/	
+             let is_taxpayer_affiliated_to_social_security :Boolean = self.incomes.details->any(is_contributing_CNS).oclIsUndefined()=false in													
+             /** Description: Returns yes if the taxpayer is affiliated to public or private social security; otherwise no -  **/	
+             if (has_professional_income and spouse_has_professional_income and is_taxpayer_affiliated_to_social_security and is_spouse_affiliated_to_social_security) = true then
+             let AEP_flat_rate:Real = self.from_law.AEP_FLAT_RATE() in 
+             /** TRACEABILITY: Source: Art. 129b of the Luxembourg's Income Tax Law, 2013   - AEP_flat_rate =4500 euros per year - 375 euros par month - **/ 								
+             let expected_AEP:Real = AEP_flat_rate in
+             self.AEP_deduction->any(true).oclIsUndefined()
+             else
+               if (has_professional_income and spouse_has_professional_income and is_taxpayer_affiliated_to_social_security and is_spouse_affiliated_to_social_security) = false then
+                       let has_commercial_income:Boolean = self.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income)) in													
+                       /** Description: Returns yes if the taxpayer has a commercial income; otherwise no -  **/	
+                       let taxpayer_is_assisting_spouse:Boolean = self.is_assisting_spouse in													
+                       /** Description: Returns yes if the taxpayer is assisting his spouse in its commercial income; otherwise no -  **/	
+                       let spouse_is_assisting_taxpayer:Boolean = spouse.is_assisting_spouse in													
+                       /** Description: Returns yes if the spouse is assisting the taxpayer in its commercial income; otherwise no -  **/	
+                       let spouse_has_commercial_income:Boolean = spouse.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income)) in													
+                       /** Description: Returns yes if the spouse has a commercial income; otherwise no -  **/	
+                       if ((has_commercial_income and spouse_is_assisting_taxpayer) or (spouse_has_commercial_income and taxpayer_is_assisting_spouse)) = true then
+                       let AEP_flat_rate:Real = self.from_law.AEP_FLAT_RATE() in 
+                       /** TRACEABILITY: Source: Art. 129b of the Luxembourg's Income Tax Law, 2013   - AEP_flat_rate =4500 euros per year - 375 euros par month - **/ 								
+                       let expected_AEP:Real = AEP_flat_rate in
+                       self.AEP_deduction->any(true).oclIsUndefined()
+                       else
+                         if ((has_commercial_income and spouse_is_assisting_taxpayer) or (spouse_has_commercial_income and taxpayer_is_assisting_spouse)) = false then
+                                   let spouse_pension_period:Integer = spouse.incomes.getDurationInyears()->max() in													
+                                   /** Description: Returns -1 if the spouse does not have any pension;otherwise returns the number of years for which the spouse has been receiving  at least one pension  -  **/	
+                                   let taxpayer_pension_period:Integer = self.incomes.getDurationInyears()->max() in													
+                                   /** Description: Returns -1 if the taxpayer does not have any pension; otherwise returns the number of years for which the taxpayer has been receiving  at least one pension  -  **/	
+                                   if ((has_professional_income and (spouse_pension_period <= 3 and spouse_pension_period >0)) or (spouse_has_professional_income and (taxpayer_pension_period <= 3 and taxpayer_pension_period > 0))) = true then
+                                   let AEP_flat_rate:Real = self.from_law.AEP_FLAT_RATE() in 
+                                   /** TRACEABILITY: Source: Art. 129b of the Luxembourg's Income Tax Law, 2013   - AEP_flat_rate =4500 euros per year - 375 euros par month - **/ 								
+                                   let expected_AEP:Real = AEP_flat_rate in
+                                   self.AEP_deduction->any(true).oclIsUndefined()
+                                   else
+                                      if ((has_professional_income and (spouse_pension_period <= 3 and spouse_pension_period >0)) or (spouse_has_professional_income and (taxpayer_pension_period <= 3 and taxpayer_pension_period > 0))) = false then
+                                      let expected_AEP:Real = 0 in
+                                      self.AEP_deduction->any(true).oclIsUndefined()
+                                      else
+                                      false
+                                      endif
+                                   endif
+                         else
+                         false
+                         endif
+                       endif
+               else
+               false
+               endif
+             endif
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+
+context Household inv toBeGenerated:
+self.parents->any(true).individual_A <> self.parents->any(true).individual_B and self.parents->any(true).individual_B.oclAsType(Tax_Payer).dependents->size()=0 and Tax_Property.allInstances()->size()=1 and self.parents->any(true).oclAsType(Tax_Payer).incomes->any(true).details->any(true).is_contributing_CNS and self.parents->any(true).oclAsType(Tax_Payer).incomes->any(true).details->any(true).is_contributing_pension
+and self.children->size()>=0 and Income.allInstances().num->sum()>0
+
+context Legal_Union_Record inv test:
+self.properties->any(true).taxed_jointly and self.properties->any(true).starting_year>0 
+
+context Tax_Payer inv includes:
+self.AEP_deduction =0 and self.last_start_year_widower>-1 and SSNo='' and name=''
+
+context Income_Detail inv includes_Income:
+self.is_worked=true
+
+context External_Allowance inv includes_External_Allowance:
+self.ending_year>0
+
+context Tax_Payer inv FD:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.income_type.oclIsKindOf(Employment_Income) and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->sortedBy(income_amount*-1)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.income_type.oclIsKindOf(Employment_Income) and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in																										
+/** Description: The incomes of a given taxpayer for the studied tax year - The first income is the principal one. - The rest of incomes are sorted from the highest to the lowest - Note that taxpayers who are taxed jointly have only one principal income. - **/	
+incomes -> forAll (income1:Income|
+let is_income_subject_to_withholding:Boolean = income1.income_type.subjectToWithholdingTax in
+/** Description: Returns yes if the income is under withholding taxation. - **/							
+if (is_income_subject_to_withholding) = true then
+   let is_income_eligible:Boolean = income1.income_type.oclIsKindOf(Employment_Income) in
+   /** Description: Checks the type of the treated income.  - This input returns yes if the type is Employment; -  **/							
+   if (is_income_eligible) = false then
+   let calculated_FD:Real = 0 in
+        let flat_maximum_FD:Real = self.from_law.FLAT_MAXIMUM_FD() in 
+        /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+        let granted_FD_for_other_incomes:Real = income1.taxPayer.incomes->excluding(income1)->select(tax_card->notEmpty()).tax_card.deduction_FD_yearly->sum() in
+        /** Description: Returns the sum of granted FD deduction granted to -  all incomes of a given taxpayer.  -  **/							
+        if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = true then
+        let expected_FD:Real = flat_maximum_FD - (granted_FD_for_other_incomes) in
+        income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+        else
+          if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = false then
+          let expected_FD:Real = calculated_FD in
+          income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+          else
+          false
+          endif
+        endif
+   else
+     if (is_income_eligible) = true then
+     let details:OrderedSet(Income_Detail) = income1.details->sortedBy(month)->asOrderedSet() in														
+     /** Description: The collection of distances between a - taxpayer  s work and home addresses for - each month (from 1 to 12). A distance is - specified by three attributes: the value of the - distance, the month for which the value - of the distance was specified, and the full time - equivalent value (between 0 and 1). - Source: Ministerial - Regulation of February 6, 2012 -  **/	
+     let calculated_FD: Real = details->iterate(detail: Income_Detail; acc2:Real = 0 |
+     let has_the_taxpayer_worked_for_the_treated_month:Boolean = detail.is_worked in
+     /** Description: Returns yes if the taxpayer has worked -  during the month related to the treated -  distance. For instance, if we are treating -  the second distance, then we check if -  the taxpayer was employed in February.  -  **/							
+     if (has_the_taxpayer_worked_for_the_treated_month) = true then
+        let distance_value:Real = detail.distance in
+        /** Description: Home-to-work distance. -  **/							
+        let distance_reference:Real = 0 in
+        /** Description: The highest distance that is - used to calculate the deduction - for a given month. Initially this - input is set to 0. -  **/							
+        if (distance_value>distance_reference) = true then
+        true
+        else
+          if (distance_value>distance_reference) = false then
+               let minimum_distance_in_units:Real = self.from_law.MINIMUM_DISTANCE_IN_UNITS() in 
+               /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+               if (distance_reference> minimum_distance_in_units) = false then
+               acc2+0
+               else
+                  if (distance_reference> minimum_distance_in_units) = true then
+                         let maximum_distance_in_units:Real = self.from_law.MAXIMUM_DISTANCE_IN_UNITS() in 
+                         /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+                         if (distance_reference > maximum_distance_in_units) = true then
+                         let flat_rate_per_unit:Real = self.from_law.FLAT_RATE_PER_UNIT() in 
+                         /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+                         let full_time_equivalent:Real = income1.prorata_period() in
+                         /** Description: The periord for which the taxpayer - is actually working in for a particular -  month (between 0 and 1). -  **/							
+                         acc2+ flat_rate_per_unit * maximum_distance_in_units * full_time_equivalent
+                         else
+                            if (distance_reference > maximum_distance_in_units) = false then
+                            let flat_rate_per_unit:Real = self.from_law.FLAT_RATE_PER_UNIT() in 
+                            /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+                            let full_time_equivalent:Real = income1.prorata_period() in
+                            /** Description: The periord for which the taxpayer - is actually working in for a particular -  month (between 0 and 1). -  **/							
+                            acc2+flat_rate_per_unit * (distance_reference-minimum_distance_in_units) * full_time_equivalent
+                            else
+                            acc2+0
+                            endif
+                         endif
+                  else
+                  acc2+0
+                  endif
+               endif
+          else
+          acc2+0
+          endif
+        endif
+     else
+        if (has_the_taxpayer_worked_for_the_treated_month) = false then
+        acc2+0
+        else
+        acc2+0
+        endif
+     endif
+     ) in
+          let flat_maximum_FD:Real = self.from_law.FLAT_MAXIMUM_FD() in 
+          /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+          let granted_FD_for_other_incomes:Real = income1.taxPayer.incomes->excluding(income1)->select(tax_card->notEmpty()).tax_card.deduction_FD_yearly->sum() in
+          /** Description: Returns the sum of granted FD deduction granted to -  all incomes of a given taxpayer.  -  **/							
+          if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = true then
+          let expected_FD:Real = flat_maximum_FD - (granted_FD_for_other_incomes) in
+          income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+          else
+             if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = false then
+             let expected_FD:Real = calculated_FD in
+             income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+             else
+             false
+             endif
+          endif
+     else
+     false
+     endif
+   endif
+else
+   if (is_income_subject_to_withholding) = false then
+   let calculated_FD:Real = 0 in
+     let flat_maximum_FD:Real = self.from_law.FLAT_MAXIMUM_FD() in 
+     /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+     let granted_FD_for_other_incomes:Real = income1.taxPayer.incomes->excluding(income1)->select(tax_card->notEmpty()).tax_card.deduction_FD_yearly->sum() in
+     /** Description: Returns the sum of granted FD deduction granted to -  all incomes of a given taxpayer.  -  **/							
+     if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = true then
+     let expected_FD:Real = flat_maximum_FD - (granted_FD_for_other_incomes) in
+     income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+     else
+        if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = false then
+        let expected_FD:Real = calculated_FD in
+        income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+)
+
+context Tax_Payer inv CIS:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+if (taxation_year>=2009) = true then
+let incomes:Set(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.income_type.oclIsKindOf(Employment_Income) and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->sortedBy(income_amount*-1)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.income_type.oclIsKindOf(Employment_Income) and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1)) in																										
+/** Description: The incomes of a given taxpayer for the studied tax year. The first income is the principal one. - The rest of incomes are sorted from the highest to the lowest income. - Note that taxpayers who are taxed jointly have only one principal income. - **/	
+incomes -> forAll (income:Income|
+let is_income_subject_to_withholding:Boolean = income.income_type.subjectToWithholdingTax in
+/** Description: Returns yes if the income is under withholding taxation: false otherwise - **/							
+if (is_income_subject_to_withholding) = false then
+let expected_CIS:Real = 0 in
+income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+else
+   if (is_income_subject_to_withholding) = true then
+     let is_income_eligible:Boolean = true in
+     /** Description: Returns yes if the income is of type Employment; returns false otherwise. - To be eligible an income has to meet the condition cited in: http://www.impotsdirects.public.lu/az/r/reven_net_salar/index.html -  **/							
+     if (is_income_eligible) = false then
+     let expected_CIS:Real = 0 in
+     income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+     else
+        if (is_income_eligible) = true then
+             let CIS_already_attributed:Boolean = income.tax_card.credit_CIS_daily <> 0 or income.tax_card.credit_CIS_monthly <> 0 or income.tax_card.credit_CIS_yearly <> 0 in
+             /** Description: Makes sure that CIS was not attributed to the taxpayer on any other income.  - It returns yes if the taxpayer has already benefited from CIS. -  **/							
+             if (CIS_already_attributed) = true then
+             let expected_CIS:Real = 0 in
+             income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+             else
+               if (CIS_already_attributed) = false then
+                       let CIS_minimum_income_day:Real = self.from_law.CIS_MINIMUM_INCOME_DAY() in 
+                       /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - CIS_minimum_income_year = 936 - CIS_minimum_income_month= 78 - CIS_minimum_income_day = 3,12 - **/ 								
+                       let income_per_day:Real = income.income_per_day() in
+                       /** Description: The value of the taxpayer's income per day -  **/							
+                       if (income_per_day > CIS_minimum_income_day) = false then
+                                 let CIS_minimum_income_month:Real = self.from_law.CIS_MINIMUM_INCOME_MONTH() in 
+                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - CIS_minimum_income_year = 936 - CIS_minimum_income_month= 78 - CIS_minimum_income_day = 3,12 - **/ 								
+                                 let income_per_month:Real = income.income_per_month() in
+                                 /** Description: The value of the taxpayer's income per month -  **/							
+                                 if (income_per_month > CIS_minimum_income_month) = false then
+                                             let CIS_minimum_income_year:Real = self.from_law.CIS_MINIMUM_INCOME_YEAR() in 
+                                             /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - CIS_minimum_income_year = 936 - CIS_minimum_income_month= 78 - CIS_minimum_income_day = 3,12 - **/ 								
+                                             let income_per_year:Real = income.income_per_year() in
+                                             /** Description: The value of the taxpayer's income per year -  **/							
+                                             if (income_per_year > CIS_minimum_income_year) = false then
+                                             let expected_CIS:Real = 0 in
+                                             income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                             else
+                                                if (income_per_year > CIS_minimum_income_year) = true then
+                                                               let nb_months:Integer = income.prorata_worked_months() in
+                                                               /** Description: Period during which the taxpayer has been employed over - the course of the tax year expressed in terms of months. -  **/							
+                                                               let does_income_cover_full_year:Boolean = nb_months=12 in
+                                                               /** Description: Returns yes if the income cover all periods of one year.  - In other words, checks if the taxpayers have been working for the whole year. -  **/							
+                                                               if (does_income_cover_full_year) = true then
+                                                               let flat_rate_CIS_yearly:Real = self.from_law.FLAT_RATE_CIS_YEARLY() in 
+                                                               /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                               let expected_CIS:Real = flat_rate_CIS_yearly in
+                                                               income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                               else
+                                                                 if (does_income_cover_full_year) = false then
+                                                                 let flat_rate_CIS_daily:Real = self.from_law.FLAT_RATE_CIS_DAILY() in 
+                                                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                                 let flat_rate_CIS_monthly:Real = self.from_law.FLAT_RATE_CIS_MONTHLY() in 
+                                                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                                 let nb_days:Integer = income.prorata_worked_days() in
+                                                                 /** Description: Complement to nb_months. Example the taxpayer worked for 0 year,  - 7 months, and 5 days -  **/							
+                                                                 let expected_CIS:Real = flat_rate_CIS_monthly * nb_months + flat_rate_CIS_daily * nb_days in
+                                                                 income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                                 else
+                                                                 false
+                                                                 endif
+                                                               endif
+                                                else
+                                                false
+                                                endif
+                                             endif
+                                 else
+                                   if (income_per_month > CIS_minimum_income_month) = true then
+                                                let nb_months:Integer = income.prorata_worked_months() in
+                                                /** Description: Period during which the taxpayer has been employed over - the course of the tax year expressed in terms of months. -  **/							
+                                                let does_income_cover_full_year:Boolean = nb_months=12 in
+                                                /** Description: Returns yes if the income cover all periods of one year.  - In other words, checks if the taxpayers have been working for the whole year. -  **/							
+                                                if (does_income_cover_full_year) = true then
+                                                let flat_rate_CIS_yearly:Real = self.from_law.FLAT_RATE_CIS_YEARLY() in 
+                                                /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                let expected_CIS:Real = flat_rate_CIS_yearly in
+                                                income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                else
+                                                  if (does_income_cover_full_year) = false then
+                                                  let flat_rate_CIS_daily:Real = self.from_law.FLAT_RATE_CIS_DAILY() in 
+                                                  /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                  let flat_rate_CIS_monthly:Real = self.from_law.FLAT_RATE_CIS_MONTHLY() in 
+                                                  /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                  let nb_days:Integer = income.prorata_worked_days() in
+                                                  /** Description: Complement to nb_months. Example the taxpayer worked for 0 year,  - 7 months, and 5 days -  **/							
+                                                  let expected_CIS:Real = flat_rate_CIS_monthly * nb_months + flat_rate_CIS_daily * nb_days in
+                                                  income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                  else
+                                                  false
+                                                  endif
+                                                endif
+                                   else
+                                   false
+                                   endif
+                                 endif
+                       else
+                         if (income_per_day > CIS_minimum_income_day) = true then
+                                   let nb_months:Integer = income.prorata_worked_months() in
+                                   /** Description: Period during which the taxpayer has been employed over - the course of the tax year expressed in terms of months. -  **/							
+                                   let does_income_cover_full_year:Boolean = nb_months=12 in
+                                   /** Description: Returns yes if the income cover all periods of one year.  - In other words, checks if the taxpayers have been working for the whole year. -  **/							
+                                   if (does_income_cover_full_year) = true then
+                                   let flat_rate_CIS_yearly:Real = self.from_law.FLAT_RATE_CIS_YEARLY() in 
+                                   /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                   let expected_CIS:Real = flat_rate_CIS_yearly in
+                                   income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                   else
+                                      if (does_income_cover_full_year) = false then
+                                      let flat_rate_CIS_daily:Real = self.from_law.FLAT_RATE_CIS_DAILY() in 
+                                      /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                      let flat_rate_CIS_monthly:Real = self.from_law.FLAT_RATE_CIS_MONTHLY() in 
+                                      /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                      let nb_days:Integer = income.prorata_worked_days() in
+                                      /** Description: Complement to nb_months. Example the taxpayer worked for 0 year,  - 7 months, and 5 days -  **/							
+                                      let expected_CIS:Real = flat_rate_CIS_monthly * nb_months + flat_rate_CIS_daily * nb_days in
+                                      income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                      else
+                                      false
+                                      endif
+                                   endif
+                         else
+                         false
+                         endif
+                       endif
+               else
+               false
+               endif
+             endif
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+)
+else
+   if (taxation_year>=2009) = false then
+   false
+   else
+   false
+   endif
+endif
+
+
+context Tax_Payer inv CIP:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+if (taxation_year>=2009) = false then
+false
+else
+   if (taxation_year>=2009) = true then
+   let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->sortedBy(income_amount*-1)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1)) in													
+   /** Description: The incomes of a given taxpayer for the studied tax year. The first income is the principal one. - The rest of incomes are sorted from the highest to the lowest income. -  Note that taxpayers who are taxed jointly have only one principal income. -  **/	
+   incomes -> forAll (income:Income|
+   let is_income_subject_to_withholding:Boolean = income.income_type.subjectToWithholdingTax in
+   /** Description: Returns yes if the income is under withholding taxation: false otherwise -  **/							
+   if (is_income_subject_to_withholding) = true then
+     let is_income_pension:Boolean = income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) in
+     /** Description: Returns yes if the income is of type Pension and Annuities; returns false otherwise -  **/							
+     if (is_income_pension) = false then
+          let is_income_ofType_rental:Boolean = income.income_type.oclIsTypeOf(Rentals_and_Leases_Income) in
+          /** Description: Returns yes if the income is of type Rentals and Leases; returns false otherwise -  **/							
+          if (is_income_ofType_rental) = false then
+          let expected_CIP:Real = 0 in
+          income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+          else
+             if (is_income_ofType_rental) = true then
+                    let is_income_periodic :Boolean = income.oclAsType(Rentals_and_Leases_Income).is_periodic in
+                    /** Description: Returns yes if the income is received by the taxpayer on regular basis; returns false otherwise -  **/							
+                    if (is_income_periodic ) = false then
+                    let expected_CIP:Real = 0 in
+                    income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                    else
+                       if (is_income_periodic ) = true then
+                                 let credit_already_attributed:Boolean = income.tax_card.credit_CIP_monthly <> 0 or income.tax_card.credit_CIP_yearly <> 0 in
+                                 /** Description: Makes sure that CIP was not attributed to the taxpayer on any other income. It returns yes if the taxpayer -  has already benefited from CIP. -  **/							
+                                 if (credit_already_attributed) = false then
+                                             let CIP_minimum_income_month:Real = self.from_law.CIP_MINIMUM_INCOME_MONTH() in 
+                                             /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                             let income_per_month:Real = income.income_per_month() in
+                                             /** Description: The value of the income per month -  **/							
+                                             if (income_per_month >= CIP_minimum_income_month) = true then
+                                             let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                                             /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                             let prorata_period:Real = income.prorata_period() in
+                                             /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                                             let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                                             income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                             else
+                                                if (income_per_month >= CIP_minimum_income_month) = false then
+                                                               let CIP_minimum_income_year:Real = self.from_law.CIP_MINIMUM_INCOME_YEAR() in 
+                                                               /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                                               let income_per_year :Real = income.income_per_year() in
+                                                               /** Description: The value of the income per year -  **/							
+                                                               if (income_per_year >= CIP_minimum_income_year) = true then
+                                                               let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                                                               /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                                               let prorata_period:Real = income.prorata_period() in
+                                                               /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                                                               let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                                                               income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                                               else
+                                                                 if (income_per_year >= CIP_minimum_income_year) = false then
+                                                                 let expected_CIP:Real = 0 in
+                                                                 income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                                                 else
+                                                                 false
+                                                                 endif
+                                                               endif
+                                                else
+                                                false
+                                                endif
+                                             endif
+                                 else
+                                   if (credit_already_attributed) = true then
+                                   let expected_CIP:Real = 0 in
+                                   income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                   else
+                                   false
+                                   endif
+                                 endif
+                       else
+                       false
+                       endif
+                    endif
+             else
+             false
+             endif
+          endif
+     else
+        if (is_income_pension) = true then
+             let credit_already_attributed:Boolean = income.tax_card.credit_CIP_monthly <> 0 or income.tax_card.credit_CIP_yearly <> 0 in
+             /** Description: Makes sure that CIP was not attributed to the taxpayer on any other income. It returns yes if the taxpayer -  has already benefited from CIP. -  **/							
+             if (credit_already_attributed) = false then
+                    let CIP_minimum_income_month:Real = self.from_law.CIP_MINIMUM_INCOME_MONTH() in 
+                    /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                    let income_per_month:Real = income.income_per_month() in
+                    /** Description: The value of the income per month -  **/							
+                    if (income_per_month >= CIP_minimum_income_month) = true then
+                    let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                    /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                    let prorata_period:Real = income.prorata_period() in
+                    /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                    let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                    income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                    else
+                       if (income_per_month >= CIP_minimum_income_month) = false then
+                                 let CIP_minimum_income_year:Real = self.from_law.CIP_MINIMUM_INCOME_YEAR() in 
+                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                 let income_per_year :Real = income.income_per_year() in
+                                 /** Description: The value of the income per year -  **/							
+                                 if (income_per_year >= CIP_minimum_income_year) = true then
+                                 let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                 let prorata_period:Real = income.prorata_period() in
+                                 /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                                 let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                                 income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                 else
+                                   if (income_per_year >= CIP_minimum_income_year) = false then
+                                   let expected_CIP:Real = 0 in
+                                   income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                   else
+                                   false
+                                   endif
+                                 endif
+                       else
+                       false
+                       endif
+                    endif
+             else
+               if (credit_already_attributed) = true then
+               let expected_CIP:Real = 0 in
+               income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+               else
+               false
+               endif
+             endif
+        else
+        false
+        endif
+     endif
+   else
+     if (is_income_subject_to_withholding) = false then
+     let expected_CIP:Real = 0 in
+     income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+     else
+     false
+     endif
+   endif
+   )
+   else
+   false
+   endif
+endif
+
+context Tax_Payer inv CE_Invalidity:
+let tax_payer_is_resident:Boolean = self.oclIsTypeOf(Resident_Tax_Payer) in													
+/** Description: Returns yes if the taxpayer is resident; returns no otherwise - **/	
+if (tax_payer_is_resident) = true then
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+let incomes:Set(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->sortedBy(income_amount*-1)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1)) in													
+/** Description: The incomes of a given taxpayer for the - studied tax year. The first income is the - principal one. The rest of incomes are sorted - from the highest to the lowest income. Note - that taxpayers who are taxed jointly have - only one principal income - **/	
+incomes -> forAll (income:Income|
+let eligible_type_of_disability:Boolean = self.disability_type <> Disability_Types::OTHER in
+/** Description: Checks that the taxpayer disability is supported by - the law. For instance, war mutulation = type A or work - accident= type B are eligible. - **/							
+if (eligible_type_of_disability) = true then
+   let is_disability_of_type_Sight:Boolean = self.disability_type = Disability_Types::E in
+   /** Description: Returns yes if the disability of the taxpayer is of type E (sight); -  **/							
+   if (is_disability_of_type_Sight) = false then
+   let deduction_according_disability_rate:Real = self.deduction_according_disability_rate() in													
+   /** Description: Contains the value of the deduction proportionally to the - taxpayers disability percentage. For instance, - if disability between 45% and 55% then it contains 375. - Source: reglement grand-ducal. -  **/	
+   let prorata_period:Integer = income.prorata_period() in
+   /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+   let expected_CE_invalidity:Real = prorata_period * deduction_according_disability_rate
+   in
+   income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+   else
+     if (is_disability_of_type_Sight) = true then
+     let CE_invalidity_flat_rate_type_E:Real = self.from_law.CE_INVALIDITY_FLAT_RATE_TYPE_E() in 
+     /** TRACEABILITY: Contains the anual deduction for CE invalidity when the -  taxpayer has sight disability. Source: reglement grand-ducal. s - CE_invalidity_flat_rate_typeE =  1.455   - **/ 								
+     let prorata_period:Integer = income.prorata_period() in
+     /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+     let expected_CE_invalidity:Real = prorata_period * CE_invalidity_flat_rate_type_E in
+     income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+     else
+     false
+     endif
+   endif
+else
+   if (eligible_type_of_disability) = false then
+   let expected_CE_invalidity:Real = 0 in
+   income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+   else
+   false
+   endif
+endif
+)
+else
+   if (tax_payer_is_resident) = false then
+     let is_taxpayer_assimilated_to_a_resident_taxpayer:Boolean = self.oclAsType(Non_Resident_Tax_Payer).is_assimilated_to_resident in													
+     /** Description: Returns yes if the taxpayer is assimilated to a - resident taxpayer. For instance when a non - resident taxpayer is taxed by "voie_assiette". -  **/	
+     if (is_taxpayer_assimilated_to_a_resident_taxpayer) = true then
+     let taxation_year:Integer = self.from_agent.taxation_year in
+     /** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+     let incomes:Set(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->sortedBy(income_amount*-1)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1)) in													
+     /** Description: The incomes of a given taxpayer for the  - studied tax year. The first income is the - principal one. The rest of incomes are sorted  - from the highest to the lowest income. Note  - that taxpayers who are taxed jointly have  - only one principal income  -  **/	
+     incomes -> forAll (income:Income|
+     let eligible_type_of_disability:Boolean = self.disability_type <> Disability_Types::OTHER in
+     /** Description: Checks that the taxpayer disability is supported by - the law. For instance, war mutulation = type A or work - accident= type B are eligible. -  **/							
+     if (eligible_type_of_disability) = true then
+        let is_disability_of_type_Sight:Boolean = self.disability_type = Disability_Types::E in
+        /** Description: Returns yes if the disability of the taxpayer is of type E (sight); -  **/							
+        if (is_disability_of_type_Sight) = false then
+        let deduction_according_disability_rate:Real = self.deduction_according_disability_rate() in													
+        /** Description: Contains the value of the deduction proportionally to the - taxpayers disability percentage. For instance, - if disability between 45% and 55% then it contains 375. - Source: reglement grand-ducal. -  **/	
+        let prorata_period:Integer = income.prorata_period() in
+        /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+        let expected_CE_invalidity:Real = prorata_period * deduction_according_disability_rate
+        in
+        income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+        else
+          if (is_disability_of_type_Sight) = true then
+          let CE_invalidity_flat_rate_type_E:Real = self.from_law.CE_INVALIDITY_FLAT_RATE_TYPE_E() in 
+          /** TRACEABILITY: Contains the anual deduction for CE invalidity when the -  taxpayer has sight disability. Source: reglement grand-ducal. s - CE_invalidity_flat_rate_typeE =  1.455   - **/ 								
+          let prorata_period:Integer = income.prorata_period() in
+          /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+          let expected_CE_invalidity:Real = prorata_period * CE_invalidity_flat_rate_type_E in
+          income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+          else
+          false
+          endif
+        endif
+     else
+        if (eligible_type_of_disability) = false then
+        let expected_CE_invalidity:Real = 0 in
+        income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+        else
+        false
+        endif
+     endif
+     )
+     else
+        if (is_taxpayer_assimilated_to_a_resident_taxpayer) = false then
+        false
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+endpackage

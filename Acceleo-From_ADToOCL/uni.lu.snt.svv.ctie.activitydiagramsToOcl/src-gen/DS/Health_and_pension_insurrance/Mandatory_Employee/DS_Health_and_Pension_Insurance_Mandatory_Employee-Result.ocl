@@ -1,0 +1,29 @@
+context TaxPayer inv DS_Health_and_Pension_Insurance_Mandatory_Employee:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in																												
+incomes -> forAll (income:Income|
+let is_eligible_income:Boolean = income.income_type.oclIsTypeOf(Employement_Income) in
+if (is_eligible_income) = true then
+   let is_income_exempted:Boolean = income.is_income_exempted in
+   if (is_income_exempted) = false then
+   let expected_deduction:MonetaryValue = income.expenses-> select(e:Expense | e.oclIsTypeOf(Health_and_Pension_Insurance) and e.category = Category_of_Health_and_Pension_Insurances::MANDATORY_HEALTH_AND_PENSION_INSURANCE and e.year_expense_was_incurred_in = taxation_year).declared_amount->sum() in
+   let actual_deduction:MonetaryValue = income.getDeductionForMandatoryHealthAndPensionInsuranceForEmployee(taxation_year).deduced_amount in
+   actual_deduction = expected_deduction
+   else
+     if (is_income_exempted) = true then
+     let actual_deduction:MonetaryValue = income.getDeductionForMandatoryHealthAndPensionInsuranceForEmployee(taxation_year).deduced_amount in
+     actual_deduction=0
+     else
+     false
+     endif
+   endif
+else
+   if (is_eligible_income) = false then
+   let actual_deduction:MonetaryValue = income.getDeductionForMandatoryHealthAndPensionInsuranceForEmployee(taxation_year).deduced_amount in
+   actual_deduction=0
+   else
+   false
+   endif
+endif
+)

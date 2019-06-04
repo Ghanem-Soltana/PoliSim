@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_efsFcLBvEeS8nup8O4XhAw/359" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_efsFcLBvEeS8nup8O4XhAw/359 CTIE_Profile_Final.profile.uml#_S7RcWXMbEeWPJ7lHGUXAWg">
+  <uml:Package xmi:id="_S5t64HMbEeWPJ7lHGUXAWg" name="CIP">
+    <packageImport xmi:id="_S5t64XMbEeWPJ7lHGUXAWg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_S5t64nMbEeWPJ7lHGUXAWg" name="CIP">
+      <ownedComment xmi:id="_S5t643MbEeWPJ7lHGUXAWg" annotatedElement="_S5t7dnMbEeWPJ7lHGUXAWg">
+        <body>&lt;p>The incomes of a given taxpayer for the studied tax year. The first income is the principal one.&lt;/p>&lt;p>The rest of incomes are sorted from the highest to the lowest income.&lt;/p>&lt;p> Note that taxpayers who are taxed jointly have only one principal income.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t65HMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7Y3MbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;income&amp;nbsp;is&amp;nbsp;under&amp;nbsp;withholding&amp;nbsp;taxation:&amp;nbsp;false&amp;nbsp;otherwise&amp;nbsp;&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t65XMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7ZXMbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;income&amp;nbsp;is&amp;nbsp;of&amp;nbsp;type&amp;nbsp;Pension&amp;nbsp;and&amp;nbsp;Annuities;&amp;nbsp;returns&amp;nbsp;false&amp;nbsp;otherwise&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t65nMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7Z3MbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;income&amp;nbsp;is&amp;nbsp;of&amp;nbsp;type&amp;nbsp;Rentals&amp;nbsp;and&amp;nbsp;Leases;&amp;nbsp;returns&amp;nbsp;false&amp;nbsp;otherwise&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t653MbEeWPJ7lHGUXAWg" annotatedElement="_S5t7aXMbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;income&amp;nbsp;is&amp;nbsp;received&amp;nbsp;by&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;on&amp;nbsp;regular&amp;nbsp;basis;&amp;nbsp;returns&amp;nbsp;false&amp;nbsp;otherwise&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t66HMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7a3MbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Makes sure that CIP was not attributed to the taxpayer on any other income. It returns yes if the taxpayer&lt;/p>&lt;p> has already benefited from CIP.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t66XMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7bXMbEeWPJ7lHGUXAWg">
+        <body>&lt;p>The&amp;nbsp;value&amp;nbsp;of&amp;nbsp;the&amp;nbsp;income&amp;nbsp;per&amp;nbsp;year&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t66nMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7b3MbEeWPJ7lHGUXAWg">
+        <body>&lt;p>The&amp;nbsp;value&amp;nbsp;of&amp;nbsp;the&amp;nbsp;income&amp;nbsp;per&amp;nbsp;month&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t663MbEeWPJ7lHGUXAWg" annotatedElement="_S5t7cXMbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Period&amp;nbsp;during&amp;nbsp;which&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;has&amp;nbsp;been&amp;nbsp;employed&amp;nbsp;over&amp;nbsp;the&amp;nbsp;course&amp;nbsp;of&amp;nbsp;the&amp;nbsp;tax&amp;nbsp;year&amp;nbsp;(between&amp;nbsp;0&amp;nbsp;and&amp;nbsp;1)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t67HMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7DHMbEeWPJ7lHGUXAWg _S5t7eHMbEeWPJ7lHGUXAWg _S5t7CnMbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Source: Reglement Grand Ducal du 19 Decembre 2008 &lt;/p>&lt;p>CIP_minimum_income_year= 300 &lt;/p>&lt;p>CIP_minimum_income_month= 25 &lt;/p>&lt;p>flat_rate_CIP_yearly = 300 &lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_S5t67XMbEeWPJ7lHGUXAWg" annotatedElement="_S5t7enMbEeWPJ7lHGUXAWg">
+        <body>&lt;p>Specifies when the request was postmarked.&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_S5t67nMbEeWPJ7lHGUXAWg" name="Note_Source" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t673MbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>Sources: &#xA;-CIP&#xA;* Règlement grand-ducal du 19 décembre 2008 (Mémorial A - N° 198 du 23 décembre 2008, page 264)&#xA;* http://www.impotsdirects.public.lu/az/c/CIP/index.html</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t68HMbEeWPJ7lHGUXAWg" name="Note1" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t68XMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>Note: This model calculates CIP for a whole tax year the abstraction level is a given taxation year). This represents an adequate level of abstraction for simulation purpose but may not be adequate for communication or testing purposes. We omitted to describe the treatment for each month, and specifically the treatment when a taxpayer receives a pension that covers multiple months in one shot. For the latter mentioned situation, the CIP is distributed to all involved months where the taxpayer has not already benefited from CIP.</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t68nMbEeWPJ7lHGUXAWg" name="fromrecord_incomes" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t683MbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t69HMbEeWPJ7lHGUXAWg" name="fromrecord_is_income_subject_to_withholding" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t69XMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>income.income_type.subjectToWithholdingTax</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t69nMbEeWPJ7lHGUXAWg" name="fromrecord_is_income_pension" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t693MbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t6-HMbEeWPJ7lHGUXAWg" name="fromrecord_is_income_ofType_rental" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t6-XMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>income.income_type.oclIsTypeOf(Rentals_and_Leases_Income)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t6-nMbEeWPJ7lHGUXAWg" name="fromrecord_is_income_periodic " constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t6-3MbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>income.oclAsType(Rentals_and_Leases_Income).is_periodic</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t6_HMbEeWPJ7lHGUXAWg" name="fromrecord_income_per_month" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t6_XMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>income.income_per_month()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t6_nMbEeWPJ7lHGUXAWg" name="fromrecord_income_per_year " constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t6_3MbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>income.income_per_year()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t7AHMbEeWPJ7lHGUXAWg" name="fromrecord_prorata_period" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t7AXMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>income.prorata_period()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_S5t7AnMbEeWPJ7lHGUXAWg" name="fromrecord_credit_already_attributed" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t7A3MbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body>incomes->excluding(income)->select(i:Income | i.tax_card.credit_CIP_monthly &lt;> 0 or  i.tax_card.credit_CIP_yearly &lt;> 0)->notEmpty()</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_S5t7BHMbEeWPJ7lHGUXAWg" name="flat_rate_CIP_yearly">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_S5t7BXMbEeWPJ7lHGUXAWg" name="CIP_minimum_income_year">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_S5t7BnMbEeWPJ7lHGUXAWg" name="incomes"/>
+      <ownedParameter xmi:id="_S5t7B3MbEeWPJ7lHGUXAWg" name="CIP_minimum_income_month">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_S5t7CHMbEeWPJ7lHGUXAWg" name="taxation_year">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw3nMbEeWPJ7lHGUXAWg"/>
+      </ownedParameter>
+      <node xmi:type="uml:InitialNode" xmi:id="_S5t7CXMbEeWPJ7lHGUXAWg" outgoing="_S5t7fHMbEeWPJ7lHGUXAWg"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_S5t7CnMbEeWPJ7lHGUXAWg" name="flat_rate_CIP_yearly" parameter="_S5t7BHMbEeWPJ7lHGUXAWg">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7C3MbEeWPJ7lHGUXAWg" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_S5t7DHMbEeWPJ7lHGUXAWg" name="CIP_minimum_income_year" parameter="_S5t7BXMbEeWPJ7lHGUXAWg">
+        <eAnnotations xmi:id="_S5t7DXMbEeWPJ7lHGUXAWg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7DnMbEeWPJ7lHGUXAWg" value="1"/>
+      </node>
+      <node xmi:type="uml:ExpansionRegion" xmi:id="_S5t7D3MbEeWPJ7lHGUXAWg" name="Apply CIP to each income of a given taxpayer" incoming="_S5t7gnMbEeWPJ7lHGUXAWg" inputElement="_S5t7V3MbEeWPJ7lHGUXAWg">
+        <localPrecondition xmi:id="_S5t7EHMbEeWPJ7lHGUXAWg" name="&lt;&lt;formula>>" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg _S5t7T3MbEeWPJ7lHGUXAWg">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t7EXMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body>0</body>
+          </specification>
+        </localPrecondition>
+        <localPrecondition xmi:id="_S5t7EnMbEeWPJ7lHGUXAWg" name="&lt;&lt;formula>>" constrainedElement="_S5t64nMbEeWPJ7lHGUXAWg _S5t7U3MbEeWPJ7lHGUXAWg">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_S5t7E3MbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body>flat_rate_CIP_yearly * prorata_period</body>
+          </specification>
+        </localPrecondition>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7FHMbEeWPJ7lHGUXAWg" source="_S5t7TnMbEeWPJ7lHGUXAWg" target="_S5t7TXMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7FXMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7FnMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7F3MbEeWPJ7lHGUXAWg" name="yes" source="_S5t7TXMbEeWPJ7lHGUXAWg" target="_S5t7WXMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7GHMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7GXMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7GnMbEeWPJ7lHGUXAWg" name="no" source="_S5t7WXMbEeWPJ7lHGUXAWg" target="_S5t7WnMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7G3MbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7HHMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7HXMbEeWPJ7lHGUXAWg" name="no" source="_S5t7WnMbEeWPJ7lHGUXAWg" target="_S5t7T3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7HnMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7H3MbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7IHMbEeWPJ7lHGUXAWg" name="no" source="_S5t7VnMbEeWPJ7lHGUXAWg" target="_S5t7YHMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7IXMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7InMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7I3MbEeWPJ7lHGUXAWg" name="yes" source="_S5t7VnMbEeWPJ7lHGUXAWg" target="_S5t7T3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7JHMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7JXMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7JnMbEeWPJ7lHGUXAWg" name="yes" source="_S5t7YXMbEeWPJ7lHGUXAWg" target="_S5t7U3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7J3MbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7KHMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7KXMbEeWPJ7lHGUXAWg" name="no" source="_S5t7YXMbEeWPJ7lHGUXAWg" target="_S5t7T3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7KnMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7K3MbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_S5t7LHMbEeWPJ7lHGUXAWg" visibility="public" source="_S5t7W3MbEeWPJ7lHGUXAWg" target="_S5t7XnMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7LXMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7LnMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7L3MbEeWPJ7lHGUXAWg" name="yes" source="_S5t7WXMbEeWPJ7lHGUXAWg" target="_S5t7YnMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7MHMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7MXMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7MnMbEeWPJ7lHGUXAWg" source="_S5t7YnMbEeWPJ7lHGUXAWg" target="_S5t7VnMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7M3MbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7NHMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_S5t7NXMbEeWPJ7lHGUXAWg" source="_S5t7VHMbEeWPJ7lHGUXAWg" target="_S5t7W3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7NnMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7N3MbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_S5t7OHMbEeWPJ7lHGUXAWg" source="_S5t7UXMbEeWPJ7lHGUXAWg" target="_S5t7W3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7OXMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7OnMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7O3MbEeWPJ7lHGUXAWg" name="yes" source="_S5t7WnMbEeWPJ7lHGUXAWg" target="_S5t7c3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7PHMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7PXMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7PnMbEeWPJ7lHGUXAWg" name="no" source="_S5t7c3MbEeWPJ7lHGUXAWg" target="_S5t7T3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7P3MbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7QHMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7QXMbEeWPJ7lHGUXAWg" name="yes" source="_S5t7c3MbEeWPJ7lHGUXAWg" target="_S5t7YnMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7QnMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7Q3MbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7RHMbEeWPJ7lHGUXAWg" name="yes" source="_S5t7YHMbEeWPJ7lHGUXAWg" target="_S5t7U3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7RXMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7RnMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7R3MbEeWPJ7lHGUXAWg" name="no" source="_S5t7YHMbEeWPJ7lHGUXAWg" target="_S5t7YXMbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7SHMbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7SXMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7SnMbEeWPJ7lHGUXAWg" name="no" source="_S5t7TXMbEeWPJ7lHGUXAWg" target="_S5t7T3MbEeWPJ7lHGUXAWg">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7S3MbEeWPJ7lHGUXAWg">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7THMbEeWPJ7lHGUXAWg" value="1"/>
+        </edge>
+        <node xmi:type="uml:DecisionNode" xmi:id="_S5t7TXMbEeWPJ7lHGUXAWg" name="is_income_subject_to_withholding" outgoing="_S5t7F3MbEeWPJ7lHGUXAWg _S5t7SnMbEeWPJ7lHGUXAWg" incoming="_S5t7FHMbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_S5t7TnMbEeWPJ7lHGUXAWg" outgoing="_S5t7FHMbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_S5t7T3MbEeWPJ7lHGUXAWg" name="Grant no credit" incoming="_S5t7HXMbEeWPJ7lHGUXAWg _S5t7I3MbEeWPJ7lHGUXAWg _S5t7KXMbEeWPJ7lHGUXAWg _S5t7PnMbEeWPJ7lHGUXAWg _S5t7SnMbEeWPJ7lHGUXAWg">
+          <eAnnotations xmi:id="_S5t7UHMbEeWPJ7lHGUXAWg" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <outputValue xmi:id="_S5t7UXMbEeWPJ7lHGUXAWg" outgoing="_S5t7OHMbEeWPJ7lHGUXAWg">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7UnMbEeWPJ7lHGUXAWg" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_S5t7U3MbEeWPJ7lHGUXAWg" name="Calculate CIP" incoming="_S5t7JnMbEeWPJ7lHGUXAWg _S5t7RHMbEeWPJ7lHGUXAWg">
+          <outputValue xmi:id="_S5t7VHMbEeWPJ7lHGUXAWg" outgoing="_S5t7NXMbEeWPJ7lHGUXAWg">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7VXMbEeWPJ7lHGUXAWg" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_S5t7VnMbEeWPJ7lHGUXAWg" name="credit_already_attributed" outgoing="_S5t7IHMbEeWPJ7lHGUXAWg _S5t7I3MbEeWPJ7lHGUXAWg" incoming="_S5t7MnMbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:ExpansionNode" xmi:id="_S5t7V3MbEeWPJ7lHGUXAWg" name="income" incoming="_S5t7hXMbEeWPJ7lHGUXAWg" regionAsInput="_S5t7D3MbEeWPJ7lHGUXAWg">
+          <type xmi:type="uml:Class" href="TaxCard.uml#_S5sslXMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7WHMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_S5t7WXMbEeWPJ7lHGUXAWg" name="is_income_pension" outgoing="_S5t7GnMbEeWPJ7lHGUXAWg _S5t7L3MbEeWPJ7lHGUXAWg" incoming="_S5t7F3MbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_S5t7WnMbEeWPJ7lHGUXAWg" name="is_income_ofType_rental" outgoing="_S5t7HXMbEeWPJ7lHGUXAWg _S5t7O3MbEeWPJ7lHGUXAWg" incoming="_S5t7GnMbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:CentralBufferNode" xmi:id="_S5t7W3MbEeWPJ7lHGUXAWg" name="expected_CIP" outgoing="_S5t7LHMbEeWPJ7lHGUXAWg" incoming="_S5t7NXMbEeWPJ7lHGUXAWg _S5t7OHMbEeWPJ7lHGUXAWg">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7XHMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_S5t7XXMbEeWPJ7lHGUXAWg" name="Update income.CIP_yearly using expected_CIP">
+          <inputValue xmi:id="_S5t7XnMbEeWPJ7lHGUXAWg" incoming="_S5t7LHMbEeWPJ7lHGUXAWg">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7X3MbEeWPJ7lHGUXAWg" value="1"/>
+          </inputValue>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_S5t7YHMbEeWPJ7lHGUXAWg" name="income_per_month >= CIP_minimum_income_month" outgoing="_S5t7RHMbEeWPJ7lHGUXAWg _S5t7R3MbEeWPJ7lHGUXAWg" incoming="_S5t7IHMbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_S5t7YXMbEeWPJ7lHGUXAWg" name="income_per_year >= CIP_minimum_income_year" outgoing="_S5t7JnMbEeWPJ7lHGUXAWg _S5t7KXMbEeWPJ7lHGUXAWg" incoming="_S5t7R3MbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:MergeNode" xmi:id="_S5t7YnMbEeWPJ7lHGUXAWg" outgoing="_S5t7MnMbEeWPJ7lHGUXAWg" incoming="_S5t7L3MbEeWPJ7lHGUXAWg _S5t7QXMbEeWPJ7lHGUXAWg"/>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7Y3MbEeWPJ7lHGUXAWg" name="is_income_subject_to_withholding">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw3HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7ZHMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7ZXMbEeWPJ7lHGUXAWg" name="is_income_pension">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw3HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7ZnMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7Z3MbEeWPJ7lHGUXAWg" name="is_income_ofType_rental">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw3HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7aHMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7aXMbEeWPJ7lHGUXAWg" name="is_income_periodic ">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw3HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7anMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7a3MbEeWPJ7lHGUXAWg" name="credit_already_attributed">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw3HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7bHMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7bXMbEeWPJ7lHGUXAWg" name="income_per_year ">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7bnMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7b3MbEeWPJ7lHGUXAWg" name="income_per_month">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7cHMbEeWPJ7lHGUXAWg" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_S5t7cXMbEeWPJ7lHGUXAWg" name="prorata_period">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw9nMbEeWPJ7lHGUXAWg"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7cnMbEeWPJ7lHGUXAWg" name="" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_S5t7c3MbEeWPJ7lHGUXAWg" name="is_income_periodic " outgoing="_S5t7PnMbEeWPJ7lHGUXAWg _S5t7QXMbEeWPJ7lHGUXAWg" incoming="_S5t7O3MbEeWPJ7lHGUXAWg"/>
+      </node>
+      <node xmi:type="uml:DecisionNode" xmi:id="_S5t7dHMbEeWPJ7lHGUXAWg" name="taxation_year>=2009" outgoing="_S5t7f3MbEeWPJ7lHGUXAWg _S5t7gnMbEeWPJ7lHGUXAWg" incoming="_S5t7fHMbEeWPJ7lHGUXAWg"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_S5t7dXMbEeWPJ7lHGUXAWg" incoming="_S5t7f3MbEeWPJ7lHGUXAWg"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_S5t7dnMbEeWPJ7lHGUXAWg" name="incomes" outgoing="_S5t7hXMbEeWPJ7lHGUXAWg" parameter="_S5t7BnMbEeWPJ7lHGUXAWg">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw6HMbEeWPJ7lHGUXAWg"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7d3MbEeWPJ7lHGUXAWg" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_S5t7eHMbEeWPJ7lHGUXAWg" name="CIP_minimum_income_month" parameter="_S5t7B3MbEeWPJ7lHGUXAWg">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw4HMbEeWPJ7lHGUXAWg"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7eXMbEeWPJ7lHGUXAWg" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_S5t7enMbEeWPJ7lHGUXAWg" name="taxation_year" parameter="_S5t7CHMbEeWPJ7lHGUXAWg">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_S8Hw3nMbEeWPJ7lHGUXAWg"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_S5t7e3MbEeWPJ7lHGUXAWg" value="1"/>
+      </node>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7fHMbEeWPJ7lHGUXAWg" source="_S5t7CXMbEeWPJ7lHGUXAWg" target="_S5t7dHMbEeWPJ7lHGUXAWg">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7fXMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7fnMbEeWPJ7lHGUXAWg" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7f3MbEeWPJ7lHGUXAWg" name="no" source="_S5t7dHMbEeWPJ7lHGUXAWg" target="_S5t7dXMbEeWPJ7lHGUXAWg">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7gHMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7gXMbEeWPJ7lHGUXAWg" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_S5t7gnMbEeWPJ7lHGUXAWg" name="yes" source="_S5t7dHMbEeWPJ7lHGUXAWg" target="_S5t7D3MbEeWPJ7lHGUXAWg">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7g3MbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7hHMbEeWPJ7lHGUXAWg" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_S5t7hXMbEeWPJ7lHGUXAWg" source="_S5t7dnMbEeWPJ7lHGUXAWg" target="_S5t7V3MbEeWPJ7lHGUXAWg">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_S5t7hnMbEeWPJ7lHGUXAWg">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_S5t7h3MbEeWPJ7lHGUXAWg" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_S5t7iHMbEeWPJ7lHGUXAWg">
+      <eAnnotations xmi:id="_S5t7iXMbEeWPJ7lHGUXAWg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_S5t7inMbEeWPJ7lHGUXAWg">
+      <eAnnotations xmi:id="_S5t7i3MbEeWPJ7lHGUXAWg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_S5vvsXMbEeWPJ7lHGUXAWg"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_S5vvr3MbEeWPJ7lHGUXAWg"/>
+    </profileApplication>
+    <profileApplication xmi:id="_S5t7jHMbEeWPJ7lHGUXAWg">
+      <eAnnotations xmi:id="_S5t7jXMbEeWPJ7lHGUXAWg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_S8IWgXMbEeWPJ7lHGUXAWg"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_S8IWf3MbEeWPJ7lHGUXAWg"/>
+    </profileApplication>
+    <profileApplication xmi:id="_S5t7jnMbEeWPJ7lHGUXAWg">
+      <eAnnotations xmi:id="_S5t7j3MbEeWPJ7lHGUXAWg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_S7RcWXMbEeWPJ7lHGUXAWg"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_S7RcV3MbEeWPJ7lHGUXAWg"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:calculate xmi:id="_S5t7kHMbEeWPJ7lHGUXAWg" base_OpaqueAction="_S5t7U3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_S5t7kXMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7CnMbEeWPJ7lHGUXAWg" value="300"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7knMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7CnMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_S5t7k3MbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7DHMbEeWPJ7lHGUXAWg" value="300"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7lHMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7DHMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:context xmi:id="_S5t7lXMbEeWPJ7lHGUXAWg" context_class="Tax_Payer" base_Activity="_S5t64nMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:iterative xmi:id="_S5t7lnMbEeWPJ7lHGUXAWg" base_ExpansionRegion="_S5t7D3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:calculate xmi:id="_S5t7l3MbEeWPJ7lHGUXAWg" base_OpaqueAction="_S5t7T3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:intermediate xmi:id="_S5t7mHMbEeWPJ7lHGUXAWg" base_CentralBufferNode="_S5t7W3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7mXMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7dnMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7mnMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7dnMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7m3MbEeWPJ7lHGUXAWg" base_Pin="_S5t7Y3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7nHMbEeWPJ7lHGUXAWg" base_Pin="_S5t7Y3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7nXMbEeWPJ7lHGUXAWg" base_Pin="_S5t7ZXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7nnMbEeWPJ7lHGUXAWg" base_Pin="_S5t7ZXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7n3MbEeWPJ7lHGUXAWg" base_Pin="_S5t7Z3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7oHMbEeWPJ7lHGUXAWg" base_Pin="_S5t7Z3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7oXMbEeWPJ7lHGUXAWg" base_Pin="_S5t7aXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7onMbEeWPJ7lHGUXAWg" base_Pin="_S5t7aXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7o3MbEeWPJ7lHGUXAWg" base_Pin="_S5t7a3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7pHMbEeWPJ7lHGUXAWg" base_Pin="_S5t7a3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7pXMbEeWPJ7lHGUXAWg" base_Pin="_S5t7bXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7pnMbEeWPJ7lHGUXAWg" base_Pin="_S5t7bXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7p3MbEeWPJ7lHGUXAWg" base_Pin="_S5t7b3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7qHMbEeWPJ7lHGUXAWg" base_Pin="_S5t7b3MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_S5t7qXMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7eHMbEeWPJ7lHGUXAWg" value="25"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7qnMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7eHMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_S5t7q3MbEeWPJ7lHGUXAWg" base_Pin="_S5t7cXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7rHMbEeWPJ7lHGUXAWg" base_Pin="_S5t7cXMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:update xmi:id="_S5t7rXMbEeWPJ7lHGUXAWg" base_OpaqueAction="_S5t7XXMbEeWPJ7lHGUXAWg" variable_to_update="income.tax_card.credit_CIP_yearly" value="expected_CIP"/>
+  <CTIE_Profile_Final:in xmi:id="_S5t7rnMbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7enMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_S5t7r3MbEeWPJ7lHGUXAWg" base_ActivityParameterNode="_S5t7enMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7sHMbEeWPJ7lHGUXAWg" question="" source="" constraint="_S5t68nMbEeWPJ7lHGUXAWg" base_Comment="_S5t643MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7sXMbEeWPJ7lHGUXAWg" constraint="_S5t69HMbEeWPJ7lHGUXAWg" base_Comment="_S5t65HMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7snMbEeWPJ7lHGUXAWg" constraint="_S5t69nMbEeWPJ7lHGUXAWg" base_Comment="_S5t65XMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7s3MbEeWPJ7lHGUXAWg" constraint="_S5t6-HMbEeWPJ7lHGUXAWg" base_Comment="_S5t65nMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7tHMbEeWPJ7lHGUXAWg" constraint="_S5t6-nMbEeWPJ7lHGUXAWg" base_Comment="_S5t653MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7tXMbEeWPJ7lHGUXAWg" constraint="_S5t7AnMbEeWPJ7lHGUXAWg" base_Comment="_S5t66HMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7tnMbEeWPJ7lHGUXAWg" constraint="_S5t6_nMbEeWPJ7lHGUXAWg" base_Comment="_S5t66XMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7t3MbEeWPJ7lHGUXAWg" constraint="_S5t6_HMbEeWPJ7lHGUXAWg" base_Comment="_S5t66nMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7uHMbEeWPJ7lHGUXAWg" constraint="_S5t7AHMbEeWPJ7lHGUXAWg" base_Comment="_S5t663MbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7uXMbEeWPJ7lHGUXAWg" source="Reglement Grand Ducal du 19 Decembre 2008 " base_Comment="_S5t67HMbEeWPJ7lHGUXAWg"/>
+  <CTIE_Profile_Final:query xmi:id="_S5t7unMbEeWPJ7lHGUXAWg" agent_role="OFFICER" question="Specifies when the request was postmarked." source="" base_Comment="_S5t67XMbEeWPJ7lHGUXAWg"/>
+</xmi:XMI>

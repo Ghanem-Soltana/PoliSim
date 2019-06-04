@@ -1,0 +1,37 @@
+
+1.context TaxPayer inv FD:
+2.let tax_year:Date = self.tax_year in
+3.let incomes:Set(Income) = self.incomes -> select(i:Income | i.year = tax_year) in 
+4.incomes->forAll(inc:Income |
+5.let distance:DistanceUnit = inc.distance in
+6.let minimal_distance:DistanceUnit = 
+7.Constant::MINIMAL_DISTANCE.oclAsType(DistanceUnit) in
+8.if (distance > minimal_distance) = true then
+9.	let maximal_distance:DistanceUnit = 
+10.	Constant::MAXIMAL_DISTANCE.oclAsType(DistanceUnit) in 
+11.	if (distance < maximal_distance) = true then
+12.		let flat_rate:MonetaryValue = 
+13.		Constant::FLAT_RATE.oclAsType(MonetaryValue) in
+14.		let prorata_period:Numeric = inc.prorata_period in
+15.		let expected_amount:MonetaryValue = prorata_period * flat_rate * distance in
+16.		let actual_amount:MonetaryValue = inc.getFD(tax_year).amount in
+17.		actual_amount = expected_amount
+18.	else if (distance < maximal_distance) = false then
+19.		 let maximal_flat_rate:MonetaryValue =
+20.		 Constant::MAXIMAL_FLAT_RATE.oclAsType(MonetaryValue) in
+21.		 let prorata_period:Numeric = inc.prorata_period in
+22.		 let expected_amount:MonetaryValue = prorata_period * maximal_flat_rate in
+23.		 let actual_amount:MonetaryValue = inc.getFD(tax_year).amount in
+24.		 actual_amount = expected_amount
+25.		 else false endif 
+26.	endif 
+27.else if (distance > minimal_distance) = false then
+28.		let expected_amount:MonetaryValue = 0 in
+29.		let actual_amount:MonetaryValue = inc.getFD(tax_year).amount in
+30.		actual_amount = expected_amount
+31.		else false endif 
+32.endif
+33.)
+
+
+

@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325 CTIE_Profile_Final.profile.uml#_cwaO-ppAEeOXzvVK2MY5wA">
+  <uml:Package xmi:id="_cw8XFppAEeOXzvVK2MY5wA" name="CE_Not_In_Houshold_Children_Care">
+    <packageImport xmi:id="_cw8XF5pAEeOXzvVK2MY5wA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_cw8XGJpAEeOXzvVK2MY5wA" name="CE_Not_In_Houshold_Children_Care">
+      <ownedComment xmi:id="_cw8XGZpAEeOXzvVK2MY5wA" annotatedElement="_cw8XR5pAEeOXzvVK2MY5wA">
+        <body>&lt;p>self.expenses-&amp;gt;select(e:Expense| e.oclTypeOf(Extraordinary_Expense_CE) and e.year_expense_was_incurred_in=taxation_year)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XGppAEeOXzvVK2MY5wA" annotatedElement="_cw8XSZpAEeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent type:&lt;/b> officer&lt;/p>&lt;p>&lt;b>Question:&lt;/b> When was the request postmarked?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XG5pAEeOXzvVK2MY5wA">
+        <body>&lt;p>self.taxPayer&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XHJpAEeOXzvVK2MY5wA" annotatedElement="_cw8XeppAEeOXzvVK2MY5wA">
+        <body>&lt;p>extraordinary_expense.dependent&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XHZpAEeOXzvVK2MY5wA" annotatedElement="_cw8XfJpAEeOXzvVK2MY5wA">
+        <body>&lt;p>dependent.allowances-&amp;gt;size()&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XHppAEeOXzvVK2MY5wA" annotatedElement="_cw8XfppAEeOXzvVK2MY5wA">
+        <body>&lt;p>tax_payer.is_dependent_part_of_the_household(dependent)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XH5pAEeOXzvVK2MY5wA" annotatedElement="_cw8XhJpAEeOXzvVK2MY5wA">
+        <body>&lt;p>dependent.age&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XIJpAEeOXzvVK2MY5wA" annotatedElement="_cw8XkJpAEeOXzvVK2MY5wA">
+        <body>&lt;p>self.getDeductionForCCENotInHousholdChildrenCare(taxation_year).deduced_amount&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XIZpAEeOXzvVK2MY5wA" annotatedElement="_cw8Xh5pAEeOXzvVK2MY5wA">
+        <body>&lt;p>dependent.tax_Payer.incomes.income_amount-&amp;gt;sum()&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XIppAEeOXzvVK2MY5wA" annotatedElement="_cw8XkppAEeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Source: &lt;/b>Art. 127bis of the income tax law 2013&lt;b>&lt;/b>&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XI5pAEeOXzvVK2MY5wA" annotatedElement="_cw8XiZpAEeOXzvVK2MY5wA">
+        <body>&lt;p>dependent.continued_studies&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XJJpAEeOXzvVK2MY5wA" annotatedElement="_cw8XlJpAEeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Source:&lt;/b> Grand-Ducal regulations&lt;/p>&lt;p>&lt;b>&lt;/b>&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XJZpAEeOXzvVK2MY5wA" annotatedElement="_cw8Xl5pAEeOXzvVK2MY5wA">
+        <body>&lt;p>maximum_rate_for_CE_children&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XJppAEeOXzvVK2MY5wA" annotatedElement="_cw8XnJpAEeOXzvVK2MY5wA">
+        <body>&lt;p>expected_amount&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XJ5pAEeOXzvVK2MY5wA" annotatedElement="_cw8XoZpAEeOXzvVK2MY5wA">
+        <body>&lt;p>self.taxPayer&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_cw8XKJpAEeOXzvVK2MY5wA" annotatedElement="_cw8XpZpAEeOXzvVK2MY5wA">
+        <body>&lt;p>actual_deduction=expected_deduction&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_cw8XKZpAEeOXzvVK2MY5wA" name="fromrecord_extraordinary_expenses" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XKppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.expenses->select(e:Expense| e.oclTypeOf(Extraordinary_Expense_CE) and e.year_expense_was_incurred_in=taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XK5pAEeOXzvVK2MY5wA" name="fromrecord_tax_payer" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XLJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.taxPayer</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XLZpAEeOXzvVK2MY5wA" name="fromrecord_beneficiary" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XLppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>extraordinary_expense.dependent</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XL5pAEeOXzvVK2MY5wA" name="fromrecord_allowances" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XMJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>dependent.allowances->size()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XMZpAEeOXzvVK2MY5wA" name="fromrecord_part_of_houshold" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XMppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>tax_payer.is_dependent_part_of_the_household(dependent)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XM5pAEeOXzvVK2MY5wA" name="fromrecord_age" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XNJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>dependent.age</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XNZpAEeOXzvVK2MY5wA" name="fromrecord_actual_deduction" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XNppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.getDeductionForCCENotInHousholdChildrenCare(taxation_year).deduced_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XN5pAEeOXzvVK2MY5wA" name="fromrecord_dependent_income" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XOJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>dependent.tax_Payer.incomes.income_amount->sum()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XOZpAEeOXzvVK2MY5wA" name="fromrecord_still_studying" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XOppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>dependent.continued_studies</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XO5pAEeOXzvVK2MY5wA" name="formula_max" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XPJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>maximum_rate_for_CE_children</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XPZpAEeOXzvVK2MY5wA" name="formula_normal" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XPppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>expected_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_cw8XP5pAEeOXzvVK2MY5wA" name="Assert_1" constrainedElement="_cw8XGJpAEeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XQJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body>actual_deduction=expected_deduction</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_cw8XQZpAEeOXzvVK2MY5wA" name="Parameter1">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YQJpAEeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_cw8XQppAEeOXzvVK2MY5wA" name="Parameter2">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YLJpAEeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_cw8XQ5pAEeOXzvVK2MY5wA" name="Parameter4">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_cw8XRJpAEeOXzvVK2MY5wA" name="Parameter3">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_cw8XRZpAEeOXzvVK2MY5wA" name="Parameter5"/>
+      <ownedParameter xmi:id="_cw8XRppAEeOXzvVK2MY5wA" name="Parameter6"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_cw8XR5pAEeOXzvVK2MY5wA" name="extraordinary_expenses" outgoing="_cw8Xq5pAEeOXzvVK2MY5wA" parameter="_cw8XQZpAEeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YQJpAEeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XSJpAEeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_cw8XSZpAEeOXzvVK2MY5wA" name="taxation_year" parameter="_cw8XQppAEeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YLJpAEeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XSppAEeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:InitialNode" xmi:id="_cw8XS5pAEeOXzvVK2MY5wA" outgoing="_cw8XqJpAEeOXzvVK2MY5wA"/>
+      <node xmi:type="uml:ExpansionRegion" xmi:id="_cw8XTJpAEeOXzvVK2MY5wA" name="compute all the eligible CE expenses" incoming="_cw8XqJpAEeOXzvVK2MY5wA" inputElement="_cw8Xd5pAEeOXzvVK2MY5wA">
+        <ownedComment xmi:id="_cw8XTZpAEeOXzvVK2MY5wA" annotatedElement="_cw8XjJpAEeOXzvVK2MY5wA">
+          <body>&lt;p>extraordinary_expense.declared_amount&lt;/p></body>
+        </ownedComment>
+        <ownedRule xmi:id="_cw8XTppAEeOXzvVK2MY5wA" name="formula_consider_expense" constrainedElement="_cw8XTJpAEeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_cw8XT5pAEeOXzvVK2MY5wA">
+            <language></language>
+            <body>extraordinary_expense.declared_amount</body>
+          </specification>
+        </ownedRule>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XUJpAEeOXzvVK2MY5wA" source="_cw8XeZpAEeOXzvVK2MY5wA" target="_cw8XgJpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XUZpAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XUppAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XU5pAEeOXzvVK2MY5wA" name="no" source="_cw8XgJpAEeOXzvVK2MY5wA" target="_cw8XgZpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XVJpAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XVZpAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XVppAEeOXzvVK2MY5wA" name="yes" source="_cw8XgJpAEeOXzvVK2MY5wA" target="_cw8XgppAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XV5pAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XWJpAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XWZpAEeOXzvVK2MY5wA" name="yes" source="_cw8XgppAEeOXzvVK2MY5wA" target="_cw8XgZpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XWppAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XW5pAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XXJpAEeOXzvVK2MY5wA" name="no" source="_cw8XgppAEeOXzvVK2MY5wA" target="_cw8Xg5pAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XXZpAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XXppAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XX5pAEeOXzvVK2MY5wA" name="no" source="_cw8Xg5pAEeOXzvVK2MY5wA" target="_cw8XgZpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XYJpAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XYZpAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XYppAEeOXzvVK2MY5wA" name="yes" source="_cw8Xg5pAEeOXzvVK2MY5wA" target="_cw8XhppAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XY5pAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XZJpAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XZZpAEeOXzvVK2MY5wA" name="yes" source="_cw8XhppAEeOXzvVK2MY5wA" target="_cw8Xi5pAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XZppAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XZ5pAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XaJpAEeOXzvVK2MY5wA" name="no" source="_cw8XhppAEeOXzvVK2MY5wA" target="_cw8XjJpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XaZpAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XappAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8Xa5pAEeOXzvVK2MY5wA" name="no" source="_cw8Xi5pAEeOXzvVK2MY5wA" target="_cw8XgZpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XbJpAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XbZpAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XbppAEeOXzvVK2MY5wA" name="no" source="_cw8XjZpAEeOXzvVK2MY5wA" target="_cw8XgZpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8Xb5pAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XcJpAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XcZpAEeOXzvVK2MY5wA" name="yes" source="_cw8Xi5pAEeOXzvVK2MY5wA" target="_cw8XjZpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XcppAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8Xc5pAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XdJpAEeOXzvVK2MY5wA" name="yes" source="_cw8XjZpAEeOXzvVK2MY5wA" target="_cw8XjJpAEeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XdZpAEeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XdppAEeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <node xmi:type="uml:ExpansionNode" xmi:id="_cw8Xd5pAEeOXzvVK2MY5wA" name="extraordinary_expense" incoming="_cw8Xq5pAEeOXzvVK2MY5wA" regionAsInput="_cw8XTJpAEeOXzvVK2MY5wA">
+          <type xmi:type="uml:Class" href="TaxCard.uml#_cw-1BZpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XeJpAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InitialNode" xmi:id="_cw8XeZpAEeOXzvVK2MY5wA" outgoing="_cw8XUJpAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_cw8XeppAEeOXzvVK2MY5wA" name="dependent">
+          <type xmi:type="uml:Class" href="TaxCard.uml#_cw-ze5pAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8Xe5pAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_cw8XfJpAEeOXzvVK2MY5wA" name="allowances">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YJppAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XfZpAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_cw8XfppAEeOXzvVK2MY5wA" name="part_of_houshold">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YJJpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8Xf5pAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_cw8XgJpAEeOXzvVK2MY5wA" name="dependent.type = Dependent_Type::CHILD" outgoing="_cw8XU5pAEeOXzvVK2MY5wA _cw8XVppAEeOXzvVK2MY5wA" incoming="_cw8XUJpAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:FlowFinalNode" xmi:id="_cw8XgZpAEeOXzvVK2MY5wA" incoming="_cw8XU5pAEeOXzvVK2MY5wA _cw8XWZpAEeOXzvVK2MY5wA _cw8XX5pAEeOXzvVK2MY5wA _cw8Xa5pAEeOXzvVK2MY5wA _cw8XbppAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_cw8XgppAEeOXzvVK2MY5wA" name="part_of_houshold" outgoing="_cw8XWZpAEeOXzvVK2MY5wA _cw8XXJpAEeOXzvVK2MY5wA" incoming="_cw8XVppAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_cw8Xg5pAEeOXzvVK2MY5wA" name="allowances = 0" outgoing="_cw8XX5pAEeOXzvVK2MY5wA _cw8XYppAEeOXzvVK2MY5wA" incoming="_cw8XXJpAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_cw8XhJpAEeOXzvVK2MY5wA" name="age">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YJppAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XhZpAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_cw8XhppAEeOXzvVK2MY5wA" name="age > 21" outgoing="_cw8XZZpAEeOXzvVK2MY5wA _cw8XaJpAEeOXzvVK2MY5wA" incoming="_cw8XYppAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_cw8Xh5pAEeOXzvVK2MY5wA" name="dependent_income">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XiJpAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_cw8XiZpAEeOXzvVK2MY5wA" name="dependent_still_studying">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YJJpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XippAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_cw8Xi5pAEeOXzvVK2MY5wA" name="dependent_income &lt; 0.6 * minimum_leagl_salary" outgoing="_cw8Xa5pAEeOXzvVK2MY5wA _cw8XcZpAEeOXzvVK2MY5wA" incoming="_cw8XZZpAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_cw8XjJpAEeOXzvVK2MY5wA" name="Consider extraordinary expense" incoming="_cw8XaJpAEeOXzvVK2MY5wA _cw8XdJpAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_cw8XjZpAEeOXzvVK2MY5wA" name="dependent_still_studying" outgoing="_cw8XbppAEeOXzvVK2MY5wA _cw8XdJpAEeOXzvVK2MY5wA" incoming="_cw8XcZpAEeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OutputPin" xmi:id="_cw8XjppAEeOXzvVK2MY5wA" name="expected_amount" outgoing="_cw8XrppAEeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8Xj5pAEeOXzvVK2MY5wA" value="1"/>
+        </node>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_cw8XkJpAEeOXzvVK2MY5wA" name="actual_deduction" parameter="_cw8XQ5pAEeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XkZpAEeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_cw8XkppAEeOXzvVK2MY5wA" name="maximum_rate_for_CE_children" parameter="_cw8XRJpAEeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8Xk5pAEeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_cw8XlJpAEeOXzvVK2MY5wA" name="minimum_leagl_salary" parameter="_cw8XRZpAEeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XlZpAEeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:DecisionNode" xmi:id="_cw8XlppAEeOXzvVK2MY5wA" name="expected_amount > maximum_rate_for_CE_children" outgoing="_cw8XsZpAEeOXzvVK2MY5wA _cw8XtJpAEeOXzvVK2MY5wA" incoming="_cw8XrppAEeOXzvVK2MY5wA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_cw8Xl5pAEeOXzvVK2MY5wA" name="Calculate maximum deduction">
+        <inputValue xmi:id="_cw8XmJpAEeOXzvVK2MY5wA" incoming="_cw8XsZpAEeOXzvVK2MY5wA">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XmZpAEeOXzvVK2MY5wA" value="1"/>
+        </inputValue>
+        <outputValue xmi:id="_cw8XmppAEeOXzvVK2MY5wA" outgoing="_cw8XuppAEeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8Xm5pAEeOXzvVK2MY5wA" value="1"/>
+        </outputValue>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_cw8XnJpAEeOXzvVK2MY5wA" name="Calculate casual deduction">
+        <inputValue xmi:id="_cw8XnZpAEeOXzvVK2MY5wA" incoming="_cw8XtJpAEeOXzvVK2MY5wA">
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XnppAEeOXzvVK2MY5wA" value="1"/>
+        </inputValue>
+        <outputValue xmi:id="_cw8Xn5pAEeOXzvVK2MY5wA" outgoing="_cw8Xt5pAEeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XoJpAEeOXzvVK2MY5wA" value="1"/>
+        </outputValue>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_cw8XoZpAEeOXzvVK2MY5wA" name="tax_payer" parameter="_cw8XRppAEeOXzvVK2MY5wA">
+        <type xmi:type="uml:Class" href="TaxCard.uml#_cw-z55pAEeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XoppAEeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:CentralBufferNode" xmi:id="_cw8Xo5pAEeOXzvVK2MY5wA" name="expected_deduction" outgoing="_cw8XvZpAEeOXzvVK2MY5wA" incoming="_cw8Xt5pAEeOXzvVK2MY5wA _cw8XuppAEeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8XpJpAEeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_cw8XpZpAEeOXzvVK2MY5wA" name="Check CE not in household children care">
+        <inputValue xmi:id="_cw8XpppAEeOXzvVK2MY5wA" incoming="_cw8XvZpAEeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_cw8YKJpAEeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_cw8Xp5pAEeOXzvVK2MY5wA" value="1"/>
+        </inputValue>
+      </node>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_cw8XqJpAEeOXzvVK2MY5wA" source="_cw8XS5pAEeOXzvVK2MY5wA" target="_cw8XTJpAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XqZpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XqppAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_cw8Xq5pAEeOXzvVK2MY5wA" source="_cw8XR5pAEeOXzvVK2MY5wA" target="_cw8Xd5pAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XrJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XrZpAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_cw8XrppAEeOXzvVK2MY5wA" source="_cw8XjppAEeOXzvVK2MY5wA" target="_cw8XlppAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8Xr5pAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XsJpAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_cw8XsZpAEeOXzvVK2MY5wA" name="yes" source="_cw8XlppAEeOXzvVK2MY5wA" target="_cw8XmJpAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XsppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8Xs5pAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_cw8XtJpAEeOXzvVK2MY5wA" name="no" source="_cw8XlppAEeOXzvVK2MY5wA" target="_cw8XnZpAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XtZpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XtppAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_cw8Xt5pAEeOXzvVK2MY5wA" source="_cw8Xn5pAEeOXzvVK2MY5wA" target="_cw8Xo5pAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XuJpAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XuZpAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_cw8XuppAEeOXzvVK2MY5wA" source="_cw8XmppAEeOXzvVK2MY5wA" target="_cw8Xo5pAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8Xu5pAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8XvJpAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_cw8XvZpAEeOXzvVK2MY5wA" visibility="public" source="_cw8Xo5pAEeOXzvVK2MY5wA" target="_cw8XpppAEeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_cw8XvppAEeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_cw8Xv5pAEeOXzvVK2MY5wA" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_cw8XwJpAEeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_cw8XwZpAEeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_cw8XwppAEeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_cw8Xw5pAEeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_cv_VL5pAEeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_cv_VLZpAEeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_cw8XxJpAEeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_cw8XxZpAEeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_cw9mWppAEeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_cw9mWJpAEeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_cw8XxppAEeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_cw8Xx5pAEeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_cwaO-ppAEeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_cwaO-JpAEeOXzvVK2MY5wA"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:context xmi:id="_cw8XyJpAEeOXzvVK2MY5wA" context_class="Income" base_Activity="_cw8XGJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8XyZpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XR5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8XyppAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XR5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8Xy5pAEeOXzvVK2MY5wA" constraint="_cw8XKZpAEeOXzvVK2MY5wA" base_Comment="_cw8XGZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8XzJpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XSZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8XzZpAEeOXzvVK2MY5wA" agent_role="OFFICER" question="When was the request postmarked?" base_Comment="_cw8XGppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8XzppAEeOXzvVK2MY5wA" constraint="_cw8XK5pAEeOXzvVK2MY5wA" base_Comment="_cw8XG5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:iterative xmi:id="_cw8Xz5pAEeOXzvVK2MY5wA" base_ExpansionRegion="_cw8XTJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X0JpAEeOXzvVK2MY5wA" base_Pin="_cw8XeppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X0ZpAEeOXzvVK2MY5wA" base_Pin="_cw8XeppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X0ppAEeOXzvVK2MY5wA" constraint="_cw8XLZpAEeOXzvVK2MY5wA" base_Comment="_cw8XHJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X05pAEeOXzvVK2MY5wA" base_Pin="_cw8XfJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X1JpAEeOXzvVK2MY5wA" base_Pin="_cw8XfJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X1ZpAEeOXzvVK2MY5wA" base_Pin="_cw8XfppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X1ppAEeOXzvVK2MY5wA" base_Pin="_cw8XfppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X15pAEeOXzvVK2MY5wA" constraint="_cw8XL5pAEeOXzvVK2MY5wA" base_Comment="_cw8XHZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X2JpAEeOXzvVK2MY5wA" constraint="_cw8XMZpAEeOXzvVK2MY5wA" base_Comment="_cw8XHppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X2ZpAEeOXzvVK2MY5wA" base_Pin="_cw8XhJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X2ppAEeOXzvVK2MY5wA" base_Pin="_cw8XhJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X25pAEeOXzvVK2MY5wA" constraint="_cw8XM5pAEeOXzvVK2MY5wA" base_Comment="_cw8XH5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X3JpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XkJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X3ZpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XkJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X3ppAEeOXzvVK2MY5wA" constraint="_cw8XNZpAEeOXzvVK2MY5wA" base_Comment="_cw8XIJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X35pAEeOXzvVK2MY5wA" question="" constraint="_cw8XN5pAEeOXzvVK2MY5wA" base_Comment="_cw8XIZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_cw8X4JpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XkppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X4ZpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XkppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X4ppAEeOXzvVK2MY5wA" source="Art. 127bis of the income tax law 2013" value_type="FIXED_VALUE" base_Comment="_cw8XIppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X45pAEeOXzvVK2MY5wA" base_Pin="_cw8Xh5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X5JpAEeOXzvVK2MY5wA" base_Pin="_cw8Xh5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X5ZpAEeOXzvVK2MY5wA" base_Pin="_cw8XiZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X5ppAEeOXzvVK2MY5wA" base_Pin="_cw8XiZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X55pAEeOXzvVK2MY5wA" constraint="_cw8XOZpAEeOXzvVK2MY5wA" base_Comment="_cw8XI5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_cw8X6JpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XlJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X6ZpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XlJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X6ppAEeOXzvVK2MY5wA" question="" source="Grand-Ducal regulations" value_type="FIXED_VALUE" base_Comment="_cw8XJJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_cw8X65pAEeOXzvVK2MY5wA" base_OpaqueAction="_cw8XjJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_cw8X7JpAEeOXzvVK2MY5wA" constraint="_cw8XTppAEeOXzvVK2MY5wA" base_Comment="_cw8XTZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_cw8X7ZpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XSZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:out xmi:id="_cw8X7ppAEeOXzvVK2MY5wA" base_Pin="_cw8XjppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_cw8X75pAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XoZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_cw8X8JpAEeOXzvVK2MY5wA" base_ActivityParameterNode="_cw8XoZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_cw8X8ZpAEeOXzvVK2MY5wA" constraint="_cw8XK5pAEeOXzvVK2MY5wA" base_Comment="_cw8XJ5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_cw8X8ppAEeOXzvVK2MY5wA" base_OpaqueAction="_cw8Xl5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_cw8X85pAEeOXzvVK2MY5wA" base_OpaqueAction="_cw8XnJpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_cw8X9JpAEeOXzvVK2MY5wA" constraint="_cw8XO5pAEeOXzvVK2MY5wA" base_Comment="_cw8XJZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_cw8X9ZpAEeOXzvVK2MY5wA" constraint="_cw8XPZpAEeOXzvVK2MY5wA" base_Comment="_cw8XJppAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:intermediate xmi:id="_cw8X9ppAEeOXzvVK2MY5wA" base_CentralBufferNode="_cw8Xo5pAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:assert xmi:id="_cw8X95pAEeOXzvVK2MY5wA" base_OpaqueAction="_cw8XpZpAEeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:statement xmi:id="_cw8X-JpAEeOXzvVK2MY5wA" constraint="_cw8XP5pAEeOXzvVK2MY5wA" base_Comment="_cw8XKJpAEeOXzvVK2MY5wA"/>
+</xmi:XMI>

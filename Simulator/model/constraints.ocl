@@ -1,0 +1,153 @@
+import 'TaxCard.uml'
+/**TaxPayer  constraints**/
+
+package TaxCard
+
+context Household inv toBeGenerated:
+self.parents->any(true).individual_A <> self.parents->any(true).individual_B and self.parents->any(true).individual_B.oclAsType(Tax_Payer).dependents->size()=0 and Tax_Property.allInstances()->size()=1 and self.parents->any(true).oclAsType(Tax_Payer).incomes->any(true).details->any(true).is_contributing_CNS and self.parents->any(true).oclAsType(Tax_Payer).incomes->any(true).details->any(true).is_contributing_pension
+and self.children->size()>=0 and Income.allInstances().num->sum()>0
+
+context Legal_Union_Record inv test:
+self.properties->any(true).taxed_jointly and self.properties->any(true).starting_year>0 
+
+context Tax_Payer inv includes:
+self.AEP_deduction =0 and self.last_start_year_widower>-1 and SSNo=''
+
+context Income_Detail inv includes_Income:
+self.is_worked=true
+
+
+context Tax_Payer inv Tax_class:
+self.getTaxClass(2015) = invalid
+
+
+context Tax_Payer inv FD:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in																										
+/** Description: The incomes of a given taxpayer for the studied tax year - The first income is the principal one. - The rest of incomes are sorted from the highest to the lowest - Note that taxpayers who are taxed jointly have only one principal income. - **/	
+incomes -> forAll (income1:Income|
+let is_income_subject_to_withholding:Boolean = income1.income_type.subjectToWithholdingTax in
+/** Description: Returns yes if the income is under withholding taxation. - **/							
+if (is_income_subject_to_withholding) = true then
+   let is_income_eligible:Boolean = income1.income_type.oclIsKindOf(Employment_Income) in
+   /** Description: Checks the type of the treated income.  - This input returns yes if the type is Employment; -  **/							
+   if (is_income_eligible) = false then
+   let calculated_FD:Real = 0 in
+        let flat_maximum_FD:Real = self.from_law.FLAT_MAXIMUM_FD() in 
+        /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+        let granted_FD_for_other_incomes:Real = incomes->excluding(income1)->select(tax_card->notEmpty()).tax_card.deduction_FD_yearly->sum() in
+        /** Description: Returns the sum of granted FD deduction granted to -  all incomes of a given taxpayer.  -  **/							
+        if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = true then
+        let expected_FD:Real = flat_maximum_FD - (granted_FD_for_other_incomes) in
+        income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+        else
+          if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = false then
+          let expected_FD:Real = calculated_FD in
+          income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+          else
+          false
+          endif
+        endif
+   else
+     if (is_income_eligible) = true then
+     let details:OrderedSet(Income_Detail) = income1.details->sortedBy(month)->asOrderedSet() in														
+     /** Description: The collection of distances between a - taxpayer  s work and home addresses for - each month (from 1 to 12). A distance is - specified by three attributes: the value of the - distance, the month for which the value - of the distance was specified, and the full time - equivalent value (between 0 and 1). - Source: Ministerial - Regulation of February 6, 2012 -  **/	
+     let calculated_FD: Real = details->iterate(detail: Income_Detail; acc2:Real = 0 |
+     let has_the_taxpayer_worked_for_the_treated_month:Boolean = detail.is_worked in
+     /** Description: Returns yes if the taxpayer has worked -  during the month related to the treated -  distance. For instance, if we are treating -  the second distance, then we check if -  the taxpayer was employed in February.  -  **/							
+     if (has_the_taxpayer_worked_for_the_treated_month) = true then
+        let distance_value:Real = detail.distance in
+        /** Description: Home-to-work distance. -  **/							
+        let distance_reference:Real = 0 in
+        /** Description: The highest distance that is - used to calculate the deduction - for a given month. Initially this - input is set to 0. -  **/							
+        if (distance_value>distance_reference) = true then
+        true
+        else
+          if (distance_value>distance_reference) = false then
+               let minimum_distance_in_units:Real = self.from_law.MINIMUM_DISTANCE_IN_UNITS() in 
+               /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+               if (distance_reference> minimum_distance_in_units) = false then
+               acc2+0
+               else
+                  if (distance_reference> minimum_distance_in_units) = true then
+                         let maximum_distance_in_units:Real = self.from_law.MAXIMUM_DISTANCE_IN_UNITS() in 
+                         /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+                         if (distance_reference > maximum_distance_in_units) = true then
+                         let flat_rate_per_unit:Real = self.from_law.FLAT_RATE_PER_UNIT() in 
+                         /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+                         let full_time_equivalent:Real = income1.prorata_period() in
+                         /** Description: The periord for which the taxpayer - is actually working in for a particular -  month (between 0 and 1). -  **/							
+                         acc2+ flat_rate_per_unit * maximum_distance_in_units * full_time_equivalent
+                         else
+                            if (distance_reference > maximum_distance_in_units) = false then
+                            let flat_rate_per_unit:Real = self.from_law.FLAT_RATE_PER_UNIT() in 
+                            /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+                            let full_time_equivalent:Real = income1.prorata_period() in
+                            /** Description: The periord for which the taxpayer - is actually working in for a particular -  month (between 0 and 1). -  **/							
+                            acc2+flat_rate_per_unit * (distance_reference-minimum_distance_in_units) * full_time_equivalent
+                            else
+                            acc2+0
+                            endif
+                         endif
+                  else
+                  acc2+0
+                  endif
+               endif
+          else
+          acc2+0
+          endif
+        endif
+     else
+        if (has_the_taxpayer_worked_for_the_treated_month) = false then
+        acc2+0
+        else
+        acc2+0
+        endif
+     endif
+     ) in
+          let flat_maximum_FD:Real = self.from_law.FLAT_MAXIMUM_FD() in 
+          /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+          let granted_FD_for_other_incomes:Real = incomes->excluding(income1)->select(tax_card->notEmpty()).tax_card.deduction_FD_yearly->sum() in
+          /** Description: Returns the sum of granted FD deduction granted to -  all incomes of a given taxpayer.  -  **/							
+          if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = true then
+          let expected_FD:Real = flat_maximum_FD - (granted_FD_for_other_incomes) in
+          income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+          else
+             if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = false then
+             let expected_FD:Real = calculated_FD in
+             income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+             else
+             false
+             endif
+          endif
+     else
+     false
+     endif
+   endif
+else
+   if (is_income_subject_to_withholding) = false then
+   let calculated_FD:Real = 0 in
+     let flat_maximum_FD:Real = self.from_law.FLAT_MAXIMUM_FD() in 
+     /** TRACEABILITY: Source: Art. 105bis of the Luxembourg's Income Tax Law, 2013  - maximum_distance_in_units = 30  - minimum_distance_in_units = 4 - flat_maximum_FD= 2574  - flat_rate_per_unit = 99 - **/ 								
+     let granted_FD_for_other_incomes:Real = incomes->excluding(income1)->select(tax_card->notEmpty()).tax_card.deduction_FD_yearly->sum() in
+     /** Description: Returns the sum of granted FD deduction granted to -  all incomes of a given taxpayer.  -  **/							
+     if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = true then
+     let expected_FD:Real = flat_maximum_FD - (granted_FD_for_other_incomes) in
+     income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+     else
+        if (calculated_FD >= (flat_maximum_FD - granted_FD_for_other_incomes)) = false then
+        let expected_FD:Real = calculated_FD in
+        income1.tax_card.deduction_FD_yearly->any(true).oclIsUndefined()
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+)
+
+
+endpackage

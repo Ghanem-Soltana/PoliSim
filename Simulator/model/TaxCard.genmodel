@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Agaga/src" modelPluginID="Agaga" modelName="TaxCard"
+    editPluginClass="http:///TaxCard1.ecore" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>TaxCard.ecore</foreignModel>
+  <genPackages prefix="TaxCard" basePackage="http:///TaxCard.ecore" disposableProviderFactory="true"
+      loadInitialization="true" literalsInterface="false" ecorePackage="TaxCard.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Grantor">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Grantor/ACD"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Grantor/Employer"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Grantor/CNPF"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Grantor/CEDIES"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Grantor/SNJ"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Grantor/CNAP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Country">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Country/LU"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Country/FR"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Country/BE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Country/DE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Country/NL"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Country/OTHER"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Disability_Types">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Disability_Types/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Disability_Types/A"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Disability_Types/B"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Disability_Types/C"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Disability_Types/D"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Disability_Types/E"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Disability_Types/OTHER"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Separation_Causes">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Separation_Causes/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Separation_Causes/DIVORCE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Separation_Causes/SEPARATION_DE_FAIT"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Separation_Causes/SEPARATION_BY_COURT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Tax_Card_Type">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Card_Type/Principal"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Card_Type/Additional"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Tax_Office">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Office/RTS_2"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Office/RTS_3"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Office/RTS_Esch"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Office/RTS_Ettelbruck"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Tax_Class_Category">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Class_Category/One"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Class_Category/One_A"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Tax_Class_Category/Two"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Job_Activity">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Job_Activity/Salary"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Job_Activity/Pension"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Job_Activity/Annuity"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Town">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Town/Luxembourg_city"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Town/Bertrange"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Town/Strassen"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Town/Bettembourg"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Town/Beaufort"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Type_of_Rate">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Type_of_Rate/REGULAR"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Type_of_Rate/REAL_COST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//CE_Type">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//CE_Type/INALIDITY_AND_INFIRMITY"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//CE_Type/DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//CE_Type/CARE_FOR_CHILDREN_NOT_BEING_PART_OF_HOUSEHOLD"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Expense_Purpose">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Expense_Purpose/HOUSE_CARE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Expense_Purpose/CHILD_CARE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Expense_Purpose/DEPENDENCE_CARE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Expense_Purpose/ALIMONY"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Expense_Purpose/RECURRENT_DEPT"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Expense_Purpose/OTHER"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Dependent_Type">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Dependent_Type/CHILD"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Dependent_Type/SPOUSE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Dependent_Type/RELATIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Dependent_Type/OTHER_FAMILY_MEMBER"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Dependent_Type/NOT_OWN_CHILD"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Category_of_Private_Insurance_and_Plan">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Private_Insurance_and_Plan/PRIVATE_INSURANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Private_Insurance_and_Plan/PRIVATE_LIFE_INSURANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Private_Insurance_and_Plan/COMPANY_MEMBERS_PRIVATE_INSURANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Private_Insurance_and_Plan/HOUSING_SAVING_PLAN"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Private_Insurance_and_Plan/OLD_AGE_PENSION_PLAN"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Category_of_Health_and_Pension_Insurances">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Health_and_Pension_Insurances/MANDATORY_HEALTH_AND_PENSION_INSURANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Health_and_Pension_Insurances/ADDITIONAL_EMPLOYERS_PENSION_INSURANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Health_and_Pension_Insurances/CONTINUED_HEALTH_AND_PENSION_INSURANCE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TaxCard.ecore#//Category_of_Permanent_Expense">
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Permanent_Expense/MISCELLANEOUS_DEBT"/>
+      <genEnumLiterals ecoreEnumLiteral="TaxCard.ecore#//Category_of_Permanent_Expense/ALIMONY"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="TaxCard.ecore#//Constants">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMUM_CE_RATE_FOR_CHILD_NOT_BEING_PART_OF_HOUSEHOLD"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MINIMUM_SALARY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_FOR_EXTRA_PROFESSIONAL_DEDUCTION"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMUM_DEDUCTIBLE_PERCENTAGE_FOR_DONATIONS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MINIMUM_DEDUCTIBLE_AMOUNT_FOR_DONATIONS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANC"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ALIMONY_EXPENSE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMAL_FLAT_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MINIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIM_DAILY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIM_MONTHLY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIM_YEARLY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIP_DAILY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIP_MONTHLY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIP_YEARLY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIS_DAILY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIS_MONTHLY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_CIS_YEARLY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/DISABILITY_FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Constants/MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANCE"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Income_Tax">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Tax/taxPayer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax/tax_amount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax/tax_year"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//FromAgent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//FromAgent/taxation_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//FromAgent/is_dependent_eligible_for_CE_Not_In_Houshold_Children_Care"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//FromAgent/is_eligible_debt"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//FromAgent/taxPayer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//FromAgent/expense"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//FromAgent/dependent"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//FromLaw">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//FromLaw/taxPayer"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_salary_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_salary_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_salary_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_salary_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_salary_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_salary_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_salary_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_salary_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_salary_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_salary_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_salary_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_salary_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_pension_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_pension_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_pension_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_pension_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_pension_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_pension_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_pension_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_pension_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_pension_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_pension_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_pension_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_pension_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_other_yearly_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_other_yearly_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_other_yearly_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_other_yearly_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_other_yearly_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_other_yearly_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_other_yearly_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_other_yearly_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_other_yearly_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_other_yearly_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_other_yearly_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_other_yearly_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_salary_yearly_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_salary_yearly_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_salary_yearly_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_salary_yearly_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_salary_yearly_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_salary_yearly_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_salary_yearly_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_salary_yearly_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_salary_yearly_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_salary_yearly_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_salary_yearly_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_salary_yearly_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_pension_yearly_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_pension_yearly_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_pension_yearly_class_1">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_pension_yearly_class_1/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_pension_yearly_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_pension_yearly_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_pension_yearly_class_1A">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_pension_yearly_class_1A/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_A_for_pension_yearly_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_A_for_pension_yearly_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/get_B_for_pension_yearly_class_2">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/get_B_for_pension_yearly_class_2/revenu"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/calculate_taxes_per_year">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_year/amount"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_year/classe"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_year/income_type"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/calculate_taxes_per_year_mixed">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_year_mixed/amount"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_year_mixed/local_amount"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_year_mixed/classe"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_year_mixed/income_type"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/getTaxableIncomePerYear">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/getTaxableIncomePerYear/income"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/round_lower_fifty_euros">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/round_lower_fifty_euros/amount"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/calculate_taxes_per_month">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_month/amount"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_month/classe"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/calculate_taxes_per_month/income_type"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/round_lower_euros">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/round_lower_euros/amount"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/round_ten_cent">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/round_ten_cent/amount"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/precision">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/precision/amount"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/precision/degit"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/MAXIMUM_FLAT_RATE_FOR_ALIMONY">
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/MAXIMUM_FLAT_RATE_FOR_ALIMONY/year"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//FromLaw/MAXIMUM_FLAT_RATE_FOR_ALIMONY/year_divorce"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/AEP_FLAT_RATE"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/MINIMUM_LEGAL_SALARY"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/MAXIMUM_RATE_FOR_CE_CHILDREN"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/PENSION_RATE"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/CNS_RATE"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/CE_INVALIDITY_FLAT_RATE_TYPE_E"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/CIP_MINIMUM_INCOME_MONTH"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/CIP_MINIMUM_INCOME_YEAR"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/FLAT_RATE_CIP_YEARLY"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/FLAT_RATE_PER_UNIT"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/MAXIMUM_DISTANCE_IN_UNITS"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/MINIMUM_DISTANCE_IN_UNITS"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/FLAT_MAXIMUM_FD"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/CIS_MINIMUM_INCOME_DAY"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/CIS_MINIMUM_INCOME_MONTH"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/CIS_MINIMUM_INCOME_YEAR"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/FLAT_RATE_CIS_DAILY"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/FLAT_RATE_CIS_MONTHLY"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FromLaw/FLAT_RATE_CIS_YEARLY"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Tax_Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Property/starting_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Property/taxed_jointly"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Property/union_record"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TaxCard.ecore#//Tax_Payer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Payer/AEP_deduction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Payer/incomes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Payer/income_Tax_Credit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Payer/dependents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Payer/income_Tax_Deduction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Payer/incomeTax"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Payer/from_law"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Payer/from_agent"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/getTaxClassModified">
+        <genParameters ecoreParameter="TaxCard.ecore#//Tax_Payer/getTaxClassModified/taxation_year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/getTaxClass">
+        <genParameters ecoreParameter="TaxCard.ecore#//Tax_Payer/getTaxClass/taxation_year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/getProfetionalIncomeHousehold">
+        <genParameters ecoreParameter="TaxCard.ecore#//Tax_Payer/getProfetionalIncomeHousehold/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/getProfetionalIncomeHouseholdLuxembourg">
+        <genParameters ecoreParameter="TaxCard.ecore#//Tax_Payer/getProfetionalIncomeHouseholdLuxembourg/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/getIsreceivingAllowancesForChildren">
+        <genParameters ecoreParameter="TaxCard.ecore#//Tax_Payer/getIsreceivingAllowancesForChildren/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/getIsTaxedJointly">
+        <genParameters ecoreParameter="TaxCard.ecore#//Tax_Payer/getIsTaxedJointly/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/is_dependent_part_of_the_household">
+        <genParameters ecoreParameter="TaxCard.ecore#//Tax_Payer/is_dependent_part_of_the_household/IN_dependent"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/number_of_months_of_allowance"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Payer/deduction_according_disability_rate"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Physical_Person">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/is_assisting_spouse"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/SSNo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Physical_Person/addresses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Physical_Person/expenses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/birth_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/birth_month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/birth_day"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/disability_percentage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/disability_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/is_affiliated_personnaly_to_social_security"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/is_widower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Physical_Person/last_start_year_widower"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/is_separated_from">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/is_separated_from/IN_person"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/is_person_affiliated_personnaly_to_social_security"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/getIsMaried">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getIsMaried/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/getLegalUnionRecord">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getLegalUnionRecord/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/getSpouse">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getSpouse/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/getDivorceTransitionState">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getDivorceTransitionState/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/getSeperationYear">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getSeperationYear/year"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/getSeperationState">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getSeperationState/year"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getSeperationState/seperation_type"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Physical_Person/getAge">
+        <genParameters ecoreParameter="TaxCard.ecore#//Physical_Person/getAge/year"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//External_Allowance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//External_Allowance/amount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//External_Allowance/grantor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//External_Allowance/starting_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//External_Allowance/ending_year"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//External_Allowance/reciver"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//External_Allowance/person"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Address">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Address/country"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Address/street"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Address/zipCode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Address/city"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Address/taxPayer"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TaxCard.ecore#//Legal_Union_Record">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Legal_Union_Record/mutual_agreement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Legal_Union_Record/start_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Legal_Union_Record/end_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Legal_Union_Record/separation_cause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Legal_Union_Record/individual_A"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Legal_Union_Record/individual_B"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Legal_Union_Record/household"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Legal_Union_Record/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Dependent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Dependent/dependent_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Dependent/continued_studies"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Dependent/responsible_person"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Dependent/expense"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Dependent/allowances"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Dependent/household"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Dependent/from_agent"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Dependent/compute_if_dependent_receives_allowances_eligible_for_CIM"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Dependent/compute_if_dependent_receives_allowances_eligible_for_DS"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Dependent/compute_if_dependent_receives_allowances_eligible_for_CE_dependance_and_care"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Dependent/is_dependent_following_continued_studies">
+        <genParameters ecoreParameter="TaxCard.ecore#//Dependent/is_dependent_following_continued_studies/IN_continued_studies"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Household">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Household/parents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Household/children"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Fiscal_Address"/>
+    <genClasses image="false" ecoreClass="TaxCard.ecore#//Tax_Case"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Habitual_Address"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Marriage_Record"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Non_Resident_Tax_Payer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Non_Resident_Tax_Payer/is_assimilated_to_resident"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Partnership_Record"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Resident_Tax_Payer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Resident_Tax_Payer/test"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TaxCard.ecore#//Income_Type">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Type/income"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Type/subjectToWithholdingTax"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Trade_and_Business_Income"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Agriculture_and_Forestry_Income"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Independent_Professional_Services_Income"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Pensions_and_Annuities_Income">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Pensions_and_Annuities_Income/occasional_payement"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Capital_and_Investments_Income"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Employment_Income"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Rentals_and_Leases_Income">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Rentals_and_Leases_Income/is_periodic"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Sundry_Income"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Directors_Fee"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Foreign_Income"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Local_Income"/>
+    <genClasses image="false" ecoreClass="TaxCard.ecore#//Income">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income/income_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/start_date_within_taxation_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/num"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/start_date_of_contract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/end_date_within_taxation_year"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income/tax_card"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income/expenses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/tax_liability"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Income/taxPayer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/start_year"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income/details"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income/income_amount"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/compute_duration_of_contract"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/compute_duration_of_contract_within_taxation_year">
+        <genParameters ecoreParameter="TaxCard.ecore#//Income/compute_duration_of_contract_within_taxation_year/IN_date"/>
+      </genOperations>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/getDurationInyears"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/prorata_worked_months"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/prorata_worked_days"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/prorata_period"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/income_per_day"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/income_per_month"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Income/income_per_year"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Tax_Card">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/card_identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/tax_card_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/tax_office"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/valid_from_date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/valid_until_date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/percentage_of_witholding"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/tax_payers_name_surname"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/tax_payers_partner_name_surname"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Card/tax_payers_address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/jobs_Employer_SSNo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/jobs_employers_name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/jobs_activity_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/jobs_place_of_work"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_FD_daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_FD_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_FD_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_AC_daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_AC_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_AC_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_CE_daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_CE_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_CE_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_CE_invalidity_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_DS_daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_DS_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_DS_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_DS_Alimony_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_DS_Debt_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_FO_daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_FO_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/deduction_FO_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIS_daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIS_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIS_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIP_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIP_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIM_daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIM_monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/credit_CIM_yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Tax_Card/validity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Card/income_Tax_Credit"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Card/income_Tax_Deduction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Card/previous"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Card/current_tax_card"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Tax_Card/income"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Card/getSumDeductionsYear"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Tax_Card/getSumCreditsYear"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//CIM"/>
+    <genClasses ecoreClass="TaxCard.ecore#//CIP"/>
+    <genClasses ecoreClass="TaxCard.ecore#//CIS"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Income_Tax_Credit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Credit/grantedBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Tax_Credit/taxPayer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Credit/tax_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Credit/yearly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Credit/monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Credit/daily"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Tax_Credit/taxation_Frame"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//FD">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//FD/distance_declared_in_january"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//FD/calculated_distance"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FD/compute_distance_unit_between_home_and_workpalce"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Professional_Expenses_Deduction"/>
+    <genClasses ecoreClass="TaxCard.ecore#//FO">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//FO/rate_type_for_FO"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FO/compute_disability_flat_rate"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//FO/compute_regular_flat_rate"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//CE">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//CE/ce_deduction_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//CE/dependent_relative_flat_rate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//CE/disability_flat_rate"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//AC"/>
+    <genClasses ecoreClass="TaxCard.ecore#//DS_for_Permanent_Expense">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//DS_for_Permanent_Expense/permanent_expense_category"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//DS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//DS/maximum_deductible_amount"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//DS_for_Interest_Expense">
+      <genOperations ecoreOperation="TaxCard.ecore#//DS_for_Interest_Expense/compute_maximum_deductible_amount">
+        <genParameters ecoreParameter="TaxCard.ecore#//DS_for_Interest_Expense/compute_maximum_deductible_amount/IN_children_with_allowances"/>
+        <genParameters ecoreParameter="TaxCard.ecore#//DS_for_Interest_Expense/compute_maximum_deductible_amount/IN_legal_union"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//DS_for_Health_and_Pension_Insurance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//DS_for_Health_and_Pension_Insurance/insurance_category"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//DS_for_Private_Insurance_and_Plan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//DS_for_Private_Insurance_and_Plan/private_insurance_and_plan_category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//DS_for_Private_Insurance_and_Plan/increase_for_life_insurance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//DS_for_Private_Insurance_and_Plan/maximum_deductible_amount_for_private_insurance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//DS_for_Private_Insurance_and_Plan/maximum_deductible_amount_for_old_age_pension_plan"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//DS_for_Private_Insurance_and_Plan/compute_increase_for_life_insurance"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//DS_for_Private_Insurance_and_Plan/compute_maximum_deductible_amount_for_private_insruance"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//DS_for_Private_Insurance_and_Plan/compute_maximum_deductible_amount_for_old_age_pension_plan"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//DS_for_Loss_Carryforward"/>
+    <genClasses ecoreClass="TaxCard.ecore#//DS_for_Donation"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Income_Tax_Deduction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Tax_Deduction/expenses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Deduction/tax_year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Deduction/daily"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Deduction/monthly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Deduction/yearly"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Tax_Deduction/tax_Payer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Tax_Deduction/deductible_amount"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Tax_Deduction/tax_card"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Permanent_Expense">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Permanent_Expense/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Permanent_Expense/is_eligible_for_deduction"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Permanent_Expense/is_expense_eligible_for_deduction">
+        <genParameters ecoreParameter="TaxCard.ecore#//Permanent_Expense/is_expense_eligible_for_deduction/IN_agent_response"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Special_Expense_DS"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Expense">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Expense/beneficiary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Expense/declared_amount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Expense/expense_purpose"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Expense/dependent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Expense/year_expense_was_incurred_in"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Expense/income"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Expense/deduction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TaxCard.ecore#//Expense/from_agent"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Interest_Expense"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Private_Insurance_and_Plan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Private_Insurance_and_Plan/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Private_Insurance_and_Plan/duration_of_contract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Private_Insurance_and_Plan/is_private_insurance_and_plan_eligible_for_deduction.1"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Private_Insurance_and_Plan/is_private_insurance_and_plan_eligible_for_deduction"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Health_and_Pension_Insurance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Health_and_Pension_Insurance/category"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Health_and_Pension_Insurance/is_related_to_additional_salary"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Donation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Donation/beneficiary1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Donation/is_beneficiary_eligible"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Donation/is_donation_reported"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Donation/get_beneficiary_eligibility_for_deduction"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Loss_Carryforward">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Loss_Carryforward/regular_accountability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Loss_Carryforward/compensation_by_other_means"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Loss_Carryforward/tax_payer_has_inherited_business_ownership"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Loss_Carryforward/tax_payer_has_been_partner_in_business"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Loss_Carryforward/is_accountability_regular"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Loss_Carryforward/is_compensated_by_other_means"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Loss_Carryforward/has_been_tax_payer_partner_in_business"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Loss_Carryforward/has_tax_payer_inherited_business_ownership"/>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Spousal_Expense_AC"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Extraordinary_Expense_CE">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Extraordinary_Expense_CE/thresholded_deduction_percentage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Extraordinary_Expense_CE/ce_type"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Extraordinary_Expense_CE/is_above_thresholded_deduction_percentage_for_CE"/>
+      <genOperations ecoreOperation="TaxCard.ecore#//Extraordinary_Expense_CE/compute_thresholded_deduction_percentage_for_CE">
+        <genParameters ecoreParameter="TaxCard.ecore#//Extraordinary_Expense_CE/compute_thresholded_deduction_percentage_for_CE/IN_thresholded_deduction_percentage"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="TaxCard.ecore#//Travel_Expense_FD"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Professional_Expense"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Miscellaneous_Expense_FO"/>
+    <genClasses ecoreClass="TaxCard.ecore#//Income_Detail">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/month"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/amount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/is_worked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/distance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/worked_days"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/is_contributing_CNS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/is_contributing_pension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TaxCard.ecore#//Income_Detail/is_contributing_dependante_insurance"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TaxCard.ecore#//Income_Detail/income"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

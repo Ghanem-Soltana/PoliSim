@@ -1,0 +1,33 @@
+[comment encoding = UTF-8 /]
+[module MatlabActivityParameterNodeDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')]
+
+
+[template public DeclareAnActivityparameterNode(anActivity : Activity, anActivityParameterNode1: ActivityParameterNode)]
+[for ( aSteriotype :   Stereotype  | anActivityParameterNode1.getAppliedStereotypes()->reject(name='in'))]
+		           			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+
+   							[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+							[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+[anActivityParameterNode1.name /] = [anActivityParameterNode1.getValue(anActivityParameterNode1.getAppliedStereotype('CTIE_Profile_Final::fromlaw'),'value')/] ; % From law 
+							[/if]
+							[/for]
+							[/for]
+
+[for ( aConstraint : Constraint  | anActivity.eAllContents()->filter(Constraint))]
+							[for ( temp : String  | aConstraint.constrainedElement->any(true).toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+[anActivityParameterNode1.name /] = [anActivityParameterNode1.getValue(anActivityParameterNode1.getAppliedStereotype('CTIE_Profile_Final::fromlaw'),'value')/] ; % From law 
+							[/if]
+							[/for]
+							[/for]
+
+                      		[/if]
+[/for]
+
+
+[/template]
+
+
+[query public activityParameterNodeToBedeclared(arg0 : Activity, arg1 : String, arg2 : Sequence(OclAny), arg3 : Sequence(OclAny)) : Sequence(ActivityParameterNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'activityParameterNodeToBedeclared(org.eclipse.uml2.uml.Activity, java.lang.String, java.util.List, java.util.List)', Sequence{arg0, arg1, arg2, arg3}) /]

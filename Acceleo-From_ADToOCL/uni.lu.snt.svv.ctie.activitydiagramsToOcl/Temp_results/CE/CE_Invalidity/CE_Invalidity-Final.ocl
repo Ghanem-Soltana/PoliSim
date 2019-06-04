@@ -1,0 +1,99 @@
+Size = 56
+context Tax_Payer inv CE_Invalidity:
+let tax_payer_is_resident:Boolean = self.oclIsTypeOf(Resident_Tax_Payer) in													
+/** Description: Returns yes if the taxpayer is resident; returns no otherwise - **/	
+if (tax_payer_is_resident) = true then
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in													
+/** Description: The incomes of a given taxpayer for the - studied tax year. The first income is the - principal one. The rest of incomes are sorted - from the highest to the lowest income. Note - that taxpayers who are taxed jointly have - only one principal income - **/	
+incomes -> forAll (income:Income|
+let eligible_type_of_disability:Boolean = self.disability_type <> Disability_Types::OTHER in
+/** Description: Checks that the taxpayer disability is supported by - the law. For instance, war mutulation = type A or work - accident= type B are eligible. - **/							
+if (eligible_type_of_disability) = true then
+   let is_disability_of_type_Sight:Boolean = self.disability_type = Disability_Types::E in
+   /** Description: Returns yes if the disability of the taxpayer is of type E (sight); -  **/							
+   if (is_disability_of_type_Sight) = false then
+   let deduction_according_disability_rate:Real = self.deduction_according_disability_rate() in													
+   /** Description: Contains the value of the deduction proportionally to the - taxpayers disability percentage. For instance, - if disability between 45% and 55% then it contains 375. - Source: reglement grand-ducal. -  **/	
+   let prorata_period:Real = income.prorata_period() in
+   /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+   let expected_CE_invalidity:Real = prorata_period * deduction_according_disability_rate
+   in
+   income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+   else
+     if (is_disability_of_type_Sight) = true then
+     let CE_invalidity_flat_rate_type_E:Real = self.from_law.CE_INVALIDITY_FLAT_RATE_TYPE_E() in 
+     /** TRACEABILITY: Contains the anual deduction for CE invalidity when the -  taxpayer has sight disability. Source: reglement grand-ducal. s - CE_invalidity_flat_rate_typeE =  1.455   - **/ 								
+     let prorata_period:Real = income.prorata_period() in
+     /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+     let expected_CE_invalidity:Real = prorata_period * CE_invalidity_flat_rate_type_E in
+     income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+     else
+     false
+     endif
+   endif
+else
+   if (eligible_type_of_disability) = false then
+   let expected_CE_invalidity:Real = 0 in
+   income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+   else
+   false
+   endif
+endif
+)
+else
+   if (tax_payer_is_resident) = false then
+     let is_taxpayer_assimilated_to_a_resident_taxpayer:Boolean = self.oclAsType(Non_Resident_Tax_Payer).is_assimilated_to_resident in													
+     /** Description: Returns yes if the taxpayer is assimilated to a  - resident taxpayer. For instance when a non  - resident taxpayer is taxed by "voie_assiette". -  **/	
+     if (is_taxpayer_assimilated_to_a_resident_taxpayer) = true then
+     let taxation_year:Integer = self.from_agent.taxation_year in
+     /** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+     let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in													
+     /** Description: The incomes of a given taxpayer for the  - studied tax year. The first income is the - principal one. The rest of incomes are sorted  - from the highest to the lowest income. Note  - that taxpayers who are taxed jointly have  - only one principal income  -  **/	
+     incomes -> forAll (income:Income|
+     let eligible_type_of_disability:Boolean = self.disability_type <> Disability_Types::OTHER in
+     /** Description: Checks that the taxpayer disability is supported by - the law. For instance, war mutulation = type A or work - accident= type B are eligible. -  **/							
+     if (eligible_type_of_disability) = true then
+        let is_disability_of_type_Sight:Boolean = self.disability_type = Disability_Types::E in
+        /** Description: Returns yes if the disability of the taxpayer is of type E (sight); -  **/							
+        if (is_disability_of_type_Sight) = false then
+        let deduction_according_disability_rate:Real = self.deduction_according_disability_rate() in													
+        /** Description: Contains the value of the deduction proportionally to the - taxpayers disability percentage. For instance, - if disability between 45% and 55% then it contains 375. - Source: reglement grand-ducal. -  **/	
+        let prorata_period:Real = income.prorata_period() in
+        /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+        let expected_CE_invalidity:Real = prorata_period * deduction_according_disability_rate
+        in
+        income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+        else
+          if (is_disability_of_type_Sight) = true then
+          let CE_invalidity_flat_rate_type_E:Real = self.from_law.CE_INVALIDITY_FLAT_RATE_TYPE_E() in 
+          /** TRACEABILITY: Contains the anual deduction for CE invalidity when the -  taxpayer has sight disability. Source: reglement grand-ducal. s - CE_invalidity_flat_rate_typeE =  1.455   - **/ 								
+          let prorata_period:Real = income.prorata_period() in
+          /** Description: Period during which the taxpayer has been employed  - over the course of the tax year (between 0 and 1)  -  **/							
+          let expected_CE_invalidity:Real = prorata_period * CE_invalidity_flat_rate_type_E in
+          income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+          else
+          false
+          endif
+        endif
+     else
+        if (eligible_type_of_disability) = false then
+        let expected_CE_invalidity:Real = 0 in
+        income.tax_card.deduction_CE_invalidity_yearly->any(true).oclIsUndefined()
+        else
+        false
+        endif
+     endif
+     )
+     else
+        if (is_taxpayer_assimilated_to_a_resident_taxpayer) = false then
+        false
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif

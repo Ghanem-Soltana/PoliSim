@@ -1,0 +1,43 @@
+context TaxPayer inv CIM:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(inc:Income | inc.oclIsTypeOf(Local_Income) and (inc.income_type.oclIsTypeOf(Employment_Income) or inc.income_type.oclIsTypeOf(Pensions_and_Annuities_Income)) and inc.year=taxation_year) in														
+let tax_liability: Numeric = incomes->iterate(inc: Income; acc:Numeric = 0 |
+let is_eligible_tax_class:Boolean = inc.tax_card->exists(tc:TaxCard|tc.tax_Class = Tax_Class_Category::One_A) in
+if (is_eligible_tax_class) = false then
+acc+0
+else
+   if (is_eligible_tax_class) = true then
+   acc+inc.tax_liability
+   else
+   acc+0
+   endif
+endif
+) in
+if (tax_liability>0) = true then
+   let dependent_children:Set(Dependent) = self.dependents->select(dep:Dependent|dep.dependent_type=Dependent_Type::CHILD and dep.compute_if_dependent_receives_allowances_eligible_for_CIM()=true) in														
+   let child_allowances:Numeric = dependent_children.allowances->select(al : External_Allowance| al.valid_from_date=taxation_year and al.valid_until_date = taxation_year)->size() in														
+   if (child_allowances>0) = true then
+   let flat_rate_CIM_yearly:MonetaryValue = Constant::FLAT_RATE_CIM_YEARLY.oclAsType(MonetaryValue) 
+   /** TRACEABILITY: Source: Art. 157ter Income Tax Law (2013) - **/ in 								
+   let excepcted_deduction:MonetaryValue = tax_liability * flat_rate_CIM_yearly in
+   let actual_deduction:MonetaryValue = self.getCIM(taxation_year).yearly in														
+   actual_deduction = expected_deduction
+   else
+     if (child_allowances>0) = false then
+     let excepcted_deduction:MonetaryValue = 0 in
+     let actual_deduction:MonetaryValue = self.getCIM(taxation_year).yearly in														
+     actual_deduction = expected_deduction
+     else
+     false
+     endif
+   endif
+else
+   if (tax_liability>0) = false then
+   let excepcted_deduction:MonetaryValue = 0 in
+   let actual_deduction:MonetaryValue = self.getCIM(taxation_year).yearly in														
+   actual_deduction = expected_deduction
+   else
+   false
+   endif
+endif

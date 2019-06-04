@@ -1,0 +1,118 @@
+context Income inv CE_Dependence_And_Care:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: When was the request - postmarked? - **/ in									
+let dependance_and_care_expenses:Set(Expense) = self.expenses->select(e:Expense| e.oclTypeOf(Extraordinary_Expense_CE) and e.year_expense_was_incurred_in=taxation_year) in														
+let expected_amount: MonetaryValue = dependance_and_care_expenses->iterate(dependance_and_care_expense: Expense; acc:MonetaryValue = 0 |
+if (dependance_and_care_expense.ce_type) = Expense_Purpose::HOUSE_CARE then
+   let is_the_house_property_of_the_taxpayer:Boolean = dependance_and_care_expense.is_the_house_property_of_the_taxpayer
+   /** TRACEABILITY: Agent type: officer - Question: Is the house property of the_taxpayer? - **/ in								
+   if (is_the_house_property_of_the_taxpayer) = true then
+        let is_expense_declared_to_social_security:Boolean = dependance_and_care_expense.is_expense_declared_to_social_security
+        /** TRACEABILITY: Agent type: officer - Question: is the expense declared to social security? - **/ in								
+        if (is_expense_declared_to_social_security) = true then
+               let expense_payed_by_taxpayer:Boolean = dependance_and_care_expense.expense_payed_by_taxpayer
+               /** TRACEABILITY: Agent type: officer - Question: Does the taxpayer pay the expense directly? - **/ in								
+               if (expense_payed_by_taxpayer) = false then
+                         if (taxation_year > 2010) = true then
+                                      let expense_payed_by_associations:Boolean = dependance_and_care_expense.expense_payed_by_associations
+                                      /** TRACEABILITY: Agent type: officer - Question: is the expense payed by a recognized association? - **/ in								
+                                      if (expense_payed_by_associations) = true then
+                                      acc+dependance_and_care_expense.declared_amount
+                                      else
+                                        if (expense_payed_by_associations) = false then
+                                        acc+0
+                                        else
+                                        acc+0
+                                        endif
+                                      endif
+                         else
+                            if (taxation_year > 2010) = false then
+                            acc+0
+                            else
+                            acc+0
+                            endif
+                         endif
+               else
+                  if (expense_payed_by_taxpayer) = true then
+                  acc+dependance_and_care_expense.declared_amount
+                  else
+                  acc+0
+                  endif
+               endif
+        else
+          if (is_expense_declared_to_social_security) = false then
+          acc+0
+          else
+          acc+0
+          endif
+        endif
+   else
+     if (is_the_house_property_of_the_taxpayer) = false then
+     acc+0
+     else
+     acc+0
+     endif
+   endif
+else
+   if (dependance_and_care_expense.ce_type) = Expense_Purpose::CHILD_CARE then
+     let dependent:Dependent = dependance_and_care_expense.dependent in
+     if (dependent.type = Dependent_Type::CHILD) = true then
+          let tax_payer:Tax_Payer = self.taxPayer in														
+          let part_of_houshold:Boolean = tax_payer.is_dependent_part_of_the_household(dependent) in
+          let allowances:Numeric = dependent.allowances->sum() in
+          if (part_of_houshold = false and allowances=0) = false then
+          acc+0
+          else
+             if (part_of_houshold = false and allowances=0) = true then
+                    if (dependent.age<14) = true then
+                    acc+dependance_and_care_expense.declared_amount
+                    else
+                       if (dependent.age<14) = false then
+                                 if (dependent.disability_percentage>0) = true then
+                                 acc+dependance_and_care_expense.declared_amount
+                                 else
+                                   if (dependent.disability_percentage>0) = false then
+                                   acc+0
+                                   else
+                                   acc+0
+                                   endif
+                                 endif
+                       else
+                       acc+0
+                       endif
+                    endif
+             else
+             acc+0
+             endif
+          endif
+     else
+        if (dependent.type = Dependent_Type::CHILD) = false then
+        acc+0
+        else
+        acc+0
+        endif
+     endif
+   else
+   acc+0
+   endif
+endif
+) in
+let maximum_CE_rate:MonetaryValue = Constant::MAXIMUM_CE_RATE.oclAsType(MonetaryValue) 
+/** TRACEABILITY: Source: Art. 127 alenea 4a and 6 Income Tax Law (2013) - **/ in 								
+if (expected_amount < maximum_CE_rate) = true then
+let CE_dependence:CE = self.getDeductionForCEDependenceAndCare(taxation_year) in														
+let dependance_flat_rate:MonetaryValue = CE_dependence.dependent_relative_flat_rate														
+/** TRACEABILITY: Source: Art. 139 Income Tax Law (2013) and Income Tax scales (2013) - - **/ in 									
+let deductible_amount_for_dependence_care:MonetaryValue = dependance_and_care_expenses->select(e:Expense| e.oclTypeOf(Extraordinary_Expense_CE) and e.year_expense_was_incurred_in=taxation_year and e.ce_type=Expense_Purpose::DEPENDENCE_CARE)->size() * self.tax_liability * dependance_flat_rate in														
+let expected_deduction:MonetaryValue = expected_deduction + deductible_amount_for_dependence_care in
+else
+   if (expected_amount < maximum_CE_rate) = false then
+   let CE_dependence:CE = self.getDeductionForCEDependenceAndCare(taxation_year) in														
+   let dependance_flat_rate:MonetaryValue = CE_dependence.dependent_relative_flat_rate														
+   /** TRACEABILITY: Source: Art. 139 Income Tax Law (2013) and Income Tax scales (2013) - - **/ in 									
+   let deductible_amount_for_dependence_care:MonetaryValue = dependance_and_care_expenses->select(e:Expense| e.oclTypeOf(Extraordinary_Expense_CE) and e.year_expense_was_incurred_in=taxation_year and e.ce_type=Expense_Purpose::DEPENDENCE_CARE)->size() * self.tax_liability * dependance_flat_rate in														
+   let expected_deduction:MonetaryValue = maximum_CE_rate + deductible_amount_for_dependence_care in
+   else
+   false
+   endif
+endif

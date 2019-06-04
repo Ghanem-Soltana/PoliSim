@@ -1,0 +1,79 @@
+context Income inv CE_Not_In_Houshold_Children_Care:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: When was the request postmarked? - **/ in									
+let extraordinary_expenses:Set(Expense) = self.expenses->select(e:Expense| e.oclTypeOf(Extraordinary_Expense_CE) and e.year_expense_was_incurred_in=taxation_year) in														
+let expected_amount: MonetaryValue = extraordinary_expenses->iterate(extraordinary_expense: Expense; acc:MonetaryValue = 0 |
+let dependent:Dependent = extraordinary_expense.dependent in
+if (dependent.type = Dependent_Type::CHILD) = false then
+acc+0
+else
+   if (dependent.type = Dependent_Type::CHILD) = true then
+     let tax_payer:Tax_Payer = self.taxPayer in														
+     let part_of_houshold:Boolean = tax_payer.is_dependent_part_of_the_household(dependent) in
+     if (part_of_houshold) = true then
+     acc+0
+     else
+        if (part_of_houshold) = false then
+             let allowances:Numeric = dependent.allowances->size() in
+             if (allowances = 0) = false then
+             acc+0
+             else
+               if (allowances = 0) = true then
+                       let age:Numeric = dependent.age in
+                       if (age > 21) = true then
+                                 let minimum_leagl_salary:MonetaryValue = Constant::MINIMUM_LEAGL_SALARY.oclAsType(MonetaryValue) 
+                                 /** TRACEABILITY: Source: Grand-Ducal regulations - - **/ in 								
+                                 let dependent_income:MonetaryValue = dependent.tax_Payer.incomes.income_amount->sum() in
+                                 if (dependent_income < 0.6 * minimum_leagl_salary) = false then
+                                 acc+0
+                                 else
+                                   if (dependent_income < 0.6 * minimum_leagl_salary) = true then
+                                                let dependent_still_studying:Boolean = dependent.continued_studies in
+                                                if (dependent_still_studying) = false then
+                                                acc+0
+                                                else
+                                                  if (dependent_still_studying) = true then
+                                                  acc+extraordinary_expense.declared_amount
+                                                  else
+                                                  acc+0
+                                                  endif
+                                                endif
+                                   else
+                                   acc+0
+                                   endif
+                                 endif
+                       else
+                         if (age > 21) = false then
+                         acc+extraordinary_expense.declared_amount
+                         else
+                         acc+0
+                         endif
+                       endif
+               else
+               acc+0
+               endif
+             endif
+        else
+        acc+0
+        endif
+     endif
+   else
+   acc+0
+   endif
+endif
+) in
+let maximum_rate_for_CE_children:MonetaryValue = Constant::MAXIMUM_RATE_FOR_CE_CHILDREN.oclAsType(MonetaryValue) 
+/** TRACEABILITY: Source: Art. 127bis of the income tax law 2013 - **/ in 								
+if (expected_amount > maximum_rate_for_CE_children) = true then
+let expected_deduction:MonetaryValue = maximum_rate_for_CE_children in
+let actual_deduction:MonetaryValue = self.getDeductionForCCENotInHousholdChildrenCare(taxation_year).deduced_amount in														
+actual_deduction=expected_deduction
+else
+   if (expected_amount > maximum_rate_for_CE_children) = false then
+   let expected_deduction:MonetaryValue = expected_amount in
+   let actual_deduction:MonetaryValue = self.getDeductionForCCENotInHousholdChildrenCare(taxation_year).deduced_amount in														
+   actual_deduction=expected_deduction
+   else
+   false
+   endif
+endif

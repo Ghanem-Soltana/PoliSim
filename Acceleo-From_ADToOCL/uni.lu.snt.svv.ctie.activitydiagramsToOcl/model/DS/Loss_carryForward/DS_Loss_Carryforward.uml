@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325 CTIE_Profile_Final.profile.uml#_sfM4BJo_EeOXzvVK2MY5wA">
+  <uml:Package xmi:id="_sex-RJo_EeOXzvVK2MY5wA" name="DS_Loss_CarryForward">
+    <packageImport xmi:id="_sex-RZo_EeOXzvVK2MY5wA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_sex-Rpo_EeOXzvVK2MY5wA" name="DS_Loss_CarryForward">
+      <ownedComment xmi:id="_sex-R5o_EeOXzvVK2MY5wA" annotatedElement="_sex-YJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>self.incomes-&amp;gt;select(income: Income | income.year &amp;lt; taxation_year)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-SJo_EeOXzvVK2MY5wA" annotatedElement="_sex-Ypo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent&amp;nbsp;type: &lt;/b>officer &lt;/p>&lt;p>&lt;b>Question: &lt;/b>Which year needs to be checked?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-SZo_EeOXzvVK2MY5wA" annotatedElement="_sex-qJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>income.getDS_Loss_CarryForward(taxation_year).deduced_amount&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-Spo_EeOXzvVK2MY5wA" annotatedElement="_sex-pJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>income.expenses-&amp;gt; select(e:Expense | e.oclIsTypeOf(Loss_Carryforward) and e.year_expense_was_incurred_in = income.year).declared_amount-&amp;gt;sum()&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-S5o_EeOXzvVK2MY5wA" annotatedElement="_sex-rpo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent&amp;nbsp;type: &lt;/b>officer &lt;/p>&lt;p>&lt;b>Question: &lt;/b>Was the accountability regular during the loss?&lt;/p>&lt;p>&lt;b>Source: &lt;/b>Art. 114, numero 3 Tax Law (2013)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-TJo_EeOXzvVK2MY5wA" annotatedElement="_sex-rJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent&amp;nbsp;type: &lt;/b>officer &lt;/p>&lt;p>&lt;b>Question: &lt;/b>Is the Taxpayer a partner or a successor during the loss?&lt;/p>&lt;p>&lt;b>Source: &lt;/b>Art. 114, numero 3 Tax Law (2013)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-TZo_EeOXzvVK2MY5wA" annotatedElement="_sex-qpo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent&amp;nbsp;type: &lt;/b>officer &lt;/p>&lt;p>&lt;b>Question: &lt;/b>Is the loss compensated by any mean?&lt;/p>&lt;p>&lt;b>Source: &lt;/b>Art. 114, numero 1, Art. 52 Income Tax Law (2013)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-Tpo_EeOXzvVK2MY5wA" annotatedElement="_sex-tZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>income.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or income.income_type.oclIsTypeOf(Independent_Professional_Services_Income) or inccome.income_type.oclIsTypeOf(Trade_and_Business_Income)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-T5o_EeOXzvVK2MY5wA" annotatedElement="_sex-t5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Source&lt;/b> : Art. 114 alinéa 1, Income Tax Law (2013)&lt;b>&lt;/b>&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_sex-UJo_EeOXzvVK2MY5wA" annotatedElement="_sex-uZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>income.year&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_sex-UZo_EeOXzvVK2MY5wA" name="fromrecord_incomes" constrainedElement="_sex-Rpo_EeOXzvVK2MY5wA">
+        <eAnnotations xmi:id="_sex-Upo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-U5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.incomes->select(income: Income | income.year = taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_sex-VJo_EeOXzvVK2MY5wA" name="assert_case1" constrainedElement="_sex-Rpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-VZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>actual_deduction = expected_deduction</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_sex-Vpo_EeOXzvVK2MY5wA" name="fromrecord_actual_deduction" constrainedElement="_sex-Rpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-V5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>income.getDS_Loss_CarryForward(taxation_year).deduced_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_sex-WJo_EeOXzvVK2MY5wA" name="is_eligible_constraint" constrainedElement="_sex-Rpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-WZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>income.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or income.income_type.oclIsTypeOf(Independent_Professional_Services_Income) or inccome.income_type.oclIsTypeOf(Trade_and_Business_Income)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_sex-Wpo_EeOXzvVK2MY5wA" name="income_year" constrainedElement="_sex-Rpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-W5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>income.year</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_sex-XJo_EeOXzvVK2MY5wA" name="fromrecord_summ_loss_carryforward" constrainedElement="_sex-Rpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-XZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>income.expenses-> select(e:Expense | e.oclIsTypeOf(Loss_Carryforward) and e.year_expense_was_incurred_in = income.year).declared_amount->sum()</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_sex-Xpo_EeOXzvVK2MY5wA" name="Parameter1">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_seviB5o_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_sex-X5o_EeOXzvVK2MY5wA" name="Parameter3">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_seviA5o_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_sex-YJo_EeOXzvVK2MY5wA" name="incomes" outgoing="_sex-vpo_EeOXzvVK2MY5wA" parameter="_sex-Xpo_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_seviB5o_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-YZo_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_sex-Ypo_EeOXzvVK2MY5wA" name="taxation_year" parameter="_sex-X5o_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_seviA5o_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-Y5o_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:InitialNode" xmi:id="_sex-ZJo_EeOXzvVK2MY5wA" outgoing="_sex-u5o_EeOXzvVK2MY5wA"/>
+      <node xmi:type="uml:ExpansionRegion" xmi:id="_sex-ZZo_EeOXzvVK2MY5wA" name="ExpansionRegion" incoming="_sex-u5o_EeOXzvVK2MY5wA" inputElement="_sex-ppo_EeOXzvVK2MY5wA">
+        <ownedComment xmi:id="_sex-Zpo_EeOXzvVK2MY5wA" annotatedElement="_sex-m5o_EeOXzvVK2MY5wA">
+          <body>&lt;p>sum_loss_carryforward_expenses&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_sex-Z5o_EeOXzvVK2MY5wA" annotatedElement="_sex-oZo_EeOXzvVK2MY5wA">
+          <body>&lt;p>0&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_sex-aJo_EeOXzvVK2MY5wA" annotatedElement="_sex-sJo_EeOXzvVK2MY5wA">
+          <body>&lt;p>actual_deduction = expected_deduction&lt;/p></body>
+        </ownedComment>
+        <ownedRule xmi:id="_sex-aZo_EeOXzvVK2MY5wA" name="formula_consider_donation" constrainedElement="_sex-ZZo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-apo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>sum_loss_carryforward_expenses</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_sex-a5o_EeOXzvVK2MY5wA" name="formula_do_not_consider" constrainedElement="_sex-ZZo_EeOXzvVK2MY5wA">
+          <eAnnotations xmi:id="_sex-bJo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_sex-bZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>0</body>
+          </specification>
+        </ownedRule>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-bpo_EeOXzvVK2MY5wA" name="yes" source="_sex-mZo_EeOXzvVK2MY5wA" target="_sex-mpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-b5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-cJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-cZo_EeOXzvVK2MY5wA" source="_sex-mJo_EeOXzvVK2MY5wA" target="_sex-npo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-cpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-c5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-dJo_EeOXzvVK2MY5wA" name="yes" source="_sex-npo_EeOXzvVK2MY5wA" target="_sex-mZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-dZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-dpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-d5o_EeOXzvVK2MY5wA" name="yes" source="_sex-mpo_EeOXzvVK2MY5wA" target="_sex-n5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-eJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-eZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-epo_EeOXzvVK2MY5wA" name="yes" source="_sex-n5o_EeOXzvVK2MY5wA" target="_sex-oZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-e5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-fJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-fZo_EeOXzvVK2MY5wA" name="yes" source="_sex-oJo_EeOXzvVK2MY5wA" target="_sex-m5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-fpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-f5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-gJo_EeOXzvVK2MY5wA" name="no" source="_sex-n5o_EeOXzvVK2MY5wA" target="_sex-oJo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-gZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-gpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-g5o_EeOXzvVK2MY5wA" name="no" source="_sex-npo_EeOXzvVK2MY5wA" target="_sex-oZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-hJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-hZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-hpo_EeOXzvVK2MY5wA" name="no" source="_sex-mZo_EeOXzvVK2MY5wA" target="_sex-oZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-h5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-iJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-iZo_EeOXzvVK2MY5wA" name="no" source="_sex-mpo_EeOXzvVK2MY5wA" target="_sex-oZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-ipo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-i5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_sex-jJo_EeOXzvVK2MY5wA" name="no" source="_sex-oJo_EeOXzvVK2MY5wA" target="_sex-oZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-jZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-jpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_sex-j5o_EeOXzvVK2MY5wA" source="_sex-nJo_EeOXzvVK2MY5wA" target="_sex-s5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-kJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-kZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_sex-kpo_EeOXzvVK2MY5wA" source="_sex-opo_EeOXzvVK2MY5wA" target="_sex-s5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-k5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-lJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_sex-lZo_EeOXzvVK2MY5wA" source="_sex-s5o_EeOXzvVK2MY5wA" target="_sex-sZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-lpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-l5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <node xmi:type="uml:InitialNode" xmi:id="_sex-mJo_EeOXzvVK2MY5wA" outgoing="_sex-cZo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_sex-mZo_EeOXzvVK2MY5wA" name="is_income_eligible" outgoing="_sex-bpo_EeOXzvVK2MY5wA _sex-hpo_EeOXzvVK2MY5wA" incoming="_sex-dJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_sex-mpo_EeOXzvVK2MY5wA" name="is_accountability_regular" outgoing="_sex-d5o_EeOXzvVK2MY5wA _sex-iZo_EeOXzvVK2MY5wA" incoming="_sex-bpo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_sex-m5o_EeOXzvVK2MY5wA" name="Consider loss deduction" incoming="_sex-fZo_EeOXzvVK2MY5wA">
+          <outputValue xmi:id="_sex-nJo_EeOXzvVK2MY5wA" outgoing="_sex-j5o_EeOXzvVK2MY5wA">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh_5o_EeOXzvVK2MY5wA"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-nZo_EeOXzvVK2MY5wA" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_sex-npo_EeOXzvVK2MY5wA" name="income_year > minimum_exercice_year" outgoing="_sex-dJo_EeOXzvVK2MY5wA _sex-g5o_EeOXzvVK2MY5wA" incoming="_sex-cZo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_sex-n5o_EeOXzvVK2MY5wA" name="is_compensated_by_other_means" outgoing="_sex-epo_EeOXzvVK2MY5wA _sex-gJo_EeOXzvVK2MY5wA" incoming="_sex-d5o_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_sex-oJo_EeOXzvVK2MY5wA" name="is_taxpayer_affected_by_the_loss" outgoing="_sex-fZo_EeOXzvVK2MY5wA _sex-jJo_EeOXzvVK2MY5wA" incoming="_sex-gJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_sex-oZo_EeOXzvVK2MY5wA" name="No deduction" incoming="_sex-epo_EeOXzvVK2MY5wA _sex-g5o_EeOXzvVK2MY5wA _sex-hpo_EeOXzvVK2MY5wA _sex-iZo_EeOXzvVK2MY5wA _sex-jJo_EeOXzvVK2MY5wA">
+          <outputValue xmi:id="_sex-opo_EeOXzvVK2MY5wA" outgoing="_sex-kpo_EeOXzvVK2MY5wA">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh_5o_EeOXzvVK2MY5wA"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-o5o_EeOXzvVK2MY5wA" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-pJo_EeOXzvVK2MY5wA" name="sum_loss_carryforward_expenses">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh_5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-pZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:ExpansionNode" xmi:id="_sex-ppo_EeOXzvVK2MY5wA" name="income" incoming="_sex-vpo_EeOXzvVK2MY5wA" regionAsInput="_sex-ZZo_EeOXzvVK2MY5wA">
+          <type xmi:type="uml:Class" href="TaxCard.uml#_sfxgq5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-p5o_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-qJo_EeOXzvVK2MY5wA" name="actual_deduction">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh_5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-qZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-qpo_EeOXzvVK2MY5wA" name="is_compensated_by_other_means">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh-5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-q5o_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-rJo_EeOXzvVK2MY5wA" name="is_taxpayer_affected_by_the_loss">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh-5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-rZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-rpo_EeOXzvVK2MY5wA" name="is_accountability_regular">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh-5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-r5o_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_sex-sJo_EeOXzvVK2MY5wA" name="Check calculation">
+          <inputValue xmi:id="_sex-sZo_EeOXzvVK2MY5wA" incoming="_sex-lZo_EeOXzvVK2MY5wA">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh_5o_EeOXzvVK2MY5wA"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-spo_EeOXzvVK2MY5wA" value="1"/>
+          </inputValue>
+        </node>
+        <node xmi:type="uml:CentralBufferNode" xmi:id="_sex-s5o_EeOXzvVK2MY5wA" name="expected_deduction" outgoing="_sex-lZo_EeOXzvVK2MY5wA" incoming="_sex-j5o_EeOXzvVK2MY5wA _sex-kpo_EeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_sevh_5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-tJo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-tZo_EeOXzvVK2MY5wA" name="is_income_eligible">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-tpo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-t5o_EeOXzvVK2MY5wA" name="minimum_exercice_year">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_seviA5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-uJo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_sex-uZo_EeOXzvVK2MY5wA" name="income_year">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_seviA5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_sex-upo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+      </node>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_sex-u5o_EeOXzvVK2MY5wA" source="_sex-ZJo_EeOXzvVK2MY5wA" target="_sex-ZZo_EeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-vJo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-vZo_EeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_sex-vpo_EeOXzvVK2MY5wA" source="_sex-YJo_EeOXzvVK2MY5wA" target="_sex-ppo_EeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_sex-v5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_sex-wJo_EeOXzvVK2MY5wA" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_sex-wZo_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_sex-wpo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_sex-w5o_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_sex-xJo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_sewJk5o_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_sewJkZo_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_sex-xZo_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_sex-xpo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_sfyHSZo_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_sfyHR5o_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_sex-x5o_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_sex-yJo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_sfM4BJo_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_sfM4Apo_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:assert xmi:id="_sex-yZo_EeOXzvVK2MY5wA" base_OpaqueAction="_sex-sJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:statement xmi:id="_sex-ypo_EeOXzvVK2MY5wA" constraint="_sex-VJo_EeOXzvVK2MY5wA" base_Comment="_sex-aJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_sex-y5o_EeOXzvVK2MY5wA" base_OpaqueAction="_sex-m5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_sex-zJo_EeOXzvVK2MY5wA" constraint="_sex-aZo_EeOXzvVK2MY5wA" base_Comment="_sex-Zpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-zZo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Which year needs to be checked?" base_Comment="_sex-SJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-zpo_EeOXzvVK2MY5wA" constraint="_sex-UZo_EeOXzvVK2MY5wA" base_Comment="_sex-R5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_sex-z5o_EeOXzvVK2MY5wA" base_ActivityParameterNode="_sex-YJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-0Jo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_sex-YJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_sex-0Zo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_sex-Ypo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-0po_EeOXzvVK2MY5wA" base_ActivityParameterNode="_sex-Ypo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-05o_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Is the loss compensated by any mean?" source="Art. 114, numero 1, ART. 52 Income Tax Law (2013)" base_Comment="_sex-TZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-1Jo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Is the Taxpayer a partner or a successor during the loss?" source="Art. 114, numero 3 Tax Law (2013)" base_Comment="_sex-TJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-1Zo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Was the accountability regular during the loss?" source="Art. 114, numero 3 Tax Law (2013)" base_Comment="_sex-S5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:context xmi:id="_sex-1po_EeOXzvVK2MY5wA" context_class="TaxPayer" base_Activity="_sex-Rpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:iterative xmi:id="_sex-15o_EeOXzvVK2MY5wA" base_ExpansionRegion="_sex-ZZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-2Jo_EeOXzvVK2MY5wA" constraint="_sex-Vpo_EeOXzvVK2MY5wA" base_Comment="_sex-SZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_sex-2Zo_EeOXzvVK2MY5wA" base_OpaqueAction="_sex-oZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_sex-2po_EeOXzvVK2MY5wA" constraint="_sex-a5o_EeOXzvVK2MY5wA" base_Comment="_sex-Z5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-25o_EeOXzvVK2MY5wA" constraint="_sex-XJo_EeOXzvVK2MY5wA" base_Comment="_sex-Spo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_sex-3Jo_EeOXzvVK2MY5wA" base_Pin="_sex-pJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-3Zo_EeOXzvVK2MY5wA" base_Pin="_sex-pJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_sex-3po_EeOXzvVK2MY5wA" base_Pin="_sex-qJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-35o_EeOXzvVK2MY5wA" base_Pin="_sex-qJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_sex-4Jo_EeOXzvVK2MY5wA" base_Pin="_sex-qpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-4Zo_EeOXzvVK2MY5wA" base_Pin="_sex-qpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_sex-4po_EeOXzvVK2MY5wA" base_Pin="_sex-rJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-45o_EeOXzvVK2MY5wA" base_Pin="_sex-rJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_sex-5Jo_EeOXzvVK2MY5wA" base_Pin="_sex-rpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-5Zo_EeOXzvVK2MY5wA" base_Pin="_sex-rpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:intermediate xmi:id="_sex-5po_EeOXzvVK2MY5wA" base_CentralBufferNode="_sex-s5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_sex-55o_EeOXzvVK2MY5wA" base_Pin="_sex-tZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-6Jo_EeOXzvVK2MY5wA" base_Pin="_sex-tZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-6Zo_EeOXzvVK2MY5wA" constraint="_sex-WJo_EeOXzvVK2MY5wA" base_Comment="_sex-Tpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-6po_EeOXzvVK2MY5wA" question="" source="Art. 114 alinéa Income Tax Law (2013)" value_type="FIXED_VALUE" base_Comment="_sex-T5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_sex-65o_EeOXzvVK2MY5wA" base_Pin="_sex-t5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-7Jo_EeOXzvVK2MY5wA" base_Pin="_sex-t5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_sex-7Zo_EeOXzvVK2MY5wA" base_Pin="_sex-uZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_sex-7po_EeOXzvVK2MY5wA" base_Pin="_sex-uZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_sex-75o_EeOXzvVK2MY5wA" constraint="_sex-Wpo_EeOXzvVK2MY5wA" base_Comment="_sex-UJo_EeOXzvVK2MY5wA"/>
+</xmi:XMI>

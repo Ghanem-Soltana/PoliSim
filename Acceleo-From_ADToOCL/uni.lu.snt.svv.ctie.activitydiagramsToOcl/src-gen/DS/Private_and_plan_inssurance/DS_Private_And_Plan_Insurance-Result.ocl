@@ -1,0 +1,89 @@
+context Income inv DS_Private_And_Plan_Insurance:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: When was the request postmarked? - **/ in									
+let private_insurance_and_plan_expenses:Set(Expense) = self.expenses->select(e:Expense| e.oclTypeOf(Private_Insurance_and_Plan) and e.year_expense_was_incurred_in=taxation_year) in														
+let expected_deduction: MonetaryValue = private_insurance_and_plan_expenses->iterate(private_insurance_and_plan_expense: Expense; acc:MonetaryValue = 0 |
+let expense_category:Category_of_Private_Insurance_and_Plan = private_insurance_and_plan_expense.category in
+if (expense_category) = Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN then
+   let is_eligible_old_age_insurance_and_plan:Boolean = private_insurance_and_plan_expense.is_eligible_old_age_insurance_and_plan
+   /** TRACEABILITY: Agent type: officer - Question: Does the old age insurance verifies the rules for deduction? - **/ in								
+   if (is_eligible_old_age_insurance_and_plan) = false then
+   acc+0
+   else
+     if (is_eligible_old_age_insurance_and_plan) = true then
+          let maximum_deductible_amount_for_old_age_pension_plan:MonetaryValue = private_insurance_and_plan_expense.maximum_deductible_amount_for_old_age_pension_plan
+          /** TRACEABILITY: Source: Art. 111bis Income Tax Law (2013)  - **/ in								
+          let expense_amount:MonetaryValue = private_insurance_and_plan_expense.declared_amount in
+          if (expense_amount <= maximum_deductible_amount_for_old_age_pension_plan) = false then
+          acc+maximum_deductible_amount_for_old_age_pension_plan
+          else
+             if (expense_amount <= maximum_deductible_amount_for_old_age_pension_plan) = true then
+             acc+private_insurance_and_plan_expense.declared_amount
+             else
+             acc+0
+             endif
+          endif
+     else
+     acc+0
+     endif
+   endif
+else 
+   if (expense_category) = Category_of_Private_Insurance_and_Plan::PRIVATE_INSURANCE or Category_of_Private_Insurance_and_Plan::COMPANY_MEMBERS_PRIVATE_INSURANCE or Category_of_Private_Insurance_and_Plan::HOUSING_SAVING_PLAN then
+     let is_eligible_for_deduction:Boolean = private_insurance_and_plan_expense.is_eligible_for_deduction
+     /** TRACEABILITY: Agent type: officer - Question: Does the private_insurance_and_plan_expense verifies the rules for deduction? - **/ in								
+     if (is_eligible_for_deduction) = false then
+     acc+0
+     else
+        if (is_eligible_for_deduction) = true then
+             let increase_for_life_insurance:MonetaryValue = private_insurance_and_plan_expense.increase_for_life_insurance
+             /** TRACEABILITY: Source: Schedule of Withholding Taxes (2013) - **/ in								
+             let maximum_deductible_amount:MonetaryValue = private_insurance_and_plan_expense.maximum_deductible_amount
+             /** TRACEABILITY: Source: Art. 111 Income Tax Law (2013) - **/ in								
+             let expense_amount:MonetaryValue = private_insurance_and_plan_expense.declared_amount in
+             if (maximum_deductible_amount + increase_for_life_insurance >= expense_amount) = true then
+             acc+private_insurance_and_plan_expense.declared_amount
+             else
+               if (maximum_deductible_amount + increase_for_life_insurance >= expense_amount) = false then
+               acc+maximum_deductible_amount + increase_for_life_insurance
+               else
+               acc+0
+               endif
+             endif
+        else
+        acc+0
+        endif
+     endif
+else
+   if (expense_category) = Category_of_Private_Insurance_and_Plan::PRIVATE_LIFE_INSURANCE then
+     let is_eligible_private_life_insurance:Boolean = private_insurance_and_plan_expense.is_eligible_private_life_insurance
+     /** TRACEABILITY: Agent type: officer - Question: Does the private life insurance verifies the rules for deduction? - **/ in								
+     if (is_eligible_private_life_insurance) = false then
+     acc+0
+     else
+        if (is_eligible_private_life_insurance) = true then
+             let increase_for_life_insurance:MonetaryValue = private_insurance_and_plan_expense.increase_for_life_insurance
+             /** TRACEABILITY: Source: Schedule of Withholding Taxes (2013) - **/ in								
+             let maximum_deductible_amount:MonetaryValue = private_insurance_and_plan_expense.maximum_deductible_amount
+             /** TRACEABILITY: Source: Art. 111 Income Tax Law (2013) - **/ in								
+             let expense_amount:MonetaryValue = private_insurance_and_plan_expense.declared_amount in
+             if (expense_amount <= maximum_deductible_amount + increase_for_life_insurance) = true then
+             acc+private_insurance_and_plan_expense.declared_amount
+             else
+               if (expense_amount <= maximum_deductible_amount + increase_for_life_insurance) = false then
+               acc+maximum_deductible_amount + increase_for_life_insurance
+               else
+               acc+0
+               endif
+             endif
+        else
+        acc+0
+        endif
+     endif
+   else
+   acc+0
+   endif
+   endif
+endif
+) in
+let actual_deduction:MonetaryValue = self.getDeductionForCEPrivateAndPlanInssurance(taxation_year).deduced_amount in														
+actual_deduction = expected_deduction

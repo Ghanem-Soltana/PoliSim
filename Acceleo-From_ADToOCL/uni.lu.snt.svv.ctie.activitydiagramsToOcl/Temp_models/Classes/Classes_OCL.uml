@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_0e56UHiXEeWPX-JWIXi-aQ/360" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_0e56UHiXEeWPX-JWIXi-aQ/360 CTIE_Profile_Final.profile.uml#_PbBIMoLmEeW_RLA2GM5bmQ">
+  <uml:Package xmi:id="_PbttDILmEeW_RLA2GM5bmQ" name="Tax_Classes">
+    <packageImport xmi:id="_PbttDYLmEeW_RLA2GM5bmQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_PbttDoLmEeW_RLA2GM5bmQ">
+      <importedPackage href="CTIE_Library.uml#_PaMokYLmEeW_RLA2GM5bmQ"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_PbttD4LmEeW_RLA2GM5bmQ" name="Tax_Classes">
+      <eAnnotations xmi:id="_PbttEILmEeW_RLA2GM5bmQ" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+      <ownedComment xmi:id="_PbttEYLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>self.incomes-&amp;gt;select(i: Income | i.year = tax_year)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttEoLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>&lt;b>Source: &lt;/b>Art. 105bis of the income tax law&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttE4LmEeW_RLA2GM5bmQ">
+        <body>&lt;p>income.distance_declared_in_january&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttFILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>&lt;b>OCL:&lt;/b> inc.distance&lt;/p>&lt;p>&lt;b>Source: &lt;/b>Ministerial Regulation of February 6, 2012&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttFYLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>&lt;b>Agent Type:&lt;/b> officer&lt;/p>&lt;p>&lt;b>Question:&lt;/b> When was the request postmarked?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttFoLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>self.current_taxation_year&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttF4LmEeW_RLA2GM5bmQ">
+        <body>&lt;p>inc.getCED(tax_year).amount&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttGILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>inc.prorata_period&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttGYLmEeW_RLA2GM5bmQ" annotatedElement="_PbuSbILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Specifies when the request was postmarked.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttGoLmEeW_RLA2GM5bmQ" annotatedElement="_PbttZILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns yes if the taxpayer is married or has a partnership contract.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttG4LmEeW_RLA2GM5bmQ" annotatedElement="_PbttZoLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;is&amp;nbsp;divorced&amp;nbsp;within&amp;nbsp;the&amp;nbsp;selected&amp;nbsp;taxation&amp;nbsp;year.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttHILmEeW_RLA2GM5bmQ" annotatedElement="_PbttaILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;has&amp;nbsp;a&amp;nbsp;judicial&amp;nbsp;sentence&amp;nbsp;dismissing&amp;nbsp;him&amp;nbsp;from&amp;nbsp;cohabiting&amp;nbsp;with&amp;nbsp;his/her&amp;nbsp;spouse.&amp;nbsp;In&amp;nbsp;French:&amp;nbsp;&quot;Separation&amp;nbsp;de&amp;nbsp;corps&quot;.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttHYLmEeW_RLA2GM5bmQ" annotatedElement="_PbttaoLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns yes if the taxpayer is not cohabiting with his/her spouse. In French: &quot;Separation de fait&quot;.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttHoLmEeW_RLA2GM5bmQ" annotatedElement="_PbttboLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;has&amp;nbsp;the&amp;nbsp;statute&amp;nbsp;of&amp;nbsp;widower&amp;nbsp;for&amp;nbsp;the&amp;nbsp;current&amp;nbsp;taxation&amp;nbsp;year.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttH4LmEeW_RLA2GM5bmQ" annotatedElement="_PbuSYILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;the&amp;nbsp;age&amp;nbsp;of&amp;nbsp;a&amp;nbsp;given&amp;nbsp;taxpayer.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttIILmEeW_RLA2GM5bmQ" annotatedElement="_PbuSYoLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;the&amp;nbsp;year&amp;nbsp;on&amp;nbsp;which&amp;nbsp;the&amp;nbsp;spouse&amp;nbsp;of&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;past&amp;nbsp;away.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttIYLmEeW_RLA2GM5bmQ" annotatedElement="_PbuSZYLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;is&amp;nbsp;married.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttIoLmEeW_RLA2GM5bmQ" annotatedElement="_PbttcILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;yes&amp;nbsp;if&amp;nbsp;the&amp;nbsp;taxpayer&amp;nbsp;is&amp;nbsp;receiving&amp;nbsp;a&amp;nbsp;bonus&amp;nbsp;for&amp;nbsp;children&amp;nbsp;in&amp;nbsp;household.&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttI4LmEeW_RLA2GM5bmQ" annotatedElement="_PbttbILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns yes if: (1) the divorce/separation occurred within the last three years from the taxation year, and (2) the taxpayer did has not benefited from a divorce/separation transition state for the last five years from the current taxation year. &lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttJILmEeW_RLA2GM5bmQ" annotatedElement="_PbuSaILmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;the&amp;nbsp;sum&amp;nbsp;of&amp;nbsp;the&amp;nbsp;taxpayer's&amp;nbsp;household&amp;nbsp;professional&amp;nbsp;incomes&amp;nbsp;that&amp;nbsp;are&amp;nbsp;taxed&amp;nbsp;in&amp;nbsp;Luxembourg.&amp;nbsp;&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttJYLmEeW_RLA2GM5bmQ" annotatedElement="_PbuSaoLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>Returns&amp;nbsp;the&amp;nbsp;sum&amp;nbsp;of&amp;nbsp;the&amp;nbsp;taxpayer's&amp;nbsp;household&amp;nbsp;professional&amp;nbsp;incomes.&amp;nbsp;&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttJoLmEeW_RLA2GM5bmQ" annotatedElement="_PbuSb4LmEeW_RLA2GM5bmQ">
+        <body>&lt;p>&lt;/p>&lt;p>&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttJ4LmEeW_RLA2GM5bmQ" annotatedElement="_PbuScoLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_PbttKILmEeW_RLA2GM5bmQ" annotatedElement="_PbuSdYLmEeW_RLA2GM5bmQ">
+        <body>&lt;p>&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_PbttKYLmEeW_RLA2GM5bmQ" name="fromrecord_is_taxed_jointly" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttKoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getIsTaxedJointly(taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttK4LmEeW_RLA2GM5bmQ" name="fromrecord_is_divorced" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttLILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getSeperationState(taxation_year,Separation_Causes::DIVORCE)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttLYLmEeW_RLA2GM5bmQ" name="fromrecord_is_living_separately_by_court" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttLoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getSeperationState(taxation_year,Separation_Causes::SEPARATION_BY_COURT)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttL4LmEeW_RLA2GM5bmQ" name="fromrecord_is_living_separately" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttMILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getSeperationState(taxation_year,Separation_Causes::SEPARATION_DE_FAIT)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttMYLmEeW_RLA2GM5bmQ" name="fromrecord_is_widower" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttMoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.is_widower</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttM4LmEeW_RLA2GM5bmQ" name="fromrecord_taxpayer_age" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttNILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getAge(taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttNYLmEeW_RLA2GM5bmQ" name="fromrecord_spouse_death_year" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttNoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.last_start_year_widower</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttN4LmEeW_RLA2GM5bmQ" name="fromrecord_is_married" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttOILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getIsMaried(taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttOYLmEeW_RLA2GM5bmQ" name="fromrecord_is_reciving_bonus_for_children" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttOoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getIsreceivingAllowancesForChildren(taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttO4LmEeW_RLA2GM5bmQ" name="fromrecord_can_beneficiate_from_transition_state" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttPILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getDivorceTransitionState(taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttPYLmEeW_RLA2GM5bmQ" name="fromrecord_sum_professional_income_household_Luxembourg" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttPoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getProfetionalIncomeHouseholdLuxembourg(taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttP4LmEeW_RLA2GM5bmQ" name="fromrecord_total_professional_income_household" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttQILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.getProfetionalIncomeHousehold(taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttQYLmEeW_RLA2GM5bmQ" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttQoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>Article 119</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttQ4LmEeW_RLA2GM5bmQ" name="fromrecord_are_both_spouses_non_resident" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttRILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>self.oclIsTypeOf(Non_Resident_Tax_Payer) and self.getSpouse(taxation_year).oclIsTypeOf(Non_Resident_Tax_Payer)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttRYLmEeW_RLA2GM5bmQ" name="fromrecord_is_couple_living_apart" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttRoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>false</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_PbttR4LmEeW_RLA2GM5bmQ" name="fromrecord_has_widower_transition_state" constrainedElement="_PbttD4LmEeW_RLA2GM5bmQ">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_PbttSILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body>spouse_death_year &lt;= taxation_year and spouse_death_year >= taxation_year -3</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_PbttSYLmEeW_RLA2GM5bmQ" name="is_taxed_jointly">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttSoLmEeW_RLA2GM5bmQ" name="is_divorced">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttS4LmEeW_RLA2GM5bmQ" name="is_living_separately_by_court">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttTILmEeW_RLA2GM5bmQ" name="is_living_separately">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttTYLmEeW_RLA2GM5bmQ" name="can_beneficiate_from_transition_state ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttToLmEeW_RLA2GM5bmQ" name="is_widower">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttT4LmEeW_RLA2GM5bmQ" name="is_reciving_bonus_for_children">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttUILmEeW_RLA2GM5bmQ" name="taxpayer_age">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMoloLmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttUYLmEeW_RLA2GM5bmQ" name="spouse_death_year">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMoloLmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttUoLmEeW_RLA2GM5bmQ" name="is_married">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttU4LmEeW_RLA2GM5bmQ" name="sum_professional_income_household_Luxembourg">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMomILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttVILmEeW_RLA2GM5bmQ" name="total_professional_income_household">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMomILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttVYLmEeW_RLA2GM5bmQ" name="taxation_year">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMoloLmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttVoLmEeW_RLA2GM5bmQ" name="are_both_spouses_non_resident">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttV4LmEeW_RLA2GM5bmQ" name="is_couple_living_apart">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_PbttWILmEeW_RLA2GM5bmQ" name="has_widower_transition_state">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+      </ownedParameter>
+      <node xmi:type="uml:InitialNode" xmi:id="_PbttWYLmEeW_RLA2GM5bmQ" outgoing="_PbuSkoLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbttWoLmEeW_RLA2GM5bmQ" name="is_taxed_jointly" outgoing="_PbuSd4LmEeW_RLA2GM5bmQ _PbuSlYLmEeW_RLA2GM5bmQ" incoming="_PbuSkoLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_PbttW4LmEeW_RLA2GM5bmQ" name="Taxpayer belongs to class 2" incoming="_PbuSd4LmEeW_RLA2GM5bmQ _PbuShoLmEeW_RLA2GM5bmQ _PbuSjILmEeW_RLA2GM5bmQ _PbuSrYLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbttXILmEeW_RLA2GM5bmQ" name="is_widower" outgoing="_PbuSqoLmEeW_RLA2GM5bmQ _PbuSs4LmEeW_RLA2GM5bmQ" incoming="_PbuSp4LmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbttXYLmEeW_RLA2GM5bmQ" name="has_widower_transition_state" outgoing="_PbuSrYLmEeW_RLA2GM5bmQ _PbuSsILmEeW_RLA2GM5bmQ" incoming="_PbuSqoLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_PbttXoLmEeW_RLA2GM5bmQ" name="Taxpayer belongs to class 1a" incoming="_PbuSeoLmEeW_RLA2GM5bmQ _PbuSgILmEeW_RLA2GM5bmQ _PbuSj4LmEeW_RLA2GM5bmQ _PbuSsILmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbttX4LmEeW_RLA2GM5bmQ" name="is_reciving_bonus_for_children" outgoing="_PbuSeoLmEeW_RLA2GM5bmQ _PbuSfYLmEeW_RLA2GM5bmQ" incoming="_PbuSuYLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbttYILmEeW_RLA2GM5bmQ" name="taxpayer_age >= 64" outgoing="_PbuSgILmEeW_RLA2GM5bmQ _PbuSiYLmEeW_RLA2GM5bmQ" incoming="_PbuSfYLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_PbttYYLmEeW_RLA2GM5bmQ" name="Taxpayer belongs to class 1" incoming="_PbuSiYLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbttYoLmEeW_RLA2GM5bmQ" name="is_divorced or is_living_separately_by_court or is_living_separately" outgoing="_PbuSg4LmEeW_RLA2GM5bmQ _PbuSvILmEeW_RLA2GM5bmQ" incoming="_PbuSs4LmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbttY4LmEeW_RLA2GM5bmQ" name="can_beneficiate_from_transition_state " outgoing="_PbuShoLmEeW_RLA2GM5bmQ _PbuStoLmEeW_RLA2GM5bmQ" incoming="_PbuSg4LmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbttZILmEeW_RLA2GM5bmQ" name="is_taxed_jointly" parameter="_PbttSYLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbttZYLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbttZoLmEeW_RLA2GM5bmQ" name="is_divorced" parameter="_PbttSoLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbttZ4LmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbttaILmEeW_RLA2GM5bmQ" name="is_living_separately_by_court" parameter="_PbttS4LmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbttaYLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbttaoLmEeW_RLA2GM5bmQ" name="is_living_separately" parameter="_PbttTILmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Pbtta4LmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbttbILmEeW_RLA2GM5bmQ" name="can_beneficiate_from_transition_state " parameter="_PbttTYLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbttbYLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbttboLmEeW_RLA2GM5bmQ" name="is_widower" parameter="_PbttToLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_Pbttb4LmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbttcILmEeW_RLA2GM5bmQ" name="is_reciving_bonus_for_children" parameter="_PbttT4LmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbttcYLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSYILmEeW_RLA2GM5bmQ" name="taxpayer_age" parameter="_PbttUILmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMoloLmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSYYLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSYoLmEeW_RLA2GM5bmQ" name="spouse_death_year" parameter="_PbttUYLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMoloLmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSY4LmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbuSZILmEeW_RLA2GM5bmQ" name="is_married" outgoing="_PbuSmILmEeW_RLA2GM5bmQ _PbuSp4LmEeW_RLA2GM5bmQ" incoming="_PbuSlYLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSZYLmEeW_RLA2GM5bmQ" name="is_married" visibility="public" parameter="_PbttUoLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSZoLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbuSZ4LmEeW_RLA2GM5bmQ" name="sum_professional_income_household_Luxembourg >  (0.5 * total_professional_income_household)" outgoing="_PbuSjILmEeW_RLA2GM5bmQ _PbuSj4LmEeW_RLA2GM5bmQ" incoming="_PbuSnoLmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSaILmEeW_RLA2GM5bmQ" name="sum_professional_income_household_Luxembourg" parameter="_PbttU4LmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMomILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSaYLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSaoLmEeW_RLA2GM5bmQ" name="total_professional_income_household" parameter="_PbttVILmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMomILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSa4LmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSbILmEeW_RLA2GM5bmQ" name="taxation_year" parameter="_PbttVYLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMoloLmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSbYLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbuSboLmEeW_RLA2GM5bmQ" name="are_both_spouses_non_resident" outgoing="_PbuSm4LmEeW_RLA2GM5bmQ _PbuSpILmEeW_RLA2GM5bmQ" incoming="_PbuSmILmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSb4LmEeW_RLA2GM5bmQ" name="are_both_spouses_non_resident" parameter="_PbttVoLmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuScILmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:DecisionNode" xmi:id="_PbuScYLmEeW_RLA2GM5bmQ" name="is_couple_living_apart" outgoing="_PbuSnoLmEeW_RLA2GM5bmQ _PbuSoYLmEeW_RLA2GM5bmQ" incoming="_PbuSm4LmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuScoLmEeW_RLA2GM5bmQ" name="is_couple_living_apart" parameter="_PbttV4LmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSc4LmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <node xmi:type="uml:MergeNode" xmi:id="_PbuSdILmEeW_RLA2GM5bmQ" outgoing="_PbuSuYLmEeW_RLA2GM5bmQ" incoming="_PbuSoYLmEeW_RLA2GM5bmQ _PbuSpILmEeW_RLA2GM5bmQ _PbuStoLmEeW_RLA2GM5bmQ _PbuSvILmEeW_RLA2GM5bmQ"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_PbuSdYLmEeW_RLA2GM5bmQ" name="has_widower_transition_state" parameter="_PbttWILmEeW_RLA2GM5bmQ">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_PaMolILmEeW_RLA2GM5bmQ"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_PbuSdoLmEeW_RLA2GM5bmQ" value="1"/>
+      </node>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSd4LmEeW_RLA2GM5bmQ" name="yes" source="_PbttWoLmEeW_RLA2GM5bmQ" target="_PbttW4LmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSeILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSeYLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSeoLmEeW_RLA2GM5bmQ" name="yes" source="_PbttX4LmEeW_RLA2GM5bmQ" target="_PbttXoLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSe4LmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSfILmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSfYLmEeW_RLA2GM5bmQ" name="no" source="_PbttX4LmEeW_RLA2GM5bmQ" target="_PbttYILmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSfoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSf4LmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSgILmEeW_RLA2GM5bmQ" name="yes" source="_PbttYILmEeW_RLA2GM5bmQ" target="_PbttXoLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSgYLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSgoLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSg4LmEeW_RLA2GM5bmQ" name="yes" source="_PbttYoLmEeW_RLA2GM5bmQ" target="_PbttY4LmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuShILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuShYLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuShoLmEeW_RLA2GM5bmQ" name="yes" source="_PbttY4LmEeW_RLA2GM5bmQ" target="_PbttW4LmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSh4LmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSiILmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSiYLmEeW_RLA2GM5bmQ" name="no" source="_PbttYILmEeW_RLA2GM5bmQ" target="_PbttYYLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSioLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSi4LmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSjILmEeW_RLA2GM5bmQ" name="yes" source="_PbuSZ4LmEeW_RLA2GM5bmQ" target="_PbttW4LmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSjYLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSjoLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSj4LmEeW_RLA2GM5bmQ" name="no" source="_PbuSZ4LmEeW_RLA2GM5bmQ" target="_PbttXoLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSkILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSkYLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSkoLmEeW_RLA2GM5bmQ" source="_PbttWYLmEeW_RLA2GM5bmQ" target="_PbttWoLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSk4LmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSlILmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSlYLmEeW_RLA2GM5bmQ" name="no" source="_PbttWoLmEeW_RLA2GM5bmQ" target="_PbuSZILmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSloLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSl4LmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSmILmEeW_RLA2GM5bmQ" name="yes" source="_PbuSZILmEeW_RLA2GM5bmQ" target="_PbuSboLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSmYLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSmoLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSm4LmEeW_RLA2GM5bmQ" name="yes" source="_PbuSboLmEeW_RLA2GM5bmQ" target="_PbuScYLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSnILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSnYLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSnoLmEeW_RLA2GM5bmQ" name="no" source="_PbuScYLmEeW_RLA2GM5bmQ" target="_PbuSZ4LmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSn4LmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSoILmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSoYLmEeW_RLA2GM5bmQ" name="yes" source="_PbuScYLmEeW_RLA2GM5bmQ" target="_PbuSdILmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSooLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSo4LmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSpILmEeW_RLA2GM5bmQ" name="no" source="_PbuSboLmEeW_RLA2GM5bmQ" target="_PbuSdILmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSpYLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSpoLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSp4LmEeW_RLA2GM5bmQ" name="no" source="_PbuSZILmEeW_RLA2GM5bmQ" target="_PbttXILmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSqILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSqYLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSqoLmEeW_RLA2GM5bmQ" name="yes" source="_PbttXILmEeW_RLA2GM5bmQ" target="_PbttXYLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSq4LmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSrILmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSrYLmEeW_RLA2GM5bmQ" name="yes" source="_PbttXYLmEeW_RLA2GM5bmQ" target="_PbttW4LmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSroLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSr4LmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSsILmEeW_RLA2GM5bmQ" name="no" source="_PbttXYLmEeW_RLA2GM5bmQ" target="_PbttXoLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSsYLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSsoLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSs4LmEeW_RLA2GM5bmQ" name="no" source="_PbttXILmEeW_RLA2GM5bmQ" target="_PbttYoLmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuStILmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuStYLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuStoLmEeW_RLA2GM5bmQ" name="no" source="_PbttY4LmEeW_RLA2GM5bmQ" target="_PbuSdILmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSt4LmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSuILmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSuYLmEeW_RLA2GM5bmQ" name=" " source="_PbuSdILmEeW_RLA2GM5bmQ" target="_PbttX4LmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSuoLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSu4LmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_PbuSvILmEeW_RLA2GM5bmQ" name="no" source="_PbttYoLmEeW_RLA2GM5bmQ" target="_PbuSdILmEeW_RLA2GM5bmQ">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_PbuSvYLmEeW_RLA2GM5bmQ">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_PbuSvoLmEeW_RLA2GM5bmQ" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_PbuSv4LmEeW_RLA2GM5bmQ">
+      <eAnnotations xmi:id="_PbuSwILmEeW_RLA2GM5bmQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_PbuSwYLmEeW_RLA2GM5bmQ">
+      <eAnnotations xmi:id="_PbuSwoLmEeW_RLA2GM5bmQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_Pbsdv4LmEeW_RLA2GM5bmQ"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_PbsdvYLmEeW_RLA2GM5bmQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_PbuSw4LmEeW_RLA2GM5bmQ">
+      <eAnnotations xmi:id="_PbuSxILmEeW_RLA2GM5bmQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_Pbu54oLmEeW_RLA2GM5bmQ"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_Pbu54ILmEeW_RLA2GM5bmQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_PbuSxYLmEeW_RLA2GM5bmQ">
+      <eAnnotations xmi:id="_PbuSxoLmEeW_RLA2GM5bmQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_PbBIMoLmEeW_RLA2GM5bmQ"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_PbBIMILmEeW_RLA2GM5bmQ"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:context xmi:id="_PbuSx4LmEeW_RLA2GM5bmQ" context_class="Tax_Payer" base_Activity="_PbttD4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSyILmEeW_RLA2GM5bmQ" question="" source="Reglement ministeriel du 6 fevrier 2012 " base_Comment="_PbttFILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSyYLmEeW_RLA2GM5bmQ" source="" base_Comment="_PbttE4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSyoLmEeW_RLA2GM5bmQ" base_Comment="_PbttEYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSy4LmEeW_RLA2GM5bmQ" base_Comment="_PbttFoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSzILmEeW_RLA2GM5bmQ" question="" source="Art. 105bis of the income tax law" value_type="FIXED_VALUE" base_Comment="_PbttEoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSzYLmEeW_RLA2GM5bmQ" agent_role="OFFICER" question="When was the request postmarked?" base_Comment="_PbttFYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSzoLmEeW_RLA2GM5bmQ" base_Comment="_PbttF4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuSz4LmEeW_RLA2GM5bmQ" base_Comment="_PbttGILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS0ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSbILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS0YLmEeW_RLA2GM5bmQ" base_Comment="_PbttGYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS0oLmEeW_RLA2GM5bmQ" constraint="_PbttKYLmEeW_RLA2GM5bmQ" base_Comment="_PbttGoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS04LmEeW_RLA2GM5bmQ" constraint="_PbttK4LmEeW_RLA2GM5bmQ" base_Comment="_PbttG4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS1ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttZILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS1YLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttZILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS1oLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttZoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS14LmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttZoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS2ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttaILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS2YLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttaILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS2oLmEeW_RLA2GM5bmQ" constraint="_PbttLYLmEeW_RLA2GM5bmQ" base_Comment="_PbttHILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS24LmEeW_RLA2GM5bmQ" constraint="_PbttL4LmEeW_RLA2GM5bmQ" base_Comment="_PbttHYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS3ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttaoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS3YLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttaoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS3oLmEeW_RLA2GM5bmQ" constraint="_PbttMYLmEeW_RLA2GM5bmQ" base_Comment="_PbttHoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS34LmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttboLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS4ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttboLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS4YLmEeW_RLA2GM5bmQ" constraint="_PbttM4LmEeW_RLA2GM5bmQ" base_Comment="_PbttH4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS4oLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSYILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS44LmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSYILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS5ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSYoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS5YLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSYoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS5oLmEeW_RLA2GM5bmQ" constraint="_PbttNYLmEeW_RLA2GM5bmQ" base_Comment="_PbttIILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS54LmEeW_RLA2GM5bmQ" constraint="_PbttN4LmEeW_RLA2GM5bmQ" base_Comment="_PbttIYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS6ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSZYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS6YLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSZYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS6oLmEeW_RLA2GM5bmQ" constraint="_PbttOYLmEeW_RLA2GM5bmQ" base_Comment="_PbttIoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS64LmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttcILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS7ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttcILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS7YLmEeW_RLA2GM5bmQ" constraint="_PbttO4LmEeW_RLA2GM5bmQ" base_Comment="_PbttI4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS7oLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttbILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS74LmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbttbILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS8ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSaILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS8YLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSaILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS8oLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSaoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS84LmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSaoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS9ILmEeW_RLA2GM5bmQ" constraint="_PbttPYLmEeW_RLA2GM5bmQ" base_Comment="_PbttJILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS9YLmEeW_RLA2GM5bmQ" constraint="_PbttP4LmEeW_RLA2GM5bmQ" base_Comment="_PbttJYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:return xmi:id="_PbuS9oLmEeW_RLA2GM5bmQ" base_OpaqueAction="_PbttW4LmEeW_RLA2GM5bmQ" value="Tax_Class_Category::Two"/>
+  <CTIE_Profile_Final:return xmi:id="_PbuS94LmEeW_RLA2GM5bmQ" base_OpaqueAction="_PbttXoLmEeW_RLA2GM5bmQ" value="Tax_Class_Category::One_A"/>
+  <CTIE_Profile_Final:return xmi:id="_PbuS-ILmEeW_RLA2GM5bmQ" base_OpaqueAction="_PbttYYLmEeW_RLA2GM5bmQ" value="Tax_Class_Category::One"/>
+  <CTIE_Profile_Final:function xmi:id="_PbuS-YLmEeW_RLA2GM5bmQ" name="getTaxClass" defaultReturn="invalid" type="Tax_Class_Category" base_Activity="_PbttD4LmEeW_RLA2GM5bmQ" activityParameterNode="_PbuSbILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:parameter xmi:id="_PbuS-oLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSbILmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuS-4LmEeW_RLA2GM5bmQ" constraint="_PbttQ4LmEeW_RLA2GM5bmQ" base_Comment="_PbttJoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS_ILmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSb4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS_YLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSb4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuS_oLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuScoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuS_4LmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuScoLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuTAILmEeW_RLA2GM5bmQ" constraint="_PbttRYLmEeW_RLA2GM5bmQ" base_Comment="_PbttJ4LmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_PbuTAYLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSdYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:in xmi:id="_PbuTAoLmEeW_RLA2GM5bmQ" base_ActivityParameterNode="_PbuSdYLmEeW_RLA2GM5bmQ"/>
+  <CTIE_Profile_Final:query xmi:id="_PbuTA4LmEeW_RLA2GM5bmQ" constraint="_PbttO4LmEeW_RLA2GM5bmQ" base_Comment="_PbttKILmEeW_RLA2GM5bmQ"/>
+</xmi:XMI>

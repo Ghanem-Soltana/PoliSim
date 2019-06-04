@@ -1,0 +1,114 @@
+Size = 73
+context Tax_Payer inv AEP:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+let is_taxed_jointly:Boolean = self.getIsTaxedJointly(taxation_year)
+ in													
+/** Description: Returns yes if the taxpayer is taxed-jointly;no otherwises - **/	
+if (is_taxed_jointly) = false then
+let expected_AEP:Real = 0 in
+self.AEP_deduction->any(true).oclIsUndefined()
+else
+   if (is_taxed_jointly) = true then
+     let spouse:Tax_Payer = self.getSpouse(taxation_year)
+      in													
+     /** Description: Returns the spouse of the taxpayer -  **/	
+     let has_highest_revenue_in_household:Boolean = if(spouse.oclIsKindOf(Tax_Payer)=false)then
+     true
+     else
+     self.incomes.income_per_year()->max() > spouse.incomes.income_per_year()->max() 
+     endif in													
+     /** Description: Returns yes if the taxpayer has the highest revenue -  within the household, in which he is taxed jointly otherwise no -  **/	
+     if (has_highest_revenue_in_household) = true then
+     let expected_AEP:Real = 0 in
+     self.AEP_deduction->any(true).oclIsUndefined()
+     else
+        if (has_highest_revenue_in_household) = false then
+             let has_professional_income :Boolean = self.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or income_type.oclIsTypeOf(Employment_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income)) in													
+             /** Description: Returns yes if the taxpayer has a professional income; otherwise no -  **/	
+             let spouse_has_professional_income:Boolean = if(spouse.oclIsKindOf(Tax_Payer)=false)then
+             false
+             else
+             spouse.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or income_type.oclIsTypeOf(Employment_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income))
+             endif in													
+             /** Description: Returns yes if the spouse  has a professional income; otherwise no -  **/	
+             let is_spouse_affiliated_to_social_security:Boolean = if(spouse.oclIsKindOf(Tax_Payer)=false)then
+             false
+             else
+             spouse.incomes.details->any(is_contributing_CNS.oclIsUndefined()).is_contributing_CNS=true
+             endif in													
+             /** Description: Returns yes if the taxpayer is affiliated to public or private social security; otherwise no -  **/	
+             let is_taxpayer_affiliated_to_social_security :Boolean = self.incomes.details->any(is_contributing_CNS.oclIsUndefined()).is_contributing_CNS=true
+             in													
+             /** Description: Returns yes if the taxpayer is affiliated to public or private social security; otherwise no -  **/	
+             if (has_professional_income and spouse_has_professional_income and is_taxpayer_affiliated_to_social_security and is_spouse_affiliated_to_social_security) = true then
+             let AEP_flat_rate:Real = self.from_law.AEP_FLAT_RATE() in 
+             /** TRACEABILITY: Source: Art. 129b of the Luxembourg's Income Tax Law, 2013   - AEP_flat_rate =4500 euros per year - 375 euros par month - **/ 								
+             let expected_AEP:Real = AEP_flat_rate in
+             self.AEP_deduction->any(true).oclIsUndefined()
+             else
+               if (has_professional_income and spouse_has_professional_income and is_taxpayer_affiliated_to_social_security and is_spouse_affiliated_to_social_security) = false then
+                       let has_commercial_income:Boolean = self.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income)) in													
+                       /** Description: Returns yes if the taxpayer has a commercial income; otherwise no -  **/	
+                       let taxpayer_is_assisting_spouse:Boolean = if(spouse.oclIsKindOf(Tax_Payer)=false)then
+                       false
+                       else
+                       self.is_assisting_spouse
+                       endif in													
+                       /** Description: Returns yes if the taxpayer is assisting his spouse in its commercial income; otherwise no -  **/	
+                       let spouse_is_assisting_taxpayer:Boolean = if(spouse.oclIsKindOf(Tax_Payer)=false)then
+                       false
+                       else
+                       spouse.is_assisting_spouse
+                       endif in													
+                       /** Description: Returns yes if the spouse is assisting the taxpayer in its commercial income; otherwise no -  **/	
+                       let spouse_has_commercial_income:Boolean = if(spouse.oclIsKindOf(Tax_Payer)=false)then
+                       false
+                       else
+                       spouse.incomes->exists(income_type.oclIsTypeOf(Trade_and_Business_Income) or income_type.oclIsTypeOf(Capital_and_Investments_Income))
+                       endif in													
+                       /** Description: Returns yes if the spouse has a commercial income; otherwise no -  **/	
+                       if ((has_commercial_income and spouse_is_assisting_taxpayer) or (spouse_has_commercial_income and taxpayer_is_assisting_spouse)) = true then
+                       let AEP_flat_rate:Real = self.from_law.AEP_FLAT_RATE() in 
+                       /** TRACEABILITY: Source: Art. 129b of the Luxembourg's Income Tax Law, 2013   - AEP_flat_rate =4500 euros per year - 375 euros par month - **/ 								
+                       let expected_AEP:Real = AEP_flat_rate in
+                       self.AEP_deduction->any(true).oclIsUndefined()
+                       else
+                         if ((has_commercial_income and spouse_is_assisting_taxpayer) or (spouse_has_commercial_income and taxpayer_is_assisting_spouse)) = false then
+                                   let spouse_pension_period:Integer = if(spouse.oclIsKindOf(Tax_Payer)=false)then
+                                   0
+                                   else
+                                   spouse.incomes.getDurationInyears()->max()
+                                   endif in													
+                                   /** Description: Returns -1 if the spouse does not have any pension;otherwise returns the number of years for which the spouse has been receiving  at least one pension  -  **/	
+                                   let taxpayer_pension_period:Integer = self.incomes.getDurationInyears()->max() in													
+                                   /** Description: Returns -1 if the taxpayer does not have any pension; otherwise returns the number of years for which the taxpayer has been receiving  at least one pension  -  **/	
+                                   if ((has_professional_income and (spouse_pension_period <= 3 and spouse_pension_period >0)) or (spouse_has_professional_income and (taxpayer_pension_period <= 3 and taxpayer_pension_period > 0))) = true then
+                                   let AEP_flat_rate:Real = self.from_law.AEP_FLAT_RATE() in 
+                                   /** TRACEABILITY: Source: Art. 129b of the Luxembourg's Income Tax Law, 2013   - AEP_flat_rate =4500 euros per year - 375 euros par month - **/ 								
+                                   let expected_AEP:Real = AEP_flat_rate in
+                                   self.AEP_deduction->any(true).oclIsUndefined()
+                                   else
+                                      if ((has_professional_income and (spouse_pension_period <= 3 and spouse_pension_period >0)) or (spouse_has_professional_income and (taxpayer_pension_period <= 3 and taxpayer_pension_period > 0))) = false then
+                                      let expected_AEP:Real = 0 in
+                                      self.AEP_deduction->any(true).oclIsUndefined()
+                                      else
+                                      false
+                                      endif
+                                   endif
+                         else
+                         false
+                         endif
+                       endif
+               else
+               false
+               endif
+             endif
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif

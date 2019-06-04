@@ -1,0 +1,149 @@
+Size = 69
+context Tax_Payer inv DS_for_Permanent_Expenses_Alimony:
+let is_resident_taxpayer:Boolean = self.oclIsTypeOf(Resident_Tax_Payer) in													
+/** Description: Returns yes if the taxpayer is resident; returns no otherwise - **/	
+if (is_resident_taxpayer) = true then
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+let legel_unions:OrderedSet(Legal_Union_Record) = Legal_Union_Record.allInstances()->select(individual_A=self or individual_B=self and oclIsTypeOf(Marriage_Record))->select(start_year<=taxation_year and separation_cause=Separation_Causes::DIVORCE) in													
+/** Description: Returns the taxpayer's legal union records. - **/	
+legel_unions -> forAll (union:Legal_Union_Record|
+let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in														
+/** Description: The taxapayer's incomes for a given taxation year. - **/	
+incomes -> forAll (income:Income|
+let year_of_divorce:Integer = union.end_year in
+/** Description: Returns the year when the divorce was agreed. - **/							
+if (year_of_divorce >= 1998) = true then
+   let is_divorce_by_mutual_agreement:Boolean = union.mutual_agreement in
+   /** Description: Returns yes if the divorce was by mutual agreement. -  **/							
+   if (is_divorce_by_mutual_agreement) = false then
+   let calculated_deduction:Real = 0 in
+   income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+   else
+     if (is_divorce_by_mutual_agreement) = true then
+          let spouse:Physical_Person = if(union.individual_A=self) then union.individual_B else union.individual_A endif in
+          /** Description: Get the potential beneficiary of the expenses. -  **/							
+          let sum_expenses_to_spouse:Real = income.expenses->select(e:Expense| e.year_expense_was_incurred_in= taxation_year and e.expense_purpose= Expense_Purpose::ALIMONY and e.beneficiary=spouse).declared_amount->sum() in
+          /** Description: Calculate the alimony. -  **/							
+          let maximum_flat_rate_for_alimony:Real = self.from_law.MAXIMUM_FLAT_RATE_FOR_ALIMONY(taxation_year, year_of_divorce) in
+          /** TRACEABILITY: Source: Art. 109bis Income Tax Law (2013) - Contains the maximal legal deduction for alimony according to the year parameter. - **/ 
+          if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = true then
+          let calculated_deduction:Real = sum_expenses_to_spouse in
+          income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+          else
+             if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = false then
+             let calculated_deduction:Real = maximum_flat_rate_for_alimony in
+             income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+             else
+             false
+             endif
+          endif
+     else
+     false
+     endif
+   endif
+else
+   if (year_of_divorce >= 1998) = false then
+     let spouse:Physical_Person = if(union.individual_A=self) then union.individual_B else union.individual_A endif in
+     /** Description: Get the potential beneficiary of the expenses. -  **/							
+     let sum_expenses_to_spouse:Real = income.expenses->select(e:Expense| e.year_expense_was_incurred_in= taxation_year and e.expense_purpose= Expense_Purpose::ALIMONY and e.beneficiary=spouse).declared_amount->sum() in
+     /** Description: Calculate the alimony. -  **/							
+     let maximum_flat_rate_for_alimony:Real = self.from_law.MAXIMUM_FLAT_RATE_FOR_ALIMONY(taxation_year, year_of_divorce) in
+     /** TRACEABILITY: Source: Art. 109bis Income Tax Law (2013) - Contains the maximal legal deduction for alimony according to the year parameter. - **/ 
+     if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = true then
+     let calculated_deduction:Real = sum_expenses_to_spouse in
+     income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+     else
+        if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = false then
+        let calculated_deduction:Real = maximum_flat_rate_for_alimony in
+        income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+) 
+)
+else
+   if (is_resident_taxpayer) = false then
+     let is_taxpayer_assimilated_to_a_resident_taxpayer:Boolean = self.oclAsType(Non_Resident_Tax_Payer).is_assimilated_to_resident in													
+     /** Description: Returns yes if the taxpayer is assimilated to a  - resident taxpayer. For instance when a non  - resident taxpayer is taxed by "voie_assiette". -  **/	
+     if (is_taxpayer_assimilated_to_a_resident_taxpayer) = false then
+     false
+     else
+        if (is_taxpayer_assimilated_to_a_resident_taxpayer) = true then
+        let taxation_year:Integer = self.from_agent.taxation_year in
+        /** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+        let legel_unions:OrderedSet(Legal_Union_Record) = Legal_Union_Record.allInstances()->select(individual_A=self or individual_B=self and oclIsTypeOf(Marriage_Record))->select(start_year<=taxation_year and separation_cause=Separation_Causes::DIVORCE) in													
+        /** Description: Returns the taxpayer's legal union records. -  **/	
+        legel_unions -> forAll (union:Legal_Union_Record|
+        let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in														
+        /** Description: The taxapayer's incomes for a given taxation year. -  **/	
+        incomes -> forAll (income:Income|
+        let year_of_divorce:Integer = union.end_year in
+        /** Description: Returns the year when the divorce was agreed. -  **/							
+        if (year_of_divorce >= 1998) = true then
+          let is_divorce_by_mutual_agreement:Boolean = union.mutual_agreement in
+          /** Description: Returns yes if the divorce was by mutual agreement. -  **/							
+          if (is_divorce_by_mutual_agreement) = false then
+          let calculated_deduction:Real = 0 in
+          income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+          else
+             if (is_divorce_by_mutual_agreement) = true then
+                  let spouse:Physical_Person = if(union.individual_A=self) then union.individual_B else union.individual_A endif in
+                  /** Description: Get the potential beneficiary of the expenses. -  **/							
+                  let sum_expenses_to_spouse:Real = income.expenses->select(e:Expense| e.year_expense_was_incurred_in= taxation_year and e.expense_purpose= Expense_Purpose::ALIMONY and e.beneficiary=spouse).declared_amount->sum() in
+                  /** Description: Calculate the alimony. -  **/							
+                  let maximum_flat_rate_for_alimony:Real = self.from_law.MAXIMUM_FLAT_RATE_FOR_ALIMONY(taxation_year, year_of_divorce) in
+                  /** TRACEABILITY: Source: Art. 109bis Income Tax Law (2013) - Contains the maximal legal deduction for alimony according to the year parameter. - **/ 
+                  if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = true then
+                  let calculated_deduction:Real = sum_expenses_to_spouse in
+                  income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+                  else
+                    if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = false then
+                    let calculated_deduction:Real = maximum_flat_rate_for_alimony in
+                    income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+                    else
+                    false
+                    endif
+                  endif
+             else
+             false
+             endif
+          endif
+        else
+          if (year_of_divorce >= 1998) = false then
+             let spouse:Physical_Person = if(union.individual_A=self) then union.individual_B else union.individual_A endif in
+             /** Description: Get the potential beneficiary of the expenses. -  **/							
+             let sum_expenses_to_spouse:Real = income.expenses->select(e:Expense| e.year_expense_was_incurred_in= taxation_year and e.expense_purpose= Expense_Purpose::ALIMONY and e.beneficiary=spouse).declared_amount->sum() in
+             /** Description: Calculate the alimony. -  **/							
+             let maximum_flat_rate_for_alimony:Real = self.from_law.MAXIMUM_FLAT_RATE_FOR_ALIMONY(taxation_year, year_of_divorce) in
+             /** TRACEABILITY: Source: Art. 109bis Income Tax Law (2013) - Contains the maximal legal deduction for alimony according to the year parameter. - **/ 
+             if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = true then
+             let calculated_deduction:Real = sum_expenses_to_spouse in
+             income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+             else
+               if (sum_expenses_to_spouse < maximum_flat_rate_for_alimony) = false then
+               let calculated_deduction:Real = maximum_flat_rate_for_alimony in
+               income.tax_card.deduction_DS_Alimony_yearly->any(true).oclIsUndefined()
+               else
+               false
+               endif
+             endif
+          else
+          false
+          endif
+        endif
+        ) 
+        )
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif

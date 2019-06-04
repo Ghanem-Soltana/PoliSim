@@ -1,0 +1,244 @@
+[comment encoding = UTF-8 /]
+[module FinalParameterNodeDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')]
+
+
+
+[template public DeclareAnActivityparameterNode(anActivity : Activity, anActivityParameterNode1: ActivityParameterNode,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode))]
+[for ( aSteriotype :   Stereotype  | anActivityParameterNode1.getAppliedStereotypes()->reject(name='in'))]
+                                [if (aSteriotype.name.equalsIgnoreCase('fromrecord') or aSteriotype.name.equalsIgnoreCase('temp') )]
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [for ( aconstraint:Constraint | 	anActivity.eAllContents()->filter(Constraint))]
+                                        [if (aconstraint.name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))]
+[if (anActivityParameterNode1.parameter.upperValue.stringValue().oclIsUndefined())]
+
+ tempOCL= "[aconstraint.specification.stringValue().trim().replaceAll('\\r\\n|\\r|\\n', ' ')/]"; 
+
+[let type:String=anActivityParameterNode1.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='double')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]		
+[else]
+[if(anActivityParameterNode1.type.name.contains('('))]Collection<EObject> [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	[else]EObject [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[anActivityParameterNode1.type.name /]"); 	[/if] 
+[/if]
+[/let]
+[else]
+[if(anActivityParameterNode1.parameter.upperValue.stringValue().endsWith('*'))]
+
+ tempOCL= "[aconstraint.specification.stringValue().trim().replaceAll('\\r\\n|\\r|\\n', ' ')/]";
+[let type:String=anActivityParameterNode1.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='double')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]		
+[else]
+[if(anActivityParameterNode1.type.name.contains('('))]Collection<EObject> [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	[else]EObject [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[anActivityParameterNode1.type.name /]"); 	[/if] 
+[/if]
+[/let]
+[else]
+
+
+
+tempOCL= "[aconstraint.specification.stringValue().trim().replaceAll('\\r\\n|\\r|\\n', ' ')/]";
+[let type:String=anActivityParameterNode1.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='double')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]	
+[else]
+[if(anActivityParameterNode1.type.name.contains('('))]Collection<EObject> [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	[else]EObject [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[anActivityParameterNode1.type.name /]"); 	[/if] 
+[/if]
+[/let]																									
+[/if]
+[/if]
+
+/** Description: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]   **/	[/if]
+
+										[/for]
+										[/let]
+										[/if]
+								[/for]
+								[/for]
+                         					
+                      		[/if]
+		           			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+
+
+[let type:String=anActivityParameterNode1.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[let parameters:Sequence(String)= anActivityParameterNode1.getValue(aSteriotype,'parameteres')]
+
+
+[if(parameters->size()=0)]
+
+[if (type='int' or type = 'double' or type='boolean')]
+[type/] [anActivityParameterNode1.name.trim()/] = [anActivityParameterNode1.getValue(aSteriotype, 'value').toString()/];
+[else]
+EObject [anActivityParameterNode1.name.trim()/] = [anActivityParameterNode1.getValue(aSteriotype, 'value').toString()/];
+[/if]
+[else]
+
+tempOCL= "['self.from_law.'.concat(anActivityParameterNode1.name.trim().toUpper())/] ([for (name1:String|parameters)][name1/][if(not name1.equalsIgnoreCase(parameters->last()))], [/if][/for])";
+
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='double')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]	
+[else]
+[if(anActivityParameterNode1.type.name.contains('('))]Collection<EObject> [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	[else]EObject [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[anActivityParameterNode1.type.name /]"); 	[/if] 
+[/if]
+
+
+[/if]
+
+
+
+
+[/let]
+[/let]
+
+
+
+				
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]  **/ 								
+
+							[/if]
+								[/for]
+								[/for]
+
+                      		[/if]
+							[if (aSteriotype.name.equalsIgnoreCase('fromagent') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+tempOCL= "['self.from_agent.'.concat(anActivityParameterNode1.name.trim())/]";
+[let type:String=anActivityParameterNode1.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='double')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anActivityParameterNode1.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anActivityParameterNode1.name.trim()/]"); 
+[/if]	
+[else]
+[if(anActivityParameterNode1.type.name.contains('('))]Collection<EObject> [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	[else]EObject [anActivityParameterNode1.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anActivityParameterNode1.name.trim()/]","[anActivityParameterNode1.type.name /]"); 	[/if] 
+[/if]
+[/let]
+
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]  **/ 									
+
+							[/if]
+								[/for]
+								[/for] 
+
+                      		[/if]
+		[/for]
+
+
+[/template]
+
+
+[template public DeclareAnActivityparameterNodeOld(anActivity : Activity, anActivityParameterNode1: ActivityParameterNode) ]
+[for ( aSteriotype :   Stereotype  | anActivityParameterNode1.getAppliedStereotypes()->reject(name='in'))]
+                                [if (aSteriotype.name.equalsIgnoreCase('fromrecord') or aSteriotype.name.equalsIgnoreCase('temp') )]
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [for ( aconstraint:Constraint | 	anActivity.eAllContents()->filter(Constraint))]
+                                        [if (aconstraint.name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))]
+
+[if (anActivityParameterNode1.parameter.upperValue.stringValue().oclIsUndefined())]
+let [anActivityParameterNode1.name.trim().concat(':').concat(anActivityParameterNode1.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat(aconstraint.specification.stringValue())/] in													
+[else]
+[if(anActivityParameterNode1.parameter.upperValue.stringValue().endsWith('*'))]
+let [anActivityParameterNode1.name.trim().concat(':OrderedSet(').concat(anActivityParameterNode1.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(') = ').concat(aconstraint.specification.stringValue())/]	in													
+[else]
+let [anActivityParameterNode1.name.trim().concat(':').concat(anActivityParameterNode1.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat(aconstraint.specification.stringValue())/] in																										
+[/if]
+[/if]
+[/if]
+
+										[/for]
+										[/let]
+										[/if]
+								[/for]
+								[/for]
+                         					
+                      		[/if]
+		           			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+[let parameters:Sequence(String)= anActivityParameterNode1.getValue(aSteriotype,'parameteres')]
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+                            [if(aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'value_type').oclAsType(EnumerationLiteral).name.equalsIgnoreCase('LOOKUP_TABLE'))]
+let [anActivityParameterNode1.name.trim().concat(':').concat(anActivityParameterNode1.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = self.').concat(anActivityParameterNode1.name.trim())/]  in
+							[else]
+let [anActivityParameterNode1.name.trim().concat(':').concat(anActivityParameterNode1.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat('self.from_law.').concat(anActivityParameterNode1.name.trim().toUpper())/]([for (name1:String|parameters)][name1/][if(not name1.equalsIgnoreCase(parameters->last()))], [/if][/for]) in 
+							[/if]							
+
+							[/if]
+								[/for]
+								[/for]
+[/let]
+                      		[/if]
+							[if (aSteriotype.name.equalsIgnoreCase('fromagent') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anActivityParameterNode1.toString().equalsIgnoreCase(temp))]
+let [anActivityParameterNode1.name.trim().concat(':').concat(anActivityParameterNode1.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = self.from_agent.').concat(anActivityParameterNode1.name.trim())/]  in								
+
+							[/if]
+								[/for]
+								[/for] 
+
+                      		[/if]
+		[/for]
+
+
+[/template]
+
+[query public emptyListActivityParrameterNode(arg0 : Activity) : Sequence(ActivityParameterNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'emptyListActivityParrameterNode(org.eclipse.uml2.uml.Activity)', Sequence{arg0}) /]
+
+[query public extraActivityParameterNodeToBedeclared(arg0 : Activity, arg1 : Sequence(InputPin), exp: ExpansionRegion ,arg2 : Sequence(OclAny), arg3 : Sequence(OclAny)) : Sequence(ActivityParameterNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'extraActivityParameterNodeToBedeclared(org.eclipse.uml2.uml.Activity, java.util.List, org.eclipse.uml2.uml.ExpansionRegion, java.util.List, java.util.List)', Sequence{arg0, arg1,exp,arg2, arg3}) /]
+
+[query public activityParameterNodeToBedeclared(arg0 : Activity, arg1 : String, arg2 : Sequence(OclAny), arg3 : Sequence(OclAny)) : Sequence(ActivityParameterNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'activityParameterNodeToBedeclared(org.eclipse.uml2.uml.Activity, java.lang.String, java.util.List, java.util.List)', Sequence{arg0, arg1, arg2, arg3}) /]

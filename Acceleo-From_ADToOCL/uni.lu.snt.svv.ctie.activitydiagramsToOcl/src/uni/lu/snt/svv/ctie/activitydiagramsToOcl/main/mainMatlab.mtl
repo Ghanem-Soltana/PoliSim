@@ -1,0 +1,15 @@
+[comment encoding = UTF-8 /]
+[module mainMatlab('http://www.eclipse.org/uml2/3.0.0/UML')/]
+[import  uni::lu::snt::svv::ctie::activitydiagramsToOcl::main::ToMatlab/]
+
+[template public generate(aModel : Package)]
+[comment @main/]	
+[let anActivity : Activity = aModel.allOwnedElements()->filter(Activity)->any(true)]
+[transforme(anActivity,aModel)/]
+[cleanMatlab(anActivity.name.concat('-MATLAB.m'),anActivity)/]
+[/let]
+[/template]
+ 
+[query public cleanMatlab( arg1 : String,arg2 : Activity) : OclVoid
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'cleanMatlab(java.lang.String, org.eclipse.uml2.uml.Activity)', Sequence{arg1,arg2}) /]
+  

@@ -1,0 +1,130 @@
+[comment encoding = UTF-8 /]
+[module FinalExpansionNodeDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')] 
+[import uni::lu::snt::svv::ctie::AD2JAVA::FinalParameterNodeDeclaration/]
+
+
+[template public declareanExpansionNode(anActivity: Activity, anExpansionNode : ExpansionNode)]
+
+
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anExpansionNode.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [for ( aconstraint:Constraint | 	anActivity.eAllContents()->filter(Constraint))]
+                                        [if (aconstraint.name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))]
+
+
+
+[let expansionRegion:ExpansionRegion=anExpansionNode.owner.oclAsType(ExpansionRegion)]
+[let possibleExpansion:Set(ExpansionNode)=expansionRegion.eAllContents()->filter(ExpansionNode)->excluding(anExpansionNode)->asSet()]
+[for (exp:ExpansionNode | possibleExpansion)]
+[let objectFlows:Set(ObjectFlow)=expansionRegion.owner.eAllContents()->filter(ObjectFlow)->asSet()]
+[let flows:Set(ObjectFlow)= objectFlows->select(target.oclIsTypeOf(ExpansionNode) and target.oclAsType(ExpansionNode).name.equalsIgnoreCase(exp.name))]
+[for (flow:ObjectFlow | flows )]
+[if(flow.source.owner = expansionRegion.owner)]
+
+
+
+tempOCL= "[aconstraint.specification.stringValue().trim().replaceAll('\\r\\n|\\r|\\n', ' ')/]";
+[let type:String=anExpansionNode.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anExpansionNode.name.concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anExpansionNode.name/]"); 
+[/if]
+[if (type='double')]
+[type.concat(' ').concat(anExpansionNode.name.concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anExpansionNode.name/]"); 
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anExpansionNode.name.concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anExpansionNode.name/]"); 
+[/if]	
+[else]
+[if(anExpansionNode.type.name.contains('('))]Collection<EObject> [anExpansionNode.name.concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anExpansionNode.name/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); [else]EObject [anExpansionNode.name.concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anExpansionNode.name/]","[anExpansionNode.type.name /]"); [/if]  	
+[/if]
+[/let]
+
+
+
+[/if]
+[/for]
+[/let]
+[/let]
+[/for]
+[/let]
+[/let]
+
+/** Description: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]   **/	
+
+
+	[/if]
+
+										[/for]
+										[/let]
+										[/if]
+								[/for]
+								[/for]
+                         					
+                   
+
+
+[/template]
+
+
+
+[template public declareanExpansionNodeOld(anActivity: Activity, anExpansionNode : ExpansionNode)]
+
+
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anExpansionNode.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [for ( aconstraint:Constraint | 	anActivity.eAllContents()->filter(Constraint))]
+                                        [if (aconstraint.name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))]
+
+
+
+[let expansionRegion:ExpansionRegion=anExpansionNode.owner.oclAsType(ExpansionRegion)]
+[let possibleExpansion:Set(ExpansionNode)=expansionRegion.eAllContents()->filter(ExpansionNode)->excluding(anExpansionNode)->asSet()]
+[for (exp:ExpansionNode | possibleExpansion)]
+[let objectFlows:Set(ObjectFlow)=expansionRegion.owner.eAllContents()->filter(ObjectFlow)->asSet()]
+[let flows:Set(ObjectFlow)= objectFlows->select(target.oclIsTypeOf(ExpansionNode) and target.oclAsType(ExpansionNode).name.equalsIgnoreCase(exp.name))]
+[for (flow:ObjectFlow | flows )]
+[if(flow.source.owner = expansionRegion.owner)]
+
+
+
+
+[let type:String=anExpansionNode.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if(type.contains('('))]
+let [anExpansionNode.name.concat(':OrderedSet(').concat(anExpansionNode.type.name).concat(') = ').concat(aconstraint.specification.stringValue())/] in													
+[else]
+let [anExpansionNode.name.concat(':').concat(anExpansionNode.type.name).concat(' = ').concat(aconstraint.specification.stringValue())/] in													
+[/if]
+[/let]
+
+
+
+[/if]
+[/for]
+[/let]
+[/let]
+[/for]
+[/let]
+[/let]
+
+
+
+[/if]
+
+										[/for]
+										[/let]
+										[/if]
+								[/for]
+								[/for]
+                         					
+                   
+
+
+[/template]
+
+[query public expansionNodeToBedeclared(anActivity:Activity,arg0 : ExpansionRegion, arg1 : String, arg2 : Sequence(ExpansionNode), arg3 : Sequence(ExpansionNode)) : Sequence(ExpansionNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'expansionNodeToBedeclared(org.eclipse.uml2.uml.Activity,org.eclipse.uml2.uml.ExpansionRegion, java.lang.String, java.util.List, java.util.List)', Sequence{anActivity,arg0, arg1, arg2, arg3}) /]

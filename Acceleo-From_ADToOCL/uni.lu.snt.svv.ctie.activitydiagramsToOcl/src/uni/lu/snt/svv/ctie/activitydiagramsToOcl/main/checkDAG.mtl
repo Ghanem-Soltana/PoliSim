@@ -1,0 +1,164 @@
+[comment encoding = UTF-8 /]
+[module checkDAG('http://www.eclipse.org/uml2/3.0.0/UML')]
+
+[template public checkDAG(anActivity : Activity, aModel : Package)] 
+[file (anActivity.name.concat('-DAG.ocl'), false,'UTF-8')]
+[StartingNodes(anActivity)/] 
+[/file]
+[/template]
+
+[template public StartingNodes(anActivity : Activity,anOwner:OclAny)]
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow))]
+[if (aControlFlow.source.oclIsKindOf(InitialNode) and aControlFlow.owner.toString().equalsIgnoreCase(anOwner.toString()))]
+[let listControlFlow:Sequence(ControlFlow)=emptyListControlFlow(anActivity)]
+[let listObjectFlow:Sequence(ObjectFlow)=anOwner.eAllContents()->filter(ObjectFlow)->select(false)]
+[retreave(anActivity,anOwner,aControlFlow.target,'aCaller','','',listControlFlow,listObjectFlow)/]
+[/let]
+[/let]
+[/if]
+[/for]
+[/template]
+
+[template public StartingNodesForExpansionRegion(anActivity : Activity,anOwner:OclAny,listControlFlow:Sequence(ControlFlow),listObjectFlow:Sequence(ObjectFlow))]
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow))]
+[if (aControlFlow.source.oclIsKindOf(InitialNode) and aControlFlow.owner.oclIsTypeOf(ExpansionRegion))]
+[if (aControlFlow.source.oclAsType(InitialNode).owner.oclIsTypeOf(ExpansionRegion))]
+[if (listControlFlow->includes(aControlFlow)=false)]
+[listControlFlow/]
+[retreave(anActivity,anOwner,aControlFlow.target,'aCaller','','',listControlFlow,listObjectFlow)/]
+[else]
+false1
+[/if]
+[/if]
+[/if]
+[/for] 
+[/template]
+
+ 
+[template public retreave(anActivity : Activity, anOwner : OclAny, aNode : OclAny, aCallerType :String ,formule : String, space:String,listControlFlow:Sequence(ControlFlow),listObjectFlow:Sequence(ObjectFlow)) ]
+[if (aNode.oclIsKindOf(DecisionNode))]
+[decisionNodeRule(anActivity,anOwner,aNode.oclAsType(DecisionNode),aCallerType,space,listControlFlow,listObjectFlow)/]
+[/if]
+[if (aNode.oclIsKindOf(Action))]
+[actionRule(anActivity,anOwner,aNode.oclAsType(Action),aCallerType,space,listControlFlow,listObjectFlow)/]
+[/if]
+[if (aNode.oclIsKindOf(CentralBufferNode))]
+[centralBufferNodeRule(anActivity,anOwner,aNode.oclAsType(CentralBufferNode),formule,space,listControlFlow,listObjectFlow)/]
+[/if]
+[if (aNode.oclIsKindOf(ExpansionRegion))]
+[expansionRegionRule(anActivity,aNode.oclAsType(ExpansionRegion),space,listControlFlow,listObjectFlow)/]
+[/if]
+[if (aNode.oclIsKindOf(InputPin))]
+[inputPinRule(anActivity,anOwner,aNode.oclAsType(InputPin),aCallerType,space,listControlFlow,listObjectFlow)/]
+[/if]
+[/template]
+
+[template public decisionNodeRule(anActivity : Activity, anOwner:OclAny, aNode : ActivityNode, aCallerType:String, space : String,listControlFlow:Sequence(ControlFlow),listObjectFlow:Sequence(ObjectFlow))]
+ 
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ControlFlow).source.toString().equalsIgnoreCase(aNode.toString())))]
+[if(listControlFlow->includes(aControlFlow)=false)]
+[retreave(anActivity,anOwner,aControlFlow.target,'DecisionNode','',space+'     ',listControlFlow->including(aControlFlow),listObjectFlow)/]
+[else]
+false2
+[/if]
+
+
+
+[/for]
+
+[for ( anObjectFlow : ObjectFlow  | anOwner.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ObjectFlow).source.toString().equalsIgnoreCase(aNode.toString())))]
+[if(listObjectFlow->includes(anObjectFlow)=false)]
+[retreave(anActivity,anOwner,anObjectFlow.target,'DecisionNode','',space+'     ',listControlFlow,listObjectFlow->including(anObjectFlow))/]
+[else]
+false3
+[/if]
+[/for]
+[/template]
+
+[template public centralBufferNodeRule(anActivity : Activity, anOwner:OclAny, aNode : ActivityNode,formule : String ,space:String,listControlFlow:Sequence(ControlFlow),listObjectFlow:Sequence(ObjectFlow))]
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(CentralBufferNode) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name)))]
+[if(listControlFlow->includes(aControlFlow)=false)]
+[retreave(anActivity,anOwner,aControlFlow.target,'centralBufferNode','',space,listControlFlow->including(aControlFlow),listObjectFlow)/]
+[else]
+false4
+[/if]
+[/for]
+[for ( anObjectFlow : ObjectFlow   | anOwner.eAllContents()->filter(ObjectFlow )->select(oclAsType(ObjectFlow ).source.oclIsKindOf(CentralBufferNode) and oclAsType(ObjectFlow ).source.name.equalsIgnoreCase(aNode.name)))]
+[if(listObjectFlow->includes(anObjectFlow)=false)]
+[retreave(anActivity,anOwner,anObjectFlow.target,'centralBufferNode','',space,listControlFlow,listObjectFlow->including(anObjectFlow))/]
+[else]
+false5
+[/if]
+[/for]
+[/template]
+
+[template public actionRule(anActivity : Activity,anOwner:OclAny, aNode : ActivityNode, aCallerType:String,space:String,listControlFlow:Sequence(ControlFlow),listObjectFlow:Sequence(ObjectFlow))]
+[if aNode.oclIsTypeOf(OpaqueAction)]
+[for ( anObjectFlow: ObjectFlow  | anOwner.eAllContents()->filter(ObjectFlow)->select(source.oclIsTypeOf(OutputPin)) )]
+
+
+[if (anObjectFlow.source.oclAsType(OutputPin).owner.toString().equalsIgnoreCase(aNode.toString()))]
+[if(listObjectFlow->includes(anObjectFlow)=false)]
+[retreave(anActivity,anActivity,anObjectFlow.target,'Action','',space,listControlFlow,listObjectFlow->including(anObjectFlow))/]
+[else]
+false6
+[/if]
+[/if]
+[/for]
+
+
+[for ( aControlFlow: ControlFlow  | anOwner.eAllContents()->filter(ControlFlow))]
+[if (aControlFlow.source.toString().equalsIgnoreCase(aNode.toString()))]
+[if(listControlFlow->includes(aControlFlow)=false)]
+[retreave(anActivity,anActivity,aControlFlow.target,'Action','',space,listControlFlow->including(aControlFlow),listObjectFlow)/]
+[else]
+false7
+[/if]
+[/if]
+[/for]
+[/if]
+
+[/template]
+
+
+[template public expansionRegionRule(anActivity : Activity, anExpansionRegion:ExpansionRegion,space:String,listControlFlow:Sequence(ControlFlow),listObjectFlow:Sequence(ObjectFlow))]
+  
+
+[StartingNodesForExpansionRegion(anActivity,anExpansionRegion,listControlFlow,listObjectFlow)/]
+
+
+
+
+[for ( anOutputPin:OutputPin | anExpansionRegion.eAllContents()->filter(OutputPin)->select(not oclAsType(OutputPin).name.oclIsUndefined()))]
+[for (anObjectFlow:ObjectFlow | anActivity.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(OutputPin) and oclAsType(ObjectFlow).source.oclAsType(OutputPin).toString().equalsIgnoreCase(anOutputPin.toString())) )]
+[if(listObjectFlow->includes(anObjectFlow)=false)]
+[retreave(anActivity, anActivity, anObjectFlow.target,'ExpansionRegion','',space,listControlFlow,listObjectFlow->including(anObjectFlow))/]
+[else]
+false8
+[/if]
+[/for]
+[/for]
+
+[for ( anOutputPin:OutputPin | anExpansionRegion.eAllContents()->filter(OutputPin)->select(not oclAsType(OutputPin).name.oclIsUndefined()))]
+[for (aControlFlow:ControlFlow | anActivity.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(OutputPin) and oclAsType(ControlFlow).source.oclAsType(OutputPin).toString().equalsIgnoreCase(anOutputPin.toString())) )]
+[if(listControlFlow->includes(aControlFlow)=false)]
+[retreave(anActivity, anActivity, aControlFlow.target,'ExpansionRegion','',space,listControlFlow->including(aControlFlow),listObjectFlow)/]
+[else]
+false9
+[/if]
+[/for]
+[/for]
+
+
+[/template]
+
+
+
+
+[template public inputPinRule(anActivity : Activity, anOwner:OclAny, anInputPin : InputPin, aCallerType:String, space:String,listControlFlow:Sequence(ControlFlow),listObjectFlow:Sequence(ObjectFlow))]
+[retreave(anActivity,anOwner,anInputPin.owner.oclAsType(ActivityNode),aCallerType,'',space,listControlFlow,listObjectFlow)/]
+[/template]
+
+
+[query public emptyListControlFlow(arg0 : Activity) : Sequence(ControlFlow)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'emptyListControlFlow(org.eclipse.uml2.uml.Activity)', Sequence{arg0}) /]

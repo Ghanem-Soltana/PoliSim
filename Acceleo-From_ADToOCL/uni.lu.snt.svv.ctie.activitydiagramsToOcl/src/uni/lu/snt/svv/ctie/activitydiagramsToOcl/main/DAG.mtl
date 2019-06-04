@@ -1,0 +1,16 @@
+[comment encoding = UTF-8 /]
+[module DAG('http://www.eclipse.org/uml2/3.0.0/UML')]
+[import  uni::lu::snt::svv::ctie::activitydiagramsToOcl::main::checkDAG/]
+
+
+[template public generate(aModel : Package)]
+[comment @main/]	
+[let anActivity : Activity = aModel.allOwnedElements()->filter(Activity)->any(true)]
+[checkDAG(anActivity,aModel)/]
+[clean(anActivity.name.concat('-DAG.ocl'),anActivity)/]
+[/let]
+[/template]
+ 
+[query public clean( arg1 : String,arg2 : Activity) : OclVoid
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'clean(java.lang.String, org.eclipse.uml2.uml.Activity)', Sequence{arg1,arg2}) /]
+  

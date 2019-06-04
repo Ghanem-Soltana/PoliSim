@@ -1,0 +1,9 @@
+context TaxPayer inv DS_Continued_Health_And_Pension_Insurance:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let sum_continued_health_and_pension_expenses:MonetaryValue = income.expenses-> select(e:Expense | e.oclIsTypeOf(Health_and_Pension_Insurance) and e.category = Category_of_Health_and_Pension_Insurances::CONTINUED_HEALTH_AND_PENSION_INSURANCE and e.year_expense_was_incurred_in = taxation_year).declared_amount->sum() in
+let actual_deduction:MonetaryValue = income.getDeductionForContinuedHealthAndPensionInsurance(taxation_year).deduced_amount in
+actual_deduction = sum_continued_health_and_pension_expenses
+)

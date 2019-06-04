@@ -1,0 +1,152 @@
+Size = 76
+context Tax_Payer inv CIP:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+if (taxation_year>=2009) = false then
+false
+else
+   if (taxation_year>=2009) = true then
+   let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in													
+   /** Description: The incomes of a given taxpayer for the studied tax year. The first income is the principal one. - The rest of incomes are sorted from the highest to the lowest income. -  Note that taxpayers who are taxed jointly have only one principal income. -  **/	
+   incomes -> forAll (income:Income|
+   let is_income_subject_to_withholding:Boolean = income.income_type.subjectToWithholdingTax in
+   /** Description: Returns yes if the income is under withholding taxation: false otherwise -  **/							
+   if (is_income_subject_to_withholding) = true then
+     let is_income_pension:Boolean = income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) in
+     /** Description: Returns yes if the income is of type Pension and Annuities; returns false otherwise -  **/							
+     if (is_income_pension) = false then
+          let is_income_ofType_rental:Boolean = income.income_type.oclIsTypeOf(Rentals_and_Leases_Income) in
+          /** Description: Returns yes if the income is of type Rentals and Leases; returns false otherwise -  **/							
+          if (is_income_ofType_rental) = false then
+          let expected_CIP:Real = 0 in
+          income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+          else
+             if (is_income_ofType_rental) = true then
+                    let is_income_periodic :Boolean = income.oclAsType(Rentals_and_Leases_Income).is_periodic in
+                    /** Description: Returns yes if the income is received by the taxpayer on regular basis; returns false otherwise -  **/							
+                    if (is_income_periodic ) = false then
+                    let expected_CIP:Real = 0 in
+                    income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                    else
+                       if (is_income_periodic ) = true then
+                                 let credit_already_attributed:Boolean = incomes->excluding(income)->select(i:Income | i.tax_card.credit_CIP_monthly <> 0 or i.tax_card.credit_CIP_yearly <> 0)->notEmpty() in
+                                 /** Description: Makes sure that CIP was not attributed to the taxpayer on any other income. It returns yes if the taxpayer -  has already benefited from CIP. -  **/							
+                                 if (credit_already_attributed) = false then
+                                             let CIP_minimum_income_month:Real = self.from_law.CIP_MINIMUM_INCOME_MONTH() in 
+                                             /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                             let income_per_month:Real = income.income_per_month() in
+                                             /** Description: The value of the income per month -  **/							
+                                             if (income_per_month >= CIP_minimum_income_month) = true then
+                                             let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                                             /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                             let prorata_period:Real = income.prorata_period() in
+                                             /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                                             let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                                             income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                             else
+                                                if (income_per_month >= CIP_minimum_income_month) = false then
+                                                               let CIP_minimum_income_year:Real = self.from_law.CIP_MINIMUM_INCOME_YEAR() in 
+                                                               /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                                               let income_per_year :Real = income.income_per_year() in
+                                                               /** Description: The value of the income per year -  **/							
+                                                               if (income_per_year >= CIP_minimum_income_year) = true then
+                                                               let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                                                               /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                                               let prorata_period:Real = income.prorata_period() in
+                                                               /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                                                               let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                                                               income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                                               else
+                                                                 if (income_per_year >= CIP_minimum_income_year) = false then
+                                                                 let expected_CIP:Real = 0 in
+                                                                 income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                                                 else
+                                                                 false
+                                                                 endif
+                                                               endif
+                                                else
+                                                false
+                                                endif
+                                             endif
+                                 else
+                                   if (credit_already_attributed) = true then
+                                   let expected_CIP:Real = 0 in
+                                   income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                   else
+                                   false
+                                   endif
+                                 endif
+                       else
+                       false
+                       endif
+                    endif
+             else
+             false
+             endif
+          endif
+     else
+        if (is_income_pension) = true then
+             let credit_already_attributed:Boolean = incomes->excluding(income)->select(i:Income | i.tax_card.credit_CIP_monthly <> 0 or i.tax_card.credit_CIP_yearly <> 0)->notEmpty() in
+             /** Description: Makes sure that CIP was not attributed to the taxpayer on any other income. It returns yes if the taxpayer -  has already benefited from CIP. -  **/							
+             if (credit_already_attributed) = false then
+                    let CIP_minimum_income_month:Real = self.from_law.CIP_MINIMUM_INCOME_MONTH() in 
+                    /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                    let income_per_month:Real = income.income_per_month() in
+                    /** Description: The value of the income per month -  **/							
+                    if (income_per_month >= CIP_minimum_income_month) = true then
+                    let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                    /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                    let prorata_period:Real = income.prorata_period() in
+                    /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                    let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                    income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                    else
+                       if (income_per_month >= CIP_minimum_income_month) = false then
+                                 let CIP_minimum_income_year:Real = self.from_law.CIP_MINIMUM_INCOME_YEAR() in 
+                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                 let income_per_year :Real = income.income_per_year() in
+                                 /** Description: The value of the income per year -  **/							
+                                 if (income_per_year >= CIP_minimum_income_year) = true then
+                                 let flat_rate_CIP_yearly:Real = self.from_law.FLAT_RATE_CIP_YEARLY() in 
+                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008  - CIP_minimum_income_year= 300  - CIP_minimum_income_month= 25  - flat_rate_CIP_yearly = 300  - **/ 								
+                                 let prorata_period:Real = income.prorata_period() in
+                                 /** Description: Period during which the taxpayer has been employed over the course of the tax year (between 0 and 1) -  **/							
+                                 let expected_CIP:Real = flat_rate_CIP_yearly * prorata_period in
+                                 income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                 else
+                                   if (income_per_year >= CIP_minimum_income_year) = false then
+                                   let expected_CIP:Real = 0 in
+                                   income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+                                   else
+                                   false
+                                   endif
+                                 endif
+                       else
+                       false
+                       endif
+                    endif
+             else
+               if (credit_already_attributed) = true then
+               let expected_CIP:Real = 0 in
+               income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+               else
+               false
+               endif
+             endif
+        else
+        false
+        endif
+     endif
+   else
+     if (is_income_subject_to_withholding) = false then
+     let expected_CIP:Real = 0 in
+     income.tax_card.credit_CIP_yearly->any(true).oclIsUndefined()
+     else
+     false
+     endif
+   endif
+   )
+   else
+   false
+   endif
+endif

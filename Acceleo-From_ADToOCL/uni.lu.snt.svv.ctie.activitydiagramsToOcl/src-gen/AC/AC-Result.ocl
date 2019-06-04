@@ -1,0 +1,116 @@
+context TaxPayer inv AC:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: When was the request postmarked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(i: Income | i.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let tax_payer_is_subject_to_withholding:Boolean = income.income_type.oclIsTypeOf(Employment_Income) or income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) or income.income_type.oclIsTypeOf(Capital_and_Investments_Income) or income.income_type.oclIsTypeOf(Directors_Fee) in
+if (tax_payer_is_subject_to_withholding) = true then
+   let taxed_jointly:Boolean = self.taxed_jointly in														
+   if (taxed_jointly) = false then
+   let expected_deduction:MonetaryValue = 0 in
+   let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+   actual_deduction = expected_deduction
+   else
+     if (taxed_jointly) = true then
+          let spouse:Tax_Payer = self.legal_unions->select(u:Legal_Union_Record | u.end_date.notEmpty())->last().getSpouse(self) in														
+          let spouse_incomes:Set(Income) = spouse.incomes->select(i: Income | i.year = taxation_year) in														
+          let is_spouse_income_eligible:Boolean = spouse_incomes->select(i:Income | i.is_eligible_income_for_AC()=true)->notEmpty() in														
+          let is_tax_payer_income_eligible:Boolean = income.is_eligible_income_for_AC() in
+          if (is_tax_payer_income_eligible and is_spouse_income_eligible) = true then
+                  let is_taxpayer_affiliated_to_social_security:Boolean = income.is_taxpayer_affiliated_to_social_security
+                  /** TRACEABILITY: Agent type: officer - Question: Is the Tax payer affiliated to a social security? - **/ in								
+                  let is_spouse_affiliated_to_social_security:Boolean = income.is_spouse_affiliated_to_social_security
+                  /** TRACEABILITY: - Agent type: officer - Question: Is the Taxpayer's spouse affiliated to a social security? - **/ in								
+                  if (is_taxpayer_affiliated_to_social_security and is_spouse_affiliated_to_social_security) = true then
+                  let flat_rate:MonetaryValue = income.get_AC_Flat_Rate()
+                  /** TRACEABILITY: Source: Art. 129b Income Tax law (2013) - **/ in								
+                  let expected_deduction:MonetaryValue = flat_rate in
+                  let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+                  actual_deduction = expected_deduction
+                  else
+                    if (is_taxpayer_affiliated_to_social_security and is_spouse_affiliated_to_social_security) = false then
+                    let expected_deduction:MonetaryValue = 0 in
+                    let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+                    actual_deduction = expected_deduction
+                    else
+                    false
+                    endif
+                  endif
+          else
+             if (is_tax_payer_income_eligible and is_spouse_income_eligible) = false then
+                    if (is_tax_payer_income_eligible xor is_spouse_income_eligible) = true then
+                              let spouse_income_pension_period:Numeric = spouse.incomes->select(i: Income | i.year = taxation_year and i.income_type.oclTypeOf(Pensions_and_Annuities_Income))->last().getPensionPeriode() in														
+                              let spouse_has_pension_income:Boolean = spouse.incomes->select(i: Income | i.year = taxation_year and i.income_type.oclTypeOf(Pensions_and_Annuities_Income))->notEmpty() in														
+                              let is_income__pension_and_annuities:Boolean = income.income_type.oclTypeOf(Pensions_and_Annuities_Income)  in
+                              let taxpayer_income_pension_period:Numeric = income.getPensionPeriode() in
+                              if ((is_income__pension_and_annuities and taxpayer_income_pension_period < 36) xor (spouse_has_pension_income and spouse_income_pension_period< 36) ) = false then
+                              let expected_deduction:MonetaryValue = 0 in
+                              let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+                              actual_deduction = expected_deduction
+                              else
+                                 if ((is_income__pension_and_annuities and taxpayer_income_pension_period < 36) xor (spouse_has_pension_income and spouse_income_pension_period< 36) ) = true then
+                                 let flat_rate:MonetaryValue = income.get_AC_Flat_Rate()
+                                 /** TRACEABILITY: Source: Art. 129b Income Tax law (2013) - **/ in								
+                                 let expected_deduction:MonetaryValue = flat_rate in
+                                 let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+                                 actual_deduction = expected_deduction
+                                 else
+                                 false
+                                 endif
+                              endif
+                    else
+                       if (is_tax_payer_income_eligible xor is_spouse_income_eligible) = false then
+                                 let is_spouse_eligible_for_assisting_taxpayer:Boolean = spouse_incomes->exists(i:Income| i.is_eligible_to_assist_for_AC()) in														
+                                 let is_taxpayer_eligible_for_assisting_spouse:Boolean = income.is_eligible_to_assist_for_AC() in
+                                 if (is_taxpayer_eligible_for_assisting_spouse xor is_spouse_eligible_for_assisting_taxpayer) = false then
+                                 let expected_deduction:MonetaryValue = 0 in
+                                 let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+                                 actual_deduction = expected_deduction
+                                 else
+                                   if (is_taxpayer_eligible_for_assisting_spouse xor is_spouse_eligible_for_assisting_taxpayer) = true then
+                                                let is_spouse_assisting_taxpayer:Boolean = spouse.is_assisting_spouse in														
+                                                let is_taxpayer_affiliated_to_social_security:Boolean = income.is_taxpayer_affiliated_to_social_security
+                                                /** TRACEABILITY: Agent type: officer - Question: Is the Tax payer affiliated to a social security? - **/ in								
+                                                let is_spouse_affiliated_to_social_security:Boolean = income.is_spouse_affiliated_to_social_security
+                                                /** TRACEABILITY: - Agent type: officer - Question: Is the Taxpayer's spouse affiliated to a social security? - **/ in								
+                                                if ((is_taxpayer_affiliated_to_social_security = true and is_spouse_affiliated_to_social_security = false and self.is_assisting_spouse) xor (is_taxpayer_affiliated_to_social_security = false and is_spouse_affiliated_to_social_security = true and is_spouse_assisting_taxpayer) ) = true then
+                                                let flat_rate:MonetaryValue = income.get_AC_Flat_Rate()
+                                                /** TRACEABILITY: Source: Art. 129b Income Tax law (2013) - **/ in								
+                                                let expected_deduction:MonetaryValue = flat_rate in
+                                                let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+                                                actual_deduction = expected_deduction
+                                                else
+                                                  if ((is_taxpayer_affiliated_to_social_security = true and is_spouse_affiliated_to_social_security = false and self.is_assisting_spouse) xor (is_taxpayer_affiliated_to_social_security = false and is_spouse_affiliated_to_social_security = true and is_spouse_assisting_taxpayer) ) = false then
+                                                  let expected_deduction:MonetaryValue = 0 in
+                                                  let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+                                                  actual_deduction = expected_deduction
+                                                  else
+                                                  false
+                                                  endif
+                                                endif
+                                   else
+                                   false
+                                   endif
+                                 endif
+                       else
+                       false
+                       endif
+                    endif
+             else
+             false
+             endif
+          endif
+     else
+     false
+     endif
+   endif
+else
+   if (tax_payer_is_subject_to_withholding) = false then
+   let expected_deduction:MonetaryValue = 0 in
+   let actual_deduction:MonetaryValue = income.getDeductionForCEJointDeduction(taxation_year).deduced_amount in
+   actual_deduction = expected_deduction
+   else
+   false
+   endif
+endif
+)

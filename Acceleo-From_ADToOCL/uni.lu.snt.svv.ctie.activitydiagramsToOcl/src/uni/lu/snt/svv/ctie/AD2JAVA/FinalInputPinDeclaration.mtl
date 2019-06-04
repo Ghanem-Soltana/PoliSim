@@ -1,0 +1,407 @@
+[comment encoding = UTF-8 /]
+[module FinalInputPinDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')] 
+[import uni::lu::snt::svv::ctie::AD2JAVA::FinalParameterNodeDeclaration/]
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::main::JAVAImpl/] 
+
+
+
+
+ 
+[template public declareanInputPin(anActivity : Activity,anInPutPin:InputPin, anExpansionNode : ExpansionNode, anExpansionRegion : ExpansionRegion,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin))]
+[for ( aSteriotype :   Stereotype  | anInPutPin.getAppliedStereotypes()->reject(name='in'))]
+                 			    [if (aSteriotype.name.equalsIgnoreCase('fromrecord') or aSteriotype.name.equalsIgnoreCase('temp') )]
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [let aconstraint:Constraint = 	anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))->first() ]
+
+
+
+[if (anInPutPin.upperValue.stringValue().oclIsUndefined())]
+
+tempOCL= "[aconstraint.specification.stringValue().trim().replaceAll('\\r\\n|\\r|\\n', ' ')/]";
+
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]	
+
+[else]
+EObject  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anInPutPin.name.trim()/]","[anInPutPin.type.name /]"); 	
+[/if]
+[/let]
+
+[else]
+[if(anInPutPin.upperValue.stringValue().endsWith('*'))]
+
+tempOCL= "[aconstraint.specification.stringValue().trim().replaceAll('\\r\\n|\\r|\\n', ' ')/]";
+
+
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]	
+[else]
+Collection<EObject>  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anInPutPin.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	
+[/if]
+[/let]
+
+[else]
+
+tempOCL= "[aconstraint.specification.stringValue().trim().replaceAll('\\r\\n|\\r|\\n', ' ')/]";
+
+
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[else]
+[if(anInPutPin.type.name.contains('('))]Collection<EObject>  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anInPutPin.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]");[else]EObject  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anInPutPin.name.trim()/]","[anInPutPin.type.name /]");[/if] 
+[/if]
+[/let]	
+[/if]
+[/if]
+						
+
+/** Description: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]   **/							
+								
+										[/let]
+										[/let]	
+										[/if]
+								[/for]
+								[/for]
+                         					
+                      		[/if]
+                 			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+  						     	[for ( temp : String  | aComment.annotatedElement.toString())]
+								[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+
+
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[let parameters:Sequence(String)= anInPutPin.getValue(aSteriotype,'parameteres')]
+
+
+[if(parameters->size()=0)]
+[if (type='int' or type = 'double' or type='boolean')]
+[type/] [anInPutPin.name.trim()/] = [anInPutPin.getValue(aSteriotype, 'value').toString()/];
+[else]
+EObject [anInPutPin.name.trim()/] = [anInPutPin.getValue(aSteriotype, 'value').toString()/];
+[/if]
+[else]
+
+tempOCL= "['self.from_law.'.concat(anInPutPin.name.trim().toUpper())/] ([for (name1:String|parameters)][name1/][if(not name1.equalsIgnoreCase(parameters->last()))], [/if][/for])";
+
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]	
+[else]
+Collection<EObject>  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anInPutPin.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	
+[/if]
+
+
+
+
+
+[/if]
+
+[/let]
+[/let]
+					
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]  **/ 
+							[/if]
+								[/for]
+								[/for]
+
+                      		[/if]
+								[if (aSteriotype.name.equalsIgnoreCase('fromagent') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+					   		[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+
+tempOCL= "[anExpansionNode.name.concat('.from_agent.').concat(anInPutPin.name.trim())/]";
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+
+
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[else]
+EObject [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluate(input,tempOCL,"[anInPutPin.name.trim()/]"); 	
+[/if]
+[/let]
+
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]  **/						
+							[/if]
+								[/for]
+								[/for] 
+                      		[/if]
+[/for]
+
+[/template]
+
+
+[template public declareanInputPinInit(anActivity : Activity,anInPutPin:InputPin, anExpansionNode : ExpansionNode, anExpansionRegion : ExpansionRegion,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin))]
+[for ( aSteriotype :   Stereotype  | anInPutPin.getAppliedStereotypes()->reject(name='in'))]
+                 			    [if (aSteriotype.name.equalsIgnoreCase('fromrecord') or aSteriotype.name.equalsIgnoreCase('temp') )]
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [let aconstraint:Constraint = 	anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))->first() ]
+
+
+[if (anInPutPin.upperValue.stringValue().oclIsUndefined())]
+
+[let ch:String=aconstraint.specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, emptyListActivityParrameterNode(anActivity))]
+[let newInputPins:Sequence(InputPin)= inputPinToBedeclared(anActivity,anInPutPin.owner.oclAsType(ExpansionRegion),ch,allInputPin,emptyListInputPin(anActivity)->including(anInPutPin)) ]
+tempOCL= "[for(anActivatyParameterNode:ActivityParameterNode | newParameters)][DeclareAnActivityparameterNodeOld(anActivity,anActivatyParameterNode).trim().replace('\n','')/] [/for][for (anInputPin:InputPin |newInputPins)][declareanInputPinOld(anActivity, anInputPin, anInPutPin.owner.oclAsType(ExpansionRegion).oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anInPutPin.owner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode).trim().replace('\n','')/] [/for][aconstraint.specification.stringValue()/]";
+[/let]
+[/let]
+[/let]
+
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]	
+
+[else]
+Collection<EObject>  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anInPutPin.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	
+[/if]
+[/let]
+
+
+[else]
+[if(anInPutPin.upperValue.stringValue().endsWith('*'))]
+
+[let ch:String=aconstraint.specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, emptyListActivityParrameterNode(anActivity))]
+[let newInputPins:Sequence(InputPin)= inputPinToBedeclared(anActivity,anInPutPin.owner.oclAsType(ExpansionRegion),ch,allInputPin,emptyListInputPin(anActivity)->including(anInPutPin)) ]
+tempOCL= "[for(anActivatyParameterNode:ActivityParameterNode | newParameters)][DeclareAnActivityparameterNodeOld(anActivity,anActivatyParameterNode).trim().replace('\n','')/] [/for][for (anInputPin:InputPin |newInputPins)][declareanInputPinOld(anActivity, anInputPin, anInPutPin.owner.oclAsType(ExpansionRegion).oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anInPutPin.owner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode).trim().replace('\n','')/] [/for][aconstraint.specification.stringValue()/]";
+[/let]
+[/let]
+[/let]
+
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]	
+[else]
+Collection<EObject>  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anInPutPin.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]"); 	
+[/if]
+[/let]
+
+[else]
+
+[let ch:String=aconstraint.specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, emptyListActivityParrameterNode(anActivity))]
+[let newInputPins:Sequence(InputPin)= inputPinToBedeclared(anActivity,anInPutPin.owner.oclAsType(ExpansionRegion),ch,allInputPin,emptyListInputPin(anActivity)->including(anInPutPin)) ]
+tempOCL= "[for(anActivatyParameterNode:ActivityParameterNode | newParameters)][DeclareAnActivityparameterNodeOld(anActivity,anActivatyParameterNode).trim().replace('\n','')/] [/for][for (anInputPin:InputPin |newInputPins)][declareanInputPinOld(anActivity, anInputPin, anInPutPin.owner.oclAsType(ExpansionRegion).oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anInPutPin.owner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode).trim().replace('\n','')/] [/for][aconstraint.specification.stringValue()/]";
+[/let]
+[/let]
+[/let]
+
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[else]
+[if(anInPutPin.type.name.contains('('))]Collection<EObject>  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateECollection(input,tempOCL,"[anInPutPin.name.trim()/]","[if(type.contains('('))][type.substring(type.index('(')+1, type.index(')')-1)/][else][type/][/if]","[if(type.contains('('))][type.substring(1, type.index('(')-1)/][else]Set[/if]");[else]EObject  [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluateEObject(input,tempOCL,"[anInPutPin.name.trim()/]","[anInPutPin.type.name /]");[/if] 
+[/if]
+[/let]	
+[/if]
+[/if]
+														
+										[/let]
+										[/let]	
+										[/if]
+								[/for]
+								[/for]
+                         					
+                      		[/if]
+                 			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+  						     	[for ( temp : String  | aComment.annotatedElement.toString())]
+								[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+
+tempOCL= "['self.from_law.'.concat(anInPutPin.name.trim().toUpper()).concat('()')/]";
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[else]
+EObject [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluate(input,input,tempOCL,"[anInPutPin.name.trim()/]"); 	
+[/if]
+[/let]
+												[/if]
+								[/for]
+								[/for]
+
+                      		[/if]
+								[if (aSteriotype.name.equalsIgnoreCase('fromagent') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+					   		[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+
+
+tempOCL= "[anExpansionNode.name.concat('.from_agent.').concat(anInPutPin.name.trim())/]";
+[let type:String=anInPutPin.type.name.replace('EInt', 'int').replace('EDouble', 'double').replace('Numeric', 'int').replace('MonetaryValue', 'double').replace('DistanceUnit', 'double').replace('Boolean', 'boolean').replace('Percentage', 'double')]
+[if (type='int' or type = 'double' or type='boolean')]
+[if (type='int')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateInt(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='double')] 
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateDouble(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[if (type='boolean')]
+[type.concat(' ').concat(anInPutPin.name.trim().concat(' = '))/] OCLForJAVA.evaluateBoolean(input,tempOCL,"[anInPutPin.name.trim()/]");
+[/if]
+[else]
+EObject [anInPutPin.name.trim().concat(' = ')/] OCLForJAVA.evaluate(input,tempOCL,"[anInPutPin.name.trim()/]"); 	
+[/if]
+[/let]
+							[/if]
+								[/for]
+								[/for] 
+                      		[/if]
+[/for]
+
+[/template]
+
+[template public declareanInputPinOld(anActivity : Activity,anInPutPin:InputPin, anExpansionNode : ExpansionNode, anExpansionRegion : ExpansionRegion,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode))]
+[for ( aSteriotype :   Stereotype  | anInPutPin.getAppliedStereotypes()->reject(name='in'))]
+                 			    [if (aSteriotype.name.equalsIgnoreCase('fromrecord') or aSteriotype.name.equalsIgnoreCase('temp') )]
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [let aconstraint:Constraint = 	anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))->first() ]
+
+[let ch:String=aconstraint.specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[DeclareAnActivityparameterNodeOld(anActivity,anActivatyParameterNode)/]
+[/for]
+[/let]
+[/let]
+
+[if (anInPutPin.upperValue.stringValue().oclIsUndefined())]
+let [anInPutPin.name.trim().concat(':').concat(anInPutPin.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Percentage', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat(aconstraint.specification.stringValue())/][if(aComment._body.index('OCL')=-1)] in[/if]
+[else]
+[if(anInPutPin.upperValue.stringValue().endsWith('*'))]
+let [anInPutPin.name.trim().concat(':OrderedSet(').concat(anInPutPin.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Percentage', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(') = ').concat(aconstraint.specification.stringValue())/][if(aComment._body.index('OCL')=-1)] in[/if]
+[else]
+let [anInPutPin.name.trim().concat(':').concat(anInPutPin.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Percentage', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat(aconstraint.specification.stringValue())/][if(aComment._body.index('OCL')=-1)] in[/if]
+[/if]
+[/if]
+								
+										[/let]
+										[/let]	
+										[/if]
+								[/for]
+								[/for]
+                         					
+                      		[/if]
+                 			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+[let parameters:Sequence(String)= anInPutPin.getValue(aSteriotype,'parameteres')]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+  						     	[for ( temp : String  | aComment.annotatedElement.toString())]
+								[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+							    [if(aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'value_type').oclAsType(EnumerationLiteral).name.equalsIgnoreCase('LOOKUP_TABLE'))]
+let [anInPutPin.name.trim().concat(':').concat(anInPutPin.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Percentage', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat(anExpansionNode.name).concat('.').concat(anInPutPin.name.trim())/] in
+								[else]
+let [anInPutPin.name.trim().concat(':').concat(anInPutPin.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Percentage', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat('self.from_law.').concat(anInPutPin.name.trim().toUpper())/] ([for (name1:String|parameters)][name1/][if(not name1.equalsIgnoreCase(parameters->last()))], [/if][/for]) in
+								[/if]
+						[/if]
+								[/for]
+								[/for]
+[/let]
+                      		[/if]
+								[if (aSteriotype.name.equalsIgnoreCase('fromagent') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+					   		[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+let [anInPutPin.name.trim().concat(':').concat(anInPutPin.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Percentage', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real').replace('Percentage', 'Real')).concat(' = ').concat(anExpansionNode.name).concat('.from_agent.').concat(anInPutPin.name.trim())/] in
+							[/if]
+								[/for]
+								[/for] 
+                      		[/if]
+[/for]
+
+[/template]
+
+
+
+[query public inputPinToBedeclared(anActivity:Activity,arg0 : ExpansionRegion, arg1 : String, arg2 : Sequence(InputPin), arg3 : Sequence(InputPin)) : Sequence(InputPin)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'inputPinToBedeclared(org.eclipse.uml2.uml.Activity,org.eclipse.uml2.uml.ExpansionRegion, java.lang.String, java.util.List, java.util.List)', Sequence{anActivity,arg0, arg1, arg2, arg3}) /]

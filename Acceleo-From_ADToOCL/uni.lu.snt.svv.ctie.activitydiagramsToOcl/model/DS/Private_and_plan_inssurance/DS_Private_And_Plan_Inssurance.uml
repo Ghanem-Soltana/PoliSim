@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325 CTIE_Profile_Final.profile.uml#_Mup0e5o_EeOXzvVK2MY5wA">
+  <uml:Package xmi:id="_MvI-CJo_EeOXzvVK2MY5wA" name="DS_Private_And_Plan_Insurance">
+    <packageImport xmi:id="_MvI-CZo_EeOXzvVK2MY5wA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_MvI-Cpo_EeOXzvVK2MY5wA" name="DS_Private_And_Plan_Insurance">
+      <ownedComment xmi:id="_MvI-C5o_EeOXzvVK2MY5wA" annotatedElement="_MvI-LZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>self.expenses-&amp;gt;select(e:Expense&amp;nbsp;| e.oclTypeOf(Private_Insurance_and_Plan) and e.year_expense_was_incurred_in=taxation_year)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-DJo_EeOXzvVK2MY5wA" annotatedElement="_MvI-L5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent type:&lt;/b> officer&lt;/p>&lt;p>&lt;b>Question:&lt;/b> When was the request postmarked?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-DZo_EeOXzvVK2MY5wA" annotatedElement="_MvI-d5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>private_insurance_and_plan_expense.duration_of_contract&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-Dpo_EeOXzvVK2MY5wA" annotatedElement="_MvI-epo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent type:&lt;/b> officer&lt;/p>&lt;p>&lt;b>Question:&lt;/b> Does the private_insurance_and_plan_expense verifies the rules for deduction?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-D5o_EeOXzvVK2MY5wA" annotatedElement="_MvI-fZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>OCL: &lt;/b>private_insurance_and_plan_expense.maximum_deductible_amount&lt;b>&lt;/b>&lt;/p>&lt;p>&lt;b>Source: &lt;/b>Art. 111 Income Tax Law (2013)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-EJo_EeOXzvVK2MY5wA" annotatedElement="_MvI-f5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>OCL:&amp;nbsp;&lt;/b>private_insurance_and_plan_expense.increase_for_life_insurance&lt;b>&lt;/b>&lt;/p>&lt;p>&lt;b>Source: &lt;/b>Schedule of Withholding Taxes (2013)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-EZo_EeOXzvVK2MY5wA" annotatedElement="_MvI-mZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>self.getDeductionForCEPrivateAndPlanInssurance(taxation_year).deduced_amount&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-Epo_EeOXzvVK2MY5wA" annotatedElement="_MvI-hJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent type:&lt;/b> officer&lt;/p>&lt;p>&lt;b>Question:&lt;/b> Does the private life insurance verifies the rules for deduction?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-E5o_EeOXzvVK2MY5wA" annotatedElement="_MvI-h5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent type:&lt;/b> officer&lt;/p>&lt;p>&lt;b>Question:&lt;/b> Does the old age insurance verifies the rules for deduction?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-FJo_EeOXzvVK2MY5wA" annotatedElement="_MvI-jJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>OCL: &lt;/b>private_insurance_and_plan_expense.maximum_deductible_amount_for_old_age_pension_plan&lt;b>&lt;/b>&lt;/p>&lt;p>&lt;b>Source: &lt;/b>Art. 111bis Income Tax Law (2013) &lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-FZo_EeOXzvVK2MY5wA" annotatedElement="_MvI-m5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>actual_deduction&amp;nbsp;=&amp;nbsp;expected_deduction&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-Fpo_EeOXzvVK2MY5wA" annotatedElement="_MvI-lJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>private_insurance_and_plan_expense.category&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_MvI-F5o_EeOXzvVK2MY5wA" annotatedElement="_MvI-lpo_EeOXzvVK2MY5wA">
+        <body>&lt;p>private_insurance_and_plan_expense.declared_amount&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_MvI-GJo_EeOXzvVK2MY5wA" name="fromrecord_expenses" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-GZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.expenses->select(e:Expense| e.oclTypeOf(Private_Insurance_and_Plan) and e.year_expense_was_incurred_in=taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-Gpo_EeOXzvVK2MY5wA" name="fromrecord_contract_duration" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-G5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>private_insurance_and_plan_expense.duration_of_contract</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-HJo_EeOXzvVK2MY5wA" name="fromrecord_actual_deduction" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-HZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.getDeductionForCEPrivateAndPlanInssurance(taxation_year).deduced_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-Hpo_EeOXzvVK2MY5wA" name="assert_CE" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-H5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>actual_deduction = expected_deduction</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-IJo_EeOXzvVK2MY5wA" name="fromrecord_maximum_deductible_amount_for_old_age_pension_plan" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-IZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>private_insurance_and_plan_expense.maximum_deductible_amount_for_old_age_pension_plan</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-Ipo_EeOXzvVK2MY5wA" name="fromrecord_increase_for_life_insurance" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-I5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>private_insurance_and_plan_expense.increase_for_life_insurance</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-JJo_EeOXzvVK2MY5wA" name="fromrecord_maximum_deductible_amount" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-JZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>private_insurance_and_plan_expense.maximum_deductible_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-Jpo_EeOXzvVK2MY5wA" name="fromrecord_expense_amount" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-J5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>private_insurance_and_plan_expense.declared_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_MvI-KJo_EeOXzvVK2MY5wA" name="fromrecord_expense_category" constrainedElement="_MvI-Cpo_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-KZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>private_insurance_and_plan_expense.category</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_MvI-Kpo_EeOXzvVK2MY5wA" name="Parameter1">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvMZo_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_MvI-K5o_EeOXzvVK2MY5wA" name="Parameter2">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvHZo_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_MvI-LJo_EeOXzvVK2MY5wA" name="Parameter3">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_MvI-LZo_EeOXzvVK2MY5wA" name="private_insurance_and_plan_expenses" outgoing="_MvI-npo_EeOXzvVK2MY5wA" parameter="_MvI-Kpo_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvMZo_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-Lpo_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_MvI-L5o_EeOXzvVK2MY5wA" name="taxation_year" parameter="_MvI-K5o_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvHZo_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-MJo_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ExpansionRegion" xmi:id="_MvI-MZo_EeOXzvVK2MY5wA" name="Compute all elegible deduction per private_insurance_and_plan_expense" incoming="_MvI-oZo_EeOXzvVK2MY5wA" inputElement="_MvI-c5o_EeOXzvVK2MY5wA">
+        <eAnnotations xmi:id="_MvI-Mpo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+        <ownedComment xmi:id="_MvI-M5o_EeOXzvVK2MY5wA" annotatedElement="_MvI-gZo_EeOXzvVK2MY5wA">
+          <body>&lt;p>private_insurance_and_plan_expense.declared_amount&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_MvI-NJo_EeOXzvVK2MY5wA" annotatedElement="_MvI-gpo_EeOXzvVK2MY5wA">
+          <body>&lt;p>maximum_deductible_amount + increase_for_life_insurance&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_MvI-NZo_EeOXzvVK2MY5wA" annotatedElement="_MvI-ipo_EeOXzvVK2MY5wA">
+          <body>&lt;p>private_insurance_and_plan_expense.declared_amount&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_MvI-Npo_EeOXzvVK2MY5wA" annotatedElement="_MvI-i5o_EeOXzvVK2MY5wA">
+          <body>&lt;p>maximum_deductible_amount + increase_for_life_insurance&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_MvI-N5o_EeOXzvVK2MY5wA" annotatedElement="_MvI-MZo_EeOXzvVK2MY5wA _MvI-j5o_EeOXzvVK2MY5wA">
+          <body>&lt;p>private_insurance_and_plan_expense.declared_amount&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_MvI-OJo_EeOXzvVK2MY5wA" annotatedElement="_MvI-kJo_EeOXzvVK2MY5wA">
+          <body>&lt;p>maximum_deductible_amount_for_old_age_pension_plan&lt;/p></body>
+        </ownedComment>
+        <ownedRule xmi:id="_MvI-OZo_EeOXzvVK2MY5wA" name="formule_casual_deduction" constrainedElement="_MvI-MZo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-Opo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>private_insurance_and_plan_expense.declared_amount</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_MvI-O5o_EeOXzvVK2MY5wA" name="formule_consider_maximum_deduction" constrainedElement="_MvI-MZo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-PJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>maximum_deductible_amount + increase_for_life_insurance</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_MvI-PZo_EeOXzvVK2MY5wA" name="formula_yes_of_private_life" constrainedElement="_MvI-MZo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-Ppo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>private_insurance_and_plan_expense.declared_amount</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_MvI-P5o_EeOXzvVK2MY5wA" name="formula_no_private_insurance" constrainedElement="_MvI-MZo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-QJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>maximum_deductible_amount + increase_for_life_insurance</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_MvI-QZo_EeOXzvVK2MY5wA" name="formule_no_old_age_pension_plan" constrainedElement="_MvI-MZo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_MvI-Qpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>maximum_deductible_amount_for_old_age_pension_plan</body>
+          </specification>
+        </ownedRule>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-Q5o_EeOXzvVK2MY5wA" source="_MvI-dZo_EeOXzvVK2MY5wA" target="_MvI-dpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-RJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-RZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-Rpo_EeOXzvVK2MY5wA" name="no" source="_MvI-eZo_EeOXzvVK2MY5wA" target="_MvI-fJo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-R5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-SJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-SZo_EeOXzvVK2MY5wA" name="Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN" source="_MvI-dpo_EeOXzvVK2MY5wA" target="_MvI-g5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-Spo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-S5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-TJo_EeOXzvVK2MY5wA" name="Category_of_Private_Insurance_and_Plan::PRIVATE_INSURANCE or Category_of_Private_Insurance_and_Plan::COMPANY_MEMBERS_PRIVATE_INSURANCE or Category_of_Private_Insurance_and_Plan::HOUSING_SAVING_PLAN" source="_MvI-dpo_EeOXzvVK2MY5wA" target="_MvI-eZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-TZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-Tpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-T5o_EeOXzvVK2MY5wA" name="no" source="_MvI-hpo_EeOXzvVK2MY5wA" target="_MvI-fJo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-UJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-UZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-Upo_EeOXzvVK2MY5wA" name="Category_of_Private_Insurance_and_Plan::PRIVATE_LIFE_INSURANCE" source="_MvI-dpo_EeOXzvVK2MY5wA" target="_MvI-hpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-U5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-VJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-VZo_EeOXzvVK2MY5wA" name="no" source="_MvI-g5o_EeOXzvVK2MY5wA" target="_MvI-fJo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-Vpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-V5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-WJo_EeOXzvVK2MY5wA" name="yes" source="_MvI-hpo_EeOXzvVK2MY5wA" target="_MvI-iZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-WZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-Wpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-W5o_EeOXzvVK2MY5wA" name="yes" source="_MvI-iZo_EeOXzvVK2MY5wA" target="_MvI-ipo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-XJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-XZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-Xpo_EeOXzvVK2MY5wA" name="no" source="_MvI-iZo_EeOXzvVK2MY5wA" target="_MvI-i5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-X5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-YJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-YZo_EeOXzvVK2MY5wA" name="yes" source="_MvI-g5o_EeOXzvVK2MY5wA" target="_MvI-jpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-Ypo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-Y5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-ZJo_EeOXzvVK2MY5wA" name="no" source="_MvI-jpo_EeOXzvVK2MY5wA" target="_MvI-kJo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-ZZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-Zpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-Z5o_EeOXzvVK2MY5wA" name="yes" source="_MvI-jpo_EeOXzvVK2MY5wA" target="_MvI-j5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-aJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-aZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-apo_EeOXzvVK2MY5wA" name="yes" source="_MvI-eZo_EeOXzvVK2MY5wA" target="_MvI-k5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-a5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-bJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-bZo_EeOXzvVK2MY5wA" name="yes" source="_MvI-k5o_EeOXzvVK2MY5wA" target="_MvI-gZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-bpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-b5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-cJo_EeOXzvVK2MY5wA" name="no" source="_MvI-k5o_EeOXzvVK2MY5wA" target="_MvI-gpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-cZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-cpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <node xmi:type="uml:ExpansionNode" xmi:id="_MvI-c5o_EeOXzvVK2MY5wA" name="private_insurance_and_plan_expense" incoming="_MvI-npo_EeOXzvVK2MY5wA" regionAsInput="_MvI-MZo_EeOXzvVK2MY5wA">
+          <type xmi:type="uml:Class" href="TaxCard.uml#_MuFN45o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-dJo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InitialNode" xmi:id="_MvI-dZo_EeOXzvVK2MY5wA" outgoing="_MvI-Q5o_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_MvI-dpo_EeOXzvVK2MY5wA" name="expense_category" outgoing="_MvI-SZo_EeOXzvVK2MY5wA _MvI-TJo_EeOXzvVK2MY5wA _MvI-Upo_EeOXzvVK2MY5wA" incoming="_MvI-Q5o_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-d5o_EeOXzvVK2MY5wA" name="contract_duration">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvF5o_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-eJo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_MvI-eZo_EeOXzvVK2MY5wA" name="is_eligible_for_deduction" outgoing="_MvI-Rpo_EeOXzvVK2MY5wA _MvI-apo_EeOXzvVK2MY5wA" incoming="_MvI-TJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-epo_EeOXzvVK2MY5wA" name="is_eligible_for_deduction">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvFZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-e5o_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:FlowFinalNode" xmi:id="_MvI-fJo_EeOXzvVK2MY5wA" incoming="_MvI-Rpo_EeOXzvVK2MY5wA _MvI-T5o_EeOXzvVK2MY5wA _MvI-VZo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-fZo_EeOXzvVK2MY5wA" name="maximum_deductible_amount">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-fpo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-f5o_EeOXzvVK2MY5wA" name="increase_for_life_insurance">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-gJo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_MvI-gZo_EeOXzvVK2MY5wA" name="Consider casual private_insurance_and_plan_expense" incoming="_MvI-bZo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_MvI-gpo_EeOXzvVK2MY5wA" name="Consider maximum deduction" incoming="_MvI-cJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_MvI-g5o_EeOXzvVK2MY5wA" name="is_eligible_old_age_insurance_and_plan" outgoing="_MvI-VZo_EeOXzvVK2MY5wA _MvI-YZo_EeOXzvVK2MY5wA" incoming="_MvI-SZo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-hJo_EeOXzvVK2MY5wA" name="is_eligible_private_life_insurance">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvFZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-hZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_MvI-hpo_EeOXzvVK2MY5wA" name="is_eligible_private_life_insurance" outgoing="_MvI-T5o_EeOXzvVK2MY5wA _MvI-WJo_EeOXzvVK2MY5wA" incoming="_MvI-Upo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-h5o_EeOXzvVK2MY5wA" name="is_eligible_old_age_insurance_and_plan">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvFZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-iJo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_MvI-iZo_EeOXzvVK2MY5wA" name="expense_amount &lt;= maximum_deductible_amount + increase_for_life_insurance" outgoing="_MvI-W5o_EeOXzvVK2MY5wA _MvI-Xpo_EeOXzvVK2MY5wA" incoming="_MvI-WJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_MvI-ipo_EeOXzvVK2MY5wA" name="Consider private life inssurance expense" incoming="_MvI-W5o_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_MvI-i5o_EeOXzvVK2MY5wA" name="Consider maximum deduction for private life insurance" incoming="_MvI-Xpo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-jJo_EeOXzvVK2MY5wA" name="maximum_deductible_amount_for_old_age_pension_plan">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-jZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_MvI-jpo_EeOXzvVK2MY5wA" name="expense_amount &lt;= maximum_deductible_amount_for_old_age_pension_plan" outgoing="_MvI-ZJo_EeOXzvVK2MY5wA _MvI-Z5o_EeOXzvVK2MY5wA" incoming="_MvI-YZo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_MvI-j5o_EeOXzvVK2MY5wA" name="Consider casual age_pension_plan_expense" incoming="_MvI-Z5o_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_MvI-kJo_EeOXzvVK2MY5wA" name="Consider maximum deduction for age pension plan expense" incoming="_MvI-ZJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OutputPin" xmi:id="_MvI-kZo_EeOXzvVK2MY5wA" name="expected_deduction" outgoing="_MvI-pJo_EeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-kpo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_MvI-k5o_EeOXzvVK2MY5wA" name="maximum_deductible_amount + increase_for_life_insurance  >= expense_amount" outgoing="_MvI-bZo_EeOXzvVK2MY5wA _MvI-cJo_EeOXzvVK2MY5wA" incoming="_MvI-apo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-lJo_EeOXzvVK2MY5wA" name="expense_category">
+          <type xmi:type="uml:Enumeration" href="TaxCard.uml#_MuFN2Jo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-lZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_MvI-lpo_EeOXzvVK2MY5wA" name="expense_amount">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-l5o_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+      </node>
+      <node xmi:type="uml:InitialNode" xmi:id="_MvI-mJo_EeOXzvVK2MY5wA" outgoing="_MvI-oZo_EeOXzvVK2MY5wA"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_MvI-mZo_EeOXzvVK2MY5wA" name="actual_deduction" parameter="_MvI-LJo_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-mpo_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_MvI-m5o_EeOXzvVK2MY5wA" name="Check CE private and plan insurance deduction">
+        <inputValue xmi:id="_MvI-nJo_EeOXzvVK2MY5wA" incoming="_MvI-pJo_EeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_MuKvGZo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MvI-nZo_EeOXzvVK2MY5wA" value="1"/>
+        </inputValue>
+      </node>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_MvI-npo_EeOXzvVK2MY5wA" source="_MvI-LZo_EeOXzvVK2MY5wA" target="_MvI-c5o_EeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-n5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-oJo_EeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_MvI-oZo_EeOXzvVK2MY5wA" source="_MvI-mJo_EeOXzvVK2MY5wA" target="_MvI-MZo_EeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-opo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-o5o_EeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_MvI-pJo_EeOXzvVK2MY5wA" source="_MvI-kZo_EeOXzvVK2MY5wA" target="_MvI-nJo_EeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_MvI-pZo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_MvI-ppo_EeOXzvVK2MY5wA" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_MvI-p5o_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_MvI-qJo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_MvI-qZo_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_MvI-qpo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_MuGbGZo_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_MuGbF5o_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_MvI-q5o_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_MvI-rJo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_MvIYqJo_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_MvIYppo_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_MvI-rZo_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_MvI-rpo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_Mup0e5o_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_Mup0eZo_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:context xmi:id="_MvI-r5o_EeOXzvVK2MY5wA" context_class="Income" base_Activity="_MvI-Cpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-sJo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_MvI-LZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-sZo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_MvI-LZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-spo_EeOXzvVK2MY5wA" constraint="_MvI-GJo_EeOXzvVK2MY5wA" base_Comment="_MvI-C5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-s5o_EeOXzvVK2MY5wA" base_ActivityParameterNode="_MvI-L5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_MvI-tJo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_MvI-L5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-tZo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="When was the request postmarked?" source="" base_Comment="_MvI-DJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:iterative xmi:id="_MvI-tpo_EeOXzvVK2MY5wA" base_ExpansionRegion="_MvI-MZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-t5o_EeOXzvVK2MY5wA" base_Pin="_MvI-d5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-uJo_EeOXzvVK2MY5wA" base_Pin="_MvI-d5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-uZo_EeOXzvVK2MY5wA" constraint="_MvI-Gpo_EeOXzvVK2MY5wA" base_Comment="_MvI-DZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_MvI-upo_EeOXzvVK2MY5wA" base_Pin="_MvI-epo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-u5o_EeOXzvVK2MY5wA" base_Pin="_MvI-epo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-vJo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Does the private_insurance_and_plan_expense verifies the rules for deduction?" source="" base_Comment="_MvI-Dpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-vZo_EeOXzvVK2MY5wA" question="" source="Art. 111 Income Tax Law (2013)" value_type="LOOKUP_TABLE" constraint="_MvI-JJo_EeOXzvVK2MY5wA" base_Comment="_MvI-D5o_EeOXzvVK2MY5wA">
+    <parameters>Boolean taxed_jointly</parameters>
+    <parameters>number_of_children_subject_to_allowances_and_have_not_contributed_for_insurance_deduction</parameters>
+    <parameters>Numeric tax_liability </parameters>
+  </CTIE_Profile_Final:query>
+  <CTIE_Profile_Final:in xmi:id="_MvI-vpo_EeOXzvVK2MY5wA" base_Pin="_MvI-fZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-v5o_EeOXzvVK2MY5wA" base_Pin="_MvI-f5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-wJo_EeOXzvVK2MY5wA" source="Schedule of Withholding Taxes (2013)" value_type="LOOKUP_TABLE" constraint="_MvI-Ipo_EeOXzvVK2MY5wA" base_Comment="_MvI-EJo_EeOXzvVK2MY5wA">
+    <parameters>Numeric age</parameters>
+    <parameters> Boolean is_life_insurance_due_to_housing</parameters>
+  </CTIE_Profile_Final:query>
+  <CTIE_Profile_Final:calculate xmi:id="_MvI-wZo_EeOXzvVK2MY5wA" base_OpaqueAction="_MvI-gZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_MvI-wpo_EeOXzvVK2MY5wA" constraint="_MvI-OZo_EeOXzvVK2MY5wA" base_Comment="_MvI-M5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-w5o_EeOXzvVK2MY5wA" base_ActivityParameterNode="_MvI-mZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-xJo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_MvI-mZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-xZo_EeOXzvVK2MY5wA" constraint="_MvI-HJo_EeOXzvVK2MY5wA" base_Comment="_MvI-EZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_MvI-xpo_EeOXzvVK2MY5wA" base_OpaqueAction="_MvI-gpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_MvI-x5o_EeOXzvVK2MY5wA" constraint="_MvI-O5o_EeOXzvVK2MY5wA" base_Comment="_MvI-NJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_MvI-yJo_EeOXzvVK2MY5wA" base_Pin="_MvI-hJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-yZo_EeOXzvVK2MY5wA" base_Pin="_MvI-hJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-ypo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Does the private life insurance verifies the rules for deduction?" base_Comment="_MvI-Epo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_MvI-y5o_EeOXzvVK2MY5wA" base_Pin="_MvI-h5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-zJo_EeOXzvVK2MY5wA" base_Pin="_MvI-h5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-zZo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Does the old age insurance verifies the rules for deduction?" source="" base_Comment="_MvI-E5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_MvI-zpo_EeOXzvVK2MY5wA" base_OpaqueAction="_MvI-ipo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_MvI-z5o_EeOXzvVK2MY5wA" constraint="_MvI-PZo_EeOXzvVK2MY5wA" base_Comment="_MvI-NZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_MvI-0Jo_EeOXzvVK2MY5wA" constraint="_MvI-P5o_EeOXzvVK2MY5wA" base_Comment="_MvI-Npo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_MvI-0Zo_EeOXzvVK2MY5wA" base_OpaqueAction="_MvI-i5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-0po_EeOXzvVK2MY5wA" base_Pin="_MvI-jJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-05o_EeOXzvVK2MY5wA" question="" source="Art. 111bis Income Tax Law (2013) " value_type="LOOKUP_TABLE" constraint="_MvI-IJo_EeOXzvVK2MY5wA" base_Comment="_MvI-FJo_EeOXzvVK2MY5wA">
+    <parameters> Numeric age</parameters>
+    <parameters>Numeric tax_liability</parameters>
+  </CTIE_Profile_Final:query>
+  <CTIE_Profile_Final:calculate xmi:id="_MvI-1Jo_EeOXzvVK2MY5wA" base_OpaqueAction="_MvI-j5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_MvI-1Zo_EeOXzvVK2MY5wA" constraint="_MvI-OZo_EeOXzvVK2MY5wA" base_Comment="_MvI-N5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_MvI-1po_EeOXzvVK2MY5wA" base_OpaqueAction="_MvI-kJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_MvI-15o_EeOXzvVK2MY5wA" constraint="_MvI-QZo_EeOXzvVK2MY5wA" base_Comment="_MvI-OJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:assert xmi:id="_MvI-2Jo_EeOXzvVK2MY5wA" base_OpaqueAction="_MvI-m5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:statement xmi:id="_MvI-2Zo_EeOXzvVK2MY5wA" constraint="_MvI-Hpo_EeOXzvVK2MY5wA" base_Comment="_MvI-FZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-2po_EeOXzvVK2MY5wA" base_Pin="_MvI-jJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-25o_EeOXzvVK2MY5wA" base_Pin="_MvI-f5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-3Jo_EeOXzvVK2MY5wA" base_Pin="_MvI-fZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-3Zo_EeOXzvVK2MY5wA" constraint="_MvI-KJo_EeOXzvVK2MY5wA" base_Comment="_MvI-Fpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-3po_EeOXzvVK2MY5wA" base_Pin="_MvI-lJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-35o_EeOXzvVK2MY5wA" base_Pin="_MvI-lJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_MvI-4Jo_EeOXzvVK2MY5wA" base_Pin="_MvI-lpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_MvI-4Zo_EeOXzvVK2MY5wA" base_Pin="_MvI-lpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_MvI-4po_EeOXzvVK2MY5wA" constraint="_MvI-Jpo_EeOXzvVK2MY5wA" base_Comment="_MvI-F5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:out xmi:id="_MvI-45o_EeOXzvVK2MY5wA" base_Pin="_MvI-kZo_EeOXzvVK2MY5wA"/>
+</xmi:XMI>

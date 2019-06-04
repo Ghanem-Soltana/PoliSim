@@ -1,0 +1,24 @@
+context TaxPayer inv DS_Interest_Expenses:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in																												
+incomes -> forAll (income:Income|
+let maximum_deductible_amount:MonetaryValue = self.maximum_deductible_amount														
+/** TRACEABILITY: Source: Income Tax Scales (2013) - **/ in 									
+let sum_interest_deductions:MonetaryValue = income.expenses->select(e: Expense | e.oclTypeOf(Interest_Expense) and e.year_expense_was_incurred_in = taxation_year).declared_amount->sum() in
+if (sum_interest_deductions < maximum_deductible_amount) = false then
+let tax_liability:Numeric = income.tax_liability in
+let expected_deduction:MonetaryValue = tax_liability * maximum_deductible_amount in
+let actual_deduction:MonetaryValue = income.getDeductionForInterestExpense(taxation_year).deduced_amount in
+actual_deduction = expected_deduction
+else
+   if (sum_interest_deductions < maximum_deductible_amount) = true then
+   let tax_liability:Numeric = income.tax_liability in
+   let expected_deduction:MonetaryValue = tax_liability * sum_interest_deductions in
+   let actual_deduction:MonetaryValue = income.getDeductionForInterestExpense(taxation_year).deduced_amount in
+   actual_deduction = expected_deduction
+   else
+   false
+   endif
+endif
+)

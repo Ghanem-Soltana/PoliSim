@@ -1,0 +1,861 @@
+import 'TaxCard.ecore'
+
+/**TaxPayer  constraints**/
+
+package TaxCard
+
+/**Legal union constraint **/
+context Legal_Union_Record inv Legal_Union_different_people_constraint:
+if self.end_date.oclIsUndefined() then
+/**LEGAL UNION IS VALID**/
+self.individual_A.SSNo <> self.individual_B.SSNo
+and
+self.individual_A->size()=1 and
+self.individual_B->size()=1
+else
+/**LEGAL UNION IS AUTHORIZED WITH ONLY ONE PERSON**/
+false
+endif
+
+/**Taxpayers constraint **/
+/**Constraint **/
+context Tax_Payer inv Legal_Union_monogamus_constraint:
+let legal_union: Set(Legal_Union_Record) = self.legal_union_A->select(couple|couple.end_date->isEmpty()) in
+if (legal_union->size()=1) then 
+ /**YOU ARE IN LIGEL UNION WITH ONLY ONE PERSON**/
+ true
+else
+ /**ERROR YOU CANNOT BE IN LEGAL UNION WITH MORE THAN ONE PERSON**/
+ false
+endif
+
+/**Constraint **/
+context Tax_Payer inv NonResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | 
+  fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country<>TaxCard::Country::LU) and
+ self.addresses->exists( hab_add:Address | 
+  hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country<>TaxCard::Country::LU) and
+ self.incomes->exists(inc:TaxCard::Income | inc.oclIsTypeOf(TaxCard::Local_Income))
+implies
+ self.oclIsTypeOf(Non_Resident_Tax_Payer)
+
+/**Constraint **/  
+context Tax_Payer inv ResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | 
+  fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country=TaxCard::Country::LU) or
+ self.addresses->exists( hab_add:Address | 
+  hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country=TaxCard::Country::LU) 
+implies
+ self.oclIsTypeOf(Resident_Tax_Payer) 
+ 
+/**Constraint **/
+context Tax_Payer inv SubjectToIncomeTax_constraint:
+  self.incomes->exists(inc:TaxCard::Income |
+   inc.oclIsTypeOf(TaxCard::Local_Income) or inc.oclIsTypeOf(TaxCard::Foreign_Income))
+implies
+ not self.incomeTax->isEmpty()
+
+/**Constraint **/
+context Tax_Payer inv TaxCard_unique_constraint:
+self.incomes->forAll(income|income.tax_card->select(tc|tc.validity=true)->size() <= 1)
+/**THE INCOME CAN HAVE AT MOST ONE VALID TAX CARD, IF THE CONTRACT HAS ENDED THAN IT IS ZERO VALID**/
+
+/**Constraint **/
+context Tax_Payer inv TaxClass_unique_constraint:
+let tax_classes: Set(Tax_Class) = self.tax_class->select(tax_classe|tax_class.valid_until_date->isEmpty()) in
+if tax_classes->size()=1 then 
+ /**ONLY ONE TAX CLASS AT TIME**/
+ true
+else
+ /**ERROR YOU CANNOT HAVE SEVERAL TAX CLASSES AT TIME**/
+ false
+endif
+
+/**Constraint **/
+context Tax_Payer inv TaxCredit_CIM_constraint:
+let
+ a_CIM : TaxCard::CIM = self.income_Tax_Credit->select(c | c.oclIsTypeOf(TaxCard::CIM) and c.tax_year = self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::CIM),
+ current_employement_income: Set(TaxCard::Income) = self.incomes->select(inc|
+        inc.oclIsTypeOf(TaxCard::Local_Income) and
+        (inc.income_type.oclIsTypeOf(TaxCard::Employment_Income) or inc.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income)) and
+        inc.start_date_within_taxation_year=self.incomeTax.tax_year),
+        
+income_TaxClass1A: Set(TaxCard::Income) = 
+        current_employement_income->select(inc|
+                inc.oclAsType(TaxCard::Local_Income).tax_card->exists(tc|tc.tax_Class = TaxCard::Tax_Class_Category::One_A)),
+tax_liability : Integer = income_TaxClass1A.tax_liability->sum()
+        in
+
+       if (current_employement_income->size()>0) then
+   if  (income_TaxClass1A->size()>0) then 
+   
+    let child_with_allowances : Set(Dependent) = self.dependents->select(dep:Dependent|dep.dependent_type=TaxCard::Dependent_Type::CHILD and dep.compute_if_dependent_receives_allowances_eligible_for_CIM()=true and
+    
+    dep.allowances->exists(al|al.valid_from_date=self.incomeTax.tax_year and al.valid_until_date = self.incomeTax.tax_year)=true) in
+  
+  
+     if  child_with_allowances ->size()>0 then
+      /**CIM ALLOWED**/
+      a_CIM.yearly= TaxCard::Constants::FLAT_RATE_CIM_YEARLY.oclAsType(Integer) * tax_liability
+            
+     else
+     /**TAX PAYER CANNOT RECEIVE CIM, MISSING CHILD ALLOWANCE**/
+     false
+     endif
+  else
+   /**TAX PAYER CANNOT RECEIVE CIM, NOT TAX CLASS 1A**/
+   false
+  endif
+ else
+  /**TAX PAYER CANNOT RECEIVE CIM, NOT ELIGIBLE INCOME*/
+  false
+ endif
+
+/**Constraint **/
+context Tax_Payer inv TaxCredit_CIP_constraint:
+let   employement_income: Set(TaxCard::Income) = 
+       self.incomes->select(inc|
+        inc.oclIsTypeOf(TaxCard::Local_Income) and
+        not inc.oclAsType(TaxCard::Local_Income).tax_card->isEmpty() and
+         inc.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income) and
+         inc.start_date_within_taxation_year=self.incomeTax.tax_year),
+        total_income: Integer = employement_income.income_amount->sum(),
+  tax_liability :Integer = employement_income.tax_liability->sum() in
+       
+ if(employement_income->size()>0) then
+   if (total_income>936*tax_liability) then
+   let set_of_CIP: Set(TaxCard::Income_Tax_Credit) = self.income_Tax_Credit->select(type|type.oclIsTypeOf(TaxCard::CIP) and type.tax_year=self.incomeTax.tax_year),
+   size_set_of_CIP :Integer = set_of_CIP->size(),
+    a_CIP: TaxCard::Income_Tax_Credit = set_of_CIP->any(true) in
+       
+       size_set_of_CIP = 1 and
+   /**CIP IS CREDITED TO THE TAX PAYER**/
+   a_CIP.yearly = TaxCard::Constants::FLAT_RATE_CIP_YEARLY.oclAsType(Integer) *tax_liability
+       else
+        /**ERROR CIP CANNOT BE CREDITED**/
+        false
+       endif 
+     else
+      false
+     endif
+           
+ /**Constraint **/
+context Tax_Payer inv TaxCredit_CIS_constraint:
+let   employement_income: Set(TaxCard::Income) = 
+       self.incomes->select(inc|
+        inc.oclIsTypeOf(TaxCard::Local_Income) and
+        not inc.oclAsType(TaxCard::Local_Income).tax_card->isEmpty() and
+         inc.income_type.oclIsTypeOf(TaxCard::Employment_Income) and
+         inc.start_date_within_taxation_year=self.incomeTax.tax_year),
+        total_income: Integer = employement_income.income_amount->sum(),
+  tax_liability :Integer = employement_income.tax_liability->sum() in
+       
+  
+ if(employement_income->size()>0) then
+   if (total_income>936*tax_liability) then
+   let set_of_CIS: Set(TaxCard::Income_Tax_Credit) = self.income_Tax_Credit->select(type|type.oclIsTypeOf(TaxCard::CIS) and type.tax_year=self.incomeTax.tax_year),
+   size_set_of_CIS :Integer = set_of_CIS->size(),
+    a_CIS: TaxCard::Income_Tax_Credit = set_of_CIS->any(true) in
+       
+       size_set_of_CIS = 1 and
+   /**CIS IS CREDITED TO THE TAX PAYER**/
+   a_CIS.yearly = TaxCard::Constants::FLAT_RATE_CIS_YEARLY.oclAsType(Integer)*tax_liability
+       else
+        /**ERROR CIS CANNOT BE CREDITED**/
+        false
+       endif 
+     else
+      false
+     endif
+  
+/**Constraint **/
+context Tax_Payer inv TaxDeduction_AC_extra_professional_constraint:
+let set_of_AC: Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(type|
+    type.oclIsTypeOf(TaxCard::AC) and
+ type.tax_year=self.incomeTax.tax_year),
+ ac: TaxCard::AC = set_of_AC->any(true).oclAsType(TaxCard::AC),
+ spouse: Physical_Person = self.legal_union_A->select(couple|couple.end_date->isEmpty())->any(true).individual_B,
+ taxpayer_income_eligible_type : Boolean = self.incomes->exists(inc|ac.is_eligible_income_for_AC(inc)),
+ spouse_income_eligible_type : Boolean = spouse.oclAsType(TaxCard::Tax_Payer).incomes->exists(inc|ac.is_eligible_income_for_AC(inc)),
+ 
+ taxpayer_income_eligible_type_assisting_spouse : Boolean = self.incomes->exists(inc|ac.is_eligible_income_for_AC_assisting_spouse(inc)),
+ spouse_income_eligible_type_assisting_spouse : Boolean = spouse.oclAsType(TaxCard::Tax_Payer).incomes->exists(inc|ac.is_eligible_income_for_AC_assisting_spouse(inc)),
+ 
+ taxpayer_personnaly_affiliated_to_social_security : Boolean = self.is_affiliated_personnaly_to_social_security,
+ taxpayer_assisting_spouse: Boolean = self.is_assisting_spouse,
+ 
+ spouse_personnaly_affiliated_to_social_security : Boolean = spouse.is_affiliated_personnaly_to_social_security,
+ spouse_assisting_spouse: Boolean =  spouse.is_assisting_spouse
+ in
+  
+  if taxpayer_income_eligible_type=true and spouse_income_eligible_type=true then
+   if taxpayer_personnaly_affiliated_to_social_security=true  and spouse_personnaly_affiliated_to_social_security = true then
+    ac.deductible_amount= TaxCard::Constants::FLAT_RATE_FOR_EXTRA_PROFESSIONAL_DEDUCTION
+   else
+    false
+   endif
+  else
+    if taxpayer_income_eligible_type=true xor spouse_income_eligible_type=true then    
+     if  self.incomes->exists(inc|inc.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income) and inc.compute_duration_of_contract() <=36) xor
+      spouse.oclAsType(TaxCard::Tax_Payer).incomes->
+              exists(inc|inc.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income)  and inc.compute_duration_of_contract() <=36) then
+      true      
+     else
+      ac.deductible_amount=0 
+     endif 
+     
+    else
+      if taxpayer_income_eligible_type_assisting_spouse=true xor taxpayer_income_eligible_type_assisting_spouse=true then
+      if (taxpayer_personnaly_affiliated_to_social_security=true and spouse_personnaly_affiliated_to_social_security = false)  xor 
+       (taxpayer_personnaly_affiliated_to_social_security=false and spouse_personnaly_affiliated_to_social_security = true) then
+        true
+      else
+       ac.deductible_amount=0
+      endif
+    else
+      ac.deductible_amount =0 
+    endif
+   endif
+  endif
+
+
+/**Constraint **/
+context Tax_Payer inv TaxDeduction_CE_constraint:
+let set_of_CE: Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(type|
+                                  type.oclIsTypeOf(TaxCard::CE) and
+                                  type.tax_year=self.incomeTax.tax_year),
+  CE_invalidity:Set(TaxCard::Income_Tax_Deduction)=set_of_CE->select(ce|
+                                   ce.oclAsType(TaxCard::CE).ce_deduction_type=
+                                   TaxCard::CE_Type::INALIDITY_AND_INFIRMITY),
+  CE_dependence:Set(TaxCard::Income_Tax_Deduction)=set_of_CE->select(ce|ce.oclAsType(TaxCard::CE).ce_deduction_type=
+                                   TaxCard::CE_Type::DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD),
+  CE_child_not_part_of_household:Set(TaxCard::Income_Tax_Deduction)=set_of_CE->select(ce|ce.oclAsType(TaxCard::CE).ce_deduction_type=
+                                   TaxCard::CE_Type::CARE_FOR_CHILDREN_NOT_BEING_PART_OF_HOUSEHOLD),
+  income_subject_to_witholding_tax : Set(TaxCard::Income) = self.incomes->select(income|income.oclIsTypeOf(TaxCard::Local_Income) and
+                                 not income.oclAsType(TaxCard::Local_Income).tax_card->isEmpty() and
+                             income.start_date_within_taxation_year = self.incomeTax.tax_year),
+   extraordinary_expenses :  Set(TaxCard::Expense) = self.expenses->select(exp|
+               exp.oclIsTypeOf(TaxCard::Extraordinary_Expense_CE)), 
+   extraordinary_expense_invalidity_and_infirmity  :  Set(TaxCard::Expense) = extraordinary_expenses->select(exp|
+               exp.oclAsType(TaxCard::Extraordinary_Expense_CE).ce_type = TaxCard::CE_Type::INALIDITY_AND_INFIRMITY),
+   extraordinary_expense_dependence_and_care :  Set(TaxCard::Expense) = extraordinary_expenses->select(exp|
+               exp.oclAsType(TaxCard::Extraordinary_Expense_CE).ce_type = TaxCard::CE_Type::DEPENDENCE_AND_CARE_EXCLUDING_CHLIDREN_NOT_PART_OF_HOUSEHOLD),            
+   extraordinary_expense_care_for_children_not_part_of_the_household :  Set(TaxCard::Expense) = extraordinary_expenses->select(exp|
+               exp.oclAsType(TaxCard::Extraordinary_Expense_CE).ce_type = TaxCard::CE_Type::CARE_FOR_CHILDREN_NOT_BEING_PART_OF_HOUSEHOLD),                                               
+ 
+  declared_expense:Integer=extraordinary_expenses.declared_amount->sum() in
+  
+ if (income_subject_to_witholding_tax->size()>0) then
+  if (extraordinary_expenses->any(true).oclAsType(TaxCard::Extraordinary_Expense_CE).is_above_thresholded_deduction_percentage_for_CE()=true) then
+  
+   if extraordinary_expense_invalidity_and_infirmity->size()>0 then 
+   
+    if self.oclIsTypeOf(Resident_Tax_Payer) then
+    /**CE FOR INVALIDITY AND INFIRMITY ON THE TAX CARD**/
+    CE_invalidity->size() = 1 and
+    CE_invalidity->any(true).deductible_amount = CE_invalidity->any(true).oclAsType(TaxCard::CE).disability_flat_rate     
+    else
+     false
+    endif
+   else
+    if  extraordinary_expense_dependence_and_care ->size()>0 then
+     CE_dependence->size()=1 and
+     let 
+      
+      expenses_for_dependence_care: Set(TaxCard::Expense) = extraordinary_expense_dependence_and_care->select(expense|
+                            self.is_dependent_part_of_the_household(expense.dependent) = true and 
+                            expense.expense_purpose=TaxCard::Expense_Purpose::DEPENDENCE_CARE) ,
+       expenses_for_house_care: Set(TaxCard::Expense) = extraordinary_expense_dependence_and_care->select(expense|expense.expense_purpose=TaxCard::Expense_Purpose::HOUSE_CARE) ,
+       expenses_for_child_care: Set(TaxCard::Expense) = extraordinary_expense_dependence_and_care->select(expense|
+                             self.is_dependent_part_of_the_household(expense.dependent) = true and 
+                             expense.expense_purpose=TaxCard::Expense_Purpose::CHILD_CARE),
+      amount_house_care: Integer = expenses_for_house_care.declared_amount->sum(),
+
+      sum_of_expenses:Integer =  expenses_for_child_care->select(expense|
+              expense.dependent.compute_if_dependent_receives_allowances_eligible_for_CE_dependance_and_care() =true and
+              expense.dependent.dependent_type=TaxCard::Dependent_Type::CHILD and
+              (expense.dependent.oclAsType(Physical_Person).age<14) or
+              expense.dependent.oclAsType(Physical_Person).disability_percentage>0).declared_amount->sum() in
+     
+     if(expenses_for_child_care->size()>0) then
+      /**CE FOR CHILD CARE, CHILDREN BEING PART OF THE HOUSHOLD**/
+       if(amount_house_care + sum_of_expenses)>TaxCard::Constants::MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE.oclAsType(Integer) then
+       if(expenses_for_dependence_care->size()>0) then
+       /**CE FOR CLOSE RELATIVE DEPENDENCE CARE**/
+        CE_dependence->any(true).deductible_amount = TaxCard::Constants::MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE.oclAsType(Integer)+ CE_dependence->any(true).oclAsType(TaxCard::CE).dependent_relative_flat_rate
+       else
+         CE_dependence->any(true).deductible_amount = TaxCard::Constants::MAXIMUM_CE_RATE_FOR_HOUSE_CARE_AND_CHILD_PART_OF_THE_HOUSEHOLD_CARE.oclAsType(Integer)
+       endif
+       else
+       if(expenses_for_dependence_care->size()>0) then
+       /**CE FOR CLOSE RELATIVE DEPENDENCE CARE**/
+        CE_dependence->any(true).deductible_amount= amount_house_care + sum_of_expenses + CE_dependence->any(true).oclAsType(TaxCard::CE).dependent_relative_flat_rate
+       else
+        CE_dependence->any(true).deductible_amount= amount_house_care + sum_of_expenses
+       endif
+      endif  
+     else
+      false
+     endif
+    else
+     if  CE_child_not_part_of_household->size()>0 then
+       CE_child_not_part_of_household->size()= 1 and
+       
+      /**CARE FOR CHILDREN NOT BEING PART OF THE HOUSEHOLD**/
+      let 
+        expenses_for_child_not_part_of_houselod_care: Set(TaxCard::Expense) = self.expenses->select(expense|
+                             not self.is_dependent_part_of_the_household(expense.dependent) = true and 
+                             expense.expense_purpose=TaxCard::Expense_Purpose::CHILD_CARE),
+         sum_expenses_for_children:Integer = expenses_for_child_not_part_of_houselod_care->select(
+                     expense|
+                     expense.dependent.compute_if_dependent_receives_allowances_eligible_for_CE_dependance_and_care() =false and
+                     ((expense.dependent.age<=21) or
+                     (expense.dependent.age>21 and expense.dependent.continued_studies=true and
+                     expense.dependent.tax_Payer.incomes.income_amount->sum()<0.6*TaxCard::Constants::MINIMUM_SALARY.oclAsType(Integer)))).declared_amount->sum() in                     
+       
+       if(sum_expenses_for_children>TaxCard::Constants::MAXIMUM_CE_RATE_FOR_CHILD_NOT_BEING_PART_OF_HOUSEHOLD.oclAsType(Integer)) then
+         CE_child_not_part_of_household->any(true).deductible_amount  = TaxCard::Constants::MAXIMUM_CE_RATE_FOR_CHILD_NOT_BEING_PART_OF_HOUSEHOLD.oclAsType(Integer)
+       else
+        CE_child_not_part_of_household->any(true).deductible_amount = sum_expenses_for_children
+      endif 
+      else
+      false
+     endif 
+    endif
+   endif 
+   
+      
+  else
+   false
+  endif
+ else
+  /**TAX PAYER CANNOT RECEIVE CE, NOT SUBJECT TO WITHOLDING**/
+  false
+ endif 
+ 
+/**Constraint **/
+context Tax_Payer inv TaxDeduction_DS_1_permanent_expense:
+let 
+permanent_expense: Set(TaxCard::Expense) = self.expenses->select(expense|expense.oclIsTypeOf(TaxCard::Permanent_Expense) and expense.year_expense_was_incurred_in=self.incomeTax.tax_year),
+alimony: Set(TaxCard::Expense) = permanent_expense->select(alimony|
+     alimony.oclAsType(TaxCard::Permanent_Expense).category = TaxCard::Category_of_Permanent_Expense::ALIMONY and
+     alimony.oclAsType(TaxCard::Permanent_Expense).is_eligible_for_deduction = true),
+debt: Set(TaxCard::Expense) = permanent_expense->select(debt|
+      debt.oclAsType(TaxCard::Permanent_Expense).category = TaxCard::Category_of_Permanent_Expense::MISCELLANEOUS_DEBT),
+ds_alimony: TaxCard::DS_for_Permanent_Expense = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Permanent_Expense) and 
+           type.oclAsType(TaxCard::DS_for_Permanent_Expense).permanent_expense_category =  TaxCard::Category_of_Permanent_Expense::ALIMONY and
+           type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::DS_for_Permanent_Expense),
+tax_liability : Integer = self.incomes.tax_liability->sum(),
+ds_debt: TaxCard::DS_for_Permanent_Expense = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Permanent_Expense) and 
+           type.oclAsType(TaxCard::DS_for_Permanent_Expense).permanent_expense_category =  TaxCard::Category_of_Permanent_Expense::MISCELLANEOUS_DEBT and
+           type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::DS_for_Permanent_Expense)
+    in 
+
+if permanent_expense->size()>0 then
+ if debt->size()>0 then
+  ds_debt.deductible_amount = debt.declared_amount->sum()/2 * tax_liability
+ else
+  false
+ endif and
+ if alimony->size()>0 then
+  alimony->forAll(al|self.is_separated_from(al.dependent)=true)
+  and
+  let sum_alimony: Integer = alimony.declared_amount->sum() * tax_liability in
+  if sum_alimony<=TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ALIMONY_EXPENSE.oclAsType(Integer) then
+   ds_alimony.deductible_amount = sum_alimony
+  else
+   ds_alimony.deductible_amount = TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ALIMONY_EXPENSE.oclAsType(Integer) 
+  endif
+ else
+   false
+ endif
+else
+ false
+endif
+
+/**Constraint **/
+context Tax_Payer inv TaxDeduction_DS_2_interest_expense:
+self.incomes->forAll(inc |
+
+if (inc.end_date_within_taxation_year = self.incomeTax.tax_year) then
+
+let 
+interest_expense: Set(TaxCard::Expense) = inc.expenses->select(expense|expense.oclIsTypeOf(TaxCard::Interest_Expense) and expense.year_expense_was_incurred_in=self.incomeTax.tax_year),
+ds_interest_expense: TaxCard::DS_for_Interest_Expense = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Interest_Expense) and 
+           type.expenses->includesAll(interest_expense) and
+           type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::DS_for_Interest_Expense),
+dependent_children_with_allowances: Set(Dependent) = self.dependents->select(deps|deps.compute_if_dependent_receives_allowances_eligible_for_DS() =true),
+tax_liability : Integer =inc.tax_liability in 
+                                
+if interest_expense->size()>0 then
+ let sum_interest_expense: Integer = interest_expense.declared_amount->sum() in
+ if sum_interest_expense<=ds_interest_expense.maximum_deductible_amount then
+ 
+  ds_interest_expense.deductible_amount = sum_interest_expense * tax_liability
+ else
+  ds_interest_expense.deductible_amount = ds_interest_expense.maximum_deductible_amount * tax_liability  
+ endif
+else
+ false
+endif
+else
+false
+endif
+)
+ 
+/**Constraint **/
+context Tax_Payer inv TaxDeduction_DS_3_health_and_pension_insurance:
+self.incomes->forAll( inc | 
+
+let 
+mandatory_health_and_pension_insurance: Set(TaxCard::Expense) = inc.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Health_and_Pension_Insurance) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Health_and_Pension_Insurance).category =
+                   TaxCard::Category_of_Health_and_Pension_Insurances::MANDATORY_HEALTH_AND_PENSION_INSURANCE
+                 and expense.oclAsType(TaxCard::Health_and_Pension_Insurance).is_related_to_additional_salary=true),
+additional_pension_insurance: Set(TaxCard::Expense) = inc.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Health_and_Pension_Insurance) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Health_and_Pension_Insurance).category =
+                   TaxCard::Category_of_Health_and_Pension_Insurances::ADDITIONAL_EMPLOYERS_PENSION_INSURANCE),
+continued_health_and_pension_insurance: Set(TaxCard::Expense) = inc.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Health_and_Pension_Insurance) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Health_and_Pension_Insurance).category =
+                   TaxCard::Category_of_Health_and_Pension_Insurances::CONTINUED_HEALTH_AND_PENSION_INSURANCE),
+ds_mandatory_health_and_pension : TaxCard::DS_for_Health_and_Pension_Insurance = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Health_and_Pension_Insurance) and 
+           type.oclAsType(TaxCard::DS_for_Health_and_Pension_Insurance).insurance_category = 
+            TaxCard::Category_of_Health_and_Pension_Insurances::MANDATORY_HEALTH_AND_PENSION_INSURANCE and
+           type.tax_year=self.incomeTax.tax_year and type.expenses->includesAll(mandatory_health_and_pension_insurance)
+           )->any(true).oclAsType(TaxCard::DS_for_Health_and_Pension_Insurance),
+ds_additional_pension_insurance : TaxCard::DS_for_Health_and_Pension_Insurance = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Health_and_Pension_Insurance) and 
+           type.oclAsType(TaxCard::DS_for_Health_and_Pension_Insurance).insurance_category = 
+            TaxCard::Category_of_Health_and_Pension_Insurances::ADDITIONAL_EMPLOYERS_PENSION_INSURANCE and
+           type.tax_year=self.incomeTax.tax_year
+           and type.expenses->includesAll(additional_pension_insurance)
+           )->any(true).oclAsType(TaxCard::DS_for_Health_and_Pension_Insurance),
+ds_continued_health_and_pension_insurance : TaxCard::DS_for_Health_and_Pension_Insurance = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Health_and_Pension_Insurance) and 
+           type.oclAsType(TaxCard::DS_for_Health_and_Pension_Insurance).insurance_category = 
+            TaxCard::Category_of_Health_and_Pension_Insurances::CONTINUED_HEALTH_AND_PENSION_INSURANCE and
+           type.tax_year=self.incomeTax.tax_year
+           and type.expenses->includesAll(continued_health_and_pension_insurance)
+           )->any(true).oclAsType(TaxCard::DS_for_Health_and_Pension_Insurance),
+tax_liability : Integer = inc.tax_liability  in 
+
+if mandatory_health_and_pension_insurance->size()>0 then
+ if inc.oclIsTypeOf(TaxCard::Employment_Income) then
+ let sum_mandatory_health_and_pension_insurance : Integer = mandatory_health_and_pension_insurance.declared_amount->sum() in
+  ds_mandatory_health_and_pension.deductible_amount = sum_mandatory_health_and_pension_insurance
+ else
+  false
+ endif
+else
+ false
+endif 
+and
+if additional_pension_insurance->size()>0 then
+ if inc.oclIsTypeOf(TaxCard::Employment_Income) then
+ let sum_additional_pension_insurance : Integer = additional_pension_insurance.declared_amount->sum() in
+  if sum_additional_pension_insurance <= TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANCE.oclAsType(Integer) then
+   ds_additional_pension_insurance.deductible_amount = sum_additional_pension_insurance
+  else
+   ds_additional_pension_insurance.deductible_amount = TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_ADDITIONAL_PENSION_AND_INSURANCE.oclAsType(Integer)
+  endif
+ else
+  false
+ endif
+else
+ false
+endif and
+if continued_health_and_pension_insurance->size()>0 then
+ let sum_continued_health_and_pension_insurance : Integer = continued_health_and_pension_insurance.declared_amount->sum() in
+  ds_continued_health_and_pension_insurance.deductible_amount = tax_liability * sum_continued_health_and_pension_insurance
+else
+ false
+endif
+)
+
+/**Constraint **/
+context Tax_Payer inv TaxDeduction_DS_4_private_insurance_and_plan:
+let 
+insurance_and_plan: Set(TaxCard::Expense) = self.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Health_and_Pension_Insurance) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).category <>
+                   TaxCard::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).category <>
+                   TaxCard::Category_of_Private_Insurance_and_Plan::PRIVATE_LIFE_INSURANCE
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).is_private_insurance_and_plan_eligible_for_deduction=true),
+life_insurance: Set(TaxCard::Expense) = self.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Health_and_Pension_Insurance) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).category =
+                   TaxCard::Category_of_Private_Insurance_and_Plan::PRIVATE_LIFE_INSURANCE
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).is_private_insurance_and_plan_eligible_for_deduction=true
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).duration_of_contract >=10),
+                 
+old_age_pension_plan: Set(TaxCard::Expense) = self.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Health_and_Pension_Insurance) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).category =
+                   TaxCard::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).is_private_insurance_and_plan_eligible_for_deduction=true
+                 and expense.oclAsType(TaxCard::Private_Insurance_and_Plan).duration_of_contract >=10),
+ds_private_insurance_and_plan: TaxCard::DS_for_Private_Insurance_and_Plan = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Private_Insurance_and_Plan) and 
+           type.oclAsType(TaxCard::DS_for_Private_Insurance_and_Plan).private_insurance_and_plan_category <> 
+            TaxCard::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN and
+           type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::DS_for_Private_Insurance_and_Plan),
+ds_old_age_pension_plan: TaxCard::DS_for_Private_Insurance_and_Plan = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Private_Insurance_and_Plan) and 
+           type.oclAsType(TaxCard::DS_for_Private_Insurance_and_Plan).private_insurance_and_plan_category = 
+            TaxCard::Category_of_Private_Insurance_and_Plan::OLD_AGE_PENSION_PLAN and
+           type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::DS_for_Private_Insurance_and_Plan),
+tax_liability : Integer = self.incomes.tax_liability->sum() in
+
+if insurance_and_plan->size()>0 then
+
+let sum_insurance_and_plan : Integer = insurance_and_plan.declared_amount->sum() + life_insurance.declared_amount->sum() + 
+         ds_private_insurance_and_plan.increase_for_life_insurance in
+  
+if sum_insurance_and_plan <= ds_private_insurance_and_plan.maximum_deductible_amount_for_private_insurance then
+   ds_private_insurance_and_plan.deductible_amount = sum_insurance_and_plan
+ else
+   ds_private_insurance_and_plan.deductible_amount = ds_private_insurance_and_plan.maximum_deductible_amount_for_private_insurance  
+ endif
+else
+ false
+endif
+
+and
+
+if old_age_pension_plan->size()>0 then
+let sum_old_age_pension_plan : Integer = old_age_pension_plan.declared_amount->sum() in
+ if sum_old_age_pension_plan <= ds_old_age_pension_plan.maximum_deductible_amount_for_old_age_pension_plan then
+   ds_old_age_pension_plan.deductible_amount = sum_old_age_pension_plan
+ else
+   ds_old_age_pension_plan.deductible_amount = ds_old_age_pension_plan.maximum_deductible_amount_for_private_insurance  
+ endif
+else
+ false
+endif
+
+
+/**Constraint **/
+context Tax_Payer inv TaxDeduction_DS_5_donation:
+let 
+donations: Set(TaxCard::Expense) = self.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Donation)
+                 and 
+                 (expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 or expense.oclAsType(TaxCard::Donation).is_donation_reported = true)
+                 
+                 and expense.oclAsType(TaxCard::Donation).is_beneficiary_eligible=true),
+ds_donation: TaxCard::DS_for_Donation = self.income_Tax_Deduction->select(type|
+           type.oclIsTypeOf(TaxCard::DS_for_Donation) and 
+           type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::DS_for_Donation) in      
+if donations->size()>0 then
+ let sum_donation: Integer = donations.declared_amount->sum() in
+ if sum_donation >= TaxCard::Constants::MINIMUM_DEDUCTIBLE_AMOUNT_FOR_DONATIONS.oclAsType(Integer) then
+  if sum_donation <= ds_donation.maximum_deductible_amount then
+  ds_donation.deductible_amount = sum_donation
+ else
+  ds_donation.deductible_amount = ds_donation.maximum_deductible_amount
+ endif 
+ else
+  false
+ endif
+else
+ false
+endif
+
+ /**Constraint **/
+context Tax_Payer inv TaxDeduction_DS_6_loss_carryforward:
+self.incomes->forAll( inc | 
+
+                            if (
+                              (inc.income_type.oclIsTypeOf(TaxCard::Agriculture_and_Forestry_Income) or
+                              inc.income_type.oclIsTypeOf(TaxCard::Independent_Professional_Services_Income) or
+                                inc.income_type.oclIsTypeOf(TaxCard::Trade_and_Business_Income))
+                               and (inc.end_date_within_taxation_year = self.incomeTax.tax_year)) then /**PUT <, when deciding how to model Date or how to use "<" with the Marte Profile **/
+                               let
+                                  losses: Set(TaxCard::Expense) = inc.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Loss_Carryforward) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Loss_Carryforward).regular_accountability = true
+                 and expense.oclAsType(TaxCard::Loss_Carryforward).compensation_by_other_means=false
+                 and expense.oclAsType(TaxCard::Loss_Carryforward).tax_payer_has_been_partner_in_business = false),
+                                                                 
+         losses_successor: Set(TaxCard::Expense) = inc.expenses->select(
+                 expense|expense.oclIsTypeOf(TaxCard::Loss_Carryforward) 
+                 and expense.year_expense_was_incurred_in=self.incomeTax.tax_year
+                 and expense.oclAsType(TaxCard::Loss_Carryforward).regular_accountability = true
+                 and expense.oclAsType(TaxCard::Loss_Carryforward).compensation_by_other_means=false
+                 and expense.oclAsType(TaxCard::Loss_Carryforward).tax_payer_has_been_partner_in_business = true 
+                 and expense.oclAsType(TaxCard::Loss_Carryforward).tax_payer_has_inherited_business_ownership = true),                                  
+         ds_loss: TaxCard::DS_for_Loss_Carryforward = losses.deduction->select(type| 
+           type.oclIsTypeOf(TaxCard::DS_for_Loss_Carryforward) and 
+           type.tax_year=self.incomeTax.tax_year)->any(true).oclAsType(TaxCard::DS_for_Loss_Carryforward) in 
+           
+          if(inc.end_date_within_taxation_year = 1990) then /**PUT <, when deciding how to model Date or how to use "<" with the Marte Profile **/
+                              
+            if losses.declared_amount->sum()>0 then
+            ds_loss.deductible_amount =  losses.declared_amount->sum()
+           else
+            if losses_successor.declared_amount->sum() >0 then
+             ds_loss.deductible_amount = losses_successor.declared_amount->sum() 
+            else
+             false
+            endif
+           endif
+          else
+           ds_loss.deductible_amount = 0
+          endif
+          else 
+                                   false
+        endif)
+
+ /**Constraint **/
+context Tax_Payer inv TaxDeduction_FD_constraint:
+self.incomes->forAll(income|
+
+ let 
+  fd_expenses : Set(TaxCard::Expense)= self.expenses->select(exp|exp.oclIsTypeOf(TaxCard::Travel_Expense_FD) and
+   exp.year_expense_was_incurred_in=self.incomeTax.tax_year),
+  declared_amount : Integer = fd_expenses.declared_amount->sum(),
+  a_FD:TaxCard::FD= self.income_Tax_Deduction->select(type|
+   type.oclIsTypeOf(TaxCard::FD) and type.tax_year=self.incomeTax.tax_year and
+   type.expenses->includesAll(fd_expenses))->any(true).oclAsType(TaxCard::FD) in
+
+if ((income.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income) or
+income.income_type.oclIsTypeOf(TaxCard::Employment_Income) or
+income.income_type.oclIsTypeOf(TaxCard::Rentals_and_Leases_Income)) and
+income.start_date_within_taxation_year = self.incomeTax.tax_year) then
+                             
+
+  if  (a_FD.calculated_distance>a_FD.distance_declared_in_january) then
+  
+   if  (a_FD.calculated_distance>TaxCard::Constants::MINIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION.oclAsType(Integer)) then
+    if (a_FD.calculated_distance>TaxCard::Constants::MAXIMAL_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION.oclAsType(Integer)) then
+    
+     /**MAXIMAL FLAT DISTANCE FOR TRAVEL EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/
+     a_FD.deductible_amount = TaxCard::Constants::FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT.oclAsType(Integer) * TaxCard::Constants::MAXIMAL_FLAT_DISTANCE_FOR_TRAVEL_EXPENSE_DEDUCTION.oclAsType(Integer)
+    else
+     /**REAL DISTANCE FOR TRAVEL EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/
+     a_FD.deductible_amount = TaxCard::Constants::FLAT_RATE_FOR_TRAVEL_EXPENSE_PER_UNIT.oclAsType(Integer) * a_FD.calculated_distance
+    endif
+   else
+    /**NO TRAVEL EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/
+    a_FD.deductible_amount = 0
+   endif 
+  else
+   /*NO CHANGES FOR FD, TRAVEL EXPENSE IS ALREADY DEDUCED FROM TAXABLE INCOME**/
+   true
+  endif
+  and
+  a_FD.yearly=  a_FD.deductible_amount and     
+  a_FD.monthly = a_FD.deductible_amount/12 and
+  a_FD.daily = a_FD.monthly/24 
+ else
+  /**TAX PAYER CANNOT RECEIVE FD FOR TRAVEL EXPENSE, THERE IS NO INCOME TYPE ELIGIBLE FOR FD**/
+  a_FD.deductible_amount = 0
+ endif
+)
+
+ /**Constraint **/
+context Tax_Payer inv TaxDeduction_FO_constraint:
+self.incomes->forAll(income| 
+let 
+  fo_expenses : Set(TaxCard::Expense) = income.expenses->select(exp|exp.oclIsTypeOf(TaxCard::Miscellaneous_Expense_FO) and exp.year_expense_was_incurred_in = self.incomeTax.tax_year),
+  declared_expense:Integer=fo_expenses.declared_amount->sum(),
+  set_of_FO: Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(type|type.oclIsTypeOf(TaxCard::FO) 
+                                   and type.tax_year=self.incomeTax.tax_year
+                                   and type.expenses->includesAll(fo_expenses)),
+  size_set_of_FO:Integer = set_of_FO->size(),
+  a_FO:TaxCard::FO=set_of_FO->any(true).oclAsType(TaxCard::FO),
+  income_type_for_taxpayer_authorized_for_FO : Boolean = ((income.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income) or
+                           income.income_type.oclIsTypeOf(TaxCard::Employment_Income) or
+                           income.income_type.oclIsTypeOf(TaxCard::Rentals_and_Leases_Income)) and
+                           income.start_date_within_taxation_year = self.incomeTax.tax_year)  in
+if size_set_of_FO>1 then
+ /**TAX PAYER CANNOT RECEIVE MORE THAN ONE FO PER INCOME AND EXPENSES ATTACHED TO THE INCOME**/
+ false
+else
+ if income_type_for_taxpayer_authorized_for_FO = true then
+  if(not self.taxed_jointly) then 
+   if(declared_expense> TaxCard::Constants::FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE.oclAsType(Integer)) then
+    a_FO.rate_type_for_FO = TaxCard::Type_of_Rate::REAL_COST
+   else
+    a_FO.rate_type_for_FO = TaxCard::Type_of_Rate::REGULAR
+   endif 
+  else
+   /**FLAT RATE OR REAL COSTS DEFINED BY JOINT TAXATION**/
+   /*do we want to care about this, or up to the agent to decide*/
+   let spouse_FO: TaxCard::FO =  self.legal_union_A.individual_B.oclAsType(Tax_Payer).income_Tax_Deduction->
+                                     select(type|type.oclIsTypeOf(TaxCard::FO))->any(true).oclAsType(TaxCard::FO),
+     spouse_declared_expense:Integer=self.legal_union_A.individual_B.oclAsType(Tax_Payer).expenses->select(exp|exp.oclIsTypeOf(TaxCard::Miscellaneous_Expense_FO))->any(true).declared_amount in
+                                   
+   (a_FO.rate_type_for_FO = TaxCard::Type_of_Rate::REAL_COST and declared_expense> TaxCard::Constants::FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE.oclAsType(Integer) and spouse_FO.rate_type_for_FO = TaxCard::Type_of_Rate::REGULAR) xor
+   (a_FO.rate_type_for_FO = TaxCard::Type_of_Rate::REGULAR and spouse_FO.rate_type_for_FO = TaxCard::Type_of_Rate::REAL_COST and  spouse_declared_expense>TaxCard::Constants::FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE.oclAsType(Integer)) 
+  endif
+  
+  and
+  
+  if (a_FO.rate_type_for_FO = TaxCard::Type_of_Rate::REGULAR) then
+   /*FLAT RATE FOR FO EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/
+   a_FO.oclAsType(TaxCard::Income_Tax_Deduction).deductible_amount = TaxCard::Constants::FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE.oclAsType(Integer)+TaxCard::Constants::DISABILITY_FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE.oclAsType(Integer)
+  else
+   /**REAL COST FOR FO EXPENSE IS ALLOWED FOR DEDUCTION FROM TAXABLE INCOME**/
+   a_FO.deductible_amount = declared_expense+TaxCard::Constants::DISABILITY_FLAT_RATE_FOR_MISCELLANEOUS_EXPENSE.oclAsType(Integer)
+
+  endif
+  and
+  a_FO.yearly=  a_FO.deductible_amount and     
+  a_FO.monthly = a_FO.deductible_amount/12 and
+  a_FO.daily = a_FO.monthly/24 
+ else
+  /**TAX PAYER CANNOT RECEIVE FO, THERE IS NO INCOME TYPE ELIGIBLE FOR FO**/
+  a_FO.deductible_amount = 0
+ endif
+endif
+)
+
+
+
+/**Constraint **/
+context  Tax_Card inv Taxpayer_is_eligible_To_have_a_taxcard:
+ not self.oclIsUndefined() 
+ implies
+ (self.income.income_type.oclIsTypeOf(TaxCard::Employment_Income) or 
+ self.income.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income) or
+ self.income.income_type.oclIsTypeOf(TaxCard::Capital_and_Investments_Income) or
+ self.income.income_type.oclIsTypeOf(TaxCard::Directors_Fee))
+/**Constraint **/
+context  Tax_Card inv Tax_Card_AC_constraint:
+let set_ac : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::AC) and deduction.tax_year = self.valid_from_date),
+ ac : TaxCard::AC = set_ac->any(true).oclAsType(TaxCard::AC),
+ set_fo : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::FO) and deduction.tax_year = self.valid_from_date),
+ set_ds : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::DS) and deduction.tax_year = self.valid_from_date) in
+ 
+set_ac->size() = 1 
+implies
+
+self.tax_card_type=TaxCard::Tax_Card_Type::Additional and
+self.tax_Payer.taxed_jointly and
+self.deduction_AC_yearly = ac.deductible_amount and
+self.deduction_AC_monthly = ac.deductible_amount/12 and
+self.deduction_AC_daily = self.deduction_AC_monthly/25 /**25 working days per month**/ and
+
+if(set_ds->size()>0) then
+ set_ds->size() =1 and
+ self.deduction_DS_yearly->notEmpty() and
+ self.deduction_DS_yearly = set_ds.deductible_amount ->sum()
+else
+ true
+endif
+
+and
+
+if(set_fo->size()>0) then
+ set_fo->size() = 1 and
+ self.deduction_FO_yearly->notEmpty() and
+ self.deduction_FO_yearly = set_fo.deductible_amount ->sum()
+else
+ true
+endif
+
+/**Constraint **/
+context Tax_Card inv Tax_Card_CE_constraint:
+let set_ce : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::CE) and deduction.tax_year = self.valid_from_date),
+ ce : TaxCard::CE = set_ce->any(true).oclAsType(TaxCard::CE) in
+ 
+ set_ce->size() = 1 
+implies
+
+self.tax_card_type=TaxCard::Tax_Card_Type::Principal and
+self.deduction_CE_yearly = ce.deductible_amount and
+self.deduction_CE_monthly = ce.deductible_amount/12 and
+self.deduction_CE_daily = self.deduction_CE_monthly/25 
+
+/**Constraint **/
+context Tax_Card inv Tax_Card_DS_constraint:
+let set_ds : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::DS) and d.tax_year = self.valid_from_date),
+ total_ds : Integer = set_ds.deductible_amount->sum()  in
+set_ds->size()>0 and
+self.tax_card_type = TaxCard::Tax_Card_Type::Principal
+
+implies
+
+if total_ds > TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS.oclAsType(Integer) then
+  /**THE DIFFERENCE BETWEEN THE MINIMUM AND THE TOTAL DS AMOUNT IS WRITTEN ON THE TAX CARD**/
+  self.deduction_DS_monthly = (total_ds - TaxCard::Constants::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_DS.oclAsType(Integer))/(self.income.compute_duration_of_contract_within_taxation_year(self.valid_from_date))
+ else
+  /**NO NEED TO PUT DETAILS ON THE TAX CARD**/
+  false
+ endif
+ 
+/**Constraint **/
+context Tax_Card inv Tax_Card_FD_constraint:
+not self.oclIsUndefined()
+implies
+self.income.taxPayer.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FD) and d.tax_year = self.valid_from_date)->size() = 1
+
+and 
+let fd : TaxCard::FD = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FD) and d.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::FD) in
+self.deduction_FD_daily = fd.daily and
+self.deduction_FD_monthly = fd.monthly and
+self.deduction_FD_yearly = fd.yearly
+
+/**Constraint **/
+context Tax_Card inv Tax_Card_FO_constraint:
+not self.oclIsUndefined()
+implies
+self.income.taxPayer.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FO) and d.tax_year = self.valid_from_date)->size() = 1
+
+and 
+
+let fo : TaxCard::FO = self.income_Tax_Deduction->select(d|d.oclIsTypeOf(TaxCard::FO) and d.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::FO) in
+self.deduction_FO_daily = fo.daily and
+self.deduction_FO_monthly = fo.monthly and
+self.deduction_FO_yearly = fo.yearly
+
+/**Constraint **/
+context Tax_Card inv Tax_Credits_constraint:
+self.tax_card_type = TaxCard::Tax_Card_Type::Principal 
+
+implies
+
+let cim : TaxCard::CIM = self.income_Tax_Credit->select(c|c.oclIsTypeOf(TaxCard::CIM) and c.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::CIM),
+ cis : TaxCard::CIS = self.income_Tax_Credit->select(cis|cis.oclIsTypeOf(TaxCard::CIS) and cis.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::CIS),
+ cip : TaxCard::CIP = self.income_Tax_Credit->select(cip|cip.oclIsTypeOf(TaxCard::CIP) and cip.tax_year = self.valid_from_date)->any(true).oclAsType(TaxCard::CIP) in
+ 
+(not cis.oclIsUndefined()) xor (not cip.oclIsUndefined()) = true
+and
+if not cim.oclIsUndefined() then 
+ self.credit_CIM_daily = cim.daily and
+ self.credit_CIM_monthly = cim.monthly 
+else
+ true
+endif
+and
+if not cis.oclIsUndefined()then
+ self.credit_CIS_daily = cis.daily and
+ self.credit_CIS_monthly = cis.monthly 
+else
+ true
+endif
+and
+if not cip.oclIsUndefined()then
+ self.credit_CIP_monthly = cip.monthly 
+else
+ true
+endif
+
+endpackage

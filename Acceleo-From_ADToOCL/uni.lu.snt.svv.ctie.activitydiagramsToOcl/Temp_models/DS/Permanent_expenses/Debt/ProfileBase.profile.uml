@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_X-m-p5Q8EeSd4Lrb6aNbyQ" name="ProfileBase" metamodelReference="_X-nkp5Q8EeSd4Lrb6aNbyQ">
+  <eAnnotations xmi:id="_X-m-qJQ8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_X-m-qZQ8EeSd4Lrb6aNbyQ" name="ProfileBase" nsURI="http:///schemas/ProfileBase/1" nsPrefix="ProfileBase">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_X-m-qpQ8EeSd4Lrb6aNbyQ" name="ProfileConstraint" eSuperTypes="_X-nkcJQ8EeSd4Lrb6aNbyQ">
+        <eAnnotations xmi:id="_X-m-q5Q8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X-nks5Q8EeSd4Lrb6aNbyQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-m-rJQ8EeSd4Lrb6aNbyQ" name="messageKey" ordered="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_X-m-rpQ8EeSd4Lrb6aNbyQ" name="base_Constraint" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Constraint"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_X-nkcJQ8EeSd4Lrb6aNbyQ" name="Default_AbstractMetaConstraint" abstract="true">
+        <eAnnotations xmi:id="_X-nkcZQ8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Stereotype" href="Default.profile.uml#_X-aJPZQ8EeSd4Lrb6aNbyQ"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nkcpQ8EeSd4Lrb6aNbyQ" name="evaluationMode" ordered="false" lowerBound="1" eType="_X-nkdpQ8EeSd4Lrb6aNbyQ" defaultValueLiteral="batch"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nkdJQ8EeSd4Lrb6aNbyQ" name="severity" ordered="false" lowerBound="1" eType="_X-nkepQ8EeSd4Lrb6aNbyQ" defaultValueLiteral="error"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_X-nkdpQ8EeSd4Lrb6aNbyQ" name="Default_ConstraintEvaluationMode">
+        <eAnnotations xmi:id="_X-nkd5Q8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="Default.profile.uml#_X-Zi85Q8EeSd4Lrb6aNbyQ"/>
+        </eAnnotations>
+        <eLiterals xmi:id="_X-nkeJQ8EeSd4Lrb6aNbyQ" name="batch"/>
+        <eLiterals xmi:id="_X-nkeZQ8EeSd4Lrb6aNbyQ" name="live" value="1"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_X-nkepQ8EeSd4Lrb6aNbyQ" name="Default_ConstraintSeverity">
+        <eAnnotations xmi:id="_X-nke5Q8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="Default.profile.uml#_X-Zi_JQ8EeSd4Lrb6aNbyQ"/>
+        </eAnnotations>
+        <eLiterals xmi:id="_X-nkfJQ8EeSd4Lrb6aNbyQ" name="error"/>
+        <eLiterals xmi:id="_X-nkfZQ8EeSd4Lrb6aNbyQ" name="warning" value="1"/>
+        <eLiterals xmi:id="_X-nkfpQ8EeSd4Lrb6aNbyQ" name="info" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_X-nkf5Q8EeSd4Lrb6aNbyQ" name="ImageUsageHint">
+        <eAnnotations xmi:id="_X-nkgJQ8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X-nkzJQ8EeSd4Lrb6aNbyQ"/>
+        <eLiterals xmi:id="_X-nkgZQ8EeSd4Lrb6aNbyQ" name="None"/>
+        <eLiterals xmi:id="_X-nkgpQ8EeSd4Lrb6aNbyQ" name="Icon" value="1"/>
+        <eLiterals xmi:id="_X-nkg5Q8EeSd4Lrb6aNbyQ" name="ShapeImage" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_X-nkhJQ8EeSd4Lrb6aNbyQ" name="ExtendedImage">
+        <eAnnotations xmi:id="_X-nkhZQ8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X-nk2JQ8EeSd4Lrb6aNbyQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nkhpQ8EeSd4Lrb6aNbyQ" name="data" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nkiJQ8EeSd4Lrb6aNbyQ" name="usageHint" ordered="false" lowerBound="1" eType="_X-nkf5Q8EeSd4Lrb6aNbyQ" defaultValueLiteral="None"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nkipQ8EeSd4Lrb6aNbyQ" name="hint" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nkjJQ8EeSd4Lrb6aNbyQ" name="imageName" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_X-nkjpQ8EeSd4Lrb6aNbyQ" name="base_Image" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Image"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_X-nkkJQ8EeSd4Lrb6aNbyQ" name="ProfileBase_0" nsURI="http:///ProfileBase_0.profile.uml2" nsPrefix="ProfileBase_0">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_X-nkkZQ8EeSd4Lrb6aNbyQ" name="ProfileBase__ProfileConstraint" eSuperTypes="_X-nkmJQ8EeSd4Lrb6aNbyQ">
+        <eAnnotations xmi:id="_X-nkkpQ8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X-nks5Q8EeSd4Lrb6aNbyQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_X-nkk5Q8EeSd4Lrb6aNbyQ" name="base_Constraint">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Constraint"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nklZQ8EeSd4Lrb6aNbyQ" name="messageKey" defaultValueLiteral="">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_X-nkmJQ8EeSd4Lrb6aNbyQ" name="Default__AbstractMetaConstraint" abstract="true">
+        <eAnnotations xmi:id="_X-nkmZQ8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Stereotype" href="Default.profile.uml#_X-aJPZQ8EeSd4Lrb6aNbyQ"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nkmpQ8EeSd4Lrb6aNbyQ" name="evaluationMode" lowerBound="1" eType="_X-nknpQ8EeSd4Lrb6aNbyQ" defaultValueLiteral="batch"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_X-nknJQ8EeSd4Lrb6aNbyQ" name="severity" lowerBound="1" eType="_X-nkopQ8EeSd4Lrb6aNbyQ" defaultValueLiteral="error"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_X-nknpQ8EeSd4Lrb6aNbyQ" name="Default__ConstraintEvaluationMode">
+        <eAnnotations xmi:id="_X-nkn5Q8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="Default.profile.uml#_X-Zi85Q8EeSd4Lrb6aNbyQ"/>
+        </eAnnotations>
+        <eLiterals xmi:id="_X-nkoJQ8EeSd4Lrb6aNbyQ" name="batch"/>
+        <eLiterals xmi:id="_X-nkoZQ8EeSd4Lrb6aNbyQ" name="live" value="1"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_X-nkopQ8EeSd4Lrb6aNbyQ" name="Default__ConstraintSeverity">
+        <eAnnotations xmi:id="_X-nko5Q8EeSd4Lrb6aNbyQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="uml:Enumeration" href="Default.profile.uml#_X-Zi_JQ8EeSd4Lrb6aNbyQ"/>
+        </eAnnotations>
+        <eLiterals xmi:id="_X-nkpJQ8EeSd4Lrb6aNbyQ" name="error"/>
+        <eLiterals xmi:id="_X-nkpZQ8EeSd4Lrb6aNbyQ" name="warning" value="1"/>
+        <eLiterals xmi:id="_X-nkppQ8EeSd4Lrb6aNbyQ" name="info" value="2"/>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <packageImport xmi:id="_X-nkp5Q8EeSd4Lrb6aNbyQ" visibility="private">
+    <eAnnotations xmi:id="_X-nkqJQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nkqZQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+    </eAnnotations>
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_X-nkqpQ8EeSd4Lrb6aNbyQ" visibility="private">
+    <eAnnotations xmi:id="_X-nkq5Q8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nkrJQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+    </eAnnotations>
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_X-nkrZQ8EeSd4Lrb6aNbyQ" visibility="private">
+    <eAnnotations xmi:id="_X-nkrpQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nkr5Q8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+    </eAnnotations>
+    <importedPackage xmi:type="uml:Profile" href="Default.profile.uml#_X-ZiKZQ8EeSd4Lrb6aNbyQ"/>
+  </packageImport>
+  <packageImport xmi:id="_X-nksJQ8EeSd4Lrb6aNbyQ" visibility="private">
+    <eAnnotations xmi:id="_X-nksZQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nkspQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+    </eAnnotations>
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_X-nks5Q8EeSd4Lrb6aNbyQ" name="ProfileConstraint">
+    <eAnnotations xmi:id="_X-nktJQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nktZQ8EeSd4Lrb6aNbyQ" key="categoryName" value="ProfileConstraint.category"/>
+      <details xmi:id="_X-nktpQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+    </eAnnotations>
+    <generalization xmi:id="_X-nkt5Q8EeSd4Lrb6aNbyQ">
+      <eAnnotations xmi:id="_X-nkuJQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nkuZQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+      </eAnnotations>
+      <general xmi:type="uml:Stereotype" href="Default.profile.uml#_X-aJPZQ8EeSd4Lrb6aNbyQ"/>
+    </generalization>
+    <ownedAttribute xmi:id="_X-nkupQ8EeSd4Lrb6aNbyQ" name="messageKey">
+      <eAnnotations xmi:id="_X-nku5Q8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nkvJQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+      </eAnnotations>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X-nkvZQ8EeSd4Lrb6aNbyQ">
+        <eAnnotations xmi:id="_X-nkvpQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+          <details xmi:id="_X-nkv5Q8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+        </eAnnotations>
+      </lowerValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_X-nkwJQ8EeSd4Lrb6aNbyQ" name="base_Constraint" association="_X-nkw5Q8EeSd4Lrb6aNbyQ">
+      <eAnnotations xmi:id="_X-nkwZQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nkwpQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+      </eAnnotations>
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Constraint"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_X-nkw5Q8EeSd4Lrb6aNbyQ" name="Constraint_ProfileConstraint" memberEnd="_X-nkxpQ8EeSd4Lrb6aNbyQ _X-nkwJQ8EeSd4Lrb6aNbyQ">
+    <eAnnotations xmi:id="_X-nkxJQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nkxZQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_X-nkxpQ8EeSd4Lrb6aNbyQ" name="extension_ProfileConstraint" type="_X-nks5Q8EeSd4Lrb6aNbyQ" aggregation="composite" association="_X-nkw5Q8EeSd4Lrb6aNbyQ">
+      <eAnnotations xmi:id="_X-nkx5Q8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nkyJQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="0"/>
+      </eAnnotations>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X-nkyZQ8EeSd4Lrb6aNbyQ" value="1">
+        <eAnnotations xmi:id="_X-nkypQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+          <details xmi:id="_X-nky5Q8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </lowerValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_X-nkzJQ8EeSd4Lrb6aNbyQ" name="ImageUsageHint">
+    <eAnnotations xmi:id="_X-nkzZQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nkzpQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+    </eAnnotations>
+    <ownedLiteral xmi:id="_X-nkz5Q8EeSd4Lrb6aNbyQ" name="None">
+      <eAnnotations xmi:id="_X-nk0JQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk0ZQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="_X-nk0pQ8EeSd4Lrb6aNbyQ" name="Icon">
+      <eAnnotations xmi:id="_X-nk05Q8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk1JQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="_X-nk1ZQ8EeSd4Lrb6aNbyQ" name="ShapeImage">
+      <eAnnotations xmi:id="_X-nk1pQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk15Q8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+    </ownedLiteral>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_X-nk2JQ8EeSd4Lrb6aNbyQ" name="ExtendedImage">
+    <eAnnotations xmi:id="_X-nk2ZQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nk2pQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+    </eAnnotations>
+    <ownedAttribute xmi:id="_X-nk25Q8EeSd4Lrb6aNbyQ" name="data">
+      <eAnnotations xmi:id="_X-nk3JQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk3ZQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByteArray"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_X-nk3pQ8EeSd4Lrb6aNbyQ" name="usageHint" type="_X-nkzJQ8EeSd4Lrb6aNbyQ">
+      <eAnnotations xmi:id="_X-nk35Q8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk4JQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_X-nk4ZQ8EeSd4Lrb6aNbyQ" instance="_X-nkz5Q8EeSd4Lrb6aNbyQ">
+        <eAnnotations xmi:id="_X-nk4pQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+          <details xmi:id="_X-nk45Q8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_X-nk5JQ8EeSd4Lrb6aNbyQ" name="hint">
+      <eAnnotations xmi:id="_X-nk5ZQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk5pQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_X-nk55Q8EeSd4Lrb6aNbyQ" name="imageName">
+      <eAnnotations xmi:id="_X-nk6JQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk6ZQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_X-nk6pQ8EeSd4Lrb6aNbyQ" name="base_Image" association="_X-nk7ZQ8EeSd4Lrb6aNbyQ">
+      <eAnnotations xmi:id="_X-nk65Q8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk7JQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Image"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_X-nk7ZQ8EeSd4Lrb6aNbyQ" name="Image_ExtendedImage" memberEnd="_X-nk8JQ8EeSd4Lrb6aNbyQ _X-nk6pQ8EeSd4Lrb6aNbyQ">
+    <eAnnotations xmi:id="_X-nk7pQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+      <details xmi:id="_X-nk75Q8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_X-nk8JQ8EeSd4Lrb6aNbyQ" name="extension_ExtendedImage" type="_X-nk2JQ8EeSd4Lrb6aNbyQ" aggregation="composite" association="_X-nk7ZQ8EeSd4Lrb6aNbyQ">
+      <eAnnotations xmi:id="_X-nk8ZQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+        <details xmi:id="_X-nk8pQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+      </eAnnotations>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X-nk85Q8EeSd4Lrb6aNbyQ" value="1">
+        <eAnnotations xmi:id="_X-nk9JQ8EeSd4Lrb6aNbyQ" source="uml2.extensions">
+          <details xmi:id="_X-nk9ZQ8EeSd4Lrb6aNbyQ" key="addedInVersion" value="1"/>
+        </eAnnotations>
+      </lowerValue>
+    </ownedEnd>
+  </packagedElement>
+</uml:Profile>

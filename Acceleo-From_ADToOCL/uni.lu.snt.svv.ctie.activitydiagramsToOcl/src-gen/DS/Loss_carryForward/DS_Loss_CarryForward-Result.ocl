@@ -1,0 +1,70 @@
+context TaxPayer inv DS_Loss_CarryForward:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let minimum_exercice_year:Date = Constant::MINIMUM_EXERCICE_YEAR.oclAsType(Date)
+/** TRACEABILITY: Source : Art. 114 alin a 1, Income Tax Law (2013) - **/ in 									
+let income_year:Date = income.year in
+if (income_year > minimum_exercice_year) = true then
+   let is_income_eligible:Boolean = income.income_type.oclIsTypeOf(Agriculture_and_Forestry_Income) or income.income_type.oclIsTypeOf(Independent_Professional_Services_Income) or inccome.income_type.oclIsTypeOf(Trade_and_Business_Income) in
+   if (is_income_eligible) = true then
+        let is_accountability_regular:Boolean = income.is_accountability_regular
+        /** TRACEABILITY: Agent type: officer  - Question: Was the accountability regular during the loss? - Source: Art. 114, numero 3 Tax Law (2013) - **/ in								
+        if (is_accountability_regular) = true then
+               let is_compensated_by_other_means:Boolean = income.is_compensated_by_other_means
+               /** TRACEABILITY: Agent type: officer  - Question: Is the loss compensated by any mean? - Source: Art. 114, numero 1, Art. 52 Income Tax Law (2013) - **/ in								
+               if (is_compensated_by_other_means) = true then
+               let expected_deduction:MonetaryValue = 0 in
+               let actual_deduction:MonetaryValue = income.getDS_Loss_CarryForward(taxation_year).deduced_amount in
+               actual_deduction = expected_deduction
+               else
+                  if (is_compensated_by_other_means) = false then
+                            let is_taxpayer_affected_by_the_loss:Boolean = income.is_taxpayer_affected_by_the_loss
+                            /** TRACEABILITY: Agent type: officer  - Question: Is the Taxpayer a partner or a successor during the loss? - Source: Art. 114, numero 3 Tax Law (2013) - **/ in								
+                            if (is_taxpayer_affected_by_the_loss) = true then
+                            let sum_loss_carryforward_expenses:MonetaryValue = income.expenses-> select(e:Expense | e.oclIsTypeOf(Loss_Carryforward) and e.year_expense_was_incurred_in = income.year).declared_amount->sum() in
+                            let expected_deduction:MonetaryValue = sum_loss_carryforward_expenses in
+                            let actual_deduction:MonetaryValue = income.getDS_Loss_CarryForward(taxation_year).deduced_amount in
+                            actual_deduction = expected_deduction
+                            else
+                              if (is_taxpayer_affected_by_the_loss) = false then
+                              let expected_deduction:MonetaryValue = 0 in
+                              let actual_deduction:MonetaryValue = income.getDS_Loss_CarryForward(taxation_year).deduced_amount in
+                              actual_deduction = expected_deduction
+                              else
+                              false
+                              endif
+                            endif
+                  else
+                  false
+                  endif
+               endif
+        else
+          if (is_accountability_regular) = false then
+          let expected_deduction:MonetaryValue = 0 in
+          let actual_deduction:MonetaryValue = income.getDS_Loss_CarryForward(taxation_year).deduced_amount in
+          actual_deduction = expected_deduction
+          else
+          false
+          endif
+        endif
+   else
+     if (is_income_eligible) = false then
+     let expected_deduction:MonetaryValue = 0 in
+     let actual_deduction:MonetaryValue = income.getDS_Loss_CarryForward(taxation_year).deduced_amount in
+     actual_deduction = expected_deduction
+     else
+     false
+     endif
+   endif
+else
+   if (income_year > minimum_exercice_year) = false then
+   let expected_deduction:MonetaryValue = 0 in
+   let actual_deduction:MonetaryValue = income.getDS_Loss_CarryForward(taxation_year).deduced_amount in
+   actual_deduction = expected_deduction
+   else
+   false
+   endif
+endif
+)

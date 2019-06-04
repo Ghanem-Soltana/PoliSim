@@ -1,0 +1,172 @@
+Size = 88
+operation getTaxClassModified (taxation_year : Integer):Tax_Class_Category
+{
+body:
+let is_married:Boolean = self.getIsMaried(taxation_year) in													
+/** Description: Returns yes if the taxpayer is married. - **/	
+if (is_married) = true then
+   let are_both_spouses_non_resident:Boolean = self.oclIsTypeOf(Non_Resident_Tax_Payer) and self.getSpouse(taxation_year).oclIsTypeOf(Non_Resident_Tax_Payer) in													
+   /** Description: - -  **/	
+   if (are_both_spouses_non_resident) = true then
+        let is_couple_living_apart:Boolean = false in													
+        /** Description: -  **/	
+        if (is_couple_living_apart) = false then
+               let total_professional_income_household:Real = self.getProfetionalIncomeHousehold(taxation_year) in													
+               /** Description: Returns the sum of the taxpayer's household professional incomes. -  **/	
+               let sum_professional_income_household_Luxembourg:Real = self.getProfetionalIncomeHouseholdLuxembourg(taxation_year) in													
+               /** Description: Returns the sum of the taxpayer's household professional incomes that are taxed in Luxembourg. -  **/	
+               if (sum_professional_income_household_Luxembourg > (0.5 * total_professional_income_household)) = true then
+               Tax_Class_Category::Two
+               else
+                  if (sum_professional_income_household_Luxembourg > (0.5 * total_professional_income_household)) = false then
+                  Tax_Class_Category::One_A
+                  else
+                  invalid
+                  endif
+               endif
+        else
+          if (is_couple_living_apart) = true then
+                  let is_reciving_bonus_for_children:Boolean = self.getIsreceivingAllowancesForChildren(taxation_year) in													
+                  /** Description: Returns yes if the taxpayer is receiving a bonus for children in household. -  **/	
+                  if (is_reciving_bonus_for_children) = true then
+                  Tax_Class_Category::One_A
+                  else
+                    if (is_reciving_bonus_for_children) = false then
+                              let taxpayer_age:Integer = self.getAge(taxation_year) in													
+                              /** Description: Returns the age of a given taxpayer. -  **/	
+                              if (taxpayer_age >= 64) = true then
+                              Tax_Class_Category::One_A
+                              else
+                                 if (taxpayer_age >= 64) = false then
+                                 Tax_Class_Category::One
+                                 else
+                                 invalid
+                                 endif
+                              endif
+                    else
+                    invalid
+                    endif
+                  endif
+          else
+          invalid
+          endif
+        endif
+   else
+     if (are_both_spouses_non_resident) = false then
+          let is_reciving_bonus_for_children:Boolean = self.getIsreceivingAllowancesForChildren(taxation_year) in													
+          /** Description: Returns yes if the taxpayer is receiving a bonus for children in household. -  **/	
+          if (is_reciving_bonus_for_children) = true then
+          Tax_Class_Category::One_A
+          else
+             if (is_reciving_bonus_for_children) = false then
+                    let taxpayer_age:Integer = self.getAge(taxation_year) in													
+                    /** Description: Returns the age of a given taxpayer. -  **/	
+                    if (taxpayer_age >= 64) = true then
+                    Tax_Class_Category::One_A
+                    else
+                       if (taxpayer_age >= 64) = false then
+                       Tax_Class_Category::One
+                       else
+                       invalid
+                       endif
+                    endif
+             else
+             invalid
+             endif
+          endif
+     else
+     invalid
+     endif
+   endif
+else
+   if (is_married) = false then
+     let is_widower:Boolean = self.is_widower in													
+     /** Description: Returns yes if the taxpayer has the statute of widower for the current taxation year. -  **/	
+     if (is_widower) = true then
+          let has_widower_transition_state:Boolean = self.getDivorceTransitionState(taxation_year) in													
+          /** Description: -  **/	
+          if (has_widower_transition_state) = true then
+          Tax_Class_Category::Two
+          else
+             if (has_widower_transition_state) = false then
+             Tax_Class_Category::One_A
+             else
+             invalid
+             endif
+          endif
+     else
+        if (is_widower) = false then
+             let is_divorced:Boolean = self.getSeperationState(taxation_year,Separation_Causes::DIVORCE) in													
+             /** Description: Returns yes if the taxpayer is divorced within the selected taxation year. -  **/	
+             let is_living_separately:Boolean = self.getSeperationState(taxation_year,Separation_Causes::SEPARATION_DE_FAIT) in													
+             /** Description: Returns yes if the taxpayer is not cohabiting with his/her spouse. In French: "Separation de fait". -  **/	
+             let is_living_separately_by_court:Boolean = self.getSeperationState(taxation_year,Separation_Causes::SEPARATION_BY_COURT) in													
+             /** Description: Returns yes if the taxpayer has a judicial sentence dismissing him from cohabiting with his/her spouse. In French: "Separation de corps". -  **/	
+             if (is_divorced or is_living_separately_by_court or is_living_separately) = true then
+                    let can_beneficiate_from_transition_state :Boolean = self.getDivorceTransitionState(taxation_year) in													
+                    /** Description: Returns yes if: (1) the divorce/separation occurred within the last three years from the taxation year, and (2) the taxpayer did has not benefited from a divorce/separation transition state for the last five years from the current taxation year.  -  **/	
+                    if (can_beneficiate_from_transition_state ) = true then
+                    Tax_Class_Category::Two
+                    else
+                       if (can_beneficiate_from_transition_state ) = false then
+                                 let is_reciving_bonus_for_children:Boolean = self.getIsreceivingAllowancesForChildren(taxation_year) in													
+                                 /** Description: Returns yes if the taxpayer is receiving a bonus for children in household. -  **/	
+                                 if (is_reciving_bonus_for_children) = true then
+                                 Tax_Class_Category::One_A
+                                 else
+                                   if (is_reciving_bonus_for_children) = false then
+                                                let taxpayer_age:Integer = self.getAge(taxation_year) in													
+                                                /** Description: Returns the age of a given taxpayer. -  **/	
+                                                if (taxpayer_age >= 64) = true then
+                                                Tax_Class_Category::One_A
+                                                else
+                                                  if (taxpayer_age >= 64) = false then
+                                                  Tax_Class_Category::One
+                                                  else
+                                                  invalid
+                                                  endif
+                                                endif
+                                   else
+                                   invalid
+                                   endif
+                                 endif
+                       else
+                       invalid
+                       endif
+                    endif
+             else
+               if (is_divorced or is_living_separately_by_court or is_living_separately) = false then
+                       let is_reciving_bonus_for_children:Boolean = self.getIsreceivingAllowancesForChildren(taxation_year) in													
+                       /** Description: Returns yes if the taxpayer is receiving a bonus for children in household. -  **/	
+                       if (is_reciving_bonus_for_children) = true then
+                       Tax_Class_Category::One_A
+                       else
+                         if (is_reciving_bonus_for_children) = false then
+                                   let taxpayer_age:Integer = self.getAge(taxation_year) in													
+                                   /** Description: Returns the age of a given taxpayer. -  **/	
+                                   if (taxpayer_age >= 64) = true then
+                                   Tax_Class_Category::One_A
+                                   else
+                                      if (taxpayer_age >= 64) = false then
+                                      Tax_Class_Category::One
+                                      else
+                                      invalid
+                                      endif
+                                   endif
+                         else
+                         invalid
+                         endif
+                       endif
+               else
+               invalid
+               endif
+             endif
+        else
+        invalid
+        endif
+     endif
+   else
+   invalid
+   endif
+endif
+;}

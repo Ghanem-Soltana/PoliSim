@@ -1,0 +1,30 @@
+context TaxPayer inv DS_Additional_Employers_Pension_Insurance:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let is_eligible_income:Boolean = income.income_type.oclIsTypeOf(Employement_Income) in
+if (is_eligible_income) = true then
+   let maximum_deductible_amount_for_pension_insurance:MonetaryValue = Constant::MAXIMUM_DEDUCTIBLE_AMOUNT_FOR_PENSION_INSURANCE.oclAsType(MonetaryValue) 
+   /** TRACEABILITY: Source: Art. 110 alenea 3 of the income tax law (2013) - **/ in 								
+   let sum_additional_health_and_pension_expenses:MonetaryValue = income.expenses-> select(e:Expense | e.oclIsTypeOf(Health_and_Pension_Insurance) and e.category = Category_of_Health_and_Pension_Insurances::ADDITIONAL_EMPLOYERS_PENSION_INSURANCE and e.year_expense_was_incurred_in = taxation_year).declared_amount->sum() in
+   if (sum_additional_health_and_pension_expenses <= maximum_deductible_amount_for_pension_insurance) = true then
+   else
+     if (sum_additional_health_and_pension_expenses <= maximum_deductible_amount_for_pension_insurance) = false then
+     let expected_deduction:MonetaryValue = maximum_deductible_amount_for_pension_insurance in
+     let actual_deduction:MonetaryValue = income.getDeductionForAdditionalHealthAndPensionInsurance(taxation_year).deduced_amount in
+     actual_deduction=expected_deduction
+     else
+     false
+     endif
+   endif
+else
+   if (is_eligible_income) = false then
+   let expected_deduction:MonetaryValue = 0 in
+   let actual_deduction:MonetaryValue = income.getDeductionForAdditionalHealthAndPensionInsurance(taxation_year).deduced_amount in
+   actual_deduction=expected_deduction
+   else
+   false
+   endif
+endif
+)

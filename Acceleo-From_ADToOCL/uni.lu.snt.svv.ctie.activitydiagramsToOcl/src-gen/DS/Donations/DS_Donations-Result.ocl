@@ -1,0 +1,58 @@
+context TaxPayer inv DS_Donations:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent: officer - Question type: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let minimum_deductible_amount_for_donation:MonetaryValue = Constant::MINIMUM_DEDUCTIBLE_AMOUNT_FOR_DONATION.oclAsType(MonetaryValue) 
+/** TRACEABILITY: Source: Grand Ducal Regulation (2013) - **/ in 								
+let eligible_donations:Set(Expense) = income.expenses->select(e:Expense |e.oclIsTypeOf(Donation) and (e.year_expense_was_incurred_in = taxation_year or e.is_donation_reported = false) and e.is_eligible_donation) in
+let sum_eligible_donations:MonetaryValue = eligible_donations.declared_amount->sum() in
+if (sum_eligible_donations >= minimum_deductible_amount_for_donation) = true then
+   let authorized_deductible_amount_for_donation:MonetaryValue = income.authorized_deductible_amount_for_donation
+   /** TRACEABILITY: Source: Art. 109, 112 Income Tax Law (2013) - **/ in								
+   if (sum_eligible_donations < authorized_deductible_amount_for_donation) = false then
+        let maximum_deductible_amount_for_donation:MonetaryValue = income.maximum_deductible_amount_for_donation
+        /** TRACEABILITY: Source: Art. 109, 112 Income Tax Law (2013) - **/ in								
+        if (authorized_deductible_amount_for_donation < maximum_deductible_amount_for_donation) = true then
+        let expected_deduction:MonetaryValue = authorized_deductible_amount_for_donation in
+        let actual_deduction:MonetaryValue = income.getDeductionForDonations(taxation_year).deduced_amount in
+        actual_deduction=expected_deduction
+        else
+          if (authorized_deductible_amount_for_donation < maximum_deductible_amount_for_donation) = false then
+          let expected_deduction:MonetaryValue = maximum_deductible_amount_for_donation in
+          let actual_deduction:MonetaryValue = income.getDeductionForDonations(taxation_year).deduced_amount in
+          actual_deduction=expected_deduction
+          else
+          false
+          endif
+        endif
+   else
+     if (sum_eligible_donations < authorized_deductible_amount_for_donation) = true then
+          let maximum_deductible_amount_for_donation:MonetaryValue = income.maximum_deductible_amount_for_donation
+          /** TRACEABILITY: Source: Art. 109, 112 Income Tax Law (2013) - **/ in								
+          if (sum_eligible_donations <= maximum_deductible_amount_for_donation) = true then
+          let expected_deduction:MonetaryValue = maximum_deductible_amount_for_donation in
+          let actual_deduction:MonetaryValue = income.getDeductionForDonations(taxation_year).deduced_amount in
+          actual_deduction=expected_deduction
+          else
+             if (sum_eligible_donations <= maximum_deductible_amount_for_donation) = false then
+             let expected_deduction:MonetaryValue = sum_eligible_donations in
+             let actual_deduction:MonetaryValue = income.getDeductionForDonations(taxation_year).deduced_amount in
+             actual_deduction=expected_deduction
+             else
+             false
+             endif
+          endif
+     else
+     false
+     endif
+   endif
+else
+   if (sum_eligible_donations >= minimum_deductible_amount_for_donation) = false then
+   let actual_deduction:MonetaryValue = income.getDeductionForDonations(taxation_year).deduced_amount in
+   actual_deduction = 0
+   else
+   false
+   endif
+endif
+)

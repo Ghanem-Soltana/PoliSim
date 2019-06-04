@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile="http:///schemas/Profile/_yOTbIKAfEeWOaNXScNwQvQ/310" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Profile/_yOTbIKAfEeWOaNXScNwQvQ/310 ../Papyrus/DomainModelProfile.profile.uml#_yOUpQKAfEeWOaNXScNwQvQ">
+  <uml:Model xmi:id="_Mdc8EJHcEeWm3Ohgg-dFlA" name="model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_QPiGkJHcEeWm3Ohgg-dFlA" name="TaxPayer">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_mz240B9aEeaESJJMvdtUYA" name="dependency age for pensionners">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_heSF0B9bEeaESJJMvdtUYA">
+          <language>OCL</language>
+          <body>if(self.incomes->notEmpty()) then self.incomes->exists(oclIsTypeOf(Pension)) and self.getAge() &lt; 57 else false endif
+</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_acWf4JHcEeWm3Ohgg-dFlA" name="birthYear">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k-isQJHcEeWm3Ohgg-dFlA" name="incomes" type="_SzyzEJHcEeWm3Ohgg-dFlA" aggregation="composite" association="_k-khcJHcEeWm3Ohgg-dFlA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k-jTUJHcEeWm3Ohgg-dFlA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k-jTUZHcEeWm3Ohgg-dFlA" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_XgXOsB9cEeaESJJMvdtUYA" name="getAge">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hDntoB9cEeaESJJMvdtUYA" source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_htUx8B9cEeaESJJMvdtUYA" key="body" value="2016- self.birthYear"/>
+        </eAnnotations>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_cN1qcB9cEeaESJJMvdtUYA" name="age" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SzyzEJHcEeWm3Ohgg-dFlA" name="Income" isAbstract="true">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_PO7kAB9cEeaESJJMvdtUYA" name="income types based on age">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_VYdHAB9cEeaESJJMvdtUYA">
+          <language>OCL</language>
+          <body>self.taxpayer.getAge()>=57
+
+</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k-khcZHcEeWm3Ohgg-dFlA" name="taxpayer" type="_QPiGkJHcEeWm3Ohgg-dFlA" association="_k-khcJHcEeWm3Ohgg-dFlA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k-khcpHcEeWm3Ohgg-dFlA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k-khc5HcEeWm3Ohgg-dFlA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_uhj2cJHjEeWJZtt1pWzjeQ" name="amount">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_k-khcJHcEeWm3Ohgg-dFlA" memberEnd="_k-khcZHcEeWm3Ohgg-dFlA _k-isQJHcEeWm3Ohgg-dFlA">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_1BXD4B9bEeaESJJMvdtUYA" name="income mult">
+        <specification xmi:type="uml:LiteralString" xmi:id="_1BXq8B9bEeaESJJMvdtUYA" value=""/>
+      </ownedRule>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Jz4tEB9bEeaESJJMvdtUYA" name="Pension">
+      <generalization xmi:type="uml:Generalization" xmi:id="_SvjnkB9bEeaESJJMvdtUYA" general="_SzyzEJHcEeWm3Ohgg-dFlA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UBqvsB9bEeaESJJMvdtUYA" name="Employment">
+      <generalization xmi:type="uml:Generalization" xmi:id="_ah0qAB9bEeaESJJMvdtUYA" general="_SzyzEJHcEeWm3Ohgg-dFlA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XfT7QB9bEeaESJJMvdtUYA" name="Other">
+      <generalization xmi:type="uml:Generalization" xmi:id="_aQbYAB9bEeaESJJMvdtUYA" general="_SzyzEJHcEeWm3Ohgg-dFlA"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_PlJs0JHcEeWm3Ohgg-dFlA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sHGwkB9ZEeaESJJMvdtUYA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sHGwkR9ZEeaESJJMvdtUYA" key="Version" value="0.0.311"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sHGwkh9ZEeaESJJMvdtUYA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sHGwkx9ZEeaESJJMvdtUYA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sHGwlB9ZEeaESJJMvdtUYA" key="Date" value="2015-12-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sHGwlR9ZEeaESJJMvdtUYA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PllKoJHcEeWm3Ohgg-dFlA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PllKoZHcEeWm3Ohgg-dFlA" key="Version" value="0.0.202"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PllKopHcEeWm3Ohgg-dFlA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PllKo5HcEeWm3Ohgg-dFlA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PllKpJHcEeWm3Ohgg-dFlA" key="Date" value="2015-05-13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PllKpZHcEeWm3Ohgg-dFlA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Plj8gJHcEeWm3Ohgg-dFlA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Papyrus/DomainModelProfile.profile.uml#_yOUpQKAfEeWOaNXScNwQvQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../Papyrus/DomainModelProfile.profile.uml#_Sf-RYGjBEeSycpIUtKzdWQ"/>
+    </profileApplication>
+  </uml:Model>
+  <Profile:fromhistogram xmi:id="_VLVi8B9aEeaESJJMvdtUYA" base_Property="_acWf4JHcEeWm3Ohgg-dFlA">
+    <frequencies>0.7</frequencies>
+    <frequencies>0.2</frequencies>
+    <frequencies>0.07</frequencies>
+    <frequencies>0.03</frequencies>
+    <bins>[1979..1998]</bins>
+    <bins>[1959..1978]</bins>
+    <bins>[1934..1958]</bins>
+    <bins>[1900..1933]</bins>
+  </Profile:fromhistogram>
+  <Profile:valuedependency xmi:id="_jrHmQB9aEeaESJJMvdtUYA" context="_QPiGkJHcEeWm3Ohgg-dFlA" OCLtrigger="_mz240B9aEeaESJJMvdtUYA" base_Property="_acWf4JHcEeWm3Ohgg-dFlA"/>
+  <Profile:fromhistogram xmi:id="_0Eg2kB9aEeaESJJMvdtUYA" base_Constraint="_mz240B9aEeaESJJMvdtUYA">
+    <frequencies>0.25</frequencies>
+    <frequencies>0.75</frequencies>
+    <bins>[1956..1959]</bins>
+    <bins>[1916..1955]</bins>
+  </Profile:fromhistogram>
+  <Profile:probabilistictype xmi:id="_Ne5mQB9bEeaESJJMvdtUYA" base_Class="_Jz4tEB9bEeaESJJMvdtUYA" frequency="0.2"/>
+  <Profile:probabilistictype xmi:id="_WuOckB9bEeaESJJMvdtUYA" base_Class="_UBqvsB9bEeaESJJMvdtUYA" frequency="0.6"/>
+  <Profile:probabilistictype xmi:id="_YkwgYB9bEeaESJJMvdtUYA" base_Class="_XfT7QB9bEeaESJJMvdtUYA" frequency="0.2"/>
+  <Profile:multiplicity xmi:id="_tDRL8B9bEeaESJJMvdtUYA" base_Association="_k-khcJHcEeWm3Ohgg-dFlA" targetMember="_SzyzEJHcEeWm3Ohgg-dFlA" constraint="_1BXD4B9bEeaESJJMvdtUYA"/>
+  <Profile:fromhistogram xmi:id="_9iQt8B9bEeaESJJMvdtUYA" base_Constraint="_1BXD4B9bEeaESJJMvdtUYA">
+    <frequencies>0.8</frequencies>
+    <frequencies>0.15</frequencies>
+    <frequencies>0.045</frequencies>
+    <frequencies>0.005</frequencies>
+    <bins>1</bins>
+    <bins>2</bins>
+    <bins>3</bins>
+    <bins>4</bins>
+  </Profile:fromhistogram>
+  <Profile:typedependency xmi:id="_LiOowB9cEeaESJJMvdtUYA" context="_SzyzEJHcEeWm3Ohgg-dFlA" base_Association="_k-khcJHcEeWm3Ohgg-dFlA"/>
+  <Profile:typedependencyspec xmi:id="_WAC2AB9dEeaESJJMvdtUYA" base_Constraint="_PO7kAB9cEeaESJJMvdtUYA" possibleTypes="_Jz4tEB9bEeaESJJMvdtUYA _UBqvsB9bEeaESJJMvdtUYA _XfT7QB9bEeaESJJMvdtUYA">
+    <frequencies>0.85</frequencies>
+    <frequencies>0.1</frequencies>
+    <frequencies>0.05</frequencies>
+  </Profile:typedependencyspec>
+</xmi:XMI>

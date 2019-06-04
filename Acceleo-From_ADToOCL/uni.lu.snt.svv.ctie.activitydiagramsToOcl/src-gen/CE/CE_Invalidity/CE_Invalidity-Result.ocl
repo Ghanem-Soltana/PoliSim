@@ -1,0 +1,22 @@
+context TaxPayer inv CE_Invalidity:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: When was the request postmarked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let tax_payer_is_resident:Boolean = self.oclIsTypeOf(Resident_Tax_Payer) in														
+if (tax_payer_is_resident) = true then
+let disability_flat_rate:MonetaryValue = income.disability_flat_rate
+/** TRACEABILITY: Source: Art. 127 alinea 6 Income Tax Law (2013) - **/ in								
+let expected_deduction:MonetaryValue = disability_flat_rate in
+let actual_deduction:MonetaryValue = income.getDeductionForCEInvalidity(taxation_year).deduced_amount in
+actual_deduction=expected_deduction
+else
+   if (tax_payer_is_resident) = false then
+   let expected_deduction:MonetaryValue = 0 in
+   let actual_deduction:MonetaryValue = income.getDeductionForCEInvalidity(taxation_year).deduced_amount in
+   actual_deduction=expected_deduction
+   else
+   false
+   endif
+endif
+)

@@ -1,0 +1,153 @@
+Size = 86
+context Tax_Payer inv CIS:
+let taxation_year:Integer = self.from_agent.taxation_year in
+/** TRACEABILITY: Specifies when the request was postmarked. - **/ 									
+if (taxation_year>=2009) = true then
+let incomes:OrderedSet(Income) = self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Principal)->union(self.incomes->select(inc:Income|inc.year=taxation_year and inc.tax_card->notEmpty() and inc.tax_card.tax_card_type=Tax_Card_Type::Additional)->sortedBy(income_amount*-1))->asOrderedSet() in																										
+/** Description: The incomes of a given taxpayer for the studied tax year. The first income is the principal one. - The rest of incomes are sorted from the highest to the lowest income. - Note that taxpayers who are taxed jointly have only one principal income. - **/	
+incomes -> forAll (income:Income|
+let is_income_subject_to_withholding:Boolean = income.income_type.subjectToWithholdingTax in
+/** Description: Returns yes if the income is under withholding taxation: false otherwise - **/							
+if (is_income_subject_to_withholding) = false then
+let expected_CIS:Real = 0 in
+income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+else
+   if (is_income_subject_to_withholding) = true then
+     let is_income_eligible:Boolean = income.income_type.oclIsKindOf(Employment_Income) in
+     /** Description: Returns yes if the income is of type Employment; returns false otherwise. - To be eligible an income has to meet the condition cited in: http://www.impotsdirects.public.lu/az/r/reven_net_salar/index.html -  **/							
+     if (is_income_eligible) = false then
+     let expected_CIS:Real = 0 in
+     income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+     else
+        if (is_income_eligible) = true then
+             let CIS_already_attributed:Boolean = incomes->excluding(income)->select(i:Income | i.tax_card.credit_CIS_monthly <> 0 or i.tax_card.credit_CIS_yearly <> 0)->notEmpty() in
+             /** Description: Makes sure that CIS was not attributed to the taxpayer on any other income.  - It returns yes if the taxpayer has already benefited from CIS. -  **/							
+             if (CIS_already_attributed) = true then
+             let expected_CIS:Real = 0 in
+             income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+             else
+               if (CIS_already_attributed) = false then
+                       let CIS_minimum_income_day:Real = self.from_law.CIS_MINIMUM_INCOME_DAY() in 
+                       /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - CIS_minimum_income_year = 936 - CIS_minimum_income_month= 78 - CIS_minimum_income_day = 3,12 - **/ 								
+                       let income_per_day:Real = income.income_per_day() in
+                       /** Description: The value of the taxpayer's income per day -  **/							
+                       if (income_per_day > CIS_minimum_income_day) = false then
+                                 let CIS_minimum_income_month:Real = self.from_law.CIS_MINIMUM_INCOME_MONTH() in 
+                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - CIS_minimum_income_year = 936 - CIS_minimum_income_month= 78 - CIS_minimum_income_day = 3,12 - **/ 								
+                                 let income_per_month:Real = income.income_per_month() in
+                                 /** Description: The value of the taxpayer's income per month -  **/							
+                                 if (income_per_month > CIS_minimum_income_month) = false then
+                                             let CIS_minimum_income_year:Real = self.from_law.CIS_MINIMUM_INCOME_YEAR() in 
+                                             /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - CIS_minimum_income_year = 936 - CIS_minimum_income_month= 78 - CIS_minimum_income_day = 3,12 - **/ 								
+                                             let income_per_year:Real = income.income_per_year() in
+                                             /** Description: The value of the taxpayer's income per year -  **/							
+                                             if (income_per_year > CIS_minimum_income_year) = false then
+                                             let expected_CIS:Real = 0 in
+                                             income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                             else
+                                                if (income_per_year > CIS_minimum_income_year) = true then
+                                                               let nb_months:Integer = income.prorata_worked_months() in
+                                                               /** Description: Period during which the taxpayer has been employed over - the course of the tax year expressed in terms of months. -  **/							
+                                                               let does_income_cover_full_year:Boolean = nb_months=12 in
+                                                               /** Description: Returns yes if the income cover all periods of one year.  - In other words, checks if the taxpayers have been working for the whole year. -  **/							
+                                                               if (does_income_cover_full_year) = true then
+                                                               let flat_rate_CIS_yearly:Real = self.from_law.FLAT_RATE_CIS_YEARLY() in 
+                                                               /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                               let expected_CIS:Real = flat_rate_CIS_yearly in
+                                                               income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                               else
+                                                                 if (does_income_cover_full_year) = false then
+                                                                 let flat_rate_CIS_daily:Real = self.from_law.FLAT_RATE_CIS_DAILY() in 
+                                                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                                 let flat_rate_CIS_monthly:Real = self.from_law.FLAT_RATE_CIS_MONTHLY() in 
+                                                                 /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                                 let nb_days:Integer = income.prorata_worked_days() in
+                                                                 /** Description: Complement to nb_months. Example the taxpayer worked for 0 year,  - 7 months, and 5 days -  **/							
+                                                                 let expected_CIS:Real = flat_rate_CIS_monthly * nb_months + flat_rate_CIS_daily * nb_days in
+                                                                 income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                                 else
+                                                                 false
+                                                                 endif
+                                                               endif
+                                                else
+                                                false
+                                                endif
+                                             endif
+                                 else
+                                   if (income_per_month > CIS_minimum_income_month) = true then
+                                                let nb_months:Integer = income.prorata_worked_months() in
+                                                /** Description: Period during which the taxpayer has been employed over - the course of the tax year expressed in terms of months. -  **/							
+                                                let does_income_cover_full_year:Boolean = nb_months=12 in
+                                                /** Description: Returns yes if the income cover all periods of one year.  - In other words, checks if the taxpayers have been working for the whole year. -  **/							
+                                                if (does_income_cover_full_year) = true then
+                                                let flat_rate_CIS_yearly:Real = self.from_law.FLAT_RATE_CIS_YEARLY() in 
+                                                /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                let expected_CIS:Real = flat_rate_CIS_yearly in
+                                                income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                else
+                                                  if (does_income_cover_full_year) = false then
+                                                  let flat_rate_CIS_daily:Real = self.from_law.FLAT_RATE_CIS_DAILY() in 
+                                                  /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                  let flat_rate_CIS_monthly:Real = self.from_law.FLAT_RATE_CIS_MONTHLY() in 
+                                                  /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                                  let nb_days:Integer = income.prorata_worked_days() in
+                                                  /** Description: Complement to nb_months. Example the taxpayer worked for 0 year,  - 7 months, and 5 days -  **/							
+                                                  let expected_CIS:Real = flat_rate_CIS_monthly * nb_months + flat_rate_CIS_daily * nb_days in
+                                                  income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                                  else
+                                                  false
+                                                  endif
+                                                endif
+                                   else
+                                   false
+                                   endif
+                                 endif
+                       else
+                         if (income_per_day > CIS_minimum_income_day) = true then
+                                   let nb_months:Integer = income.prorata_worked_months() in
+                                   /** Description: Period during which the taxpayer has been employed over - the course of the tax year expressed in terms of months. -  **/							
+                                   let does_income_cover_full_year:Boolean = nb_months=12 in
+                                   /** Description: Returns yes if the income cover all periods of one year.  - In other words, checks if the taxpayers have been working for the whole year. -  **/							
+                                   if (does_income_cover_full_year) = true then
+                                   let flat_rate_CIS_yearly:Real = self.from_law.FLAT_RATE_CIS_YEARLY() in 
+                                   /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                   let expected_CIS:Real = flat_rate_CIS_yearly in
+                                   income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                   else
+                                      if (does_income_cover_full_year) = false then
+                                      let flat_rate_CIS_daily:Real = self.from_law.FLAT_RATE_CIS_DAILY() in 
+                                      /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                      let flat_rate_CIS_monthly:Real = self.from_law.FLAT_RATE_CIS_MONTHLY() in 
+                                      /** TRACEABILITY: Source: Reglement Grand Ducal du 19 Decembre 2008 - flat_rate_CIS_yearly = 300 - flat_rate_CIS_monthly = 25 - flat_rate_CIS_daily = 1 - **/ 								
+                                      let nb_days:Integer = income.prorata_worked_days() in
+                                      /** Description: Complement to nb_months. Example the taxpayer worked for 0 year,  - 7 months, and 5 days -  **/							
+                                      let expected_CIS:Real = flat_rate_CIS_monthly * nb_months + flat_rate_CIS_daily * nb_days in
+                                      income.tax_card.credit_CIS_yearly->any(true).oclIsUndefined()
+                                      else
+                                      false
+                                      endif
+                                   endif
+                         else
+                         false
+                         endif
+                       endif
+               else
+               false
+               endif
+             endif
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+)
+else
+   if (taxation_year>=2009) = false then
+   false
+   else
+   false
+   endif
+endif

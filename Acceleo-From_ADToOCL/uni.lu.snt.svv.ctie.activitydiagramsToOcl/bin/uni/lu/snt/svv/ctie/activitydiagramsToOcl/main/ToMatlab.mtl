@@ -1,0 +1,447 @@
+[comment encoding = UTF-8 /]
+[module ToMatlab('http://www.eclipse.org/uml2/3.0.0/UML')]
+
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::declaration::MatlabActivityParameterNodeDeclaration/]
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::declaration::MatlabInputPinDeclaration/]
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::declaration::MatlabInputExpansionNodeDeclaration/]
+ 
+[template public transforme(anActivity : Activity, aModel : Package)] 
+[file (anActivity.name.concat('-MATLAB.m'), false,'UTF-8')]
+function [anActivity.name/]
+[StartingNodes(anActivity)/] 
+end
+[/file]
+[/template]
+
+[template public StartingNodes(anActivity : Activity,anOwner:OclAny)]
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow))]
+[if (aControlFlow.source.oclIsKindOf(InitialNode) and aControlFlow.owner.toString().equalsIgnoreCase(anOwner.toString()))]
+[retreave(0,anActivity,anOwner,aControlFlow.target,'aCaller','','',anActivity.eAllContents()->filter(ActivityParameterNode)->asSequence(),emptyListActivityParrameterNode(anActivity),emptyListInputPin(anActivity),emptyListInputPin(anActivity),emptyListExpansionNode(anActivity),emptyListExpansionNode(anActivity))/]
+[/if]
+[/for]
+[/template]
+
+[template public StartingNodesForExpansionRegion(niveau:Integer,anActivity : Activity,anOwner:OclAny,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode))]
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow))]
+[if (aControlFlow.source.oclIsKindOf(InitialNode) and aControlFlow.owner.toString().equalsIgnoreCase(anOwner.toString()))]
+[retreave(niveau,anActivity,anOwner,aControlFlow.target,'aCaller','','',allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[/for] 
+[/template]
+
+ 
+[template public retreave(niveau : Integer, anActivity : Activity, anOwner : OclAny, aNode : OclAny, aCallerType :String ,formule : String, space:String, allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode)) ]
+[if (aNode.oclIsKindOf(DecisionNode))]
+[decisionNodeRule(niveau,anActivity,anOwner,aNode.oclAsType(DecisionNode),aCallerType,space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+
+[/if]
+[if (aNode.oclIsKindOf(Action))]
+[actionRule(niveau,anActivity,anOwner,aNode.oclAsType(Action),aCallerType,space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[if (aNode.oclIsKindOf(CentralBufferNode))]
+[centralBufferNodeRule(niveau,anActivity,anOwner,aNode.oclAsType(CentralBufferNode),formule,space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[if (aNode.oclIsKindOf(ExpansionRegion))]
+[expansionRegionRule(niveau+1,anActivity,aNode.oclAsType(ExpansionRegion),space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[if (aNode.oclIsKindOf(FlowFinalNode))]
+[flowFinalNodeRule(niveau,anActivity,anOwner,aNode.oclAsType(FlowFinalNode))/]
+[/if]
+[if (aNode.oclIsKindOf(ActivityFinalNode))]
+disp('Program exit');
+[/if]
+[if (aNode.oclIsKindOf(InputPin))]
+[inputPinRule(niveau,anActivity,anOwner,aNode.oclAsType(InputPin),aCallerType,space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[if (aNode.oclIsKindOf(OutputPin))]
+[OutputPinRule(formule)/]
+[/if]
+[if (aNode.oclIsKindOf(MergeNode))]
+[mergeNodeRule(niveau,anActivity,anOwner,aNode.oclAsType(MergeNode),aCallerType,space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[/template]
+
+[template public decisionNodeRule(niveau : Integer, anActivity : Activity, anOwner:OclAny, aNode : ActivityNode, aCallerType:String, space : String, allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode))]
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name)))]
+[if aControlFlow=anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name))->first()]
+[if(anActivity.eAllContents()->filter(Constraint)->select(constrainedElement->asOrderedSet()->includes(aNode))->size()=0)]
+[let ch:String=aNode.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[space/][DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for]
+[for (anInputPin:InputPin |newInputPins)]
+[space/][declareanInputPin(anActivity, anInputPin, anOwner.oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anOwner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode->union(newParameters))/]
+[/for]
+[space/]if ([ch/]) == [aControlFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space/][retreave(niveau,anActivity,anOwner,aControlFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[else]
+[let ch:String=anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).constrainedElement->last().oclIsKindOf(DecisionNode) and oclAsType(Constraint).constrainedElement->last().oclAsType(DecisionNode).name.equalsIgnoreCase(aNode.name))->any(true).specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[space/][DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for]
+[for (anInputPin:InputPin |newInputPins)]
+[space/][declareanInputPin(anActivity, anInputPin, anOwner.oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anOwner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode->union(newParameters))/]
+[/for]
+[space/]if ([ch/]) == [aControlFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space/][retreave(niveau,anActivity,anOwner,aControlFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[/if]
+[else]
+[if aControlFlow=anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name))->last()]
+[space/]else
+[if(anActivity.eAllContents()->filter(Constraint)->select(constrainedElement->asOrderedSet()->includes(aNode))->size()=0)]
+[let ch:String=aNode.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aControlFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aControlFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[else]
+[let ch:String=anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).constrainedElement->last().oclIsKindOf(DecisionNode) and oclAsType(Constraint).constrainedElement->last().oclAsType(DecisionNode).name.equalsIgnoreCase(aNode.name))->any(true).specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aControlFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aControlFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[/if]
+[space+'     '/]else
+[space+'     '/]disp('Unhandled situation');
+[else]
+[space/]else 
+[if(anActivity.eAllContents()->filter(Constraint)->select(constrainedElement->asOrderedSet()->includes(aNode))->size()=0)]
+[let ch:String=aNode.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, aNode.name, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aControlFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aControlFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[else]
+[let ch:String=anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).constrainedElement->last().oclIsKindOf(DecisionNode) and oclAsType(Constraint).constrainedElement->last().oclAsType(DecisionNode).name.equalsIgnoreCase(aNode.name))->any(true).specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aControlFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aControlFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[/if]
+[/if]
+[/if]
+[/for]
+
+
+
+[for ( aObjectFlow : ObjectFlow  | anOwner.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ObjectFlow).source.name.equalsIgnoreCase(aNode.name)))]
+[if aObjectFlow=anOwner.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ObjectFlow).source.name.equalsIgnoreCase(aNode.name))->first()]
+[if(anActivity.eAllContents()->filter(Constraint)->select(constrainedElement->asOrderedSet()->includes(aNode))->size()=0)]
+[let ch:String=aNode.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[space/][DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for]
+[for (anInputPin:InputPin |newInputPins)]
+[space/][declareanInputPin(anActivity, anInputPin, anOwner.oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anOwner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode->union(newParameters))/]
+[/for]
+[space/]if ([ch/]) == [aObjectFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space/][retreave(niveau,anActivity,anOwner,aObjectFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[else]
+[let ch:String=anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).constrainedElement->last().oclIsKindOf(DecisionNode) and oclAsType(Constraint).constrainedElement->last().oclAsType(DecisionNode).name.equalsIgnoreCase(aNode.name))->any(true).specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[space/][DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for]
+[for (anInputPin:InputPin |newInputPins)]
+[space/][declareanInputPin(anActivity, anInputPin, anOwner.oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anOwner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode->union(newParameters))/]
+[/for]
+[space/]if ([ch/]) == [aObjectFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space/][retreave(niveau,anActivity,anOwner,aObjectFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[/if]
+[else]
+[if aObjectFlow=anOwner.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ObjectFlow).source.name.equalsIgnoreCase(aNode.name))->last()]
+[space/]else
+[if(anActivity.eAllContents()->filter(Constraint)->select(constrainedElement->asOrderedSet()->includes(aNode))->size()=0)]
+[let ch:String=aNode.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aObjectFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aObjectFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[else]
+[let ch:String=anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).constrainedElement->last().oclIsKindOf(DecisionNode) and oclAsType(Constraint).constrainedElement->last().oclAsType(DecisionNode).name.equalsIgnoreCase(aNode.name))->any(true).specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aObjectFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aObjectFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[/if]
+[space+'     '/]else
+[space+'     '/]disp('Unhandled situation');
+[else]
+[space/]else 
+[if(anActivity.eAllContents()->filter(Constraint)->select(constrainedElement->asOrderedSet()->includes(aNode))->size()=0)]
+[let ch:String=aNode.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, aNode.name, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aObjectFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aObjectFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[else]
+[let ch:String=anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).constrainedElement->last().oclIsKindOf(DecisionNode) and oclAsType(Constraint).constrainedElement->last().oclAsType(DecisionNode).name.equalsIgnoreCase(aNode.name))->any(true).specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[space+'     '/]if ([ch/]) == [aObjectFlow.name.replace('yes', 'true').replace('no', 'false')/] 
+[space+'     '/][retreave(niveau,anActivity,anOwner,aObjectFlow.target,'DecisionNode','',space+'     ',allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/let]
+[/let]
+[/let]
+[/if]
+[/if]
+[/if]
+[/for]
+
+
+
+[let savspace:String =space]
+[for(aControlFlow:ControlFlow |anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name))->excluding(anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name))->any(true)))]
+[let space:String = space+'     ']
+[space/]end
+[/let]
+[/for]
+
+
+[for(anObjectFlow:ObjectFlow |anOwner.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ObjectFlow).source.name.equalsIgnoreCase(aNode.name))->excluding(anOwner.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(DecisionNode) and oclAsType(ObjectFlow).source.name.equalsIgnoreCase(aNode.name))->any(true)))]
+[let space:String = space+'     ']
+[space/]end
+[/let]
+[/for]
+[savspace/]end
+[/let]
+[/template]
+
+[template public centralBufferNodeRule(niveau : Integer,anActivity : Activity, anOwner:OclAny, aNode : ActivityNode,formule : String ,space:String,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode))]
+[let ch:String = aNode.name.concat(' = ').concat(formule).concat(';')]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch.replace(aNode.name, ''), allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)= if anOwner.oclIsKindOf(ExpansionRegion) then inputPinToBedeclared(anActivity,anOwner.oclAsType(ExpansionRegion),ch.replace(aNode.name, ''),allInputPin,declaredInputPin) else emptyListInputPin(anActivity) endif]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for]
+[for (anInputPin:InputPin |newInputPins)]
+[declareanInputPin(anActivity, anInputPin, anOwner.oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anOwner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode->union(newParameters))/]
+[/for]
+
+[ch/] %CentralBuffer
+
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(CentralBufferNode) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name)))]
+[retreave(niveau,anActivity,anOwner,aControlFlow.target,'centralBufferNode','',space,allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/for]
+[for ( anObjectFlow : ObjectFlow   | anOwner.eAllContents()->filter(ObjectFlow )->select(oclAsType(ObjectFlow ).source.oclIsKindOf(CentralBufferNode) and oclAsType(ObjectFlow ).source.name.equalsIgnoreCase(aNode.name)))]
+[retreave(niveau,anActivity,anOwner,anObjectFlow.target,'centralBufferNode','',space,allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin->union(newInputPins),allExpansionNode,declaredExpansionNode)/]
+[/for]
+[/let]
+[/let]
+[/let]
+[/template]
+
+[template public actionRule(niveau:Integer,anActivity : Activity,anOwner:OclAny, aNode : ActivityNode, aCallerType:String,space:String,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode))]
+
+[for ( aSteriotype :   Stereotype  | aNode.getAppliedStereotypes())]
+
+
+[if (aSteriotype.name.equalsIgnoreCase('calculate'))]
+
+
+[for ( aConstraint : Constraint  | anOwner.eAllContents()->filter(Constraint))]
+[for ( temp : String  | aConstraint.constrainedElement->filter(Action).name)]
+[if (aNode.name.equalsIgnoreCase(temp))]
+
+[if((anOwner.eAllContents()->filter(ObjectFlow)->select(source.oclIsTypeOf(OutputPin))->select(oclAsType(ObjectFlow).source.oclAsType(OutputPin).owner.toString().equalsIgnoreCase(aNode.toString()))->size()=0) and (anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.toString().equalsIgnoreCase(aNode.toString()))->size()=0))]
+[let ch:String=aConstraint.specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[let newInputPins:Sequence(InputPin)=  inputPinToBedeclared(anActivity,aNode.owner.oclAsType(ExpansionRegion),ch,allInputPin,declaredInputPin) ]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for]
+[for (anInputPin:InputPin |newInputPins)]
+[declareanInputPin(anActivity, anInputPin, anInputPin.owner.oclAsType(ExpansionRegion).eAllContents()->filter(ExpansionNode)->any(true), anInputPin.owner.oclAsType(ExpansionRegion),allAcitivityParameterNode,declaredParameterNode->union(newParameters))/]
+[/for]
+acc_[niveau/]=acc_[niveau/] + [ch/];
+
+[/let]
+[/let]
+[/let]
+[else]
+[for ( anObjectFlow: ObjectFlow  | anOwner.eAllContents()->filter(ObjectFlow)->select(source.oclIsTypeOf(OutputPin)))]
+[if anObjectFlow.source.oclAsType(OutputPin).owner.toString().equalsIgnoreCase(aNode.toString())]
+[retreave(niveau,anActivity,anOwner,anObjectFlow.target,'Action',aConstraint.specification.stringValue(),space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[/for]
+[/if]
+[/if]
+[/for]
+[/for]
+
+
+
+[/if]
+
+
+
+
+
+[if (aSteriotype.name.equalsIgnoreCase('update'))]
+[let a:String=aNode.getValue(aNode.getAppliedStereotype('CTIE_Profile_Final::update'), 'variable_to_update').oclAsType(String).toString()]
+[let b:String=aNode.getValue(aNode.getAppliedStereotype('CTIE_Profile_Final::update'), 'value').oclAsType(String).toString()]
+[a/]=[b/]; % Update
+[/let]
+[/let]
+
+[for ( aControlFlow : ControlFlow  | anOwner.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(Action) and oclAsType(ControlFlow).source.name.equalsIgnoreCase(aNode.name)))]
+[retreave(niveau,anActivity,anOwner,aControlFlow.target,'Action','',space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/for]
+
+[for ( anObjectFlow: ObjectFlow  | anOwner.eAllContents()->filter(ObjectFlow)->select(source.oclIsTypeOf(OutputPin)))]
+[if anObjectFlow.source.oclAsType(OutputPin).owner.toString().equalsIgnoreCase(aNode.toString())]
+[retreave(niveau,anActivity,anOwner,anObjectFlow.target,'Action','',space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[/for]
+
+
+[/if]
+
+
+
+[/for]				
+[/template]
+
+
+[template public expansionRegionRule(niveau:Integer, anActivity : Activity, anExpansionRegion:ExpansionRegion,space:String,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode))]
+
+[for ( aSteriotype :   Stereotype  | anExpansionRegion.getAppliedStereotypes())]
+[if (aSteriotype.name.equalsIgnoreCase('cumulative') )]
+acc_[niveau/]=0; %INIT
+[/if]
+[/for]
+
+[for (anExpansionNode : ExpansionNode  | anActivity.eAllContents()->filter(ExpansionNode)->select(owner.toString().equalsIgnoreCase(anExpansionRegion.toString())))]
+[for (anObjectFlow : ObjectFlow  | anActivity.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).target.oclIsKindOf(ExpansionNode) and oclAsType(ObjectFlow).target.name.equalsIgnoreCase(anExpansionNode.name)))]
+[let ch:String=anObjectFlow.source.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for] 
+
+[let newExpansionNodes:Sequence(ExpansionNode)=if (niveau <2) then emptyListExpansionNode(anActivity) else anExpansionRegion.eAllContents()->filter(ExpansionNode) endif]
+[if niveau>1]
+[for(anExpansionNode:ExpansionNode | newExpansionNodes)]
+
+[declareanExpansionNode(anObjectFlow.source.oclAsType(ExpansionNode))/]
+
+[/for] 
+[/if]
+for i_[niveau/]=1:length([ch/])
+[anObjectFlow.target.name/]=[anObjectFlow.source.name/](i_[niveau/]);
+[StartingNodesForExpansionRegion(niveau,anActivity,anExpansionRegion,allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin->union(anExpansionRegion.eAllContents()->filter(InputPin)->select(oclAsType(InputPin).name.oclIsUndefined() = false)),declaredInputPin,allExpansionNode->union(newExpansionNodes->including(anObjectFlow.source.name.oclAsType(ExpansionNode))),declaredExpansionNode->union(newExpansionNodes->including(anObjectFlow.source.name.oclAsType(ExpansionNode))))/]
+
+[/let]
+[/let]
+[/let]
+[/for]
+[/for]
+end
+[for ( aSteriotype :   Stereotype  | anExpansionRegion.getAppliedStereotypes())]
+[if (aSteriotype.name.equalsIgnoreCase('cumulative') )]
+[let anOutput:OutputPin=anExpansionRegion.eAllContents()->filter(OutputPin)->select(name.oclIsUndefined()=false and type.oclIsUndefined()=false)->any(true)]
+[anOutput.name/]=acc_[niveau/];
+[/let]
+[/if]
+[/for]
+
+[let anOutputPin:OutputPin =anExpansionRegion.eAllContents()->select(oclIsKindOf(OutputPin) and (not oclAsType(OutputPin).name.oclIsUndefined()) and (not oclAsType(OutputPin).type.oclIsUndefined()))->any(true).oclAsType(OutputPin)]
+[let anExpansionNode:ExpansionNode = anExpansionRegion.eAllContents()->filter(ExpansionNode)->any(true)]
+[let anActivityParameterNode:ActivityParameterNode = anActivity.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).target.oclIsKindOf(ExpansionNode) and oclAsType(ObjectFlow).target=anExpansionNode)->any(true).oclAsType(ObjectFlow).source]
+[let ch:String=anActivityParameterNode.name]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+
+[for ( anOutputPin:OutputPin | anExpansionRegion.eAllContents()->filter(OutputPin)->select(not oclAsType(OutputPin).name.oclIsUndefined()))]
+[for (anObjectFlow:ObjectFlow | anActivity.eAllContents()->filter(ObjectFlow)->select(oclAsType(ObjectFlow).source.oclIsKindOf(OutputPin) and oclAsType(ObjectFlow).source.oclAsType(OutputPin).toString().equalsIgnoreCase(anOutputPin.toString())) )]
+[retreave(niveau-1,anActivity, anActivity, anObjectFlow.target,'ExpansionRegion','',space,allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/for]
+[/for]
+[for ( anOutputPin:OutputPin | anExpansionRegion.eAllContents()->filter(OutputPin)->select(not oclAsType(OutputPin).name.oclIsUndefined()))]
+[for (aControlFlow:ControlFlow | anActivity.eAllContents()->filter(ControlFlow)->select(oclAsType(ControlFlow).source.oclIsKindOf(OutputPin) and oclAsType(ControlFlow).source.oclAsType(OutputPin).toString().equalsIgnoreCase(anOutputPin.toString())) )]
+[retreave(niveau-1,anActivity, anActivity, aControlFlow.target,'ExpansionRegion','',space,allAcitivityParameterNode,declaredParameterNode->union(newParameters),allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/for]
+[/for]
+[/let]
+[/let]
+[/let]
+[/let]
+[/let]
+[/template]
+
+
+[template public flowFinalNodeRule(niveau:Integer,anActivity : Activity, anExpansionRegion:OclAny, aNode : ActivityNode)]
+acc_[niveau/]=acc_[niveau/] + 0
+[/template]
+
+[template public inputPinRule(niveau:Integer,anActivity : Activity, anOwner:OclAny, anInputPin : InputPin, aCallerType:String, space:String,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode))]
+[retreave(niveau,anActivity,anOwner,anInputPin.owner.oclAsType(ActivityNode),aCallerType,'',space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/template]
+
+
+[template public mergeNodeRule(niveau:Integer, anActivity : Activity, anOwner:OclAny, aMergeNode : MergeNode, aCallerType:String, space:String,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode),allInputPin:Sequence(InputPin),declaredInputPin:Sequence(InputPin),allExpansionNode:Sequence(ExpansionNode),declaredExpansionNode:Sequence(ExpansionNode))]
+
+[for ( anObjectFlow: ObjectFlow  | anActivity.eAllContents()->filter(ObjectFlow)->select(source.oclIsTypeOf(MergeNode)))]
+[if anObjectFlow.source=aMergeNode]
+[retreave(niveau,anActivity,anActivity,anObjectFlow.target,'MergeNode','',space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode)/]
+[/if]
+[/for]
+
+[for ( aControlFlow: ControlFlow  | anActivity.eAllContents()->filter(ControlFlow)->select(source.oclIsTypeOf(MergeNode)))]
+[if aControlFlow.source=aMergeNode]
+[retreave(niveau,anActivity,anActivity,aControlFlow.target,'MergeNode','',space,allAcitivityParameterNode,declaredParameterNode,allInputPin,declaredInputPin,allExpansionNode,declaredExpansionNode	)/]
+[/if]
+[/for]
+[/template]
+
+[template public OutputPinRule(formule:String )]
+[formule/]
+[/template]
+
+[query public emptyListActivityParrameterNode(arg0 : Activity) : Sequence(ActivityParameterNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'emptyListActivityParrameterNode(org.eclipse.uml2.uml.Activity)', Sequence{arg0}) /]
+
+[query public emptyListInputPin(arg0 : Activity) : Sequence(InputPin)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'emptyListInputPin(org.eclipse.uml2.uml.Activity)', Sequence{arg0}) /]
+
+[query public emptyListExpansionNode(arg0 : Activity) : Sequence(ExpansionNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'emptyListExpansionNode(org.eclipse.uml2.uml.Activity)', Sequence{arg0}) /]

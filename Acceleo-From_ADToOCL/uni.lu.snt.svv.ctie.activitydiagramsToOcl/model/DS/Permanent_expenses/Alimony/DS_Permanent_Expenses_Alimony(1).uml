@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325 CTIE_Profile_Final.profile.uml#_lo9WtJo_EeOXzvVK2MY5wA">
+  <uml:Package xmi:id="_lohUwZo_EeOXzvVK2MY5wA" name="DS_for_Permanent_Expenses_Alimony(1)">
+    <packageImport xmi:id="_lohUwpo_EeOXzvVK2MY5wA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_lohUw5o_EeOXzvVK2MY5wA" name="DS_for_Permanent_Expenses_Alimony">
+      <ownedComment xmi:id="_lohUxJo_EeOXzvVK2MY5wA" annotatedElement="_lohVL5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>income.expenses-&amp;gt; select(e:Expense | e.oclIsTypeOf(Permanent_Expenses) and e.category =  Category_of_Permanent_Expense::ALIMONY and &lt;/p>&lt;p>e.year_expense_was_incurred_in = taxation_year and e.agteement_for_alimony =true)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUxZo_EeOXzvVK2MY5wA" annotatedElement="_lohVNJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>self.is_separated_from(permanent_expenses_alimony_with_agreement)&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUxpo_EeOXzvVK2MY5wA" annotatedElement="_lohVH5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>permanent_expenses_alimony_with_agreement-&amp;gt;size()&amp;gt;0&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUx5o_EeOXzvVK2MY5wA" annotatedElement="_lohVHZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>permanent_expenses_alimony_with_agreement.declared_amount-&amp;gt;sum()&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUyJo_EeOXzvVK2MY5wA" annotatedElement="_lohVIZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>income.tax_liability&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUyZo_EeOXzvVK2MY5wA" annotatedElement="_lohU35o_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Source: &lt;/b>Art. 109bis Income Tax Law (2013)&lt;/p>&lt;p>&lt;b>&lt;/b>&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUypo_EeOXzvVK2MY5wA">
+        <body>&lt;p>permanent_expense.benificiary&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUy5o_EeOXzvVK2MY5wA" annotatedElement="_lohVN5o_EeOXzvVK2MY5wA">
+        <body>&lt;p>&lt;b>Agent&amp;nbsp;type: &lt;/b>officer &lt;/p>&lt;p>&lt;b>Question: &lt;/b>Which year needs to be checked?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUzJo_EeOXzvVK2MY5wA" annotatedElement="_lohVKJo_EeOXzvVK2MY5wA">
+        <body>&lt;p>income.getDeductionForDSPermanentAlimonyExpenses(taxation_year).deduced_amount&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_lohUzZo_EeOXzvVK2MY5wA" annotatedElement="_lohVOZo_EeOXzvVK2MY5wA">
+        <body>&lt;p>self.incomes-&amp;gt;select(income: Income | income.year = taxation_year)&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_lohUzpo_EeOXzvVK2MY5wA" name="fromrecord_permanent_expenses_alimony_with_agreement" constrainedElement="_lohUw5o_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohUz5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>income.expenses-> select(e:Expense | e.oclIsTypeOf(Permanent_Expenses) and e.category =  Category_of_Permanent_Expense::ALIMONY and e.year_expense_was_incurred_in = taxation_year and e.agteement_for_alimony =true)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_lohU0Jo_EeOXzvVK2MY5wA" name="fromrecored_tax_payer_is_divorced_DS" constrainedElement="_lohUw5o_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU0Zo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.is_separated_from(permanent_expenses_alimony_with_agreement)</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_lohU0po_EeOXzvVK2MY5wA" name="fromrecord_is_there_any_agreement_for_alimony_DS" constrainedElement="_lohUw5o_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU05o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>permanent_expenses_alimony_with_agreement->size()>0</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_lohU1Jo_EeOXzvVK2MY5wA" name="fromrecord_alimony_paid" constrainedElement="_lohUw5o_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU1Zo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>permanent_expenses_alimony_with_agreement.declared_amount->sum()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_lohU1po_EeOXzvVK2MY5wA" name="fromrecord_tax_liability_DS" constrainedElement="_lohUw5o_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU15o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>income.tax_liability</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_lohU2Jo_EeOXzvVK2MY5wA" name="fromrecord_actual_deduction" constrainedElement="_lohUw5o_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU2Zo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>income.getDeductionForDSPermanentAlimonyExpenses(taxation_year).deduced_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_lohU2po_EeOXzvVK2MY5wA" name="fromrecord_incomes" constrainedElement="_lohUw5o_EeOXzvVK2MY5wA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU25o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body>self.incomes->select(income: Income | income.year = taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_lohU3Jo_EeOXzvVK2MY5wA" name="Parameter7">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYsJo_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_lohU3Zo_EeOXzvVK2MY5wA" name="Parameter3">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYoJo_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_lohU3po_EeOXzvVK2MY5wA" name="Parameter1">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYpJo_EeOXzvVK2MY5wA"/>
+      </ownedParameter>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_lohU35o_EeOXzvVK2MY5wA" name="maximum_flat_rate_for_alimony" parameter="_lohU3Jo_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohU4Jo_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ExpansionRegion" xmi:id="_lohU4Zo_EeOXzvVK2MY5wA" name="Permanent expense for alimony per income" incoming="_lohVO5o_EeOXzvVK2MY5wA" inputElement="_lohVLZo_EeOXzvVK2MY5wA">
+        <ownedComment xmi:id="_lohU4po_EeOXzvVK2MY5wA">
+          <body>&lt;p>0.5&amp;nbsp;*&amp;nbsp;alimoney_paid&amp;nbsp;*&amp;nbsp;tax_liability&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_lohU45o_EeOXzvVK2MY5wA" annotatedElement="_lohUw5o_EeOXzvVK2MY5wA _lohVGJo_EeOXzvVK2MY5wA">
+          <body>&lt;p>tax_liability&amp;nbsp;*&amp;nbsp;alimony_paid&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_lohU5Jo_EeOXzvVK2MY5wA" annotatedElement="_lohUw5o_EeOXzvVK2MY5wA _lohVFZo_EeOXzvVK2MY5wA">
+          <body>&lt;p>tax_liability&amp;nbsp;*&amp;nbsp;maximum_flat_rate_for_alimony&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_lohU5Zo_EeOXzvVK2MY5wA" annotatedElement="_lohU4Zo_EeOXzvVK2MY5wA _lohVI5o_EeOXzvVK2MY5wA">
+          <body>&lt;p>0&lt;/p></body>
+        </ownedComment>
+        <ownedComment xmi:id="_lohU5po_EeOXzvVK2MY5wA" annotatedElement="_lohVKpo_EeOXzvVK2MY5wA">
+          <body>&lt;p>actual_deduction = expected_deduction&lt;/p></body>
+        </ownedComment>
+        <localPrecondition xmi:id="_lohU55o_EeOXzvVK2MY5wA" name="constraint_type_DS">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU6Jo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>permanent_expense.category</body>
+          </specification>
+        </localPrecondition>
+        <ownedRule xmi:id="_lohU6Zo_EeOXzvVK2MY5wA" name="formula_for_debt" constrainedElement="_lohU4Zo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU6po_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>0.5 * alimoney_paid * tax_liability</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_lohU65o_EeOXzvVK2MY5wA" name="formula_for_zero" constrainedElement="_lohU4Zo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU7Jo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>0</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_lohU7Zo_EeOXzvVK2MY5wA" name="formula_for_high_alimony" constrainedElement="_lohU4Zo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU7po_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>tax_liability * maximum_flat_rate_for_alimony</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_lohU75o_EeOXzvVK2MY5wA" name="formula_for_low_alimony" constrainedElement="_lohU4Zo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU8Jo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>tax_liability * alimony_paid</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_lohU8Zo_EeOXzvVK2MY5wA" name="assert_check_validity_1" constrainedElement="_lohU4Zo_EeOXzvVK2MY5wA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_lohU8po_EeOXzvVK2MY5wA">
+            <language></language>
+            <body>actual_deduction = expected_deduction</body>
+          </specification>
+        </ownedRule>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_lohU85o_EeOXzvVK2MY5wA" name="yes" source="_lohVHJo_EeOXzvVK2MY5wA" target="_lohVGJo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohU9Jo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohU9Zo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_lohU9po_EeOXzvVK2MY5wA" name="no" source="_lohVHJo_EeOXzvVK2MY5wA" target="_lohVFZo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohU95o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohU-Jo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_lohU-Zo_EeOXzvVK2MY5wA" name="no" source="_lohVG5o_EeOXzvVK2MY5wA" target="_lohVI5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohU-po_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohU-5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_lohU_Jo_EeOXzvVK2MY5wA" source="_lohVJJo_EeOXzvVK2MY5wA" target="_lohVJpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohU_Zo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohU_po_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_lohU_5o_EeOXzvVK2MY5wA" source="_lohVFpo_EeOXzvVK2MY5wA" target="_lohVJpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVAJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVAZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_lohVApo_EeOXzvVK2MY5wA" source="_lohVGZo_EeOXzvVK2MY5wA" target="_lohVJpo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVA5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVBJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ObjectFlow" xmi:id="_lohVBZo_EeOXzvVK2MY5wA" source="_lohVJpo_EeOXzvVK2MY5wA" target="_lohVK5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVBpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVB5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_lohVCJo_EeOXzvVK2MY5wA" source="_lohVFJo_EeOXzvVK2MY5wA" target="_lohVG5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVCZo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVCpo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_lohVC5o_EeOXzvVK2MY5wA" name="yes" source="_lohVG5o_EeOXzvVK2MY5wA" target="_lohVM5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVDJo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVDZo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_lohVDpo_EeOXzvVK2MY5wA" name="no" source="_lohVM5o_EeOXzvVK2MY5wA" target="_lohVI5o_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVD5o_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVEJo_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_lohVEZo_EeOXzvVK2MY5wA" name="yes" source="_lohVM5o_EeOXzvVK2MY5wA" target="_lohVHJo_EeOXzvVK2MY5wA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVEpo_EeOXzvVK2MY5wA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVE5o_EeOXzvVK2MY5wA" value="1"/>
+        </edge>
+        <node xmi:type="uml:InitialNode" xmi:id="_lohVFJo_EeOXzvVK2MY5wA" outgoing="_lohVCJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_lohVFZo_EeOXzvVK2MY5wA" name="Calculate deductible amount for high alimony" incoming="_lohU9po_EeOXzvVK2MY5wA">
+          <outputValue xmi:id="_lohVFpo_EeOXzvVK2MY5wA" outgoing="_lohU_5o_EeOXzvVK2MY5wA">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVF5o_EeOXzvVK2MY5wA" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_lohVGJo_EeOXzvVK2MY5wA" name="Calculate deductible amount for low alimony" incoming="_lohU85o_EeOXzvVK2MY5wA">
+          <outputValue xmi:id="_lohVGZo_EeOXzvVK2MY5wA" outgoing="_lohVApo_EeOXzvVK2MY5wA">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVGpo_EeOXzvVK2MY5wA" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_lohVG5o_EeOXzvVK2MY5wA" name="tax_payer_is_divorced " outgoing="_lohU-Zo_EeOXzvVK2MY5wA _lohVC5o_EeOXzvVK2MY5wA" incoming="_lohVCJo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_lohVHJo_EeOXzvVK2MY5wA" name="alimony_paid &lt; maximum_flat_rate_for_alimony" outgoing="_lohU85o_EeOXzvVK2MY5wA _lohU9po_EeOXzvVK2MY5wA" incoming="_lohVEZo_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_lohVHZo_EeOXzvVK2MY5wA" name="alimony_paid">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVHpo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_lohVH5o_EeOXzvVK2MY5wA" name="is_there_any_agreement_for_alimony">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYmJo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVIJo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_lohVIZo_EeOXzvVK2MY5wA" name="tax_liability">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYmpo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVIpo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_lohVI5o_EeOXzvVK2MY5wA" name="Calculate zero deduction" incoming="_lohU-Zo_EeOXzvVK2MY5wA _lohVDpo_EeOXzvVK2MY5wA">
+          <outputValue xmi:id="_lohVJJo_EeOXzvVK2MY5wA" outgoing="_lohU_Jo_EeOXzvVK2MY5wA">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVJZo_EeOXzvVK2MY5wA" value="1"/>
+          </outputValue>
+        </node>
+        <node xmi:type="uml:CentralBufferNode" xmi:id="_lohVJpo_EeOXzvVK2MY5wA" name="expected_deduction" outgoing="_lohVBZo_EeOXzvVK2MY5wA" incoming="_lohU_Jo_EeOXzvVK2MY5wA _lohU_5o_EeOXzvVK2MY5wA _lohVApo_EeOXzvVK2MY5wA">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVJ5o_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_lohVKJo_EeOXzvVK2MY5wA" name="actual_deduction">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVKZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_lohVKpo_EeOXzvVK2MY5wA" name="Check correctness of permanent expenses">
+          <inputValue xmi:id="_lohVK5o_EeOXzvVK2MY5wA" incoming="_lohVBZo_EeOXzvVK2MY5wA">
+            <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYnJo_EeOXzvVK2MY5wA"/>
+            <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVLJo_EeOXzvVK2MY5wA" value="1"/>
+          </inputValue>
+        </node>
+        <node xmi:type="uml:ExpansionNode" xmi:id="_lohVLZo_EeOXzvVK2MY5wA" name="income" incoming="_lohVPpo_EeOXzvVK2MY5wA" regionAsInput="_lohU4Zo_EeOXzvVK2MY5wA">
+          <type xmi:type="uml:Class" href="TaxCard.uml#_loh8QJo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVLpo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_lohVL5o_EeOXzvVK2MY5wA" name="permanent_expenses_alimony_with_agreement">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYtJo_EeOXzvVK2MY5wA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVMJo_EeOXzvVK2MY5wA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lohVMZo_EeOXzvVK2MY5wA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lohVMpo_EeOXzvVK2MY5wA"/>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_lohVM5o_EeOXzvVK2MY5wA" name="is_there_any_agreement_for_alimony" outgoing="_lohVDpo_EeOXzvVK2MY5wA _lohVEZo_EeOXzvVK2MY5wA" incoming="_lohVC5o_EeOXzvVK2MY5wA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_lohVNJo_EeOXzvVK2MY5wA" name="tax_payer_is_divorced">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVNZo_EeOXzvVK2MY5wA" value="1"/>
+        </node>
+      </node>
+      <node xmi:type="uml:InitialNode" xmi:id="_lohVNpo_EeOXzvVK2MY5wA" outgoing="_lohVO5o_EeOXzvVK2MY5wA"/>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_lohVN5o_EeOXzvVK2MY5wA" name="taxation_year" parameter="_lohU3Zo_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYoJo_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVOJo_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_lohVOZo_EeOXzvVK2MY5wA" name="incomes" outgoing="_lohVPpo_EeOXzvVK2MY5wA" parameter="_lohU3po_EeOXzvVK2MY5wA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_lphYpJo_EeOXzvVK2MY5wA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_lohVOpo_EeOXzvVK2MY5wA" value="1"/>
+      </node>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_lohVO5o_EeOXzvVK2MY5wA" source="_lohVNpo_EeOXzvVK2MY5wA" target="_lohU4Zo_EeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVPJo_EeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVPZo_EeOXzvVK2MY5wA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_lohVPpo_EeOXzvVK2MY5wA" source="_lohVOZo_EeOXzvVK2MY5wA" target="_lohVLZo_EeOXzvVK2MY5wA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_lohVP5o_EeOXzvVK2MY5wA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_lohVQJo_EeOXzvVK2MY5wA" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_lohVQZo_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_lohVQpo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_lohVQ5o_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_lohVRJo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_lplDb5o_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_lplDbZo_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_lohVRZo_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_lohVRpo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_logEzJo_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_logEypo_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_lohVR5o_EeOXzvVK2MY5wA">
+      <eAnnotations xmi:id="_lohVSJo_EeOXzvVK2MY5wA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_lo9WtJo_EeOXzvVK2MY5wA"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_lo9Wspo_EeOXzvVK2MY5wA"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:context xmi:id="_loh38Jo_EeOXzvVK2MY5wA" context_class="TaxPayer" base_Activity="_lohUw5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromlaw xmi:id="_loh38Zo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_lohU35o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh38po_EeOXzvVK2MY5wA" base_ActivityParameterNode="_lohU35o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_loh385o_EeOXzvVK2MY5wA" base_ActivityParameterNode="_lohVN5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh39Jo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_lohVN5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:iterative xmi:id="_loh39Zo_EeOXzvVK2MY5wA" base_ExpansionRegion="_lohU4Zo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_loh39po_EeOXzvVK2MY5wA" base_Pin="_lohVHZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh395o_EeOXzvVK2MY5wA" base_Pin="_lohVHZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_loh3-Jo_EeOXzvVK2MY5wA" base_Pin="_lohVIZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh3-Zo_EeOXzvVK2MY5wA" base_Pin="_lohVIZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_loh3-po_EeOXzvVK2MY5wA" base_Pin="_lohVH5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh3-5o_EeOXzvVK2MY5wA" base_Pin="_lohVH5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh3_Jo_EeOXzvVK2MY5wA" agent_role="OFFICER" question="Which year needs to be checked?" source="" base_Comment="_lohUy5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh3_Zo_EeOXzvVK2MY5wA" question="" source="Art. 109bis Income Tax Law (2013)" value_type="FIXED_VALUE" base_Comment="_lohUyZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh3_po_EeOXzvVK2MY5wA" constraint="_lohUzpo_EeOXzvVK2MY5wA" base_Comment="_lohUxJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh3_5o_EeOXzvVK2MY5wA" constraint="_lohU0Jo_EeOXzvVK2MY5wA" base_Comment="_lohUxZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh4AJo_EeOXzvVK2MY5wA" constraint="_lohU1Jo_EeOXzvVK2MY5wA" base_Comment="_lohUx5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh4AZo_EeOXzvVK2MY5wA" base_Comment="_lohUypo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh4Apo_EeOXzvVK2MY5wA" constraint="_lohU1po_EeOXzvVK2MY5wA" base_Comment="_lohUyJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh4A5o_EeOXzvVK2MY5wA" constraint="_lohU0po_EeOXzvVK2MY5wA" base_Comment="_lohUxpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_loh4BJo_EeOXzvVK2MY5wA" constraint="_lohU6Zo_EeOXzvVK2MY5wA" base_Comment="_lohU4po_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_loh4BZo_EeOXzvVK2MY5wA" constraint="_lohU7Zo_EeOXzvVK2MY5wA" base_Comment="_lohU5Jo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_loh4Bpo_EeOXzvVK2MY5wA" constraint="_lohU75o_EeOXzvVK2MY5wA" base_Comment="_lohU45o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:formula xmi:id="_loh4B5o_EeOXzvVK2MY5wA" constraint="_lohU65o_EeOXzvVK2MY5wA" base_Comment="_lohU5Zo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_loh4CJo_EeOXzvVK2MY5wA" base_OpaqueAction="_lohVFZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_loh4CZo_EeOXzvVK2MY5wA" base_OpaqueAction="_lohVGJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:calculate xmi:id="_loh4Cpo_EeOXzvVK2MY5wA" base_OpaqueAction="_lohVI5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:intermediate xmi:id="_loh4C5o_EeOXzvVK2MY5wA" base_CentralBufferNode="_lohVJpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_loh4DJo_EeOXzvVK2MY5wA" base_Pin="_lohVKJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh4DZo_EeOXzvVK2MY5wA" base_Pin="_lohVKJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:assert xmi:id="_loh4Dpo_EeOXzvVK2MY5wA" base_OpaqueAction="_lohVKpo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:statement xmi:id="_loh4D5o_EeOXzvVK2MY5wA" constraint="_lohU8Zo_EeOXzvVK2MY5wA" base_Comment="_lohU5po_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh4EJo_EeOXzvVK2MY5wA" constraint="_lohU2Jo_EeOXzvVK2MY5wA" base_Comment="_lohUzJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_loh4EZo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_lohVOZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh4Epo_EeOXzvVK2MY5wA" base_ActivityParameterNode="_lohVOZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:query xmi:id="_loh4E5o_EeOXzvVK2MY5wA" constraint="_lohU2po_EeOXzvVK2MY5wA" base_Comment="_lohUzZo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_loh4FJo_EeOXzvVK2MY5wA" base_Pin="_lohVL5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh4FZo_EeOXzvVK2MY5wA" base_Pin="_lohVL5o_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_loh4Fpo_EeOXzvVK2MY5wA" base_Pin="_lohVNJo_EeOXzvVK2MY5wA"/>
+  <CTIE_Profile_Final:in xmi:id="_loh4F5o_EeOXzvVK2MY5wA" base_Pin="_lohVNJo_EeOXzvVK2MY5wA"/>
+</xmi:XMI>

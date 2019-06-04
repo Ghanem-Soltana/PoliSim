@@ -1,0 +1,34 @@
+[comment encoding = UTF-8 /]
+[module MatlabInputPinDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')] 
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::declaration::MatlabActivityParameterNodeDeclaration/]
+
+
+[template public declareanInputPin(anActivity : Activity,anInPutPin:InputPin, anExpansionNode : ExpansionNode, anExpansionRegion : ExpansionRegion,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode))]
+
+[for ( aSteriotype :   Stereotype  | anInPutPin.getAppliedStereotypes()->reject(name='in'))]
+		           			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+
+   							[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+							[for ( temp : String  | aComment.annotatedElement.toString())]
+							[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+[anInPutPin.name /] = [anInPutPin.getValue(anInPutPin.getAppliedStereotype('CTIE_Profile_Final::fromlaw'),'value')/] ; % From law 
+							[/if]
+							[/for]
+							[/for]
+
+[for ( aConstraint : Constraint  | anActivity.eAllContents()->filter(Constraint))]
+							[for ( temp : String  | aConstraint.constrainedElement->any(true).toString())]
+							[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+[anInPutPin.name /] = [anInPutPin.getValue(anInPutPin.getAppliedStereotype('CTIE_Profile_Final::fromlaw'),'value')/] ; % From law 
+							[/if]
+							[/for]
+							[/for]
+[else]
+[anInPutPin.name/]=[anExpansionNode.name/].[anInPutPin.name/] ;% We will see later
+                      		[/if]
+[/for]
+
+[/template]
+
+[query public inputPinToBedeclared(anActivity:Activity,arg0 : ExpansionRegion, arg1 : String, arg2 : Sequence(InputPin), arg3 : Sequence(InputPin)) : Sequence(InputPin)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'inputPinToBedeclared(org.eclipse.uml2.uml.Activity,org.eclipse.uml2.uml.ExpansionRegion, java.lang.String, java.util.List, java.util.List)', Sequence{anActivity,arg0, arg1, arg2, arg3}) /]

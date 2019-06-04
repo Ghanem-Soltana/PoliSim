@@ -1,0 +1,76 @@
+[comment encoding = UTF-8 /]
+[module InputPinDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')] 
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::declaration::ActivityParameterNodeDeclaration/]
+
+
+[template public declareanInputPin(anActivity : Activity,anInPutPin:InputPin, anExpansionNode : ExpansionNode, anExpansionRegion : ExpansionRegion,allAcitivityParameterNode:Sequence(ActivityParameterNode),declaredParameterNode:Sequence(ActivityParameterNode))]
+[for ( aSteriotype :   Stereotype  | anInPutPin.getAppliedStereotypes()->reject(name='in'))]
+                 			   [if (aSteriotype.name.equalsIgnoreCase('fromrecord') or aSteriotype.name.equalsIgnoreCase('temp') )]
+
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [let aconstraint:Constraint = 	anActivity.eAllContents()->filter(Constraint)->select(oclAsType(Constraint).name.equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))->first() ]
+[let ch:String=aconstraint.specification.stringValue()]
+[let newParameters:Sequence(ActivityParameterNode)=activityParameterNodeToBedeclared(anActivity, ch, allAcitivityParameterNode, declaredParameterNode)]
+[for(anActivatyParameterNode:ActivityParameterNode | newParameters)]
+[DeclareAnActivityparameterNode(anActivity,anActivatyParameterNode)/]
+[/for]
+[/let]
+[/let]
+
+[if (anInPutPin.upperValue.stringValue().oclIsUndefined())]
+let [anInPutPin.name.concat(':').concat(anInPutPin.type.name).concat(' = ').concat(aconstraint.specification.stringValue())/][if(aComment._body.index('OCL')=-1)] in[/if]
+[else]
+[if(anInPutPin.upperValue.stringValue().endsWith('*'))]
+let [anInPutPin.name.concat(':Set(').concat(anInPutPin.type.name).concat(') = ').concat(aconstraint.specification.stringValue())/][if(aComment._body.index('OCL')=-1)] in[/if]
+[else]
+let [anInPutPin.name.concat(':').concat(anInPutPin.type.name).concat(' = ').concat(aconstraint.specification.stringValue())/][if(aComment._body.index('OCL')=-1)] in[/if]
+[/if]
+[/if]
+
+[if(aComment._body.index('OCL')>-1)]
+/** TRACEABILITY: [aComment._body.substring(aComment._body.index('Source:')).replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').trim()/]  **/ in								
+[/if]						
+ 									
+										[/let]
+										[/let]	
+										[/if]
+								[/for]
+								[/for]
+                         					
+                      		[/if]
+                 			[if (aSteriotype.name.equalsIgnoreCase('fromlaw') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+  						     	[for ( temp : String  | aComment.annotatedElement.toString())]
+								[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+							    [if(aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'value_type').oclAsType(EnumerationLiteral).name.equalsIgnoreCase('LOOKUP_TABLE'))]
+let [anInPutPin.name.concat(':').concat(anInPutPin.type.name).concat(' = ').concat(anExpansionNode.name).concat('.').concat(anInPutPin.name)/]
+								[else]
+let [anInPutPin.name.concat(':').concat(anInPutPin.type.name).concat(' = ').concat('Constant::').concat(anInPutPin.name.toUpper()).concat('.oclAsType(').concat(anInPutPin.type.name).concat(')')/]
+								[/if]
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').trim()/]  **/ in 									
+							[/if]
+								[/for]
+								[/for]
+
+                      		[/if]
+								[if (aSteriotype.name.equalsIgnoreCase('fromagent') )]
+
+   								[for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+					   		[if (anInPutPin.toString().equalsIgnoreCase(temp))]
+let [anInPutPin.name.concat(':').concat(anInPutPin.type.name).concat(' = ').concat(anExpansionNode.name).concat('.').concat(anInPutPin.name)/]
+/** TRACEABILITY: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').trim()/]  **/ in								
+							[/if]
+								[/for]
+								[/for] 
+                      		[/if]
+[/for]
+[/template]
+
+[query public inputPinToBedeclared(anActivity:Activity,arg0 : ExpansionRegion, arg1 : String, arg2 : Sequence(InputPin), arg3 : Sequence(InputPin)) : Sequence(InputPin)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'inputPinToBedeclared(org.eclipse.uml2.uml.Activity,org.eclipse.uml2.uml.ExpansionRegion, java.lang.String, java.util.List, java.util.List)', Sequence{anActivity,arg0, arg1, arg2, arg3}) /]

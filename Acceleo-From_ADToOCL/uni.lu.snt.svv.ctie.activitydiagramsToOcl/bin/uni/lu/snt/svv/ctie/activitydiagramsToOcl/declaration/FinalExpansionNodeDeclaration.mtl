@@ -1,0 +1,31 @@
+[comment encoding = UTF-8 /]
+[module FinalExpansionNodeDeclaration('http://www.eclipse.org/uml2/3.0.0/UML')] 
+[import uni::lu::snt::svv::ctie::activitydiagramsToOcl::declaration::FinalParameterNodeDeclaration/]
+
+
+[template public declareanExpansionNode(anActivity: Activity, anExpansionNode : ExpansionNode)]
+
+
+                        	    [for ( aComment : Comment  | anActivity.eAllContents()->filter(Comment))]
+								[for ( temp : String  | aComment.annotatedElement.toString())]
+										[if (anExpansionNode.toString().equalsIgnoreCase(temp))]
+										[let tempString : String = aComment.getValue(aComment.getAppliedStereotype('CTIE_Profile_Final::query'),'constraint')->asOrderedSet()->last().toString()]
+                                        [for ( aconstraint:Constraint | 	anActivity.eAllContents()->filter(Constraint))]
+                                        [if (aconstraint.name.trim().equalsIgnoreCase(tempString.substring(tempString.index(':')+1, tempString.index(',')-1).trim()))]
+
+let [anExpansionNode.name.concat(':').concat(anExpansionNode.type.name.replace('EInt', 'Integer').replace('EDouble', 'Real').replace('Percentage', 'Real').replace('Numeric', 'Integer').replace('MonetaryValue', 'Real').replace('DistanceUnit', 'Real')).concat(' = ').concat(aconstraint.specification.stringValue())/] in														
+/** Description: [aComment._body.replaceAll('<p >', '').replaceAll('<p>', '').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('</p>', ' - ').replaceAll('&nbsp;', ' ').replaceAll('&gt;', '>').replace('<span style="font-size:8pt;font-family:Tahoma;">', '').replace('</span>','').trim()/]   **/	[/if]
+
+										[/for]
+										[/let]
+										[/if]
+								[/for]
+								[/for]
+                         					
+                   
+
+
+[/template]
+
+[query public expansionNodeToBedeclared(anActivity:Activity,arg0 : ExpansionRegion, arg1 : String, arg2 : Sequence(ExpansionNode), arg3 : Sequence(ExpansionNode)) : Sequence(ExpansionNode)
+	= invoke('uni.lu.snt.svv.ctie.activitydiagramsToOcl.main.Test', 'expansionNodeToBedeclared(org.eclipse.uml2.uml.Activity,org.eclipse.uml2.uml.ExpansionRegion, java.lang.String, java.util.List, java.util.List)', Sequence{anActivity,arg0, arg1, arg2, arg3}) /]

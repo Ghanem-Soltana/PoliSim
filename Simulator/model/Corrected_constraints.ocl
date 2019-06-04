@@ -1,0 +1,89 @@
+import 'TaxCard.ecore'
+
+/**TaxPayer  constraints**/
+
+package TaxCard
+
+
+/** A constraint sample injected to the profile **/
+context  Tax_Card inv Taxpayer_is_eligible_To_have_a_taxcard:
+ not self.oclIsUndefined() 
+ implies
+ (self.income.income_type.oclIsTypeOf(TaxCard::Employment_Income) or 
+ self.income.income_type.oclIsTypeOf(TaxCard::Pensions_and_Annuities_Income) or
+ self.income.income_type.oclIsTypeOf(TaxCard::Capital_and_Investments_Income) or
+ self.income.income_type.oclIsTypeOf(TaxCard::Directors_Fee))
+ 
+ 
+context Tax_Payer inv Verif_disability: 
+self.disability_percentage>=0 and self.disability_percentage <=1
+	
+context Income inv complete_details: 
+self.details->size()=12 and self.details.month->asOrderedSet()=Set{1,2,3,4,5,6,7,8,9,10,11,12}
+
+context Income_Detail inv Verif_Num: 
+self.amount.oclAsType(Real) >=0 and distance.oclAsType(Real)>=0 and worked_days.oclAsType(Integer) >=0 and worked_days.oclAsType(Integer) <= 25 and month.oclAsType(Integer)>=1 and month.oclAsType(Integer) <=12
+
+/**Legal union constraint **/
+context Legal_Union_Record inv Legal_Union_different_people_constraint:
+if self.end_year.oclIsUndefined() then
+/**LEGAL UNION IS VALID**/
+self.individual_A.SSNo <> self.individual_B.SSNo
+and
+self.individual_A->size()=1 and
+self.individual_B->size()=1
+else
+/**LEGAL UNION IS AUTHORIZED WITH ONLY ONE PERSON**/
+false
+endif
+
+/**Taxpayers constraint **/
+/**Constraint **/
+
+/**Constraint **/
+context Tax_Payer inv NonResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | 
+  fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country<>TaxCard::Country::LU) and
+ self.addresses->exists( hab_add:Address | 
+  hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country<>TaxCard::Country::LU) and
+ self.incomes->exists(inc:TaxCard::Income | inc.oclIsTypeOf(TaxCard::Local_Income))
+implies
+ self.oclIsTypeOf(Non_Resident_Tax_Payer)
+
+/**Constraint **/  
+context Tax_Payer inv ResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | 
+  fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country=TaxCard::Country::LU) or
+ self.addresses->exists( hab_add:Address | 
+  hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country=TaxCard::Country::LU) 
+implies
+ self.oclIsTypeOf(Resident_Tax_Payer) 
+ 
+/**Constraint **/
+context Tax_Payer inv SubjectToIncomeTax_constraint:
+  self.incomes->exists(inc:TaxCard::Income |
+   inc.oclIsTypeOf(TaxCard::Local_Income) or inc.oclIsTypeOf(TaxCard::Foreign_Income))
+implies
+ not self.incomeTax->isEmpty()
+
+/**Constraint **/
+context Tax_Payer inv TaxCard_unique_constraint:
+self.incomes->forAll(income|income.tax_card->select(tc|tc.validity=true)->size() <= 1)
+/**THE INCOME CAN HAVE AT MOST ONE VALID TAX CARD, IF THE CONTRACT HAS ENDED THAN IT IS ZERO VALID**/
+
+
+/**Constraint **/
+context Tax_Card inv Tax_Card_CE_constraint:
+let set_ce : Set(TaxCard::Income_Tax_Deduction) = self.income_Tax_Deduction->select(deduction|deduction.oclIsTypeOf(TaxCard::CE) and deduction.tax_year = self.valid_from_date),
+ ce : TaxCard::CE = set_ce->any(true).oclAsType(TaxCard::CE) in
+ 
+ set_ce->size() = 1 
+implies
+
+self.tax_card_type=TaxCard::Tax_Card_Type::Principal and
+self.deduction_CE_yearly = ce.deductible_amount and
+self.deduction_CE_monthly = ce.deductible_amount/12 and
+self.deduction_CE_daily = self.deduction_CE_monthly/25 
+
+
+endpackage

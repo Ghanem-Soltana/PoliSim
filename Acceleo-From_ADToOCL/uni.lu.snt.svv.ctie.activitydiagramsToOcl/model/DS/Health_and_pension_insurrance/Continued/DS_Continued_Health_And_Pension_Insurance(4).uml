@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CTIE_Profile_Final="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325" xmlns:Default="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CTIE_Profile_Final/_fVAD0HeiEeOevenns9-O-w/325 CTIE_Profile_Final.profile.uml#_bV94337_EeOmEbNUBWBiJA http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2 Default.profile.uml#_bVdiZX7_EeOmEbNUBWBiJA">
+  <uml:Package xmi:id="_bVWMFH7_EeOmEbNUBWBiJA" name="DS_Continued_Health_And_Pension_Insurance(4)">
+    <packageImport xmi:id="_bVWMFX7_EeOmEbNUBWBiJA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Activity" xmi:id="_bVWMFn7_EeOmEbNUBWBiJA" name="DS_Continued_Health_And_Pension_Insurance">
+      <ownedComment xmi:id="_bVWMF37_EeOmEbNUBWBiJA" annotatedElement="_bVWMMn7_EeOmEbNUBWBiJA">
+        <body>&lt;p>income.expenses-&amp;gt; select(e:Expense | e.oclIsTypeOf(Health_and_Pension_Insurance) and e.category = Category_of_Health_and_Pension_Insurances::CONTINUED_HEALTH_AND_PENSION_INSURANCE and e.year_expense_was_incurred_in = taxation_year).declared_amount-&amp;gt;sum()&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_bVWMGH7_EeOmEbNUBWBiJA" annotatedElement="_bVWMJ37_EeOmEbNUBWBiJA">
+        <body>&lt;p >&lt;b>agent: &lt;/b>officer &lt;/p>&lt;p >&lt;b>question: &lt;/b>Which year needs to be checked?&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_bVWMGX7_EeOmEbNUBWBiJA" annotatedElement="_bVWMNH7_EeOmEbNUBWBiJA">
+        <body>&lt;p>income.getDeductionForContinuedHealthAndPensionInsurance(taxation_year).deduced_amount&lt;/p></body>
+      </ownedComment>
+      <ownedComment xmi:id="_bVWMGn7_EeOmEbNUBWBiJA" annotatedElement="_bVWMKX7_EeOmEbNUBWBiJA">
+        <body>&lt;p>self.incomes-&amp;gt;select(income: Income | income.year = taxation_year)&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_bVWMG37_EeOmEbNUBWBiJA" name="fromrecord_sum_continued_health_and_pension_enxpenses" constrainedElement="_bVWMFn7_EeOmEbNUBWBiJA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_bVWMHH7_EeOmEbNUBWBiJA">
+          <language></language>
+          <body>income.expenses-> select(e:Expense | e.oclIsTypeOf(Health_and_Pension_Insurance) and e.category = Category_of_Health_and_Pension_Insurances::CONTINUED_HEALTH_AND_PENSION_INSURANCE and e.year_expense_was_incurred_in = taxation_year).declared_amount->sum()</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_bVWMHX7_EeOmEbNUBWBiJA" name="fromrecord_actual_deduction" constrainedElement="_bVWMFn7_EeOmEbNUBWBiJA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_bVWMHn7_EeOmEbNUBWBiJA">
+          <language></language>
+          <body>income.getDeductionForContinuedHealthAndPensionInsurance(taxation_year).deduced_amount</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_bVWMH37_EeOmEbNUBWBiJA" name="assert_check_continued_deduction" constrainedElement="_bVWMFn7_EeOmEbNUBWBiJA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_bVWMIH7_EeOmEbNUBWBiJA">
+          <language></language>
+          <body>actual_deduction = sum_continued_health_and_pension_expenses</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_bVWMIX7_EeOmEbNUBWBiJA" name="fromrecord_incomes" constrainedElement="_bVWMFn7_EeOmEbNUBWBiJA">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_bVWMIn7_EeOmEbNUBWBiJA">
+          <language></language>
+          <body>self.incomes->select(income: Income | income.year = taxation_year)</body>
+        </specification>
+      </ownedRule>
+      <ownedParameter xmi:id="_bVWMI37_EeOmEbNUBWBiJA" name="Parameter2"/>
+      <ownedParameter xmi:id="_bVWMJH7_EeOmEbNUBWBiJA" name="Parameter1">
+        <type xmi:type="uml:Class" href="TaxCard.uml#_bVZ4bH7_EeOmEbNUBWBiJA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bVWMJX7_EeOmEbNUBWBiJA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bVWMJn7_EeOmEbNUBWBiJA"/>
+      </ownedParameter>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_bVWMJ37_EeOmEbNUBWBiJA" name="taxation_year" parameter="_bVWMI37_EeOmEbNUBWBiJA">
+        <type xmi:type="uml:DataType" href="CTIE_Library.uml#_bVWMiH7_EeOmEbNUBWBiJA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_bVWMKH7_EeOmEbNUBWBiJA" value="1"/>
+      </node>
+      <node xmi:type="uml:ActivityParameterNode" xmi:id="_bVWMKX7_EeOmEbNUBWBiJA" name="incomes" outgoing="_bVWMPH7_EeOmEbNUBWBiJA" parameter="_bVWMJH7_EeOmEbNUBWBiJA">
+        <type xmi:type="uml:Class" href="TaxCard.uml#_bVZ4bH7_EeOmEbNUBWBiJA"/>
+        <upperBound xmi:type="uml:LiteralInteger" xmi:id="_bVWMKn7_EeOmEbNUBWBiJA" value="1"/>
+      </node>
+      <node xmi:type="uml:ExpansionRegion" xmi:id="_bVWMK37_EeOmEbNUBWBiJA" name="Continued_Health_And_Pension_Insurance per income" incoming="_bVWMOX7_EeOmEbNUBWBiJA" inputElement="_bVWMNn7_EeOmEbNUBWBiJA">
+        <ownedComment xmi:id="_bVWMLH7_EeOmEbNUBWBiJA" annotatedElement="_bVWMMH7_EeOmEbNUBWBiJA">
+          <body>&lt;p>actual_deduction = sum_continued_health_and_pension_expenses&lt;/p></body>
+        </ownedComment>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_bVWMLX7_EeOmEbNUBWBiJA" source="_bVWMMX7_EeOmEbNUBWBiJA" target="_bVWMMH7_EeOmEbNUBWBiJA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_bVWMLn7_EeOmEbNUBWBiJA">
+            <language></language>
+            <body></body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_bVWML37_EeOmEbNUBWBiJA" value="1"/>
+        </edge>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_bVWMMH7_EeOmEbNUBWBiJA" name="check continued deduction" incoming="_bVWMLX7_EeOmEbNUBWBiJA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_bVWMMX7_EeOmEbNUBWBiJA" outgoing="_bVWMLX7_EeOmEbNUBWBiJA"/>
+        <node xmi:type="uml:InputPin" xmi:id="_bVWMMn7_EeOmEbNUBWBiJA" name="sum_continued_health_and_pension_expenses">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_bVWMhH7_EeOmEbNUBWBiJA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_bVWMM37_EeOmEbNUBWBiJA" value="1"/>
+        </node>
+        <node xmi:type="uml:InputPin" xmi:id="_bVWMNH7_EeOmEbNUBWBiJA" name="actual_deduction">
+          <type xmi:type="uml:DataType" href="CTIE_Library.uml#_bVWMhH7_EeOmEbNUBWBiJA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_bVWMNX7_EeOmEbNUBWBiJA" value="1"/>
+        </node>
+        <node xmi:type="uml:ExpansionNode" xmi:id="_bVWMNn7_EeOmEbNUBWBiJA" name="income" incoming="_bVWMPH7_EeOmEbNUBWBiJA" regionAsInput="_bVWMK37_EeOmEbNUBWBiJA">
+          <type xmi:type="uml:Class" href="TaxCard.uml#_bVZ4bH7_EeOmEbNUBWBiJA"/>
+          <upperBound xmi:type="uml:LiteralInteger" xmi:id="_bVWMN37_EeOmEbNUBWBiJA" value="1"/>
+        </node>
+      </node>
+      <node xmi:type="uml:InitialNode" xmi:id="_bVWMOH7_EeOmEbNUBWBiJA" outgoing="_bVWMOX7_EeOmEbNUBWBiJA"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_bVWMOX7_EeOmEbNUBWBiJA" source="_bVWMOH7_EeOmEbNUBWBiJA" target="_bVWMK37_EeOmEbNUBWBiJA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_bVWMOn7_EeOmEbNUBWBiJA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_bVWMO37_EeOmEbNUBWBiJA" value="1"/>
+      </edge>
+      <edge xmi:type="uml:ObjectFlow" xmi:id="_bVWMPH7_EeOmEbNUBWBiJA" source="_bVWMKX7_EeOmEbNUBWBiJA" target="_bVWMNn7_EeOmEbNUBWBiJA">
+        <guard xmi:type="uml:OpaqueExpression" xmi:id="_bVWMPX7_EeOmEbNUBWBiJA">
+          <language></language>
+          <body></body>
+        </guard>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_bVWMPn7_EeOmEbNUBWBiJA" value="1"/>
+      </edge>
+    </packagedElement>
+    <profileApplication xmi:id="_bVWMP37_EeOmEbNUBWBiJA">
+      <eAnnotations xmi:id="_bVWMQH7_EeOmEbNUBWBiJA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_bVWMQX7_EeOmEbNUBWBiJA">
+      <eAnnotations xmi:id="_bVWMQn7_EeOmEbNUBWBiJA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Default.profile.uml#_bVdiZX7_EeOmEbNUBWBiJA"/>
+      </eAnnotations>
+      <appliedProfile href="Default.profile.uml#_bVdiY37_EeOmEbNUBWBiJA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_bVWMQ37_EeOmEbNUBWBiJA">
+      <eAnnotations xmi:id="_bVWMRH7_EeOmEbNUBWBiJA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Deployment.profile.uml#_bVc6dX7_EeOmEbNUBWBiJA"/>
+      </eAnnotations>
+      <appliedProfile href="Deployment.profile.uml#_bVc6c37_EeOmEbNUBWBiJA"/>
+    </profileApplication>
+    <profileApplication xmi:id="_bVWMRX7_EeOmEbNUBWBiJA">
+      <eAnnotations xmi:id="_bVWMRn7_EeOmEbNUBWBiJA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CTIE_Profile_Final.profile.uml#_bV94337_EeOmEbNUBWBiJA"/>
+      </eAnnotations>
+      <appliedProfile href="CTIE_Profile_Final.profile.uml#_bV943X7_EeOmEbNUBWBiJA"/>
+    </profileApplication>
+  </uml:Package>
+  <CTIE_Profile_Final:context xmi:id="_bVWMR37_EeOmEbNUBWBiJA" context_class="TaxPayer" base_Activity="_bVWMFn7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:query xmi:id="_bVWMSH7_EeOmEbNUBWBiJA" constraint="_bVWMG37_EeOmEbNUBWBiJA" base_Comment="_bVWMF37_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:fromagent xmi:id="_bVWMSX7_EeOmEbNUBWBiJA" base_ActivityParameterNode="_bVWMJ37_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:in xmi:id="_bVWMSn7_EeOmEbNUBWBiJA" base_ActivityParameterNode="_bVWMJ37_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:query xmi:id="_bVWMS37_EeOmEbNUBWBiJA" agent_role="OFFICER" question="Which year needs to be checked?" base_Comment="_bVWMGH7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:query xmi:id="_bVWMTH7_EeOmEbNUBWBiJA" constraint="_bVWMHX7_EeOmEbNUBWBiJA" base_Comment="_bVWMGX7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:assert xmi:id="_bVWMTX7_EeOmEbNUBWBiJA" base_OpaqueAction="_bVWMMH7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:statement xmi:id="_bVWMTn7_EeOmEbNUBWBiJA" constraint="_bVWMH37_EeOmEbNUBWBiJA" base_Comment="_bVWMLH7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_bVWMT37_EeOmEbNUBWBiJA" base_ActivityParameterNode="_bVWMKX7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:in xmi:id="_bVWMUH7_EeOmEbNUBWBiJA" base_ActivityParameterNode="_bVWMKX7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:query xmi:id="_bVWMUX7_EeOmEbNUBWBiJA" constraint="_bVWMIX7_EeOmEbNUBWBiJA" base_Comment="_bVWMGn7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:iterative xmi:id="_bVWMUn7_EeOmEbNUBWBiJA" base_ExpansionRegion="_bVWMK37_EeOmEbNUBWBiJA"/>
+  <Default:MetaConstraint xmi:id="_bVWMU37_EeOmEbNUBWBiJA" base_Constraint="_bVWMG37_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_bVWMVH7_EeOmEbNUBWBiJA" base_Pin="_bVWMMn7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:in xmi:id="_bVWMVX7_EeOmEbNUBWBiJA" base_Pin="_bVWMMn7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:fromrecord xmi:id="_bVWMVn7_EeOmEbNUBWBiJA" base_Pin="_bVWMNH7_EeOmEbNUBWBiJA"/>
+  <CTIE_Profile_Final:in xmi:id="_bVWMV37_EeOmEbNUBWBiJA" base_Pin="_bVWMNH7_EeOmEbNUBWBiJA"/>
+</xmi:XMI>

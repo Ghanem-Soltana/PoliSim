@@ -1,0 +1,12 @@
+context TaxPayer inv DS_for_Permanent_Expenses_Debt:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: Which year needs to be checked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let debt_expenses:Set(Expense) = income.expenses-> select(e:Expense | e.oclIsTypeOf(Permanent_Expenses) and e.category = Category_of_Permanent_Expense::MISCELLANEOUS_DEBT and e.year_expense_was_incurred_in = taxation_year) in
+let tax_liability:Numeric = income.tax_liability in
+let alimony_paid:MonetaryValue = debt_expenses.declared_amount->sum() in
+let expected_deduction:MonetaryValue = 0.5 * alimony_paid * tax_liability in
+let actual_deduction:MonetaryValue = income.getDeductionForDSPermanentDebtExpenses(taxation_year).deduced_amount in
+actual_deduction = expected_deduction
+)

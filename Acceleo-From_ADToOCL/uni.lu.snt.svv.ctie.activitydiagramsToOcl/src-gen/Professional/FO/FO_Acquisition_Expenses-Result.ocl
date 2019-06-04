@@ -1,0 +1,65 @@
+context TaxPayer inv FO_Acquisition_Expenses:
+let taxation_year:Date = self.taxation_year 
+/** TRACEABILITY: Agent type: officer - Question: When was the request postmarked? - **/ in									
+let incomes:Set(Income) = self.incomes->select(income: Income | income.year = taxation_year) in														
+incomes -> forAll (income:Income|
+let is_eligible_income:Boolean = income.income_type.oclIsTypeOf(EmploymentIncome) or income.income_type.oclIsTypeOf(PensionAndAnnuitiesIncome) or income.income_type.oclIsTypeOf(Rentals_and_Leases) in
+if (is_eligible_income) = false then
+let expected_deduction:MonetaryValue = 0 in
+let actual_deduction:MonetaryValue = income.getDeductionForFO(taxation_year).deduced_amount in
+actual_deduction = expected_deduction
+else
+   if (is_eligible_income) = true then
+     let taxed_jointly:Boolean = self.taxed_jointly in														
+     if (taxed_jointly) = true then
+          if (FO_scheme_type=Type_of_Scheme::REAL_COSTS) = true then
+          let disability_flat_rate_FO:Numeric = income.disability_flat_rate
+          /** TRACEABILITY: Source: Grand-Ducal regulations (2013) - **/ in								
+          let regular_flat_rate_FO:Numeric = income.regular_flat_rate
+          /** TRACEABILITY: Source: Grand-Ducal regulations (2013) - **/ in								
+          let expected_deduction:MonetaryValue = regular_flat_rate_FO + disability_flat_rate_FO in
+          let actual_deduction:MonetaryValue = income.getDeductionForFO(taxation_year).deduced_amount in
+          actual_deduction = expected_deduction
+          else
+             if (FO_scheme_type=Type_of_Scheme::REAL_COSTS) = false then
+             let disability_flat_rate_FO:Numeric = income.disability_flat_rate
+             /** TRACEABILITY: Source: Grand-Ducal regulations (2013) - **/ in								
+             let declared_expenses:MonetaryValue = income.expenses->select(e: Expense | e.oclTypeOf(Miscellaneous_Expense_FO) and e.year_expense_was_incurred_in = taxation_year).declared_amount->sum() in
+             let expected_deduction:MonetaryValue = declared_expenses + disability_flat_rate_FO in
+             let actual_deduction:MonetaryValue = income.getDeductionForFO(taxation_year).deduced_amount in
+             actual_deduction = expected_deduction
+             else
+             false
+             endif
+          endif
+     else
+        if (taxed_jointly) = false then
+             let regular_flat_rate_FO:Numeric = income.regular_flat_rate
+             /** TRACEABILITY: Source: Grand-Ducal regulations (2013) - **/ in								
+             let declared_expenses:MonetaryValue = income.expenses->select(e: Expense | e.oclTypeOf(Miscellaneous_Expense_FO) and e.year_expense_was_incurred_in = taxation_year).declared_amount->sum() in
+             if (declared_expenses >regular_flat_rate_FO) = false then
+             let disability_flat_rate_FO:Numeric = income.disability_flat_rate
+             /** TRACEABILITY: Source: Grand-Ducal regulations (2013) - **/ in								
+             let expected_deduction:MonetaryValue = regular_flat_rate_FO + disability_flat_rate_FO in
+             let actual_deduction:MonetaryValue = income.getDeductionForFO(taxation_year).deduced_amount in
+             actual_deduction = expected_deduction
+             else
+               if (declared_expenses >regular_flat_rate_FO) = true then
+               let disability_flat_rate_FO:Numeric = income.disability_flat_rate
+               /** TRACEABILITY: Source: Grand-Ducal regulations (2013) - **/ in								
+               let expected_deduction:MonetaryValue = declared_expenses + disability_flat_rate_FO in
+               let actual_deduction:MonetaryValue = income.getDeductionForFO(taxation_year).deduced_amount in
+               actual_deduction = expected_deduction
+               else
+               false
+               endif
+             endif
+        else
+        false
+        endif
+     endif
+   else
+   false
+   endif
+endif
+)
