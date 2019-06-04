@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_kFEgAJaZEdunUqiNpqprXQ" name="BankingSystem">
+  <packagedElement xmi:type="uml:Class" xmi:id="_r3rf4Gp8EeGsXo4V_TqDTw" clientDependency="_xIazgG4bEeG6X6Av_tEnng" name="Bank">
+    <ownedAttribute xmi:id="_st4h4G4bEeG6X6Av_tEnng" name="Name" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+    <ownedOperation xmi:id="_ixACAG4bEeG6X6Av_tEnng" name="Operation1">
+      <ownedParameter xmi:id="_Tx_2oG4cEeG6X6Av_tEnng" name="return" direction="return"/>
+      <ownedParameter xmi:id="_SRHdQG4dEeG6X6Av_tEnng" name="Parameter1"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_ax2vQG4dEeG6X6Av_tEnng" name="DoOne">
+      <ownedParameter xmi:id="_cLD94G4dEeG6X6Av_tEnng" name="return" type="_7x8hgG4cEeG6X6Av_tEnng" direction="return"/>
+      <ownedParameter xmi:id="_lUuREG4dEeG6X6Av_tEnng" name="Name" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uGI7gGp8EeGsXo4V_TqDTw" name="Branches">
+    <ownedAttribute xmi:id="_AltA4G4cEeG6X6Av_tEnng" name="Acc" type="_8gh7QG4bEeG6X6Av_tEnng" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AltA4m4cEeG6X6Av_tEnng" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AltA4W4cEeG6X6Av_tEnng" value="5"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_O5iF0HHgEeGdhaU06f4CQg" name="Name" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+    <ownedAttribute xmi:id="_uP0MMHHgEeGdhaU06f4CQg" name="Address" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+    <ownedOperation xmi:id="_xtM5EHHgEeGdhaU06f4CQg" name="Operation1">
+      <ownedParameter xmi:id="_y54HkHHgEeGdhaU06f4CQg" name="p1" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+      <ownedParameter xmi:id="_zU-vMHHgEeGdhaU06f4CQg" name="p2" type="_7x8hgG4cEeG6X6Av_tEnng"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_eT1TIG4bEeG6X6Av_tEnng" name="LinkOne">
+    <ownedOperation xmi:id="_Ou9YEHHhEeGdhaU06f4CQg" name="Facilitate"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vlXsYG4bEeG6X6Av_tEnng" clientDependency="_0XKnc24bEeG6X6Av_tEnng" name="StateBank">
+    <ownedAttribute xmi:id="_OM4tsNGEEeGqS9LLRwTIQQ" name="Region" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+    <interfaceRealization xmi:id="_0XKnc24bEeG6X6Av_tEnng" name="InterfaceRealization1" client="_vlXsYG4bEeG6X6Av_tEnng" supplier="_eT1TIG4bEeG6X6Av_tEnng" contract="_eT1TIG4bEeG6X6Av_tEnng"/>
+    <ownedOperation xmi:id="_IqpFMHHhEeGdhaU06f4CQg" name="Facilititate"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_xIazgG4bEeG6X6Av_tEnng" name="Dependency1" client="_r3rf4Gp8EeGsXo4V_TqDTw" supplier="_vlXsYG4bEeG6X6Av_tEnng"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8gh7QG4bEeG6X6Av_tEnng" name="Accounts">
+    <ownedAttribute xmi:id="_hCOUEHHhEeGdhaU06f4CQg" name="AccNum" type="_7x8hgG4cEeG6X6Av_tEnng"/>
+    <ownedAttribute xmi:id="__SeKAHHiEeGdhaU06f4CQg" name="Name" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+    <ownedOperation xmi:id="_JbscwHHjEeGdhaU06f4CQg" name="operation">
+      <ownedParameter xmi:id="_LhAjcHHjEeGdhaU06f4CQg" name="Amount" type="_7x8hgG4cEeG6X6Av_tEnng"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_7x8hgG4cEeG6X6Av_tEnng" name="Integer"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_a4qKQHHgEeGdhaU06f4CQg" name="String"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_yX7mMHHiEeGdhaU06f4CQg" name="Type">
+    <generalization xmi:id="_5lmGwHHiEeGdhaU06f4CQg" general="_8gh7QG4bEeG6X6Av_tEnng"/>
+    <ownedAttribute xmi:id="_Fw-egHHjEeGdhaU06f4CQg" name="MyType" type="_a4qKQHHgEeGdhaU06f4CQg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_H1Vt8L-KEeGut92W0L7WGw" name="A_&lt;linkOne>_&lt;bank>" memberEnd="_H1Vt8b-KEeGut92W0L7WGw _H1Vt9L-KEeGut92W0L7WGw" navigableOwnedEnd="_H1Vt9L-KEeGut92W0L7WGw">
+    <ownedEnd xmi:id="_H1Vt8b-KEeGut92W0L7WGw" name="linkOne" type="_eT1TIG4bEeG6X6Av_tEnng" association="_H1Vt8L-KEeGut92W0L7WGw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H1Vt87-KEeGut92W0L7WGw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H1Vt8r-KEeGut92W0L7WGw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_H1Vt9L-KEeGut92W0L7WGw" name="bank" type="_r3rf4Gp8EeGsXo4V_TqDTw" association="_H1Vt8L-KEeGut92W0L7WGw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H1Vt9r-KEeGut92W0L7WGw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H1Vt9b-KEeGut92W0L7WGw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_wPWFU7-PEeGut92W0L7WGw" name="A_&lt;bank>_&lt;branches>" memberEnd="_wPWFVL-PEeGut92W0L7WGw _wPWFV7-PEeGut92W0L7WGw" navigableOwnedEnd="_wPWFV7-PEeGut92W0L7WGw">
+    <ownedEnd xmi:id="_wPWFVL-PEeGut92W0L7WGw" name="bank" type="_r3rf4Gp8EeGsXo4V_TqDTw" association="_wPWFU7-PEeGut92W0L7WGw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wPWFVr-PEeGut92W0L7WGw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wPWFVb-PEeGut92W0L7WGw" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_wPWFV7-PEeGut92W0L7WGw" name="branches" type="_uGI7gGp8EeGsXo4V_TqDTw" aggregation="shared" association="_wPWFU7-PEeGut92W0L7WGw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wPWFWb-PEeGut92W0L7WGw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wPWFWL-PEeGut92W0L7WGw" value="10"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_5NEMQL-lEeGigMgJsbI7sg" name="A_&lt;state Bank>_&lt;branches>" memberEnd="_5NEMQb-lEeGigMgJsbI7sg _5NEMRL-lEeGigMgJsbI7sg" navigableOwnedEnd="_5NEMRL-lEeGigMgJsbI7sg">
+    <ownedEnd xmi:id="_5NEMQb-lEeGigMgJsbI7sg" name="state Bank" type="_vlXsYG4bEeG6X6Av_tEnng" association="_5NEMQL-lEeGigMgJsbI7sg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5NEMQ7-lEeGigMgJsbI7sg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5NEMQr-lEeGigMgJsbI7sg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5NEMRL-lEeGigMgJsbI7sg" name="branches" type="_uGI7gGp8EeGsXo4V_TqDTw" association="_5NEMQL-lEeGigMgJsbI7sg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5NEMRr-lEeGigMgJsbI7sg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5NEMRb-lEeGigMgJsbI7sg" value="5"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_FwK78L-wEeGigMgJsbI7sg" name="A_&lt;branches>_&lt;accounts>" memberEnd="_FwK78b-wEeGigMgJsbI7sg _FwK79L-wEeGigMgJsbI7sg" navigableOwnedEnd="_FwK79L-wEeGigMgJsbI7sg">
+    <ownedEnd xmi:id="_FwK78b-wEeGigMgJsbI7sg" name="branches" type="_uGI7gGp8EeGsXo4V_TqDTw" association="_FwK78L-wEeGigMgJsbI7sg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FwK787-wEeGigMgJsbI7sg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FwK78r-wEeGigMgJsbI7sg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_FwK79L-wEeGigMgJsbI7sg" name="accounts" type="_8gh7QG4bEeG6X6Av_tEnng" isUnique="false" aggregation="composite" association="_FwK78L-wEeGigMgJsbI7sg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FwK79r-wEeGigMgJsbI7sg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FwK79b-wEeGigMgJsbI7sg" value="10"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Package>

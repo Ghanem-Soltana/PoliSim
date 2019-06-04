@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.uml.msl.model" version="7.0.0"><feature description="" name="com.ibm.xtools.ruml.feature" url="" version="7.0.0"/></signature>?>
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_trnYRvKjEeKfbt8PwrtPag">
+  <packagedElement xmi:type="uml:Package" xmi:id="_trnYR_KjEeKfbt8PwrtPag" name="BankingSystem">
+    <packagedElement xmi:type="uml:Class" xmi:id="_trnYSPKjEeKfbt8PwrtPag" name="Bank" clientDependency="_trn_HfKjEeKfbt8PwrtPag">
+      <ownedAttribute xmi:id="_trnYSfKjEeKfbt8PwrtPag" name="Name" type="_trn_JPKjEeKfbt8PwrtPag"/>
+      <ownedOperation xmi:id="_trnYSvKjEeKfbt8PwrtPag" name="Operation1">
+        <ownedParameter xmi:id="_trnYS_KjEeKfbt8PwrtPag" name="return" direction="return"/>
+        <ownedParameter xmi:id="_trnYTPKjEeKfbt8PwrtPag" name="Parameter1"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_trnYTfKjEeKfbt8PwrtPag" name="DoOne">
+        <ownedParameter xmi:id="_trnYTvKjEeKfbt8PwrtPag" name="return" type="_trn_I_KjEeKfbt8PwrtPag" direction="return"/>
+        <ownedParameter xmi:id="_trnYT_KjEeKfbt8PwrtPag" name="Name" type="_trn_JPKjEeKfbt8PwrtPag"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_trnYUPKjEeKfbt8PwrtPag" name="Branches">
+      <ownedAttribute xmi:id="_trnYUfKjEeKfbt8PwrtPag" name="Acc" type="_trn_HvKjEeKfbt8PwrtPag" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_EPKjEeKfbt8PwrtPag" value="5"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_EfKjEeKfbt8PwrtPag" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_trn_EvKjEeKfbt8PwrtPag" name="Name" type="_trn_JPKjEeKfbt8PwrtPag"/>
+      <ownedAttribute xmi:id="_trn_E_KjEeKfbt8PwrtPag" name="Address" type="_trn_JPKjEeKfbt8PwrtPag"/>
+      <ownedOperation xmi:id="_trn_FPKjEeKfbt8PwrtPag" name="Operation1">
+        <ownedParameter xmi:id="_trn_FfKjEeKfbt8PwrtPag" name="p1" type="_trn_JPKjEeKfbt8PwrtPag"/>
+        <ownedParameter xmi:id="_trn_FvKjEeKfbt8PwrtPag" name="p2" type="_trn_I_KjEeKfbt8PwrtPag"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_trn_F_KjEeKfbt8PwrtPag" name="LinkOne">
+      <ownedOperation xmi:id="_trn_GPKjEeKfbt8PwrtPag" name="Facilitate"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_trn_GfKjEeKfbt8PwrtPag" name="State Bank" clientDependency="_trn_G_KjEeKfbt8PwrtPag">
+      <ownedAttribute xmi:id="_trn_GvKjEeKfbt8PwrtPag" name="Region" type="_trn_JPKjEeKfbt8PwrtPag"/>
+      <interfaceRealization xmi:id="_trn_G_KjEeKfbt8PwrtPag" name="InterfaceRealization1" supplier="_trn_F_KjEeKfbt8PwrtPag" client="_trn_GfKjEeKfbt8PwrtPag" contract="_trn_F_KjEeKfbt8PwrtPag"/>
+      <ownedOperation xmi:id="_trn_HPKjEeKfbt8PwrtPag" name="Facilititate"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_trn_HfKjEeKfbt8PwrtPag" name="Dependency1" supplier="_trn_GfKjEeKfbt8PwrtPag" client="_trnYSPKjEeKfbt8PwrtPag"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_trn_HvKjEeKfbt8PwrtPag" name="Accounts">
+      <ownedAttribute xmi:id="_trn_H_KjEeKfbt8PwrtPag" name="AccNum" type="_trn_I_KjEeKfbt8PwrtPag"/>
+      <ownedAttribute xmi:id="_trn_IPKjEeKfbt8PwrtPag" name="Name" type="_trn_JPKjEeKfbt8PwrtPag"/>
+      <ownedOperation xmi:id="_trn_IfKjEeKfbt8PwrtPag" name="operation">
+        <ownedParameter xmi:id="_trn_IvKjEeKfbt8PwrtPag" name="Amount" type="_trn_I_KjEeKfbt8PwrtPag"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_trn_I_KjEeKfbt8PwrtPag" name="Integer"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_trn_JPKjEeKfbt8PwrtPag" name="String"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_trn_JfKjEeKfbt8PwrtPag" name="Type">
+      <generalization xmi:id="_trn_JvKjEeKfbt8PwrtPag" general="_trn_HvKjEeKfbt8PwrtPag"/>
+      <ownedAttribute xmi:id="_trn_J_KjEeKfbt8PwrtPag" name="MyType" type="_trn_JPKjEeKfbt8PwrtPag"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_trn_KPKjEeKfbt8PwrtPag" name="A_&lt;linkOne>_&lt;bank>" memberEnd="_trn_KfKjEeKfbt8PwrtPag _trn_LPKjEeKfbt8PwrtPag" navigableOwnedEnd="_trn_LPKjEeKfbt8PwrtPag">
+      <ownedEnd xmi:id="_trn_KfKjEeKfbt8PwrtPag" name="linkOne" type="_trn_F_KjEeKfbt8PwrtPag" association="_trn_KPKjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_KvKjEeKfbt8PwrtPag" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_K_KjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_trn_LPKjEeKfbt8PwrtPag" name="bank" type="_trnYSPKjEeKfbt8PwrtPag" association="_trn_KPKjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_LfKjEeKfbt8PwrtPag" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_LvKjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_trn_L_KjEeKfbt8PwrtPag" name="A_&lt;bank>_&lt;branches>" memberEnd="_trn_MPKjEeKfbt8PwrtPag _trn_M_KjEeKfbt8PwrtPag" navigableOwnedEnd="_trn_M_KjEeKfbt8PwrtPag">
+      <ownedEnd xmi:id="_trn_MPKjEeKfbt8PwrtPag" name="bank" type="_trnYSPKjEeKfbt8PwrtPag" association="_trn_L_KjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_MfKjEeKfbt8PwrtPag" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_MvKjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_trn_M_KjEeKfbt8PwrtPag" name="branches" type="_trnYUPKjEeKfbt8PwrtPag" aggregation="shared" association="_trn_L_KjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_NPKjEeKfbt8PwrtPag" value="10"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_NfKjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_trn_NvKjEeKfbt8PwrtPag" name="A_&lt;state Bank>_&lt;branches>" memberEnd="_trn_N_KjEeKfbt8PwrtPag _trn_OvKjEeKfbt8PwrtPag" navigableOwnedEnd="_trn_OvKjEeKfbt8PwrtPag">
+      <ownedEnd xmi:id="_trn_N_KjEeKfbt8PwrtPag" name="state Bank" type="_trn_GfKjEeKfbt8PwrtPag" association="_trn_NvKjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_OPKjEeKfbt8PwrtPag" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_OfKjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_trn_OvKjEeKfbt8PwrtPag" name="branches" type="_trnYUPKjEeKfbt8PwrtPag" association="_trn_NvKjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_O_KjEeKfbt8PwrtPag" value="5"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_PPKjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_trn_PfKjEeKfbt8PwrtPag" name="A_&lt;branches>_&lt;accounts>" memberEnd="_trn_PvKjEeKfbt8PwrtPag _trn_QfKjEeKfbt8PwrtPag" navigableOwnedEnd="_trn_QfKjEeKfbt8PwrtPag">
+      <ownedEnd xmi:id="_trn_PvKjEeKfbt8PwrtPag" name="branches" type="_trnYUPKjEeKfbt8PwrtPag" association="_trn_PfKjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_P_KjEeKfbt8PwrtPag" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_QPKjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_trn_QfKjEeKfbt8PwrtPag" name="accounts" type="_trn_HvKjEeKfbt8PwrtPag" isUnique="false" aggregation="composite" association="_trn_PfKjEeKfbt8PwrtPag">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_trn_QvKjEeKfbt8PwrtPag" value="10"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_trn_Q_KjEeKfbt8PwrtPag" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <profileApplication xmi:id="_trn_RPKjEeKfbt8PwrtPag">
+    <eAnnotations xmi:id="_trn_RfKjEeKfbt8PwrtPag" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+  </profileApplication>
+  <profileApplication xmi:id="_trn_RvKjEeKfbt8PwrtPag">
+    <eAnnotations xmi:id="_trn_R_KjEeKfbt8PwrtPag" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML2_MSL_PROFILES/Default.epx#_fNwoAAqoEd6-N_NOT9vsCA?Default/Default?"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML2_MSL_PROFILES/Default.epx#_a_S3wNWLEdiy4IqP8whjFA?Default?"/>
+  </profileApplication>
+  <profileApplication xmi:id="_trn_SPKjEeKfbt8PwrtPag">
+    <eAnnotations xmi:id="_trn_SfKjEeKfbt8PwrtPag" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML2_MSL_PROFILES/Deployment.epx#_IrdAUMmBEdqBcN1R6EvWUw?Deployment/Deployment?"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML2_MSL_PROFILES/Deployment.epx#_vjbuwOvHEdiDX5bji0iVSA?Deployment?"/>
+  </profileApplication>
+</uml:Model>

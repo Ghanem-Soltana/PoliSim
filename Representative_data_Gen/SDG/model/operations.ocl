@@ -1,0 +1,10 @@
+import 'TaxCard.ecore'  
+package TaxCard 
+
+
+ context PhysicalPerson
+
+def: getAge():Integer = 
+if(Constants.YEAR >= self.birthYear and Constants.YEAR >= 0) then Constants.YEAR - self.birthYear else -1 endif
+
+endpackage

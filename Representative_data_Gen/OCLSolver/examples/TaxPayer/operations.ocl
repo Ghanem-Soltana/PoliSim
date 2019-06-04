@@ -1,0 +1,1670 @@
+import 'TaxCard.ecore'  
+package TaxCard 
+
+
+ context Tax_Payer
+
+def: deduction_according_disability_rate():Real = 
+if ( self.disability_percentage >= 0.25 and  self.disability_percentage < 0.35) then
+			150
+			else if ( self.disability_percentage >= 0.35  and self.disability_percentage < 0.45) then
+			225
+			else if ( self.disability_percentage >=0.45 and  self.disability_percentage <0.55) then
+			375
+			else if ( self.disability_percentage >= 0.55 and  self.disability_percentage < 0.65 ) then
+			450 
+			else if ( self.disability_percentage >= 0.65 and self.disability_percentage < 0.75) then
+			525
+			else if ( self.disability_percentage >=0.75 and self.disability_percentage < 0.85) then
+			585
+			else if ( self.disability_percentage >=0.85 and  self.disability_percentage<  0.95) then
+			645
+			else if ( self.disability_percentage >= 0.95 and self.disability_percentage<=1)then
+			735 else 0 endif endif endif endif endif endif endif endif
+
+
+def: getIsreceivingAllowancesForChildren(year:Integer):Boolean = 
+let children1:Set(Dependent)=self.dependents->select(dependent_type=Dependent_Type::CHILD) in
+			let union:Legal_Union_Record=self.getLegalUnionRecord(year) in
+			let house: Household = union.household in
+			let children:Set(Dependent)=if (house.oclIsInvalid()) then children1 else children1->union(house.children) endif in
+			if(children->size()=0)then
+			false
+			else		
+			let allowances:Boolean=children.allowances->select(starting_year<=year and ending_year=-1 and amount>0)->size()>0in
+			if(allowances)then
+			true
+			else
+			false
+			endif			
+			endif
+
+def: getProfetionalIncomeHousehold(year:Integer):Real = 
+let spouse:Physical_Person= self.getSpouse(year)in
+			let include_spouse:Boolean= if(not spouse.oclIsUndefined()) then spouse.oclIsKindOf(Tax_Payer) else false endif in
+			let myIncomes:Set(Income)=self.incomes->select(i:Income|i.year=year and i.income_type.oclIsKindOf(Employment_Income)) in
+			let myPart:Real= if(myIncomes->oclIsInvalid())then 0.0 else myIncomes.income_amount->sum() endif in
+			
+			if(include_spouse=false)then
+			myPart
+			else
+			let herIncomes:Set(Income)=spouse.oclAsType(Tax_Payer).incomes->select(i:Income|i.year=year and i.income_type.oclIsKindOf(Employment_Income)) in
+			let herPart:Real=if(herIncomes->oclIsInvalid())then 0.0 else herIncomes.income_amount->sum() endif in
+			myPart+herPart
+			endif
+
+def: getProfetionalIncomeHouseholdLuxembourg(year:Integer):Real = 
+let spouse:Physical_Person= self.getSpouse(year)in
+			let include_spouse:Boolean= if(not spouse.oclIsUndefined()) then spouse.oclIsKindOf(Tax_Payer) else false endif in
+			let myIncomes:Set(Income)=self.incomes->select(i:Income|i.year=year and i.income_type.oclIsKindOf(Employment_Income) and i.oclIsTypeOf(Local_Income)) in
+			let myPart:Real=if(myIncomes->oclIsInvalid())then 0.0 else myIncomes.income_amount->sum() endif in
+			
+			if(include_spouse=false)then
+			myPart
+			else
+			let herIncomes:Set(Income)=spouse.oclAsType(Tax_Payer).incomes->select(i:Income|i.year=year and i.income_type.oclIsKindOf(Employment_Income)and i.oclIsTypeOf(Local_Income)) in
+			let herPart:Real=if(herIncomes->oclIsInvalid())then 0.0 else  herIncomes.income_amount->sum() endif in
+			myPart+herPart
+			endif
+
+
+
+
+ context Physical_Person
+
+def: getSeperationState(year:Integer, seperation_type:Separation_Causes):Boolean = 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select(individual_A=self or individual_B=self) in
+			
+			if(legel_unions->size()=0) then
+			false
+			else
+			let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=year)in
+			let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in
+			if(lasted_union.end_year=-1)then
+			false
+			else
+			lasted_union.separation_cause=seperation_type
+			endif
+			endif
+
+def: getAge(year:Integer):Integer = 
+if(birth_year>=year )then
+			0
+			else
+			let age:Integer=year-birth_year+1 in
+			if(birth_month=1 and birth_day=1) then
+			age+1
+			else
+			age
+			endif
+			endif
+
+def: getIsMaried(year:Integer):Boolean = 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select( ((individual_A=self or individual_B=self) and oclIsKindOf(Marriage_Record))) in
+			
+			if(legel_unions->size()=0) then
+			false
+			else
+			let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=year)in
+			let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in
+			if(lasted_union.end_year=-1)then
+			true
+			else
+			false
+			endif
+			endif
+
+def: getSeperationYear(year:Integer):Integer = 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select(individual_A=self or individual_B=self) in
+			
+			if(legel_unions->size()=0) then
+			-1
+			else
+			let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=year)in
+			let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in
+			if(lasted_union.oclIsUndefined()) then
+			-1
+			else
+			if(lasted_union.end_year=-1)then
+			-1
+			else
+			lasted_union.end_year
+			endif
+			endif
+			endif
+
+def: getDivorceTransitionState(year:Integer):Boolean = 
+let sep_year:Integer=self.getSeperationYear(year) in
+			if(sep_year=-1)then
+			false
+			else
+			if( (sep_year <= year and sep_year >= (year -3))=false) then
+			false
+			else
+			let past_sep_year:Integer=self.getSeperationYear(year-5) in
+			if(past_sep_year=-1)then
+			true
+			else
+			false
+			endif
+			endif
+			endif
+
+def: getSpouse(year:Integer):Physical_Person = 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select( ((individual_A=self or individual_B=self))) in
+			
+			if(legel_unions->size()=0) then
+			let union:Legal_Union_Record=self.getLegalUnionRecord(year) in 
+			if(union.oclIsInvalid())then
+			invalid
+			else
+	        if(union.individual_B=self) then union.individual_A.oclAsType(Physical_Person) else union.individual_B.oclAsType(Physical_Person) endif endif
+			else
+			let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=year)in
+			let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in
+			if(lasted_union.end_year=-1)then
+			
+			if(lasted_union.individual_A=self)then
+			lasted_union.individual_B
+			else
+			lasted_union.individual_A
+			endif
+			else
+			invalid
+			endif
+			endif
+
+def: getLegalUnionRecord(year:Integer):Legal_Union_Record = 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select( ((individual_A=self or individual_B=self))) in
+			
+			if(legel_unions->size()=0) then
+			invalid
+			else
+			let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=year)in
+			let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in
+			if(lasted_union.end_year=-1)then
+			lasted_union
+			else
+			invalid
+			endif
+			endif
+
+ context External_Allowance
+
+def: getAmount(base:Real, dep_age:Integer, is_disabled:Boolean):Real = 
+if(dep_age>=6 and dep_age<=11) then
+ round_lower_euros(base + 16.17)
+  else if (dep_age>=12) then round_lower_euros(base + 48.52) else 
+  if(is_disabled) then round_lower_euros(base + 185.60) else base endif endif endif
+
+def: round_lower_euros(amount:Real):Real = 
+let p1:Integer = amount.floor() in
+			p1.toString().toReal()
+
+ context Income
+
+def: prorata_worked_months():Integer = 
+self.details->select(is_worked)->size()
+
+def: prorata_worked_days():Integer = 
+let a:Set(Income_Detail)=self.details->select(is_worked) in  
+			a.worked_days->sum().mod(25)
+
+def: prorata_period():Real = 
+let nb_months:Integer=self.prorata_worked_months()in
+			let nb_days:Integer=self.prorata_worked_days()in
+			 if(nb_months=12) then
+			1
+			else 
+			nb_months/12 + nb_days/300
+			endif
+
+def: income_per_day():Real = 
+income_per_year()/300
+
+def: income_per_month():Real = 
+income_per_year()/12
+
+def: income_per_year():Real = 
+let involved_details:Set(Income_Detail)=self.details->select(i:Income_Detail| i.is_worked=true) in
+					involved_details.amount->sum()
+
+def: getDurationInyears():Integer = 
+if(self.income_type.oclIsTypeOf(Pensions_and_Annuities_Income)) then 
+			if(start_year.oclIsUndefined())then
+			-1
+			else
+			let res:Integer=self.taxPayer.from_agent.taxation_year-start_year in
+			if(res<0) then
+			0
+			else
+			res
+			endif
+			endif
+			else
+			-1
+			endif
+
+ context Tax_Card
+
+def: getSumDeductionsYear():Real = 
+deduction_FO_yearly+deduction_FD_yearly+deduction_CE_invalidity_yearly
+
+def: getSumCreditsYear():Real = 
+credit_CIS_yearly+credit_CIP_yearly
+
+ context FromLaw
+
+def: CE_INVALIDITY_FLAT_RATE_TYPE_E():Real = 
+1455
+
+def: CIP_MINIMUM_INCOME_MONTH():Real = 
+25
+
+def: CIP_MINIMUM_INCOME_YEAR():Real = 
+300
+
+def: FLAT_RATE_CIP_YEARLY():Real = 
+300
+
+def: FLAT_RATE_PER_UNIT():Real = 
+99
+
+def: MAXIMUM_DISTANCE_IN_UNITS():Real = 
+30
+
+def: MINIMUM_DISTANCE_IN_UNITS():Real = 
+4
+
+def: FLAT_MAXIMUM_FD():Real = 
+2574
+
+def: CIS_MINIMUM_INCOME_DAY():Real = 
+3.12
+
+def: CIS_MINIMUM_INCOME_MONTH():Real = 
+78
+
+def: CIS_MINIMUM_INCOME_YEAR():Real = 
+936
+
+def: FLAT_RATE_CIS_DAILY():Real = 
+1
+
+def: FLAT_RATE_CIS_MONTHLY():Real = 
+25
+
+def: FLAT_RATE_CIS_YEARLY():Real = 
+300
+
+def: get_A_for_salary_class_1(revenu:Real):Real = 
+if(revenu<= 1020) then 0
+		else if(revenu <= 1180) then 0.08
+		else if(revenu <= 1340) then 0.1
+		else if(revenu <= 1500) then 0.12
+		else if(revenu <= 1655) then 0.14
+		else if(revenu <= 1815) then 0.16
+		else if(revenu <= 1975) then 0.18
+		else if(revenu <= 2135) then 0.2
+		else if(revenu <= 2295) then 0.22
+		else if(revenu <= 2450) then 0.24
+		else if(revenu <= 2610) then 0.26
+		else if(revenu <= 2770) then 0.28
+		else if(revenu <= 2930) then 0.3
+		else if(revenu <= 3090) then 0.32
+		else if(revenu <= 3245) then 0.34
+		else if(revenu <= 3405) then 0.36
+		else if(revenu <= 3565) then 0.38
+		else if(revenu <= 8415) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+      	        endif
+
+def: get_B_for_salary_class_1(revenu:Real):Real = 
+if(revenu<= 1020) then 0
+		else if(revenu <= 1180) then 81.9
+		else if(revenu <= 1340) then 105.555
+		else if(revenu <= 1500) then 132.39000
+		else if(revenu <= 1655) then 162.405
+		else if(revenu <= 1815) then 195.6
+		else if(revenu <= 1975) then 231.975
+		else if(revenu <= 2135) then 271.53
+		else if(revenu <= 2295) then 314.265
+		else if(revenu <= 2450) then 360.18
+		else if(revenu <= 2610) then 409.275
+		else if(revenu <= 2770) then 461.55
+		else if(revenu <= 2930) then 517.005
+		else if(revenu <= 3090) then 575.64
+		else if(revenu <= 3245) then 637.455
+		else if(revenu <= 3405) then 702.45
+		else if(revenu <= 3565) then 770.625
+		else if(revenu <= 8415) then 806.30250 
+		else 890.48583
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_salary_class_1A(revenu:Real):Real = 
+if(revenu<= 1960) then 0
+		else if(revenu <= 2065) then 0.12
+		else if(revenu <= 2170) then 0.15
+		else if(revenu <= 2280) then 0.18
+		else if(revenu <= 2385) then 0.21
+		else if(revenu <= 2490) then 0.24
+		else if(revenu <= 2595) then 0.27
+		else if(revenu <= 2700) then 0.3
+		else if(revenu <= 2810) then 0.33
+		else if(revenu <= 2915) then 0.36
+		else if(revenu <= 3020) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_salary_class_1A(revenu:Real):Real = 
+if(revenu<= 1960) then 0
+		else if(revenu <= 2065) then 235.5
+		else if(revenu <= 2170) then 297.555
+		else if(revenu <= 2280) then 362.79
+		else if(revenu <= 2385) then 431.205
+		else if(revenu <= 2490) then 502.8
+		else if(revenu <= 2595) then 577.575
+		else if(revenu <= 2700) then 655.53
+		else if(revenu <= 2810) then 736.665
+		else if(revenu <= 2915) then 820.98
+		else if(revenu <= 3020) then 908.475
+		else 938.7
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        		endif
+
+def: get_A_for_salary_class_2(revenu:Real):Real = 
+if(revenu<= 1960) then 0
+		else if(revenu <= 2280) then 0.08
+		else if(revenu <= 2595) then 0.1
+		else if(revenu <= 2915) then 0.12
+		else if(revenu <= 3230) then 0.14
+		else if(revenu <= 3550) then 0.16
+		else if(revenu <= 3870) then 0.18
+		else if(revenu <= 4185) then 0.2
+		else if(revenu <= 4505) then 0.22
+		else if(revenu <= 4820) then 0.24
+		else if(revenu <= 5140) then 0.26
+		else if(revenu <= 5460) then 0.28
+		else if(revenu <= 5775) then 0.3
+		else if(revenu <= 6095) then 0.32
+		else if(revenu <= 6410) then 0.34
+		else if(revenu <= 6730) then 0.36
+		else if(revenu <= 7050) then 0.38
+		else if(revenu <= 16750) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+                endif
+
+def: get_B_for_salary_class_2(revenu:Real):Real = 
+if(revenu<= 1960) then 0
+		else if(revenu <= 2280) then 157
+		else if(revenu <= 2595) then 202.61
+		else if(revenu <= 2915) then 254.58
+		else if(revenu <= 3230) then 312.91
+		else if(revenu <= 3550) then 377.6
+		else if(revenu <= 3870) then 448.65
+		else if(revenu <= 4185) then 526.06
+		else if(revenu <= 4505) then 609.83
+		else if(revenu <= 4820) then 699.96
+		else if(revenu <= 5140) then 796.45
+		else if(revenu <= 5460) then 899.3
+		else if(revenu <= 5775) then 1008.51
+		else if(revenu <= 6095) then 1124.08
+		else if(revenu <= 6410) then 1246.01
+		else if(revenu <= 6730) then 1374.3
+		else if(revenu <= 7050) then 1508.95
+		else if(revenu <= 16750) then  1579.455
+		else 1746.97166
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_pension_class_1(revenu:Real):Real = 
+if(revenu<= 1000) then 0
+		else if(revenu <= 1160) then 0.08
+		else if(revenu <= 1320) then 0.1
+		else if(revenu <= 1480) then 0.12
+		else if(revenu <= 1635) then 0.14
+		else if(revenu <= 1795) then 0.16
+		else if(revenu <= 1955) then 0.18
+		else if(revenu <= 2115) then 0.2
+		else if(revenu <= 2275) then 0.22
+		else if(revenu <= 2430) then 0.24
+		else if(revenu <= 2590) then 0.26
+		else if(revenu <= 2750) then 0.28
+		else if(revenu <= 2910) then 0.3
+		else if(revenu <= 3070) then 0.32
+		else if(revenu <= 3225) then 0.34
+		else if(revenu <= 3385) then 0.36
+		else if(revenu <= 3545) then 0.38
+		else if(revenu <= 8395) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_pension_class_1(revenu:Real):Real = 
+if(revenu<= 1000) then 0
+		else if(revenu <= 1160) then 80.3
+		else if(revenu <= 1320) then 103.555
+		else if(revenu <= 1480) then 129.99
+		else if(revenu <= 1635) then 159.605
+		else if(revenu <= 1795) then 192.4
+		else if(revenu <= 1955) then 228.375
+		else if(revenu <= 2115) then 267.53
+		else if(revenu <= 2275) then 309.865
+		else if(revenu <= 2430) then 355.38
+		else if(revenu <= 2590) then 404.075
+		else if(revenu <= 2750) then 455.95
+		else if(revenu <= 2910) then 511.005
+		else if(revenu <= 3070) then 569.24
+		else if(revenu <= 3225) then 630.655
+		else if(revenu <= 3385) then 695.25
+		else if(revenu <= 3545) then 763.025
+		else if(revenu <= 8395) then 798.5025
+		else 882.48583	
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_pension_class_1A(revenu:Real):Real = 
+if(revenu<= 1940) then 0
+		else if(revenu <= 2045) then 0.12
+		else if(revenu <= 2150) then 0.15
+		else if(revenu <= 2260) then 0.18
+		else if(revenu <= 2365) then 0.21
+		else if(revenu <= 2470) then 0.24
+		else if(revenu <= 2575) then 0.27
+		else if(revenu <= 2680) then 0.3
+		else if(revenu <= 2790) then 0.33
+		else if(revenu <= 2895) then 0.36
+		else if(revenu <= 3000) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_pension_class_1A(revenu:Real):Real = 
+if(revenu<= 1940) then 0
+		else if(revenu <= 2045) then 233.100
+		else if(revenu <= 2150) then 294.555
+		else if(revenu <= 2260) then 359.190
+		else if(revenu <= 2365) then 427.005
+		else if(revenu <= 2470) then 498
+		else if(revenu <= 2575) then 572.175
+		else if(revenu <= 2680) then 649.53
+		else if(revenu <= 2790) then 730.065
+		else if(revenu <= 2895) then 813.780
+		else if(revenu <= 3000) then 900.675
+		else 930.700
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_pension_class_2(revenu:Real):Real = 
+if(revenu<= 1940) then 0
+		else if(revenu <= 2260) then 0.08
+		else if(revenu <= 2575) then 0.1
+		else if(revenu <= 2895) then 0.12
+		else if(revenu <= 3210) then 0.14
+		else if(revenu <= 3530) then 0.16
+		else if(revenu <= 3850) then 0.18
+		else if(revenu <= 4165) then 0.2
+		else if(revenu <= 4485) then 0.22
+		else if(revenu <= 4800) then 0.24
+		else if(revenu <= 5120) then 0.26
+		else if(revenu <= 5440) then 0.28
+		else if(revenu <= 5755) then 0.3
+		else if(revenu <= 6075) then 0.32
+		else if(revenu <= 6390) then 0.34
+		else if(revenu <= 6710) then 0.36
+		else if(revenu <= 7030) then 0.38
+		else if(revenu <= 16730) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_pension_class_2(revenu:Real):Real = 
+if(revenu<= 1940) then 0
+		else if(revenu <= 2260) then 155.4
+		else if(revenu <= 2575) then 200.61
+		else if(revenu <= 2895) then 252.18
+		else if(revenu <= 3210) then 310.11
+		else if(revenu <= 3530) then 374.4
+		else if(revenu <= 3850) then 445.05
+		else if(revenu <= 4165) then 522.06
+		else if(revenu <= 4485) then 605.43
+		else if(revenu <= 4800) then 695.16
+		else if(revenu <= 5120) then 791.25
+		else if(revenu <= 5440) then 893.7
+		else if(revenu <= 5755) then 1002.51
+		else if(revenu <= 6075) then 1117.68
+		else if(revenu <= 6390) then 1239.21
+		else if(revenu <= 6710) then  1367.1
+		else if(revenu <= 7030) then 1501.35
+		else if(revenu <= 16730) then 1571.655
+		else 1738.97166
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_other_yearly_class_1(revenu:Real):Real = 
+if(revenu<= 11250) then 0
+		else if(revenu <= 13150) then 0.08
+		else if(revenu <= 15050) then 0.1
+		else if(revenu <= 16950) then 0.12
+		else if(revenu <= 18850) then 0.14
+		else if(revenu <= 20800) then 0.16
+		else if(revenu <= 22700) then 0.18
+		else if(revenu <= 24600) then 0.2
+		else if(revenu <= 26500) then 0.22
+		else if(revenu <= 28400) then 0.24
+		else if(revenu <= 30300) then 0.26
+		else if(revenu <= 32250) then 0.28
+		else if(revenu <= 34150) then 0.3
+		else if(revenu <= 36050) then 0.32
+		else if(revenu <= 37950) then 0.34
+		else if(revenu <= 39850) then 0.36
+		else if(revenu <= 41750) then 0.38
+		else if(revenu <= 100000) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_other_yearly_class_1(revenu:Real):Real = 
+if(revenu<= 11250) then 0
+		else if(revenu <= 13150) then 901.200 
+		else if(revenu <= 15050) then 1164.660
+		else if(revenu <= 16950) then 1466.280
+		else if(revenu <= 18850) then 1806.060
+		else if(revenu <= 20800) then 2184
+		else if(revenu <= 22700) then 2600.100
+		else if(revenu <= 24600) then 3054.360
+		else if(revenu <= 26500) then 3546.780 
+		else if(revenu <= 28400) then 4077.360
+		else if(revenu <= 30300) then 4646.100
+		else if(revenu <= 32250) then 5253
+		else if(revenu <= 34150) then 5898.060
+		else if(revenu <= 36050) then 6581.28
+		else if(revenu <= 37950) then 7302.66
+		else if(revenu <= 39850) then 8062.2
+		else if(revenu <= 41750) then 8859.9
+		else if(revenu <= 100000) then 9277.83
+		else 10277.83
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_other_yearly_class_1A(revenu:Real):Real = 
+if(revenu<=22500) then 0
+		else if(revenu <= 23800) then 0.12
+		else if(revenu <= 25050) then 0.15
+		else if(revenu <= 26300) then 0.18
+		else if(revenu <= 27600) then 0.21
+		else if(revenu <= 28850) then 0.24
+		else if(revenu <= 30150) then 0.27
+		else if(revenu <= 31400) then 0.3
+		else if(revenu <= 32700) then 0.33
+		else if(revenu <= 33950) then 0.36
+		else if(revenu <= 35250) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_other_yearly_class_1A(revenu:Real):Real = 
+if(revenu<=22500) then 0
+		else if(revenu <= 23800) then 2703.600
+		else if(revenu <= 25050) then 3417.660
+		else if(revenu <= 26300) then 4169.880
+		else if(revenu <= 27600) then 4960.260
+		else if(revenu <= 28850) then 5788.800
+		else if(revenu <= 30150) then 6655.500
+		else if(revenu <= 31400) then 7560.360
+		else if(revenu <= 32700) then 8503.380
+		else if(revenu <= 33950) then 9484.560
+		else if(revenu <= 35250) then 10503.900
+		else  10856.400
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_other_yearly_class_2(revenu:Real):Real = 
+if(revenu<=22500) then 0
+		else if(revenu <= 26300) then 0.08
+		else if(revenu <= 30150) then 0.1
+		else if(revenu <= 33950) then 0.12
+		else if(revenu <= 37750) then 0.14
+		else if(revenu <= 41600) then 0.16
+		else if(revenu <= 45400) then 0.18
+		else if(revenu <= 49200) then 0.2
+		else if(revenu <= 53050) then 0.22
+		else if(revenu <= 56850) then 0.24
+		else if(revenu <= 60650) then 0.26
+		else if(revenu <= 64500) then 0.28
+		else if(revenu <= 68300) then 0.3
+		else if(revenu <= 72100) then 0.32
+		else if(revenu <= 75950) then 0.34
+		else if(revenu <= 79750) then 0.36
+		else if(revenu <= 83550) then 0.38
+		else if(revenu <= 200000) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_other_yearly_class_2(revenu:Real):Real = 
+if(revenu<=22500) then 0
+		else if(revenu <= 26300) then 1802.400 
+		else if(revenu <= 30150) then 2329.320
+		else if(revenu <= 33950) then 2932.560
+		else if(revenu <= 37750) then 3612.120
+		else if(revenu <= 41600) then 4368.000
+		else if(revenu <= 45400) then 5200.200
+		else if(revenu <= 49200) then 6108.720
+		else if(revenu <= 53050) then 7093.560
+		else if(revenu <= 56850) then 8154.720
+		else if(revenu <= 60650) then 9292.200
+		else if(revenu <= 64500) then 10506.000
+		else if(revenu <= 68300) then 11796.120
+		else if(revenu <= 72100) then 13162.560
+		else if(revenu <= 75950) then 14605.320
+		else if(revenu <= 79750) then 16124.400
+		else if(revenu <= 83550) then 17719.800
+		else if(revenu <= 200000) then 18555.660
+		else 20555.660
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: calculate_taxes_per_month(amount:Real, classe:Tax_Class_Category, income_type:String):Real = 
+if(income_type='Employment') then
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_salary_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_salary_class_2(amount) else get_A_for_salary_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_salary_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_salary_class_2(amount) else get_B_for_salary_class_1(amount) endif endif in
+		    let res:Real = round_ten_cent(a * amount - b) in
+            let max:Real = if(classe=Tax_Class_Category::Two) then 25085 else 12585 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_ten_cent(res*1.07) in
+		    if(final_res<1)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 81.906 else if(classe=Tax_Class_Category::Two) then 165.74 else 82.87 endif endif in
+		 	let final_res:Real=  round_ten_cent(res + (res*0.09-adjustement)) in
+		 	if(final_res<1)then
+		    0
+		    else
+		    final_res
+		    endif
+		    endif
+		    
+		   
+			
+			else
+			if(income_type='Pension') then
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_pension_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_pension_class_2(amount) else get_A_for_pension_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_pension_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_pension_class_2(amount) else get_B_for_pension_class_1(amount) endif endif in
+		    let res:Real = round_ten_cent(a * amount - b) in
+		    let max:Real = if(classe=Tax_Class_Category::Two) then 25065 else 12565 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_ten_cent(res*1.07) in
+		    if(final_res<1)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 81.906 else if(classe=Tax_Class_Category::Two) then 165.74 else 82.87 endif endif in
+		 	let final_res:Real=  round_ten_cent(res + (res*0.09-adjustement)) in
+		 	if(final_res<1)then
+		    0
+		    else
+		    final_res
+		    endif
+		    endif	
+			else
+			-1
+			endif
+			endif
+
+def: round_lower_euros(amount:Real):Real = 
+let p1:Integer = amount.floor() in
+			p1.toString().toReal()
+
+def: round_ten_cent(amount:Real):Real = 
+let p1:Integer = amount.floor() in
+			if(p1=amount) then
+			amount
+			else
+			let p2_temp:Real = (amount-p1) * 10 in
+			let p2:Integer = p2_temp.floor() in
+			p1.toString().toReal()+(p2.toString().toReal()/10.0)
+			endif
+
+def: get_A_for_salary_yearly_class_1(revenu:Real):Real = 
+if(revenu<= 12250) then 0
+		else if(revenu <= 14150) then 0.08
+		else if(revenu <= 16100) then 0.1
+		else if(revenu <= 18000) then 0.12
+		else if(revenu <= 19900) then 0.14
+		else if(revenu <= 21800) then 0.16
+		else if(revenu <= 23700) then 0.18
+		else if(revenu <= 25600) then 0.2
+		else if(revenu <= 27500) then 0.22
+		else if(revenu <= 29450) then 0.24
+		else if(revenu <= 31350) then 0.26
+		else if(revenu <= 33250) then 0.28
+		else if(revenu <= 35150) then 0.3
+		else if(revenu <= 37050) then 0.32
+		else if(revenu <= 38950) then 0.34
+		else if(revenu <= 40900) then 0.36
+		else if(revenu <= 42800) then 0.38
+		else if(revenu <= 101000) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_salary_yearly_class_1(revenu:Real):Real = 
+if(revenu<= 12250) then 0
+		else if(revenu <= 14150) then 982.8000
+		else if(revenu <= 16100) then 1266.6600
+		else if(revenu <= 18000) then 1588.6800
+		else if(revenu <= 19900) then 1948.8600
+		else if(revenu <= 21800) then 2347.2000
+		else if(revenu <= 23700) then 2783.7000
+		else if(revenu <= 25600) then 3258.3600
+		else if(revenu <= 27500) then 3771.1800
+		else if(revenu <= 29450) then 4322.1600
+		else if(revenu <= 31350) then 4911.3000
+		else if(revenu <= 33250) then 5538.6000
+		else if(revenu <= 35150) then 6204.0600
+		else if(revenu <= 37050) then 6907.6800
+		else if(revenu <= 38950) then 7649.4600
+		else if(revenu <= 40900) then 8429.4000
+		else if(revenu <= 42800) then  9247.5000
+		else if(revenu <= 101000) then  9675.6300
+		else 10685.8300
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_salary_yearly_class_1A(revenu:Real):Real = 
+if(revenu<= 23500) then 0
+		else if(revenu <= 24800) then 0.12
+		else if(revenu <= 26050) then 0.15
+		else if(revenu <= 27350) then 0.18
+		else if(revenu <= 28600) then 0.21
+		else if(revenu <= 29900) then 0.24
+		else if(revenu <= 31150) then 0.27
+		else if(revenu <= 32450) then 0.3
+		else if(revenu <= 33700) then 0.33
+		else if(revenu <= 34950) then 0.36
+		else if(revenu <= 36250) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_salary_yearly_class_1A(revenu:Real):Real = 
+if(revenu<= 23500) then 0
+		else if(revenu <= 24800) then 2826.0000
+		else if(revenu <= 26050) then 3570.6600
+		else if(revenu <= 27350) then 4353.4800
+		else if(revenu <= 28600) then 5174.4600
+		else if(revenu <= 29900) then 6033.6000
+		else if(revenu <= 31150) then 6930.9000
+		else if(revenu <= 32450) then 7866.3600
+		else if(revenu <= 33700) then 8839.9800
+		else if(revenu <= 34950) then 9851.7600
+		else if(revenu <= 36250) then  10901.7000
+		else 11264.4000
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_salary_yearly_class_2(revenu:Real):Real = 
+if(revenu<= 23550) then 0
+		else if(revenu <= 27350) then 0.08
+		else if(revenu <= 31150) then 0.1
+		else if(revenu <= 34950) then 0.12
+		else if(revenu <= 38800) then 0.14
+		else if(revenu <= 42600) then 0.16
+		else if(revenu <= 46400) then 0.18
+		else if(revenu <= 50250) then 0.2
+		else if(revenu <= 54050) then 0.22
+		else if(revenu <= 57850) then 0.24
+		else if(revenu <= 61700) then 0.26
+		else if(revenu <= 65500) then 0.28
+		else if(revenu <= 69300) then 0.3
+		else if(revenu <= 73150) then 0.32
+		else if(revenu <= 76950) then 0.34
+		else if(revenu <= 80750) then 0.36
+		else if(revenu <= 84600) then 0.38
+		else if(revenu <= 201000) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_salary_yearly_class_2(revenu:Real):Real = 
+if(revenu<= 23550) then 0
+		else if(revenu <= 27350) then 1884.000
+		else if(revenu <= 31150) then 2431.3200
+		else if(revenu <= 34950) then 3054.9600
+		else if(revenu <= 38800) then 3754.9200
+		else if(revenu <= 42600) then 4531.2000
+		else if(revenu <= 46400) then 5383.8000
+		else if(revenu <= 50250) then 6312.7200
+		else if(revenu <= 54050) then 7317.9600
+		else if(revenu <= 57850) then 8399.5200
+		else if(revenu <= 61700) then 9557.4000
+		else if(revenu <= 65500) then 10791.6000
+		else if(revenu <= 69300) then 12102.1200
+		else if(revenu <= 73150) then 13488.9600
+		else if(revenu <= 76950) then 14952.1200
+		else if(revenu <= 80750) then 16491.6000
+		else if(revenu <= 84600) then 18107.4000
+		else if(revenu <= 201000) then 18953.4600
+		else 20963.6600
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_pension_yearly_class_1(revenu:Real):Real = 
+if(revenu<= 12000) then 0
+		else if(revenu <= 13950) then 0.08
+		else if(revenu <= 15850) then 0.1
+		else if(revenu <= 17750) then 0.12
+		else if(revenu <= 19650) then 0.14
+		else if(revenu <= 21550) then 0.16
+		else if(revenu <= 23450) then 0.18
+		else if(revenu <= 25400) then 0.2
+		else if(revenu <= 27300) then 0.22
+		else if(revenu <= 29200) then 0.24
+		else if(revenu <= 31100) then 0.26
+		else if(revenu <= 33000) then 0.28
+		else if(revenu <= 34900) then 0.3
+		else if(revenu <= 36800) then 0.32
+		else if(revenu <= 38750) then 0.34
+		else if(revenu <= 40650) then 0.36
+		else if(revenu <= 42550) then 0.38
+		else if(revenu <= 100750) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_pension_yearly_class_1(revenu:Real):Real = 
+if(revenu<= 12000) then 0
+		else if(revenu <= 13950) then 963.600
+		else if(revenu <= 15850) then 1242.660
+		else if(revenu <= 17750) then 1559.880
+		else if(revenu <= 19650) then 1915.260
+		else if(revenu <= 21550) then 2308.800
+		else if(revenu <= 23450) then 2740.500
+		else if(revenu <= 25400) then 3210.360
+		else if(revenu <= 27300) then 3718.380
+		else if(revenu <= 29200) then 4264.560
+		else if(revenu <= 31100) then 4848.900
+		else if(revenu <= 33000) then 5471.400
+		else if(revenu <= 34900) then 6132.060
+		else if(revenu <= 36800) then 6830.880
+		else if(revenu <= 38750) then 7567.860
+		else if(revenu <= 40650) then 8343.000
+		else if(revenu <= 42550) then 9156.300
+		else if(revenu <= 100750) then 9582.030
+		else 10589.830
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_pension_yearly_class_1A(revenu:Real):Real = 
+if(revenu<= 23300) then 0
+		else if(revenu <= 24550) then 0.12
+		else if(revenu <= 25850) then 0.15
+		else if(revenu <= 27100) then 0.18
+		else if(revenu <= 28350) then 0.21
+		else if(revenu <= 29650) then 0.24
+		else if(revenu <= 30900) then 0.27
+		else if(revenu <= 32200) then 0.3
+		else if(revenu <= 33450) then 0.33
+		else if(revenu <= 34750) then 0.36
+		else if(revenu <= 36000) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_pension_yearly_class_1A(revenu:Real):Real = 
+if(revenu<= 23300) then 0
+		else if(revenu <= 24550) then 2797.200
+		else if(revenu <= 25850) then 3534.660
+		else if(revenu <= 27100) then 4310.280
+		else if(revenu <= 28350) then 5124.060
+		else if(revenu <= 29650) then 5976.000
+		else if(revenu <= 30900) then 6866.100
+		else if(revenu <= 32200) then 7794.360
+		else if(revenu <= 33450) then 8760.780
+		else if(revenu <= 34750) then 9765.360
+		else if(revenu <= 36000) then  10808.100
+		else 11168.400
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_A_for_pension_yearly_class_2(revenu:Real):Real = 
+if(revenu<= 23300) then 0
+		else if(revenu <= 27100) then 0.08
+		else if(revenu <= 30900) then 0.1
+		else if(revenu <= 34750) then 0.12
+		else if(revenu <= 38550) then 0.14
+		else if(revenu <= 42350) then 0.16
+		else if(revenu <= 46200) then 0.18
+		else if(revenu <= 50000) then 0.2
+		else if(revenu <= 53800) then 0.22
+		else if(revenu <= 57650) then 0.24
+		else if(revenu <= 61450) then 0.26
+		else if(revenu <= 65250) then 0.28
+		else if(revenu <= 69100) then 0.3
+		else if(revenu <= 72900) then 0.32
+		else if(revenu <= 76700) then 0.34
+		else if(revenu <= 80550) then 0.36
+		else if(revenu <= 84350) then 0.38
+		else if(revenu <= 200750) then 0.39
+		else 0.4
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: get_B_for_pension_yearly_class_2(revenu:Real):Real = 
+if(revenu<= 23300) then 0
+		else if(revenu <= 27100) then 1864.800
+		else if(revenu <= 30900) then 2407.320
+		else if(revenu <= 34750) then 3026.160
+		else if(revenu <= 38550) then 3721.320
+		else if(revenu <= 42350) then 4492.800
+		else if(revenu <= 46200) then 5340.600
+		else if(revenu <= 50000) then 6264.720
+		else if(revenu <= 53800) then 7265.160
+		else if(revenu <= 57650) then 8341.920
+		else if(revenu <= 61450) then 9495.000
+		else if(revenu <= 65250) then 10724.400
+		else if(revenu <= 69100) then 12030.120
+		else if(revenu <= 72900) then 13412.160
+		else if(revenu <= 76700) then 14870.520
+		else if(revenu <= 80550) then 16405.200
+		else if(revenu <= 84350) then 18016.200
+		else if(revenu <= 200750) then 18859.860
+		else 20867.660
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+		endif
+        endif
+
+def: calculate_taxes_per_year(amount:Real, classe:Tax_Class_Category, income_type:String):Real = 
+if(income_type='Employment') then
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_salary_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_salary_yearly_class_2(amount) else get_A_for_salary_yearly_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_salary_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_salary_yearly_class_2(amount) else get_B_for_salary_yearly_class_1(amount) endif endif in
+		    let res:Real = round_lower_euros(a * amount - b) in
+            let max:Real = if(classe=Tax_Class_Category::Two) then 301020 else 151020 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_lower_euros(res*1.07) in
+		    if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 982.86 else if(classe=Tax_Class_Category::Two) then 1988.88 else 994.44 endif endif in
+		 	let final_res:Real=  round_lower_euros(res + (res*0.09-adjustement)) in
+		 	if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    endif
+		    
+		   
+			
+			else
+			if(income_type='Pension') then
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_pension_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_pension_yearly_class_2(amount) else get_A_for_pension_yearly_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_pension_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_pension_yearly_class_2(amount) else get_B_for_pension_yearly_class_1(amount) endif endif in
+		    let res:Real = round_lower_euros(a * amount - b) in
+		    let max:Real = if(classe=Tax_Class_Category::Two) then 300780 else 150780 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_lower_euros(res*1.07) in
+		    if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 982.86 else if(classe=Tax_Class_Category::Two) then 1988.88 else 994.44 endif endif in
+		 	let final_res:Real=  round_lower_euros(res + (res*0.09-adjustement)) in
+		 	if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+	
+		    endif
+			
+			else
+			
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_other_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_other_yearly_class_2(amount) else get_A_for_other_yearly_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_other_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_other_yearly_class_2(amount) else get_B_for_other_yearly_class_1(amount) endif endif in
+		    let res:Real = round_lower_euros(a * amount - b) in
+            let max:Real = if(classe=Tax_Class_Category::Two) then 300000 else 150000 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_lower_euros(res*1.07) in
+		    if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 982.86 else if(classe=Tax_Class_Category::Two) then 1988.88 else 994.44 endif endif in
+		 	let final_res:Real=  round_lower_euros(res + (res*0.09-adjustement)) in
+		 	if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif 
+		    endif  
+			endif
+			endif
+
+def: CNS_RATE():Real = 
+0.0305
+
+def: PENSION_RATE():Real = 
+0.08
+
+def: round_lower_fifty_euros(amount:Real):Real = 
+if(amount<50) then
+			0
+			else
+			if (amount>=50 and amount<100) then
+			50.0
+			else
+			let temp_amount:Real = round_lower_euros(amount) in
+			let ch:String=temp_amount.toString()in
+			let temp_amount1:Real = temp_amount / 100.0 in
+			
+			if(temp_amount1.round() = temp_amount1.floor()) then
+			temp_amount1.floor() * 100.0
+			else
+			(temp_amount1.round()  * 100.0) - 50
+			endif
+			endif
+			endif
+
+def: getTaxableIncomePerYear(income:Income):Real = 
+let gross_salary_year:Real= income.income_per_year() in
+			let type:Income_Type=income.income_type in
+			
+			if(type.oclIsTypeOf(Employment_Income)) then
+			let sum_deductions_year:Real=income.tax_card.getSumDeductionsYear() in
+			let part_pension_year:Real= gross_salary_year * income.taxPayer.from_law.PENSION_RATE() in
+			let part_CNS_year:Real= gross_salary_year * income.taxPayer.from_law.CNS_RATE() in
+			let taxable_income:Real= gross_salary_year- (part_CNS_year + part_pension_year + sum_deductions_year) in  	
+			round_lower_fifty_euros(taxable_income)
+			
+			else
+			if(type.oclIsTypeOf(Pensions_and_Annuities_Income))then
+			let sum_deductions_year:Real=income.tax_card.getSumDeductionsYear() in
+			let taxable_income:Real= gross_salary_year- sum_deductions_year in  	
+			round_lower_fifty_euros(taxable_income)
+			else
+			let details:Set(Income_Detail)= income.details->select(i:Income_Detail|i.is_worked=true) in
+			
+			let res:Real= details->iterate( elem : Income_Detail;  acc : Real = 0 | 
+			 	
+			 	if(elem.is_contributing_CNS=false and elem.is_contributing_pension=false) then acc + elem.amount 
+			 	else
+			 	if(elem.is_contributing_CNS=true and elem.is_contributing_pension=true) then
+			 	acc+  elem.amount - (elem.amount* income.taxPayer.from_law.PENSION_RATE()) - (elem.amount* income.taxPayer.from_law.CNS_RATE())
+			 	else
+			 	if(elem.is_contributing_CNS=true)then
+			    acc+  elem.amount  - (elem.amount* income.taxPayer.from_law.CNS_RATE())
+			 	else
+			 	acc+  elem.amount  - (elem.amount* income.taxPayer.from_law.PENSION_RATE()) 
+			 	
+			 	endif 
+			 	endif 
+			 	endif 
+		
+			 )
+		
+			in round_lower_fifty_euros(res)
+			
+			endif
+			endif
+
+def: precision(amount:Real, degit:Integer):Real = 
+let ch:String=amount.toString() in
+			if(ch.indexOf('.')=-1)then
+			amount
+			else
+			let pos_pt:Integer=ch.indexOf('.') in
+			if(pos_pt+degit >=ch.size()) then
+			amount 
+			else
+			let ch1:String=ch.substring(1,pos_pt+degit) in
+			ch1.toReal()
+			endif
+			endif
+
+def: MAXIMUM_RATE_FOR_CE_CHILDREN():Real = 
+3480
+
+def: MINIMUM_LEGAL_SALARY():Real = 
+1921.03
+
+def: MAXIMUM_FLAT_RATE_FOR_ALIMONY(year:Integer, year_divorce:Integer):Real = 
+if(year_divorce>1997)then
+			if(year <=2007) then
+			20400
+			else
+			if(year=2008) then
+			21600
+			else 
+			if(year=2009 or year = 2010) then
+			23400
+			else
+			24000
+			endif
+			endif
+			endif
+			else
+
+			if(year <=2007) then
+			20400
+			else
+			if(year=2008) then
+			21600
+			else 
+			23400
+			endif
+			endif	
+			endif
+
+def: AEP_FLAT_RATE():Real = 
+4500
+
+def: calculate_taxes_per_year_mixed(amount:Real, local_amount:Real, classe:Tax_Class_Category, income_type:String):Real = 
+if(income_type='Employment') then
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_salary_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_salary_yearly_class_2(amount) else get_A_for_salary_yearly_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_salary_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_salary_yearly_class_2(amount) else get_B_for_salary_yearly_class_1(amount) endif endif in
+		    let res:Real = round_lower_euros(a * local_amount - b) in
+            let max:Real = if(classe=Tax_Class_Category::Two) then 301020 else 151020 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_lower_euros(res*1.07) in
+		    if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 982.86 else if(classe=Tax_Class_Category::Two) then 1988.88 else 994.44 endif endif in
+		 	let final_res:Real=  round_lower_euros(res + (res*0.09-adjustement)) in
+		 	if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    endif
+		    
+		   
+			
+			else
+			if(income_type='Pension') then
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_pension_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_pension_yearly_class_2(amount) else get_A_for_pension_yearly_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_pension_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_pension_yearly_class_2(amount) else get_B_for_pension_yearly_class_1(amount) endif endif in
+		    let res:Real = round_lower_euros(a * local_amount - b) in
+		    let max:Real = if(classe=Tax_Class_Category::Two) then 300780 else 150780 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_lower_euros(res*1.07) in
+		    if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 982.86 else if(classe=Tax_Class_Category::Two) then 1988.88 else 994.44 endif endif in
+		 	let final_res:Real=  round_lower_euros(res + (res*0.09-adjustement)) in
+		 	if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+	
+		    endif
+			
+			else
+			
+			let a:Real = if(classe=Tax_Class_Category::One_A) then get_A_for_other_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_A_for_other_yearly_class_2(amount) else get_A_for_other_yearly_class_1(amount) endif endif in
+			let b:Real = if(classe=Tax_Class_Category::One_A) then get_B_for_other_yearly_class_1A(amount) else if(classe=Tax_Class_Category::Two) then get_B_for_other_yearly_class_2(amount) else get_B_for_other_yearly_class_1(amount) endif endif in
+		    let res:Real = round_lower_euros(a * local_amount - b) in
+            let max:Real = if(classe=Tax_Class_Category::Two) then 300000 else 150000 endif in
+            
+		    if(amount<max) then
+		    let final_res:Real= round_lower_euros(res*1.07) in
+		    if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif
+		    else 
+		    let adjustement:Real= if(classe=Tax_Class_Category::One_A) then 982.86 else if(classe=Tax_Class_Category::Two) then 1988.88 else 994.44 endif endif in
+		 	let final_res:Real=  round_lower_euros(res + (res*0.09-adjustement)) in
+		 	if(final_res<12)then
+		    0
+		    else
+		    final_res
+		    endif 
+		    endif  
+			endif
+			endif
+
+endpackage

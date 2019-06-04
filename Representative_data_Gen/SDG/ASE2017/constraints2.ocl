@@ -1,0 +1,318 @@
+import 'TaxCard.ecore'  
+package TaxCard 
+
+--at least one taxpayer in the household 
+ context Legal_Union_Record inv user_test1:
+(self.individual_A.oclIsKindOf(Tax_Payer) and  self.individual_B.oclIsTypeOf(Physical_Person)) or 
+(self.individual_B.oclIsKindOf(Tax_Payer) and  self.individual_A.oclIsTypeOf(Physical_Person)) or 
+(self.individual_A.oclIsKindOf(Tax_Payer) and self.individual_B.oclIsKindOf(Tax_Payer))
+
+--children cannot be older than their biological parents 
+context Dependent inv user_test3:
+let house: Household = Household.allInstances()->select(h:Household| h.children->select(c:Dependent| c=self)->size()>0)->any(true) in
+let val1:Integer = if(not house.parents.oclIsInvalid()) then house.parents.individual_A.birth_year + 16 else self.birth_year - 20 endif in 
+let val2:Integer = if(not house.parents.oclIsInvalid()) then house.parents.individual_B.birth_year + 16 else self.birth_year - 20 endif in 
+self.birth_year > val1 and self.birth_year > val2 
+
+-- (legal) maximum and minimum value for an expense declared by a given taxpayer 
+context Expense inv inv46: 
+let max:Real = if((self.income.income_amount / 2)>50) then self.income.income_amount / 2 else 50 endif in
+self.declared_amount >= 50 and self.declared_amount <= max
+
+
+--only employees and pensioners are eligible to have a tax card 
+context Income inv inv26: 
+(not self.income_type.oclIsKindOf(Employment_Income) and not self.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) and self.tax_card.oclIsUndefined() = true) or 
+(self.income_type.oclIsKindOf(Employment_Income) = true and not self.tax_card.oclIsUndefined()) or
+(self.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) = true and not self.tax_card.oclIsUndefined())
+
+--legal value for child allowances  
+context External_Allowance inv inv17: 
+let origin: Physical_Person = self.reciver in
+let children1:Set(Dependent)=if(origin.oclIsKindOf(Tax_Payer)=true) then origin.oclAsType(Tax_Payer).dependents->select(allowances->size()>0) else Set{} endif in 
+let union:Legal_Union_Record=origin.getLegalUnionRecord(2014) in 
+let house: Household = union.household in
+let children:Set(Dependent)=if (house.oclIsUndefined() = true) then children1 else children1->union(house.children->select(allowances->size()>0)->select(allowances->any(true).reciver=origin)) endif in 
+let eligible_children:Set(Dependent) = children->select(birth_year<2012) in
+let is_disabled:Boolean = self.person.disability_type<>Disability_Types::NONE and self.person.disability_percentage>0.5 in
+let age5:Integer = 2014 - self.person.birth_year in
+(self.person.birth_year>=2012 and self.amount = 580) or
+(self.person.birth_year<2012 and (eligible_children->size()=1 or eligible_children->size()=0) and self.amount =self.getAmount(185.60, age5 , is_disabled)) or
+(self.person.birth_year<2012 and eligible_children->size()=2 and self.amount =self.getAmount(220.36, age5, is_disabled) ) or
+(self.person.birth_year<2012 and eligible_children->size()=3 and self.amount = self.getAmount(267.59, age5, is_disabled) ) or 
+(self.person.birth_year<2012 and eligible_children->size()>3 and self.amount = self.getAmount(361.83, age5, is_disabled)) 
+
+--was if==> 
+context Tax_Card inv inv37: 
+(not self.income.income_type.oclIsKindOf(Employment_Income) and not self.income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) and self.income.oclIsUndefined() = true) or 
+((self.income.income_type.oclIsKindOf(Employment_Income) = true or self.income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income)=true) and not self.income.oclIsUndefined())
+
+--was if==> 
+context Legal_Union_Record inv inv51: 
+( self.separation_cause=Separation_Causes::NONE and self.end_year = -1) or 
+( self.separation_cause<>Separation_Causes::NONE and self.end_year >= self.start_year and self.end_year <= 2014)
+
+--was if
+context Physical_Person inv inv1: 
+(self.disability_type = Disability_Types::NONE and self.disability_percentage = 0) or
+(self.disability_type <> Disability_Types::NONE and self.disability_percentage > 0 and self.disability_percentage <= 1)
+
+--was if==> 
+context Physical_Person inv inv4: 
+((self.oclIsTypeOf(Dependent) = true or self.oclIsTypeOf(Physical_Person) = true) and not self.is_widower) or ( (not self.oclIsTypeOf(Dependent) and not self.oclIsTypeOf(Physical_Person) and (self.is_widower or not self.is_widower)))
+
+context Tax_Payer inv inv444: 
+(self.getSpouse(1900).name.oclIsInvalid()) or ((not self.getSpouse(1900).name.oclIsInvalid()) and not self.is_widower)
+
+--was if==> 
+context Income_Detail inv inv40: 
+(self.income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) = true and not self.is_contributing_pension) or
+(not self.income.income_type.oclIsTypeOf(Pensions_and_Annuities_Income) and self.is_contributing_pension = true)
+
+--was if==> 
+context Income inv inv43Bis: 
+let val:Real =self.details->any(true).distance in 
+self.details->forAll(d: Income_Detail|d.distance = val)
+
+--was if==> 
+context Income inv inv44Bis: 
+let val:Real =self.details->any(true).amount in 
+self.details->forAll(d: Income_Detail|d.amount = val)
+
+context Tax_Payer inv reverse:
+let children11:Set(Dependent)=self.dependents in 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select( ((individual_A=self or individual_B=self))) in
+let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=2014) in 
+let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in 
+let house1: Household = lasted_union.household in
+let children1:Set(Dependent)=if (house1.oclIsUndefined() = true) then children11 else children11->union(house1.children) endif in 
+let maxAge1:Integer = if(children1->size()=0) then 1996 else children1.birth_year->max() - 17 endif in
+self.birth_year < maxAge1 and self.birth_year>1900
+
+context Physical_Person inv reverse1:
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select( ((individual_A=self or individual_B=self))) in
+let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=2014) in 
+let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in 
+let house11: Household = lasted_union.household in
+let children11:Set(Dependent)=if (house11.oclIsUndefined() = true) then Set{} else house11.children endif in 
+let maxAge11:Integer = if(children11->size()=0) then 1996 else children11.birth_year->max() - 17 endif in
+not oclIsTypeOf(Physical_Person) or (self.birth_year < maxAge11 and self.birth_year>1900)
+
+context Tax_Payer inv user_test2:
+let val:Integer = self.birth_year + 16 in 
+self.dependents->forAll( d:Dependent| d.birth_year > val)
+
+context Income inv valueConstraint:
+let value:Real = if(self.details->size()=0) then -1 else self.details->any(true).amount endif in self.income_amount = value
+
+context Income inv valueConstraint1:
+ self.income_amount >0 or  self.income_amount = -1
+ 
+ context Income_Detail inv valueConstraint2:
+ self.amount > 0
+
+context Legal_Union_Record inv user_test:
+(self.individual_A.oclIsTypeOf(Physical_Person) and not self.individual_B.oclIsTypeOf(Physical_Person)) or
+(self.individual_B.oclIsTypeOf(Physical_Person) and not self.individual_A.oclIsTypeOf(Physical_Person)) or 
+(not self.individual_A.oclIsTypeOf(Physical_Person) and not self.individual_B.oclIsTypeOf(Physical_Person))
+
+
+
+context Income_Detail inv user_complete_details: 
+let val:Integer = self.income.details->asOrderedSet()->indexOf(self) in self.month = val
+
+context Tax_Payer inv user_NonResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | fiscal_add.oclIsTypeOf(Fiscal_Address)= true and fiscal_add.country<>TaxCard::Country::LU) and
+ self.addresses->exists( hab_add:Address | hab_add.oclIsTypeOf(Habitual_Address) = true and hab_add.country<>TaxCard::Country::LU) and
+ self.incomes->exists(inc:TaxCard::Income | inc.oclIsTypeOf(TaxCard::Local_Income) = true)
+ implies
+ self.oclIsTypeOf(Non_Resident_Tax_Payer) = true
+ 
+ context Tax_Payer inv user_ResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | fiscal_add.oclIsTypeOf(Fiscal_Address) =true and fiscal_add.country=TaxCard::Country::LU) or
+ self.addresses->exists( hab_add:Address | hab_add.oclIsTypeOf(Habitual_Address) = true and hab_add.country=TaxCard::Country::LU) 
+implies
+ self.oclIsTypeOf(Resident_Tax_Payer) = true
+
+context Legal_Union_Record inv propCount:
+self.properties->size()=1
+
+context Tax_Property inv propStart:
+self.starting_year>= self.union_record.start_year
+
+context Physical_Person inv beug:
+self.disability_type <> Disability_Types::beug
+
+
+
+--was if==> 
+context External_Allowance inv inv18: 
+(self.person.birth_year>=2012  and self.starting_year = 2014) or
+(self.person.birth_year<2012 and (self.starting_year >= self.person.birth_year + 2) and self.starting_year <= 2014)
+
+
+--was if + was age==> 
+context Dependent inv inv16: 
+(self.birth_year >=2012 and self.allowances->size()=1) or 
+(self.birth_year < 2012 and self.birth_year >= 1996 and self.allowances->size()=1) or 
+(self.birth_year >= 1987 and self.continued_studies = true and self.allowances->size()=1) or 
+(self.birth_year < 1996 and not self.continued_studies  and self.allowances->size()=0)	 	 
+
+
+
+--was if + was age==> 
+context Tax_Payer inv inv24: 
+(self.birth_year<1954 and self.incomes->any(true).income_type.oclIsKindOf(Pensions_and_Annuities_Income)) or 
+(self.birth_year>1957 and not self.incomes->any(true).income_type.oclIsKindOf(Pensions_and_Annuities_Income)) or
+(self.birth_year>=1954 and self.birth_year <= 1957)
+
+
+
+
+ 
+ 
+context Tax_Payer inv inv44:
+self.incomes->select(i| i.oclIsTypeOf(Local_Income))->size()=1 and self.incomes->size()=1
+ 
+
+--was if==> 
+context Income_Detail inv inv42: 
+(not self.income.income_type.oclIsTypeOf(Employment_Income) and self.worked_days = 0) or 
+(self.income.income_type.oclIsTypeOf(Employment_Income)=true and self.worked_days >= 10 and self.worked_days <= 25) 
+
+--was if==> 
+context Income_Detail inv inv43: 
+( not self.income.income_type.oclIsTypeOf(Employment_Income) and self.distance = 0) or 
+( self.income.income_type.oclIsTypeOf(Employment_Income) = true and ((self.distance >= 0.0 and self.distance <= 4.0) or (self.distance >= 5.0 and self.distance <= 9.0) or (self.distance >= 10.0 and self.distance <= 30.0) or (self.distance >= 30.0 and self.distance <= 100.0)))
+
+
+--was if==> 
+context Physical_Person inv inv5: 
+((self.oclIsTypeOf(Dependent)=true) and ((self.birth_year >= 2010.0 and self.birth_year <= 2014.0) or (self.birth_year >= 2005.0 and self.birth_year <= 2009.0) or (self.birth_year >= 2000.0 and self.birth_year <= 2004.0) or (self.birth_year >= 1995.0 and self.birth_year <= 1999.0) or (self.birth_year >= 1990.0 and self.birth_year <= 1994.0) or (self.birth_year >= 1985.0 and self.birth_year <= 1989.0)) or
+((not self.oclIsTypeOf(Dependent)) and ((self.birth_year >= 1995.0 and self.birth_year <= 1999.0) or (self.birth_year >= 1990.0 and self.birth_year <= 1994.0) or (self.birth_year >= 1985.0 and self.birth_year <= 1989.0) or (self.birth_year >= 1980.0 and self.birth_year <= 1984.0) or (self.birth_year >= 1975.0 and self.birth_year <= 1979.0) or (self.birth_year >= 1970.0 and self.birth_year <= 1974.0) or (self.birth_year >= 1965.0 and self.birth_year <= 1969.0) or (self.birth_year >= 1960.0 and self.birth_year <= 1964.0) or (self.birth_year >= 1955.0 and self.birth_year <= 1959.0) or (self.birth_year >= 1950.0 and self.birth_year <= 1954.0) or (self.birth_year >= 1945.0 and self.birth_year <= 1949.0) or (self.birth_year >= 1940.0 and self.birth_year <= 1944.0) or (self.birth_year >= 1935.0 and self.birth_year <= 1939.0) or (self.birth_year >= 1930.0 and self.birth_year <= 1934.0))))
+
+
+context Tax_Payer inv inv8: 
+self.AEP_deduction = 0
+
+context Physical_Person inv inv2: 
+self.last_start_year_widower = -1
+
+context Physical_Person inv inv3: 
+self.name = 'Not important'
+
+context Physical_Person inv inv6: 
+self.birth_month >= 1 and self.birth_month <= 12
+
+context Physical_Person inv inv7: 
+self.birth_day >= 1 and self.birth_day <= 28
+
+context Tax_Payer inv inv10: 
+self.dependents->size() = 0 or self.dependents->size() = 1 or self.dependents->size() = 2 or (self.dependents->size() >= 3.0 and self.dependents->size() <= 4.0)
+
+context Tax_Payer inv inv11: 
+not self.from_agent.oclIsUndefined()
+
+context Tax_Payer inv inv14: 
+self.incomes->size() >= 1
+
+context Tax_Payer inv inv15: 
+not self.from_law.oclIsUndefined() 
+
+context External_Allowance inv inv17Bis:
+self.amount >= 0 
+
+context External_Allowance inv inv19: 
+self.ending_year = -1
+
+context External_Allowance inv inv20: 
+not self.reciver.oclIsUndefined()
+
+context FromAgent inv inv21: 
+self.taxation_year = 2014
+
+context Income inv inv22: 
+self.year = 2014
+
+context Income inv inv23: 
+self.start_year = 2014
+
+context Income inv inv25: 
+not self.income_type.oclIsUndefined() 
+
+context Income inv inv27: 
+not self.taxPayer.oclIsUndefined() 
+
+context Income inv inv28: 
+self.details->size() = 12
+
+context Tax_Card inv inv30: 
+self.deduction_FD_yearly = 0
+
+context Tax_Card inv inv31: 
+self.credit_CIS_yearly = 0
+
+context Tax_Card inv inv32: 
+self.credit_CIS_monthly = 0
+
+context Tax_Card inv inv33: 
+self.credit_CIP_yearly = 0
+
+context Tax_Card inv inv34: 
+self.credit_CIP_monthly = 0
+
+context Tax_Card inv inv35: 
+self.deduction_CE_invalidity_yearly = 0
+
+context Tax_Card inv inv36: 
+self.deduction_DS_Debt_yearly = 0
+
+context Tax_Card inv inv38: 
+not self.income.oclIsUndefined() 
+
+context Income_Detail inv inv39: 
+self.is_contributing_CNS = true
+
+context Income_Detail inv inv45: 
+(self.amount >= 0.0 and self.amount <= 833.0) or (self.amount >= 834.0 and self.amount <= 1666.0) or (self.amount >= 1667.0 and self.amount <= 2500.0) or (self.amount >= 2501.0 and self.amount <= 3333.0) or (self.amount >= 3334.0 and self.amount <= 4166.0) or (self.amount >= 4167.0 and self.amount <= 5000.0) or (self.amount >= 5001.0 and self.amount <= 5833.0) or (self.amount >= 5834.0 and self.amount <= 6666.0) or (self.amount >= 6667.0 and self.amount <= 7500.0) or (self.amount >= 7501.0 and self.amount <= 8333.0) or (self.amount >= 8334.0 and self.amount <= 9166.0) or (self.amount >= 9167.0 and self.amount <= 10000.0) or (self.amount >= 10001.0 and self.amount <= 10833.0) or (self.amount >= 10834.0 and self.amount <= 11666.0) or (self.amount >= 11667.0 and self.amount <= 12500.0) or (self.amount >= 12501.0 and self.amount <= 13333.0) or (self.amount >= 13334.0 and self.amount <= 14166.0) or (self.amount >= 14167.0 and self.amount <= 15000.0) or (self.amount >= 15001.0 and self.amount <= 15833.0) or (self.amount >= 15834.0 and self.amount <= 16666.0) or (self.amount >= 16667.0 and self.amount <= 20833.0) or (self.amount >= 20834.0 and self.amount <= 41666.0) or (self.amount >= 41667.0 and self.amount <= 50000.0) or (self.amount >= 50001.0 and self.amount <= 58333.0) or (self.amount >= 58333.0 and self.amount <= 83333.0) or (self.amount >= 83333.0 and self.amount <= 333333.0)
+
+context Expense inv inv47: 
+self.year_expense_was_incurred_in = 2014
+
+context Household inv inv48: 
+not self.parents.oclIsUndefined() 
+
+context Household inv inv49: 
+self.children->size() = 0 or self.children->size() = 1 or (self.children->size() >= 2.0 and self.children->size() <= 5.0)
+
+context Legal_Union_Record inv inv50: 
+self.start_year >= 1900 and self.start_year <= 2014
+
+context Legal_Union_Record inv inv57: 
+not self.individual_A.oclIsUndefined() 
+
+context Legal_Union_Record inv inv63: 
+not self.individual_B.oclIsUndefined() 
+
+context Legal_Union_Record inv inv64: 
+self.properties->size() >= 1
+
+context Legal_Union_Record inv inv65: 
+not self.household.oclIsUndefined() 
+
+context Tax_Property inv inv66: 
+self.taxed_jointly = true
+
+context Tax_Property inv inv67: 
+self.starting_year >= self.union_record.start_year and self.starting_year <= 2014
+
+context Income_Detail inv inv41: 
+self.is_worked = true
+
+
+
+context Tax_Payer inv inv13: 
+self.incomes->size() = 1
+
+
+endpackage

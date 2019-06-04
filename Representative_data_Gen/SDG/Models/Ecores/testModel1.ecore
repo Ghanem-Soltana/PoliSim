@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http:///model.ecore" nsPrefix="model">
+  <eClassifiers xsi:type="ecore:EClass" name="Root">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" ordered="false"
+        lowerBound="3" upperBound="3" eType="#//child" eOpposite="#//child/root"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="child">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" ordered="false" lowerBound="3"
+        upperBound="3" eType="#//t" eOpposite="#//t/child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" ordered="false" lowerBound="2"
+        upperBound="2" eType="#//Root" eOpposite="#//Root/child"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="t">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" ordered="false"
+        lowerBound="2" upperBound="2" eType="#//child" eOpposite="#//child/t"/>
+  </eClassifiers>
+</ecore:EPackage>

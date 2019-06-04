@@ -1,0 +1,1 @@
+In this class diagram there are many types such as integer, string, boolean etc. Therefore we are only dealing with integer types. So in query we can only use attributes having integer types.

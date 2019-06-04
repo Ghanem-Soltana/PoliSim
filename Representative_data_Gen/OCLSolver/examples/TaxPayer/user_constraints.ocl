@@ -1,0 +1,34 @@
+import 'TaxCard.ecore'  
+package TaxCard 
+
+context Legal_Union_Record inv user_test:
+Bag{self.individual_A,self.individual_B}->select(oclIsTypeOf(Physical_Person))->size()<2
+
+
+context Tax_Payer inv user_test1:
+self.dependents->size()<5
+
+context Tax_Payer inv user_test2:
+self.dependents->forAll( d| self.birth_year - d.birth_year > 18)
+
+context Income inv user_complete_details: 
+self.details->size()=12 and self.details.month->asOrderedSet()=OrderedSet{1,2,3,4,5,6,7,8,9,10,11,12}
+
+
+context Tax_Payer inv user_NonResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country<>TaxCard::Country::LU) and
+ self.addresses->exists( hab_add:Address | hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country<>TaxCard::Country::LU) and
+ self.incomes->exists(inc:TaxCard::Income | inc.oclIsTypeOf(TaxCard::Local_Income))
+ implies
+ self.oclIsTypeOf(Non_Resident_Tax_Payer)
+ 
+ 
+ context Tax_Payer inv user_ResidentTaxPayer_constraint:
+ self.addresses->exists( fiscal_add:Address | fiscal_add.oclIsTypeOf(Fiscal_Address) and fiscal_add.country=TaxCard::Country::LU) or
+ self.addresses->exists( hab_add:Address | hab_add.oclIsTypeOf(Habitual_Address) and hab_add.country=TaxCard::Country::LU) 
+implies
+ self.oclIsTypeOf(Resident_Tax_Payer) 
+
+
+
+endpackage

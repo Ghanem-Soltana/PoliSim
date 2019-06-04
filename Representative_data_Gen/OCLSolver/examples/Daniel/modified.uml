@@ -1,0 +1,1738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.omg.org/spec/UML/20090901" xsi:schemaLocation="http://www.omg.org/spec/UML/20090901 http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="GUID+fadc4ae9-265b-4361-8233-286c5b98ea06" name="inputData">
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUUw69EeW1-5BGWb2MDw" name="XmlVcid">
+      <ownedAttribute xmi:id="_b-fUVA69EeW1-5BGWb2MDw" name="value" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUVQ69EeW1-5BGWb2MDw" name="id" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUoA69EeW1-5BGWb2MDw" name="UnitType">
+      <ownedLiteral xmi:id="_b-fUoQ69EeW1-5BGWb2MDw" name="byte"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fU9Q69EeW1-5BGWb2MDw" name="HdrUnitType">
+      <ownedLiteral xmi:id="_b-fU9g69EeW1-5BGWb2MDw" name="dBm"/>
+      <ownedLiteral xmi:id="_b-fU9w69EeW1-5BGWb2MDw" name="dB"/>
+      <ownedLiteral xmi:id="_b-fU-A69EeW1-5BGWb2MDw" name="Hz"/>
+      <ownedLiteral xmi:id="_b-fU-Q69EeW1-5BGWb2MDw" name="bps"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUfg69EeW1-5BGWb2MDw" name="XmlGlobalType">
+      <ownedLiteral xmi:id="_b-fUfw69EeW1-5BGWb2MDw" name="byte"/>
+      <ownedLiteral xmi:id="_b-fUgA69EeW1-5BGWb2MDw" name="%"/>
+      <ownedLiteral xmi:id="_b-fUgQ69EeW1-5BGWb2MDw" name="dB"/>
+      <ownedLiteral xmi:id="_b-fUgg69EeW1-5BGWb2MDw" name="Packet"/>
+      <ownedLiteral xmi:id="_b-fUgw69EeW1-5BGWb2MDw" name="Frame"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUhA69EeW1-5BGWb2MDw" name="VirtualChannelType">
+      <ownedLiteral xmi:id="_b-fUhQ69EeW1-5BGWb2MDw" name="ACTIVE"/>
+      <ownedLiteral xmi:id="_b-fUhw69EeW1-5BGWb2MDw" name="IDLE"/>
+    </packagedElement>
+    
+    
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUiQ69EeW1-5BGWb2MDw" name="VcduEvents">
+      <ownedLiteral xmi:id="_b-fUig69EeW1-5BGWb2MDw" name="IDLE_FRAME">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUiw69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>IDLE_FRAME</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUjA69EeW1-5BGWb2MDw" name="INVALID_FIRST_HEADER_POINTER" />
+      <ownedLiteral xmi:id="_b-fUjg69EeW1-5BGWb2MDw" name="INVALID_FRAME_VERSION" />
+      <ownedLiteral xmi:id="_b-fUkA69EeW1-5BGWb2MDw" name="INVALID_IDLE_FRAME_MARKER" />
+      <ownedLiteral xmi:id="_b-fUkg69EeW1-5BGWb2MDw" name="INVALID_SIGNALING_FIELD" />
+      <ownedLiteral xmi:id="_b-fUlA69EeW1-5BGWb2MDw" name="INVALID_SPACECRAFT_ID" />
+      <ownedLiteral xmi:id="_b-fUlg69EeW1-5BGWb2MDw" name="INVALID_VIRTUAL_CHANNEL_ID" />
+      <ownedLiteral xmi:id="_b-fUmA69EeW1-5BGWb2MDw" name="REED_SOLOMON_FRAME_HEADER_CORRECTED" />
+      <ownedLiteral xmi:id="_b-fUmg69EeW1-5BGWb2MDw" name="REED_SOLOMON_FRAME_HEADER_UNCORRECTED" />
+      <ownedLiteral xmi:id="_b-fUnA69EeW1-5BGWb2MDw" name="VIRTUAL_COUNTER_JUMP" />
+      <ownedLiteral xmi:id="_b-fUng69EeW1-5BGWb2MDw" name="VIRTUAL_COUNTER_WRAP" />
+    </packagedElement>
+    
+    
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUVg69EeW1-5BGWb2MDw" name="XmlNumber">
+      <ownedAttribute xmi:id="_b-fUVw69EeW1-5BGWb2MDw" name="value" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUWA69EeW1-5BGWb2MDw" name="unit" visibility="private" type="_b-fUoA69EeW1-5BGWb2MDw"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUWQ69EeW1-5BGWb2MDw" name="XmlIspAttributes">
+      <ownedAttribute xmi:id="_b-fUWg69EeW1-5BGWb2MDw" name="APID" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUWw69EeW1-5BGWb2MDw" name="XmlGlobalTime">
+      <ownedAttribute xmi:id="_b-fUXA69EeW1-5BGWb2MDw" name="value" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUXQ69EeW1-5BGWb2MDw" name="description" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUXg69EeW1-5BGWb2MDw" name="XmlGlobalParam">
+      <ownedAttribute xmi:id="_b-fUXw69EeW1-5BGWb2MDw" name="value" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUYA69EeW1-5BGWb2MDw" name="name" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUYQ69EeW1-5BGWb2MDw" name="description" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUYg69EeW1-5BGWb2MDw" name="unit" visibility="private" type="_b-fU9Q69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fUYw69EeW1-5BGWb2MDw" name="justRead" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    
+     <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUog69EeW1-5BGWb2MDw" name="SubsystemTypes">
+      <ownedLiteral xmi:id="_b-fUow69EeW1-5BGWb2MDw" name="Xsve_Nss"/>
+      <ownedLiteral xmi:id="_b-fUpA69EeW1-5BGWb2MDw" name="Xsve_Hdr"/>
+      <ownedLiteral xmi:id="_b-fUpQ69EeW1-5BGWb2MDw" name="Xsve_Ucdc"/>
+    </packagedElement>
+    
+      
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUpg69EeW1-5BGWb2MDw" name="ReportType">
+      <ownedLiteral xmi:id="_b-fUpw69EeW1-5BGWb2MDw" name="CADU" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUqA69EeW1-5BGWb2MDw">
+          <body>CADU</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUqQ69EeW1-5BGWb2MDw" name="ISP" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUqg69EeW1-5BGWb2MDw">
+          <body>ISP</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUqw69EeW1-5BGWb2MDw" name="VCDU" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUrA69EeW1-5BGWb2MDw">
+          <body>VCDU</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUrQ69EeW1-5BGWb2MDw" name="GLOBAL" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUrg69EeW1-5BGWb2MDw">
+          <body>GLOBAL</body>
+        </specification>
+      </ownedLiteral>
+    </packagedElement>
+    
+  
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUrw69EeW1-5BGWb2MDw" name="PacketType">
+      <ownedLiteral xmi:id="_b-fUsA69EeW1-5BGWb2MDw" name="ACTIVE" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUsQ69EeW1-5BGWb2MDw">
+          <body>ACTIVE</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUsg69EeW1-5BGWb2MDw" name="IDLE"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUsw69EeW1-5BGWb2MDw">
+          <body>IDLE</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUtA69EeW1-5BGWb2MDw" name="UNDEFINED"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUtQ69EeW1-5BGWb2MDw">
+          <body>UNDEFINED</body>
+        </specification>
+      </ownedLiteral>
+    </packagedElement>
+    
+    
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fUtg69EeW1-5BGWb2MDw" name="IspPacketTypes">
+      <ownedLiteral xmi:id="_b-fUtw69EeW1-5BGWb2MDw" name="S1_SAR" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUuA69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>S1_SAR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUuQ69EeW1-5BGWb2MDw" name="S1_GPSR"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUug69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>S1_GPSR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUuw69EeW1-5BGWb2MDw" name="S2_MSI"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUvA69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>S2_MSI</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUvQ69EeW1-5BGWb2MDw" name="S2_GPSR"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUvg69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>S2_GPSR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUvw69EeW1-5BGWb2MDw" name="S2_STR"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUwA69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>S2_STR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUwQ69EeW1-5BGWb2MDw" name="S2_CSW"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUwg69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>S2_CSW</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUww69EeW1-5BGWb2MDw" name="S3_OLCI"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUxA69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>S3_OLCI</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUxQ69EeW1-5BGWb2MDw" name="S3_SLSTR"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUxg69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>S3_SLSTR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUxw69EeW1-5BGWb2MDw" name="S3_DORIS"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUyA69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>S3_DORIS</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUyQ69EeW1-5BGWb2MDw" name="S3_NAVATT"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUyg69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>S3_NAVATT</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUyw69EeW1-5BGWb2MDw" name="S3_MWR"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUzA69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>S3_MWR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUzQ69EeW1-5BGWb2MDw" name="S3_SRAL"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fUzg69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>S3_SRAL</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fUzw69EeW1-5BGWb2MDw" name="S3_GPSR"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU0A69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>S3_GPSR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU0Q69EeW1-5BGWb2MDw" name="UNDEFINED"  />
+    </packagedElement>
+    
+    
+    
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fU0g69EeW1-5BGWb2MDw" name="IspEvents">
+      <ownedLiteral xmi:id="_b-fU0w69EeW1-5BGWb2MDw" name="FIRST_PACKET" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU1A69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>FIRST_PACKET</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU1Q69EeW1-5BGWb2MDw" name="IDLE_PACKET"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU1g69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>IDLE_PACKET</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU1w69EeW1-5BGWb2MDw" name="LAST_PACKET"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU2A69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>LAST_PACKET</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU2Q69EeW1-5BGWb2MDw" name="INVALID_IDLE_ISP_MARKER"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU2g69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>INVALID_IDLE_ISP_MARKER</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU2w69EeW1-5BGWb2MDw" name="INVALID_PACKET_LENGTH"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU3A69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>INVALID_PACKET_LENGTH</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU3Q69EeW1-5BGWb2MDw" name="INVALID_PACKET_VERSION"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU3g69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>INVALID_PACKET_VERSION</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU3w69EeW1-5BGWb2MDw" name="INVALID_SECONDARY_HEADER_FLAG"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU4A69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>INVALID_SECONDARY_HEADER_FLAG</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU4Q69EeW1-5BGWb2MDw" name="INVALID_SEQUENCE_FLAG"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU4g69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>INVALID_SEQUENCE_FLAG</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU4w69EeW1-5BGWb2MDw" name="INVALID_PACKET_TYPE"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU5A69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>INVALID_PACKET_TYPE</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU5Q69EeW1-5BGWb2MDw" name="PACKET_ASSEMBLY_ERROR"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU5g69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>PACKET_ASSEMBLY_ERROR</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU5w69EeW1-5BGWb2MDw" name="SEQUENCE_COUNTER_JUMP"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU6A69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>SEQUENCE_COUNTER_JUMP</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU6Q69EeW1-5BGWb2MDw" name="SEQUENCE_COUNTER_WRAP"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU6g69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>SEQUENCE_COUNTER_WRAP</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU6w69EeW1-5BGWb2MDw" name="INVALID_CRC"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU7A69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>INVALID_CRC</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU7Q69EeW1-5BGWb2MDw" name="OBT_NEGATIVE_JUMP"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU7g69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>OBT_NEGATIVE_JUMP</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU7w69EeW1-5BGWb2MDw" name="SSC_LIMIT_OVERSTEP"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU8A69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>SSC_LIMIT_OVERSTEP</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU8Q69EeW1-5BGWb2MDw" name="INVALID_APID"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU8g69EeW1-5BGWb2MDw">
+          <body>INVALID_APID</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU8w69EeW1-5BGWb2MDw" name="PACKET_LENGTH_NOT_STANDARD"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU9A69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>PACKET_LENGTH_NOT_STANDARD</body>
+        </specification>
+      </ownedLiteral>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fU-g69EeW1-5BGWb2MDw" name="FileClassTypes">
+      <ownedLiteral xmi:id="_b-fU-w69EeW1-5BGWb2MDw" name="TEST" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU_A69EeW1-5BGWb2MDw">
+          <body>TEST</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fU_Q69EeW1-5BGWb2MDw" name="OPER"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fU_g69EeW1-5BGWb2MDw">
+          <body>OPER</body>
+        </specification>
+      </ownedLiteral>
+    </packagedElement>
+    
+    
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fU_w69EeW1-5BGWb2MDw" name="CaduEvents">
+      <ownedLiteral xmi:id="_b-fVAA69EeW1-5BGWb2MDw" name="FIRST_SYNCH_MARKER" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVAQ69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>FIRST_SYNCH_MARKER</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fVAg69EeW1-5BGWb2MDw" name="RE_SYNCH_EVENT"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVAw69EeW1-5BGWb2MDw">
+          <language></language>
+          <body>RE_SYNCH_EVENT</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fVBA69EeW1-5BGWb2MDw" name="NEW_SYNCH_MARKER_AFTER_DESYNCHRONIZATION"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVBQ69EeW1-5BGWb2MDw">
+          <body>NEW_SYNCH_MARKER_AFTER_DESYNCHRONIZATION</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fVBg69EeW1-5BGWb2MDw" name="SYNCH_LOSS"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVBw69EeW1-5BGWb2MDw">
+          <body>SYNCH_LOSS</body>
+        </specification>
+      </ownedLiteral>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_b-fVCA69EeW1-5BGWb2MDw" name="ApidProfile">
+      <ownedLiteral xmi:id="_b-fVCQ69EeW1-5BGWb2MDw" name="IDLE_TM_PACKET" >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVCg69EeW1-5BGWb2MDw">
+          <language> </language>
+          <body>IDLE_TM_PACKET</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fVCw69EeW1-5BGWb2MDw" name="HOUSEKEEPING"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVDA69EeW1-5BGWb2MDw">
+          <body>HOUSEKEEPING</body>
+        </specification>
+      </ownedLiteral>
+      <ownedLiteral xmi:id="_b-fVDQ69EeW1-5BGWb2MDw" name="NON-REAL_TIME_HKTM"  >
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVDg69EeW1-5BGWb2MDw">
+          <body>NON-REAL_TIME_HKTM</body>
+        </specification>
+      </ownedLiteral>
+    </packagedElement>
+    
+    
+    
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUZA69EeW1-5BGWb2MDw" name="XmlGlobalInteger">
+      <ownedAttribute xmi:id="_b-fUZQ69EeW1-5BGWb2MDw" name="value" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUZg69EeW1-5BGWb2MDw" name="unit" visibility="private" type="_b-fUfg69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fUZw69EeW1-5BGWb2MDw" name="description" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUaA69EeW1-5BGWb2MDw" name="XmlGlobalDouble">
+      <ownedAttribute xmi:id="_b-fUaQ69EeW1-5BGWb2MDw" name="value" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUag69EeW1-5BGWb2MDw" name="unit" visibility="private" type="_b-fUfg69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fUaw69EeW1-5BGWb2MDw" name="description" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUbA69EeW1-5BGWb2MDw" name="SubsystemAttributes">
+      <ownedAttribute xmi:id="_b-fUbQ69EeW1-5BGWb2MDw" name="name" visibility="private" type="_b-fUog69EeW1-5BGWb2MDw"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUbg69EeW1-5BGWb2MDw" name="Long">
+      <ownedOperation xmi:id="_b-fUbw69EeW1-5BGWb2MDw" name=">" isQuery="true">
+        <ownedParameter xmi:id="_b-fUcA69EeW1-5BGWb2MDw" name="Parameter1" type="_b-fUbg69EeW1-5BGWb2MDw"/>
+        <ownedParameter xmi:id="_b-fUcQ69EeW1-5BGWb2MDw" name="Parameter2" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_b-fUcg69EeW1-5BGWb2MDw" name="&lt;" isQuery="true">
+        <ownedParameter xmi:id="_b-fUcw69EeW1-5BGWb2MDw" name="Parameter1" type="_b-fUbg69EeW1-5BGWb2MDw"/>
+        <ownedParameter xmi:id="_b-fUdA69EeW1-5BGWb2MDw" name="Parameter2" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    
+    
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUdQ69EeW1-5BGWb2MDw" name="HdrAttributes">
+      <ownedAttribute xmi:id="_b-fUdg69EeW1-5BGWb2MDw" name="unit" visibility="private" type="_b-fU9Q69EeW1-5BGWb2MDw"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUdw69EeW1-5BGWb2MDw" name="ByteSequence">
+      <ownedAttribute xmi:id="_b-fUeA69EeW1-5BGWb2MDw" name="byte" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw" isOrdered="true" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fUeQ69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fUeg69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fUew69EeW1-5BGWb2MDw" name="BitSequence">
+      <ownedAttribute xmi:id="_b-fUfA69EeW1-5BGWb2MDw" name="numberOfBits" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fUfQ69EeW1-5BGWb2MDw" name="intValue" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    
+    
+   
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVDw69EeW1-5BGWb2MDw" name="XsveRtStps">
+      <ownedAttribute xmi:id="_b-fVEA69EeW1-5BGWb2MDw" name="extendedCadu" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVEQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVEg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVEw69EeW1-5BGWb2MDw" name="minimalBinaryOutput" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVFA69EeW1-5BGWb2MDw" name="frameLength" visibility="private" type="_b-fUVg69EeW1-5BGWb2MDw" isUnique="false" />
+       <ownedAttribute xmi:id="_b-fVFw69EeW1-5BGWb2MDw" name="site" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVGA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVGQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVGg69EeW1-5BGWb2MDw" name="fileClass" visibility="private" type="_b-fU-g69EeW1-5BGWb2MDw" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVGw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVHA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVHQ69EeW1-5BGWb2MDw" name="missionName" visibility="private" isUnique="false">
+        <ownedComment xmi:id="_b-fVHg69EeW1-5BGWb2MDw" annotatedElement="_b-fVHQ69EeW1-5BGWb2MDw">
+          <body>&lt;p>Mission name; value: three characters matching the following regular expression [S][1-3][A-B]&lt;/p></body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVHw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVIA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVIQ69EeW1-5BGWb2MDw" name="rsCorrectHeader" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVIg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVIw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVJA69EeW1-5BGWb2MDw" name="checkCrc" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVJQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVJg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVJw69EeW1-5BGWb2MDw" name="rsCorrectFrame" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVKA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVKQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVKg69EeW1-5BGWb2MDw" name="rsCorrectSize" visibility="private" type="_b-fUVg69EeW1-5BGWb2MDw" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVKw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVLA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVLQ69EeW1-5BGWb2MDw" name="spacecraftId" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVLg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVLw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVMA69EeW1-5BGWb2MDw" name="idleVcid" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVMQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVMg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVMw69EeW1-5BGWb2MDw" name="idleApid" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVNA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVNQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVNg69EeW1-5BGWb2MDw" name="discardIdle" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVNw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVOA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVOQ69EeW1-5BGWb2MDw" name="vcdusConfig" visibility="private" type="_b-fVQA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXUw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVOg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVOw69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVPA69EeW1-5BGWb2MDw" name="ignoreIdlePattern" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVPQ69EeW1-5BGWb2MDw" name="rtStpsConfig" visibility="private" type="_b-fVkw69EeW1-5BGWb2MDw" association="_b-fXTQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVPg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVPw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    
+    
+     
+      
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVQA69EeW1-5BGWb2MDw" name="VcdusConfig">
+      <ownedAttribute xmi:id="_b-fVQQ69EeW1-5BGWb2MDw" name="xsveRtStps" visibility="private" type="_b-fVDw69EeW1-5BGWb2MDw" association="_b-fXUw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVQg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVQw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVRA69EeW1-5BGWb2MDw" name="vcduConfig" visibility="private" type="_b-fVRw69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXUg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVRQ69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVRg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVmg69EeW1-5BGWb2MDw" name="Configuration">
+      <ownedAttribute xmi:id="_b-fVmw69EeW1-5BGWb2MDw" name="maxCounterPerApidSuffixConfig" visibility="private" type="_b-fVjA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXSg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVnA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVnQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVng69EeW1-5BGWb2MDw" name="validApidsConfig" visibility="private" type="_b-fVhQ69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXTA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVnw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVoA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVoQ69EeW1-5BGWb2MDw" name="rtStpsConfig" visibility="private" type="_b-fVkw69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXSw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVog69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVow69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVpA69EeW1-5BGWb2MDw" name="transmissionData" visibility="private" type="_b-fWzQ69EeW1-5BGWb2MDw" association="_b-fXVA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVpQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVpg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVjA69EeW1-5BGWb2MDw" name="MaxCounterPerApidSuffixConfig">
+      <ownedAttribute xmi:id="_b-fVjQ69EeW1-5BGWb2MDw" name="apidSuffixAndMaxCounter" visibility="private" type="_b-fVfw69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXTg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVjg69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVjw69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVkA69EeW1-5BGWb2MDw" name="configuration" visibility="private" type="_b-fVmg69EeW1-5BGWb2MDw" association="_b-fXSg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVkQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVkg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+     <packagedElement xmi:type="uml:Class" xmi:id="_b-fVfw69EeW1-5BGWb2MDw" name="ApidSuffixAndMaxCounter">
+      <ownedAttribute xmi:id="_b-fVgA69EeW1-5BGWb2MDw" name="apidSuffix" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVgQ69EeW1-5BGWb2MDw" name="maxSscCounterValue" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVgg69EeW1-5BGWb2MDw" name="maxCounterPerApidSuffixConfig" visibility="private" type="_b-fVjA69EeW1-5BGWb2MDw" association="_b-fXTg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVgw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVhA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXUw69EeW1-5BGWb2MDw" memberEnd="_b-fVOQ69EeW1-5BGWb2MDw _b-fVQQ69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXSg69EeW1-5BGWb2MDw" memberEnd="_b-fVmw69EeW1-5BGWb2MDw _b-fVkA69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXTg69EeW1-5BGWb2MDw" memberEnd="_b-fVjQ69EeW1-5BGWb2MDw _b-fVgg69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXSw69EeW1-5BGWb2MDw" memberEnd="_b-fVoQ69EeW1-5BGWb2MDw _b-fVlA69EeW1-5BGWb2MDw"/>
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVkw69EeW1-5BGWb2MDw" name="RtStpsConfig">
+      <ownedAttribute xmi:id="_b-fVlA69EeW1-5BGWb2MDw" name="configuration" visibility="private" type="_b-fVmg69EeW1-5BGWb2MDw" association="_b-fXSw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVlQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVlg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVlw69EeW1-5BGWb2MDw" name="xsveRtStps" visibility="private" type="_b-fVDw69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXTQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVmA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVmQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+	
+    
+    <!-- -->
+    
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVRw69EeW1-5BGWb2MDw" name="VcduConfig">
+      <ownedAttribute xmi:id="_b-fVSA69EeW1-5BGWb2MDw" name="vcdusConfig" visibility="private" type="_b-fVQA69EeW1-5BGWb2MDw" association="_b-fXUg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVSQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVSg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVSw69EeW1-5BGWb2MDw" name="vcid" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVTA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVTQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVTg69EeW1-5BGWb2MDw" name="minPacketSize" visibility="private" type="_b-fUVg69EeW1-5BGWb2MDw" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVTw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVUA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVUQ69EeW1-5BGWb2MDw" name="maxPacketSize" visibility="private" type="_b-fUVg69EeW1-5BGWb2MDw" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVUg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVUw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVVA69EeW1-5BGWb2MDw" name="ispsConfig" visibility="private" type="_b-fVVw69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXUQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVVQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVVg69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    
+    
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVVw69EeW1-5BGWb2MDw" name="IspsConfig">
+      <ownedAttribute xmi:id="_b-fVWA69EeW1-5BGWb2MDw" name="vcduConfig" visibility="private" type="_b-fVRw69EeW1-5BGWb2MDw" association="_b-fXUQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVWQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVWg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVWw69EeW1-5BGWb2MDw" name="ispConfig" visibility="private" type="_b-fVeA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXUA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVXA69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVXQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVXg69EeW1-5BGWb2MDw" name="IspInfo">
+      <ownedAttribute xmi:id="_b-fVXw69EeW1-5BGWb2MDw" name="missionName" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVYA69EeW1-5BGWb2MDw" name="offset" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVYQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVYg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVYw69EeW1-5BGWb2MDw" name="packetType" visibility="private" type="_b-fUtg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVZA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVZQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVZg69EeW1-5BGWb2MDw" name="seconds" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVZw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVaA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVaQ69EeW1-5BGWb2MDw" name="subseconds" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVag69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVaw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVbA69EeW1-5BGWb2MDw" name="apidValue" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVbQ69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVbg69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVbw69EeW1-5BGWb2MDw" name="pidValue" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVcA69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVcQ69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVcg69EeW1-5BGWb2MDw" name="pcatValue" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVcw69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVdA69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVdQ69EeW1-5BGWb2MDw" name="validApidsConfig" visibility="private" type="_b-fVhQ69EeW1-5BGWb2MDw" association="_b-fXTw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVdg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVdw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVeA69EeW1-5BGWb2MDw" name="IspConfig">
+      <ownedAttribute xmi:id="_b-fVeQ69EeW1-5BGWb2MDw" name="apid" visibility="private" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVeg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVew69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fVfA69EeW1-5BGWb2MDw" name="ispsConfig" visibility="private" type="_b-fVVw69EeW1-5BGWb2MDw" association="_b-fXUA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVfQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fVfg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+   
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVhQ69EeW1-5BGWb2MDw" name="ValidApidsConfig">
+      <ownedAttribute xmi:id="_b-fVhg69EeW1-5BGWb2MDw" name="configuration" visibility="private" type="_b-fVmg69EeW1-5BGWb2MDw" association="_b-fXTA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVhw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fViA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fViQ69EeW1-5BGWb2MDw" name="ispInfo" visibility="private" type="_b-fVXg69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXTw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fVig69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fViw69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+    </packagedElement>
+    
+    
+    
+    
+    
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fVpw69EeW1-5BGWb2MDw" name="VcduHeader">
+      <ownedComment xmi:id="_b-fVqA69EeW1-5BGWb2MDw">
+        <body>Transfer Frame Primary Header / Virtual Channel Data Unit Header</body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fVqQ69EeW1-5BGWb2MDw" name="input_masterChannelIdTransferFrameVersionNumber" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVqg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mcidTfVersionNumber.intValue = 1</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVqw69EeW1-5BGWb2MDw" name="input_masterChannelIdSpacecraftId" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVrA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mcidSpacecraftId.intValue = self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.spacecraftId</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVrQ69EeW1-5BGWb2MDw" name="input_virtualChannelIdInConfiguration" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVrg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let rtStpsConfig : configurationData::XsveRtStps = self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.vcdusConfig.vcduConfig.vcid->exists(x | x = self.virtualChannelId.intValue) &#xD;&#xA;or &#xD;&#xA;self.virtualChannelId.intValue = rtStpsConfig.idleVcid&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVrw69EeW1-5BGWb2MDw" name="input_signalingFieldReplayFlag" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVsA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.signFieldReplayFlag.intValue = 0</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVsQ69EeW1-5BGWb2MDw" name="input_signalingFieldReservedSpare" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVsg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.signFieldRsvdSpare.intValue = 0</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVsw69EeW1-5BGWb2MDw" name="input_virtualChannelIdInRange" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVtA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.virtualChannelId.intValue >= 0 and self.virtualChannelId.intValue &lt;= 63</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVtQ69EeW1-5BGWb2MDw" name="output_invalidFrameVersion" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVtg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData,&#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.virtualChannelId.intValue &lt;> self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;&#xD;&#xA;and&#xD;&#xA;&#xD;&#xA;(rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;or &#xD;&#xA;(rtStpsConfig.rsCorrectHeader &#xD;&#xA;and self.rsCrcHasErrors and self.rsCrcErrorsCorrectable)) &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.mcidTfVersionNumber.intValue &lt;> 1 &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::INVALID_FRAME_VERSION &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVtw69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReservedSpare" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVuA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in  &#xD;&#xA;&#xD;&#xA;self.virtualChannelId.intValue &lt;> self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;&#xD;&#xA;and&#xD;&#xA;&#xD;&#xA;(rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;or &#xD;&#xA;(rtStpsConfig.rsCorrectHeader &#xD;&#xA;and self.rsCrcHasErrors and self.rsCrcErrorsCorrectable)) &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.signFieldRsvdSpare.intValue &lt;> 0 &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::INVALID_SIGNALING_FIELD &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVuQ69EeW1-5BGWb2MDw" name="output_invalidSpacecraftId" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVug69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.virtualChannelId.intValue &lt;> self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;&#xD;&#xA;and&#xD;&#xA;&#xD;&#xA;(rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;or &#xD;&#xA;(rtStpsConfig.rsCorrectHeader &#xD;&#xA;and self.rsCrcHasErrors and self.rsCrcErrorsCorrectable)) &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.mcidSpacecraftId.intValue &lt;> rtStpsConfig.spacecraftId &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::INVALID_SPACECRAFT_ID &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVuw69EeW1-5BGWb2MDw" name="output_invalidVirtualChannelId" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVvA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;(rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;or &#xD;&#xA;(rtStpsConfig.rsCorrectHeader &#xD;&#xA;and self.rsCrcHasErrors and self.rsCrcErrorsCorrectable)) &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;not rtStpsConfig.vcdusConfig.vcduConfig.vcid->exists(x | x = self.virtualChannelId.intValue) &#xD;&#xA;and &#xD;&#xA;self.virtualChannelId.intValue &lt;> rtStpsConfig.idleVcid &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::INVALID_VIRTUAL_CHANNEL_ID &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVvQ69EeW1-5BGWb2MDw" name="input_frameHeader" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVvg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectHeader &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors = false</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVvw69EeW1-5BGWb2MDw" name="input_frameHeaderCorrectable" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVwA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectHeader &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors = true &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable = true</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVwQ69EeW1-5BGWb2MDw" name="output_frameHeaderCorrectable" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVwg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectHeader &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors and self.rsCrcErrorsCorrectable &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::REED_SOLOMON_FRAME_HEADER_CORRECTED &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVww69EeW1-5BGWb2MDw" name="output_frameHeaderUncorrectable" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVxA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectHeader &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors and (self.rsCrcErrorsCorrectable = false) &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::REED_SOLOMON_FRAME_HEADER_UNCORRECTED &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVxQ69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReplayFlag" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVxg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.virtualChannelId.intValue &lt;> self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;&#xD;&#xA;and&#xD;&#xA;&#xD;&#xA;(rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;or &#xD;&#xA;(rtStpsConfig.rsCorrectHeader &#xD;&#xA;and self.rsCrcHasErrors and self.rsCrcErrorsCorrectable)) &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.signFieldReplayFlag.intValue &lt;> 0 &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::INVALID_SIGNALING_FIELD &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVxw69EeW1-5BGWb2MDw" name="output_frameHeaderCorrectable_C1" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVyA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectHeader &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVyQ69EeW1-5BGWb2MDw" name="output_frameHeaderCorrectable_C2" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVyg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVyw69EeW1-5BGWb2MDw" name="output_frameHeaderCorrectable_C3" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVzA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVzQ69EeW1-5BGWb2MDw" name="output_frameHeaderUncorrectable_C1" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fVzg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectHeader &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fVzw69EeW1-5BGWb2MDw" name="output_frameHeaderUncorrectable_C2" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV0A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV0Q69EeW1-5BGWb2MDw" name="output_frameHeaderUncorrectable_C3" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV0g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData in &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable = false</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV0w69EeW1-5BGWb2MDw" name="output_invalidFrameVersion_C1" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV1A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData,&#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV1Q69EeW1-5BGWb2MDw" name="output_invalidFrameVersion_C2" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV1g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData,&#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV1w69EeW1-5BGWb2MDw" name="output_invalidFrameVersion_C3" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV2A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData,&#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV2Q69EeW1-5BGWb2MDw" name="output_invalidFrameVersion_C4" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV2g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData,&#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV2w69EeW1-5BGWb2MDw" name="output_invalidFrameVersion_C5" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV3A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData,&#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mcidTfVersionNumber.intValue &lt;> 1 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV3Q69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReplayFlag_C1" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV3g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV3w69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReplayFlag_C2" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV4A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV4Q69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReplayFlag_C3" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV4g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV4w69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReplayFlag_C4" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV5A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV5Q69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReplayFlag_C5" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV5g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;&#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.signFieldReplayFlag.intValue &lt;> 0 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV5w69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReservedSpare_C1" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV6A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in  &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader = false </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV6Q69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReservedSpare_C2" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV6g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in  &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV6w69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReservedSpare_C3" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV7A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in  &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV7Q69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReservedSpare_C4" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV7g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in  &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV7w69EeW1-5BGWb2MDw" name="output_invalidSignalingFieldReservedSpare_C5" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV8A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in  &#xD;&#xA;&#xD;&#xA;self.signFieldRsvdSpare.intValue &lt;> 0 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV8Q69EeW1-5BGWb2MDw" name="output_invalidSpacecraftId_C1" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV8g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV8w69EeW1-5BGWb2MDw" name="output_invalidSpacecraftId_C2" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV9A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV9Q69EeW1-5BGWb2MDw" name="output_invalidSpacecraftId_C3" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV9g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV9w69EeW1-5BGWb2MDw" name="output_invalidSpacecraftId_C4" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV-A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV-Q69EeW1-5BGWb2MDw" name="output_invalidSpacecraftId_C5" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV-g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mcidSpacecraftId.intValue &lt;> rtStpsConfig.spacecraftId &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV-w69EeW1-5BGWb2MDw" name="output_invalidVirtualChannelId_C1" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV_A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader = false </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV_Q69EeW1-5BGWb2MDw" name="output_invalidVirtualChannelId_C2" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fV_g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fV_w69EeW1-5BGWb2MDw" name="output_invalidVirtualChannelId_C3" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWAA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcHasErrors </body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWAQ69EeW1-5BGWb2MDw" name="output_invalidVirtualChannelId_C4" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWAg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.rsCrcErrorsCorrectable&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWAw69EeW1-5BGWb2MDw" name="output_invalidVirtualChannelId_C5" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWBA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;not rtStpsConfig.vcdusConfig.vcduConfig.vcid->exists(x | x = self.virtualChannelId.intValue) &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWBQ69EeW1-5BGWb2MDw" name="output_invalidVirtualChannelId_C6" constrainedElement="_b-fVpw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWBg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.vcdu.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.virtualChannelId.intValue &lt;> rtStpsConfig.idleVcid &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_b-fWBw69EeW1-5BGWb2MDw" name="mcidTfVersionNumber" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <eAnnotations xmi:id="_b-fWCA69EeW1-5BGWb2MDw" source="http://www.eclipse.org/uml2/2.0.0/UML"/>
+        <ownedComment xmi:id="_b-fWCQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWBw69EeW1-5BGWb2MDw">
+          <body>&lt;p>Master&amp;nbsp;Channel&amp;nbsp;ID&amp;nbsp;-&amp;nbsp;Transfer&amp;nbsp;Frame&amp;nbsp;Version&amp;nbsp;Number&lt;/p>&lt;p>2&amp;nbsp;bits&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWCg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWCw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWDA69EeW1-5BGWb2MDw" name="mcidSpacecraftId" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWDQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWDA69EeW1-5BGWb2MDw">
+          <body>&lt;p>Master&amp;nbsp;Channel&amp;nbsp;ID&amp;nbsp;-&amp;nbsp;Spacecraft&amp;nbsp;ID&lt;/p>&lt;p>8&amp;nbsp;bits&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWDg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWDw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWEA69EeW1-5BGWb2MDw" name="virtualChannelId" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWEQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWEA69EeW1-5BGWb2MDw">
+          <body>&lt;p>6&amp;nbsp;bits&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWEg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWEw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWFA69EeW1-5BGWb2MDw" name="virtualChannelFrameCount" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWFQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWFA69EeW1-5BGWb2MDw">
+          <body>&lt;p>3&amp;nbsp;bytes&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWFg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWFw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWGA69EeW1-5BGWb2MDw" name="signFieldReplayFlag" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWGQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWGA69EeW1-5BGWb2MDw">
+          <body>&lt;p>Signaling&amp;nbsp;Field&amp;nbsp;-&amp;nbsp;Replay&amp;nbsp;Flag&lt;/p>&lt;p>1&amp;nbsp;bit&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWGg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWGw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWHA69EeW1-5BGWb2MDw" name="signFieldRsvdSpare" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWHQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWHA69EeW1-5BGWb2MDw">
+          <body>&lt;p>Signaling&amp;nbsp;Field&amp;nbsp;-&amp;nbsp;Rsvd&amp;nbsp;Fd&lt;/p>&lt;p>7&amp;nbsp;bits&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWHg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWHw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWIA69EeW1-5BGWb2MDw" name="frameHeaderErrorControl" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWIQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWIA69EeW1-5BGWb2MDw">
+          <body>&lt;p>2&amp;nbsp;bytes&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWIg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWIw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWJA69EeW1-5BGWb2MDw" name="vcdu" visibility="private" type="_b-fWPA69EeW1-5BGWb2MDw" association="_b-fXKA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWJQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWJg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWJw69EeW1-5BGWb2MDw" name="vcduHeaderAsString" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWKA69EeW1-5BGWb2MDw" name="rsCrcHasErrors" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWKQ69EeW1-5BGWb2MDw" name="rsCrcErrorsCorrectable" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_b-fWKg69EeW1-5BGWb2MDw" name="calculateRsCrc" visibility="public">
+        <ownedComment xmi:id="_b-fWKw69EeW1-5BGWb2MDw" annotatedElement="_b-fWKg69EeW1-5BGWb2MDw">
+          <body>&lt;p>return&amp;nbsp;2&amp;nbsp;byte&amp;nbsp;array&lt;/p></body>
+        </ownedComment>
+        <ownedParameter xmi:id="_b-fWLA69EeW1-5BGWb2MDw" name="Result" type="_b-fUdw69EeW1-5BGWb2MDw" isUnique="false" direction="return" effect="update">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWLQ69EeW1-5BGWb2MDw" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWLg69EeW1-5BGWb2MDw"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_b-fWLw69EeW1-5BGWb2MDw" name="tfVersionNumber">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByte"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_b-fWMA69EeW1-5BGWb2MDw" name="spaceCraftId">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByte"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_b-fWMQ69EeW1-5BGWb2MDw" name="virtualChannelId">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByte"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_b-fWMg69EeW1-5BGWb2MDw" name="signFieldReplayFlag">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByte"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_b-fWMw69EeW1-5BGWb2MDw" name="signFieldRsvdSpare">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByte"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_b-fWNA69EeW1-5BGWb2MDw" name="isUsingHeaderCorrection" isQuery="true" bodyCondition="_b-fWNQ69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fWNQ69EeW1-5BGWb2MDw" name="isUsingHeaderCorrection" constrainedElement="_b-fWNA69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWNg69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectHeader</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fWNw69EeW1-5BGWb2MDw" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_b-fWOA69EeW1-5BGWb2MDw" name="getVirtualChannelId" isQuery="true" bodyCondition="_b-fWOQ69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fWOQ69EeW1-5BGWb2MDw" name="getVirtualChannelId" constrainedElement="_b-fWOA69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWOg69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>self.virtualChannelId.intValue</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fWOw69EeW1-5BGWb2MDw" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fWPA69EeW1-5BGWb2MDw" name="Vcdu">
+      <ownedComment xmi:id="_b-fWPQ69EeW1-5BGWb2MDw">
+        <body>Frame / Virtual Channel Data Unit</body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fWPg69EeW1-5BGWb2MDw" name="input_idleFrame" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWPw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.vcduHeader.virtualChannelId.intValue = self.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA; &#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.mpduHeader.oclIsTypeOf(MpduIdleHeader) &#xD;&#xA;and &#xD;&#xA;self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(1).intValue = 7 &#xD;&#xA;and &#xD;&#xA;self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(2).intValue = -2 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclIsTypeOf(MpduIdlePacketZone) &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(1).intValue = -1 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(2).intValue = -3 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(3).intValue = 89 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(4).intValue = 123 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWQA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWQQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;(rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;or &#xD;&#xA;(rtStpsConfig.rsCorrectHeader &#xD;&#xA;and self.vcduHeader.rsCrcHasErrors and self.vcduHeader.rsCrcErrorsCorrectable)) &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.vcduHeader.virtualChannelId.intValue = rtStpsConfig.idleVcid &#xD;&#xA;&#xD;&#xA;and&#xD;&#xA;&#xD;&#xA;(&#xD;&#xA;self.mpduHeader.oclIsTypeOf(MpduIdleHeader) = false &#xD;&#xA;&#xD;&#xA;or &#xD;&#xA;&#xD;&#xA;(self.mpduHeader.oclIsTypeOf(MpduIdleHeader) &#xD;&#xA;and &#xD;&#xA;(self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(1).intValue &lt;> 7 &#xD;&#xA;or &#xD;&#xA;self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(2).intValue &lt;> -2)) &#xD;&#xA;&#xD;&#xA;or &#xD;&#xA;&#xD;&#xA;self.mpduPacketZone.oclIsTypeOf(MpduIdlePacketZone) = false &#xD;&#xA;&#xD;&#xA;or &#xD;&#xA;&#xD;&#xA;(self.mpduPacketZone.oclIsTypeOf(MpduIdlePacketZone) &#xD;&#xA;and &#xD;&#xA;(self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(1).intValue &lt;> -1 &#xD;&#xA;or &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(2).intValue &lt;> -3 &#xD;&#xA;or &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(3).intValue &lt;> 89 &#xD;&#xA;or &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(4).intValue &lt;> 123)) &#xD;&#xA;)&#xD;&#xA; &#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::INVALID_IDLE_FRAME_MARKER &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWQg69EeW1-5BGWb2MDw" name="output_idleFrame" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWQw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.vcduHeader.virtualChannelId.intValue = self.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.mpduHeader.oclIsTypeOf(MpduIdleHeader)  &#xD;&#xA;and &#xD;&#xA;self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(1).intValue = 7 &#xD;&#xA;and &#xD;&#xA;self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(2).intValue = -2 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclIsTypeOf(MpduIdlePacketZone) &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(1).intValue = -1 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(2).intValue = -3 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(3).intValue = 89 &#xD;&#xA;and &#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(4).intValue = 123 &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.cadu.channelData.transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::IDLE_FRAME &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWRA69EeW1-5BGWb2MDw" name="output_idleFrame_C1" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWRQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.vcduHeader.virtualChannelId.intValue = self.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWRg69EeW1-5BGWb2MDw" name="output_idleFrame_C2" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWRw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduHeader.oclIsTypeOf(MpduIdleHeader)  &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWSA69EeW1-5BGWb2MDw" name="output_idleFrame_C3" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWSQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(1).intValue = 7 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWSg69EeW1-5BGWb2MDw" name="output_idleFrame_C4" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWSw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(2).intValue = -2 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWTA69EeW1-5BGWb2MDw" name="output_idleFrame_C5" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWTQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduPacketZone.oclIsTypeOf(MpduIdlePacketZone) &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWTg69EeW1-5BGWb2MDw" name="output_idleFrame_C6" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWTw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(1).intValue = -1 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWUA69EeW1-5BGWb2MDw" name="output_idleFrame_C7" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWUQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(2).intValue = -3 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWUg69EeW1-5BGWb2MDw" name="output_idleFrame_C8" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWUw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(3).intValue = 89 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWVA69EeW1-5BGWb2MDw" name="output_idleFrame_C9" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWVQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(4).intValue = 123 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWVg69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C01" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWVw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader = false &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWWA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C02" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWWQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;rtStpsConfig.rsCorrectHeader &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWWg69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C03" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWWw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.vcduHeader.rsCrcHasErrors&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWXA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C04" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWXQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.vcduHeader.rsCrcErrorsCorrectable&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWXg69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C05" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWXw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.vcduHeader.virtualChannelId.intValue = rtStpsConfig.idleVcid &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWYA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C06" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWYQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduHeader.oclIsTypeOf(MpduIdleHeader) = false &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWYg69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C08" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWYw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(1).intValue &lt;> 7 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWZA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C09" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWZQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduHeader.oclAsType(MpduIdleHeader).value.byte->at(2).intValue &lt;> -2&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWZg69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C10" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWZw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduPacketZone.oclIsTypeOf(MpduIdlePacketZone) = false &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWaA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C11" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWaQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduPacketZone.oclIsTypeOf(MpduIdlePacketZone) &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWag69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C12" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWaw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(1).intValue &lt;> -1 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWbA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C13" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWbQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(2).intValue &lt;> -3 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWbg69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C14" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWbw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(3).intValue &lt;> 89 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWcA69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C15" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWcQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduPacketZone.oclAsType(MpduIdlePacketZone).value.byte->at(4).intValue &lt;> 123&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWcg69EeW1-5BGWb2MDw" name="output_invalidIdleFrameMarker_C07" constrainedElement="_b-fWPA69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWcw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let transmissionData : TransmissionData = self.cadu.channelData.transmissionData, &#xD;&#xA;rtStpsConfig : configurationData::XsveRtStps = transmissionData.configuration.rtStpsConfig.xsveRtStps &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.mpduHeader.oclIsTypeOf(MpduIdleHeader) &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_b-fWdA69EeW1-5BGWb2MDw" name="mpduPacketZone" visibility="private" type="_b-fWqg69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXKQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWdQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWdg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWdw69EeW1-5BGWb2MDw" name="vcduHeader" visibility="private" type="_b-fVpw69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXKA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWeA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWeQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWeg69EeW1-5BGWb2MDw" name="cadu" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXLA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWew69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWfA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWfQ69EeW1-5BGWb2MDw" name="mpduHeader" visibility="private" type="_b-fXJA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXNQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWfg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWfw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_b-fWgA69EeW1-5BGWb2MDw" name="getVirtualChannelType" isQuery="true" bodyCondition="_b-fWgQ69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fWgQ69EeW1-5BGWb2MDw" name="getVirtualChannelType" constrainedElement="_b-fWgA69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWgg69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>if self.vcduHeader.virtualChannelId.intValue = self.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;  then dataTypes::VirtualChannelType::IDLE &#xD;&#xA;else dataTypes::VirtualChannelType::ACTIVE &#xD;&#xA;endif &#xD;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fWgw69EeW1-5BGWb2MDw" name="Parameter1" type="_b-fUhA69EeW1-5BGWb2MDw" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_b-fWhA69EeW1-5BGWb2MDw" name="getHeaderAsString" isQuery="true" bodyCondition="_b-fWhQ69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fWhQ69EeW1-5BGWb2MDw" name="getHeaderAsString" constrainedElement="_b-fWhA69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWhg69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>if self.cadu.channelData.caduHeaderIncludesMpdu then&#xD;&#xA;  if self.getVirtualChannelType() = dataTypes::VirtualChannelType::IDLE then&#xD;&#xA;    self.vcduHeader.vcduHeaderAsString.concat(self.mpduHeader.oclAsType(MpduIdleHeader).mpduIdleHeaderAsString)&#xD;&#xA;  else&#xD;&#xA;    self.vcduHeader.vcduHeaderAsString.concat(self.mpduHeader.oclAsType(MpduActiveHeader).mpduActiveHeaderAsString)&#xD;&#xA;  endif&#xD;&#xA;else&#xD;&#xA;  self.vcduHeader.vcduHeaderAsString&#xD;&#xA;endif&#xD;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fWhw69EeW1-5BGWb2MDw" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fWiA69EeW1-5BGWb2MDw" name="Sync">
+      <ownedComment xmi:id="_b-fWiQ69EeW1-5BGWb2MDw">
+        <body>Sync Marker</body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fWig69EeW1-5BGWb2MDw" name="input_syncMarker" constrainedElement="_b-fWiA69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWiw69EeW1-5BGWb2MDw" annotatedElement="_b-fWig69EeW1-5BGWb2MDw">
+          <body>&lt;p>We&amp;nbsp;expect&amp;nbsp;that&amp;nbsp;the&amp;nbsp;4&amp;nbsp;byte&amp;nbsp;Sync&amp;nbsp;field&amp;nbsp;should&amp;nbsp;be&amp;nbsp;equal&amp;nbsp;to&amp;nbsp;0x1ACFFC1D&lt;/p>&lt;p>0x1A&amp;nbsp;=&amp;nbsp;26&amp;nbsp;&lt;/p>&lt;p>0xCF&amp;nbsp;=&amp;nbsp;207&lt;/p>&lt;p>0xFC&amp;nbsp;=&amp;nbsp;252&lt;/p>&lt;p>0x1D&amp;nbsp;=&amp;nbsp;29&lt;/p></body>
+        </ownedComment>
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWjA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.value.byte->at(1).intValue = 26 and &#xD;&#xA;self.value.byte->at(2).intValue = -49 and &#xD;&#xA;self.value.byte->at(3).intValue = -4 and &#xD;&#xA;self.value.byte->at(4).intValue = 29</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_b-fWjQ69EeW1-5BGWb2MDw" name="value" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWjg69EeW1-5BGWb2MDw" annotatedElement="_b-fWjQ69EeW1-5BGWb2MDw">
+          <body>&lt;p>4&amp;nbsp;bytes&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWjw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWkA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWkQ69EeW1-5BGWb2MDw" name="cadu" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXKg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWkg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWkw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fWlA69EeW1-5BGWb2MDw" name="ReedSolomonCoding">
+      <ownedComment xmi:id="_b-fWlQ69EeW1-5BGWb2MDw">
+        <body>Reed Solomon check symbols</body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fWlg69EeW1-5BGWb2MDw" name="input_reedSolomonCheckSymbols" constrainedElement="_b-fW3Q69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWlw69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.rsCorrectFrame = true &#xD;&#xA; &#xD;&#xA;implies &#xD;&#xA; &#xD;&#xA;self.rsActualCheckSymbols.byte = self.rsCalculatedCheckSymbols.byte&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_b-fWmA69EeW1-5BGWb2MDw" name="rsActualCheckSymbols" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWmQ69EeW1-5BGWb2MDw">
+          <body>128 bytes</body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWmg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWmw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWnA69EeW1-5BGWb2MDw" name="rsCalculatedCheckSymbols" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWnQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWng69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWnw69EeW1-5BGWb2MDw" name="cadu" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXKw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWoA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWoQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_b-fWog69EeW1-5BGWb2MDw" name="calculateRsCoding" visibility="public">
+        <ownedComment xmi:id="_b-fWow69EeW1-5BGWb2MDw">
+          <body>return a byte array of 128 bytes</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_b-fWpA69EeW1-5BGWb2MDw" name="Result" isUnique="false" direction="return" effect="update">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByteArray"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWpQ69EeW1-5BGWb2MDw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWpg69EeW1-5BGWb2MDw"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_b-fWpw69EeW1-5BGWb2MDw" name="vcduBytes" isUnique="false" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByteArray"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWqA69EeW1-5BGWb2MDw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWqQ69EeW1-5BGWb2MDw"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fWqg69EeW1-5BGWb2MDw" name="MpduPacketZone">
+      <ownedComment xmi:id="_b-fWqw69EeW1-5BGWb2MDw">
+        <body>Multiplexing Protocol Data Unit (M_PDU) Packet Zone</body>
+      </ownedComment>
+      <ownedAttribute xmi:id="_b-fWrA69EeW1-5BGWb2MDw" name="vcdu" visibility="private" type="_b-fWPA69EeW1-5BGWb2MDw" association="_b-fXKQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWrQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWrg69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fWrw69EeW1-5BGWb2MDw" name="MpduIdleHeader">
+      <ownedComment xmi:id="_b-fWsA69EeW1-5BGWb2MDw">
+        <body>MPDU Idle Header</body>
+      </ownedComment>
+      <generalization xmi:id="_b-fWsQ69EeW1-5BGWb2MDw" general="_b-fXJA69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fWsg69EeW1-5BGWb2MDw" name="value" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWsw69EeW1-5BGWb2MDw" annotatedElement="_b-fWsg69EeW1-5BGWb2MDw">
+          <body>&lt;p>2&amp;nbsp;bytes&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWtA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWtQ69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWtg69EeW1-5BGWb2MDw" name="mpduIdleHeaderAsString" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fWtw69EeW1-5BGWb2MDw" name="MpduActiveHeader">
+      <ownedComment xmi:id="_b-fWuA69EeW1-5BGWb2MDw">
+        <body>Multiplexing Protocol Data Unit (M_PDU) Header</body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fWuQ69EeW1-5BGWb2MDw" name="input_reservedSpare" constrainedElement="_b-fWtw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWug69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.rsvdSpare.intValue = 0</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWuw69EeW1-5BGWb2MDw" name="input_firstHeaderPointer" constrainedElement="_b-fWtw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWvA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.firstHeaderPointer.intValue = 2047 &#xD;&#xA;or &#xD;&#xA;self.firstHeaderPointer.intValue &lt; 1902</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWvQ69EeW1-5BGWb2MDw" name="output_invalidFirstHeaderPointer" constrainedElement="_b-fWtw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWvg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.vcdu.cadu.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.vcdusConfig.vcduConfig.vcid->exists(x | x = self.vcdu.vcduHeader.virtualChannelId.intValue) &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;self.firstHeaderPointer.intValue &lt;> 2047 &#xD;&#xA;and &#xD;&#xA;self.firstHeaderPointer.intValue >= 1902 &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.vcdu.cadu.channelData.transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::INVALID_FIRST_HEADER_POINTER &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.cadu.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWvw69EeW1-5BGWb2MDw" name="output_invalidFirstHeaderPointer_C1" constrainedElement="_b-fWtw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWwA69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.firstHeaderPointer.intValue &lt;> 2047 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fWwQ69EeW1-5BGWb2MDw" name="output_invalidFirstHeaderPointer_C2" constrainedElement="_b-fWtw69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fWwg69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.firstHeaderPointer.intValue >= 1902 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <generalization xmi:id="_b-fWww69EeW1-5BGWb2MDw" general="_b-fXJA69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fWxA69EeW1-5BGWb2MDw" name="rsvdSpare" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWxQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWxA69EeW1-5BGWb2MDw">
+          <body>&lt;p>5&amp;nbsp;bits&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWxg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWxw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWyA69EeW1-5BGWb2MDw" name="firstHeaderPointer" visibility="private" type="_b-fUew69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fWyQ69EeW1-5BGWb2MDw" annotatedElement="_b-fWyA69EeW1-5BGWb2MDw">
+          <body>&lt;p>11&amp;nbsp;bits&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fWyg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fWyw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fWzA69EeW1-5BGWb2MDw" name="mpduActiveHeaderAsString" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fWzQ69EeW1-5BGWb2MDw" name="TransmissionData">
+      <ownedComment xmi:id="_b-fWzg69EeW1-5BGWb2MDw">
+        <body>X-Band System Validation Equipment (XSVE) System Input File</body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fWzw69EeW1-5BGWb2MDw" name="input_channelDataExists" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW0A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.channelData->size() > 0</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_b-fW0Q69EeW1-5BGWb2MDw" name="channelData" visibility="private" type="_b-fXNg69EeW1-5BGWb2MDw" isOrdered="true" aggregation="composite" association="_b-fXQw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fW0g69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fW0w69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fW1A69EeW1-5BGWb2MDw" name="configuration" visibility="private" type="_b-fVmg69EeW1-5BGWb2MDw" association="_b-fXVA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fW1Q69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fW1g69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fW1w69EeW1-5BGWb2MDw" name="MpduIdlePacketZone">
+      <generalization xmi:id="_b-fW2A69EeW1-5BGWb2MDw" general="_b-fWqg69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fW2Q69EeW1-5BGWb2MDw" name="value" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw">
+        <ownedComment xmi:id="_b-fW2g69EeW1-5BGWb2MDw" annotatedElement="_b-fW2Q69EeW1-5BGWb2MDw">
+          <body>&lt;p>1902&amp;nbsp;&amp;nbsp;bytes&lt;/p></body>
+        </ownedComment>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fW2w69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fW3A69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fW3Q69EeW1-5BGWb2MDw" name="Cadu">
+      <ownedComment xmi:id="_b-fW3g69EeW1-5BGWb2MDw" annotatedElement="_b-fW3Q69EeW1-5BGWb2MDw">
+        <body>&lt;p>Channel&amp;nbsp;Access&amp;nbsp;Data&amp;nbsp;Unit&lt;/p>&lt;p>2044&amp;nbsp;bytes&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fW3w69EeW1-5BGWb2MDw" name="input_virtualChannelFrameCount" constrainedElement="_b-fW3Q69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW4A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;not self.prevOnChannel->isEmpty() &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;if prevCaduFrameCount &lt; 16777215 &#xD;&#xA;&#x9;then caduFrameCount = prevCaduFrameCount + 1 &#xD;&#xA;else prevCaduFrameCount = 16777215 and caduFrameCount = 0 &#xD;&#xA;endif&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW4Q69EeW1-5BGWb2MDw" name="output_virtualCounterJump" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW4g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;self.vcdu.vcduHeader.virtualChannelId.intValue &lt;> self.channelData.transmissionData.configuration.rtStpsConfig.xsveRtStps.idleVcid &#xD;&#xA;and &#xD;&#xA;not self.prevOnChannel->isEmpty() &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;if prevCaduFrameCount &lt; 16777215 &#xD;&#xA;&#x9;then caduFrameCount &lt;> prevCaduFrameCount + 1 &#xD;&#xA;else prevCaduFrameCount = 16777215 and caduFrameCount &lt;> 0 &#xD;&#xA;endif &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.channelData.transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::VIRTUAL_COUNTER_JUMP &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW4w69EeW1-5BGWb2MDw" name="output_virtualCounterWrap" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW5A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;not self.prevOnChannel->isEmpty() &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;prevCaduFrameCount = 16777215 &#xD;&#xA;and &#xD;&#xA;caduFrameCount = 0 &#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.channelData.transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::VIRTUAL_COUNTER_WRAP &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW5Q69EeW1-5BGWb2MDw" name="output_virtualCounterJump_C1" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW5g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;not self.prevOnChannel->isEmpty() &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW5w69EeW1-5BGWb2MDw" name="output_virtualCounterJump_C2" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW6A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;prevCaduFrameCount &lt; 16777215 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW6Q69EeW1-5BGWb2MDw" name="output_virtualCounterJump_C3" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW6g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;caduFrameCount &lt;> prevCaduFrameCount + 1&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW6w69EeW1-5BGWb2MDw" name="output_virtualCounterJump_C4" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW7A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;prevCaduFrameCount = 16777215&#xD;&#xA;&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW7Q69EeW1-5BGWb2MDw" name="output_virtualCounterJump_C5" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW7g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;caduFrameCount &lt;> 0 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW7w69EeW1-5BGWb2MDw" name="output_virtualCounterWrap_C1" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW8A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;not self.prevOnChannel->isEmpty() &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW8Q69EeW1-5BGWb2MDw" name="output_virtualCounterWrap_C2" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW8g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;prevCaduFrameCount = 16777215 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW8w69EeW1-5BGWb2MDw" name="output_virtualCounterWrap_C3" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW9A69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;caduFrameCount = 0 &#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_b-fW9Q69EeW1-5BGWb2MDw" name="output_virtualCounterJump_rewrite" constrainedElement="_b-fWzQ69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fW9g69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>let &#xD;&#xA;&#x9;caduFrameCount : Integer =  self.vcdu.vcduHeader.virtualChannelFrameCount.intValue, &#xD;&#xA;&#x9;prevCaduFrameCount : Integer = self.prevOnChannel.vcdu.vcduHeader.virtualChannelFrameCount.intValue &#xD;&#xA;in &#xD;&#xA;&#xD;&#xA;not self.prevOnChannel->isEmpty() &#xD;&#xA;&#xD;&#xA;and &#xD;&#xA;&#xD;&#xA;(prevCaduFrameCount &lt; 16777215 and caduFrameCount &lt;> prevCaduFrameCount + 1)&#xD;&#xA;or&#xD;&#xA;(not (prevCaduFrameCount &lt; 16777215) and prevCaduFrameCount = 16777215 and caduFrameCount &lt;> 0)&#xD;&#xA;&#xD;&#xA;implies &#xD;&#xA;&#xD;&#xA;self.channelData.transmissionData.acquisitionData.vcduReportData.vcduReport.vcduReportBody.vcduEvent->exists(i | i.eventType = dataTypes::VcduEvents::VIRTUAL_COUNTER_JUMP &#xD;&#xA;&#x9;and &#xD;&#xA;&#x9;(i.currentVcduFrame.header = '0x'.concat(self.vcdu.getHeaderAsString())) &#xD;&#xA;)&#xD;&#xA;</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_b-fW9w69EeW1-5BGWb2MDw" name="sync" visibility="private" type="_b-fWiA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXKg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fW-A69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fW-Q69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fW-g69EeW1-5BGWb2MDw" name="reedSolomonCoding" visibility="private" type="_b-fWlA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXKw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fW-w69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fW_A69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fW_Q69EeW1-5BGWb2MDw" name="vcdu" visibility="private" type="_b-fWPA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXLA69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fW_g69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fW_w69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXAA69EeW1-5BGWb2MDw" name="prev" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXLQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXAQ69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXAg69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXAw69EeW1-5BGWb2MDw" name="prevOnChannel" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXMQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXBA69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXBQ69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXBg69EeW1-5BGWb2MDw" name="channelData" visibility="private" type="_b-fXNg69EeW1-5BGWb2MDw" association="_b-fXQg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXBw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXCA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXCQ69EeW1-5BGWb2MDw" name="extendedCaduInfo" visibility="private" type="_b-fXRA69EeW1-5BGWb2MDw" aggregation="composite" association="_b-fXSQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXCg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXCw69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXDA69EeW1-5BGWb2MDw" name="index" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_b-fXDQ69EeW1-5BGWb2MDw" name="hasExtendedCadu" isQuery="true" bodyCondition="_b-fXDg69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fXDg69EeW1-5BGWb2MDw" name="hasExtendedCadu" constrainedElement="_b-fXDQ69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fXDw69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>self.channelData.hasExtendedCadu&#xD;&#xA;</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fXEA69EeW1-5BGWb2MDw" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_b-fXEQ69EeW1-5BGWb2MDw" name="getCaduIndex" isQuery="true" bodyCondition="_b-fXEg69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fXEg69EeW1-5BGWb2MDw" name="getCaduIndex" constrainedElement="_b-fXEQ69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fXEw69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>self.index</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fXFA69EeW1-5BGWb2MDw" name="Parameter1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fXFQ69EeW1-5BGWb2MDw" name="MpduActivePacketZone">
+      <generalization xmi:id="_b-fXFg69EeW1-5BGWb2MDw" general="_b-fWqg69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fXFw69EeW1-5BGWb2MDw" name="value" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw"/>
+      <ownedOperation xmi:id="_b-fXGA69EeW1-5BGWb2MDw" name="getStartingIsps" isQuery="true" bodyCondition="_b-fXGQ69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fXGQ69EeW1-5BGWb2MDw" name="getStartingIsps" constrainedElement="_b-fXGA69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fXGg69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>self.isp->select(i : Isp | i.mpduActivePacketZone->at(1) = self)</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fXGw69EeW1-5BGWb2MDw" name="Parameter1" isOrdered="true" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXHA69EeW1-5BGWb2MDw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXHQ69EeW1-5BGWb2MDw"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_b-fXHg69EeW1-5BGWb2MDw" name="getAssociatedIsps" isQuery="true" bodyCondition="_b-fXHw69EeW1-5BGWb2MDw">
+        <ownedRule xmi:id="_b-fXHw69EeW1-5BGWb2MDw" name="getAssociatedIsps" constrainedElement="_b-fXHg69EeW1-5BGWb2MDw">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fXIA69EeW1-5BGWb2MDw">
+            <language>OCL</language>
+            <body>self.isp</body>
+          </specification>
+        </ownedRule>
+        <ownedParameter xmi:id="_b-fXIQ69EeW1-5BGWb2MDw" name="Parameter1" isOrdered="true" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXIg69EeW1-5BGWb2MDw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXIw69EeW1-5BGWb2MDw"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fXJA69EeW1-5BGWb2MDw" name="MpduHeader">
+      <ownedAttribute xmi:id="_b-fXJQ69EeW1-5BGWb2MDw" name="vcdu" visibility="private" type="_b-fWPA69EeW1-5BGWb2MDw" association="_b-fXNQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXJg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXJw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXKA69EeW1-5BGWb2MDw" memberEnd="_b-fWJA69EeW1-5BGWb2MDw _b-fWdw69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXKQ69EeW1-5BGWb2MDw" memberEnd="_b-fWrA69EeW1-5BGWb2MDw _b-fWdA69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXKg69EeW1-5BGWb2MDw" memberEnd="_b-fWkQ69EeW1-5BGWb2MDw _b-fW9w69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXKw69EeW1-5BGWb2MDw" memberEnd="_b-fWnw69EeW1-5BGWb2MDw _b-fW-g69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXLA69EeW1-5BGWb2MDw" memberEnd="_b-fWeg69EeW1-5BGWb2MDw _b-fW_Q69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXLQ69EeW1-5BGWb2MDw" memberEnd="_b-fXAA69EeW1-5BGWb2MDw _b-fXLg69EeW1-5BGWb2MDw">
+      <ownedEnd xmi:id="_b-fXLg69EeW1-5BGWb2MDw" name="" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXLQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXLw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXMA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXMQ69EeW1-5BGWb2MDw" memberEnd="_b-fXAw69EeW1-5BGWb2MDw _b-fXMg69EeW1-5BGWb2MDw">
+      <ownedEnd xmi:id="_b-fXMg69EeW1-5BGWb2MDw" name="" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXMQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXMw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXNA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXNQ69EeW1-5BGWb2MDw" memberEnd="_b-fXJQ69EeW1-5BGWb2MDw _b-fWfQ69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fXNg69EeW1-5BGWb2MDw" name="ChannelData">
+      <ownedComment xmi:id="_b-fXNw69EeW1-5BGWb2MDw" annotatedElement="_b-fXNg69EeW1-5BGWb2MDw">
+        <body>&lt;p>For&amp;nbsp;each&amp;nbsp;physical&amp;nbsp;channel&amp;nbsp;of&amp;nbsp;the&amp;nbsp;satellite.&lt;/p></body>
+      </ownedComment>
+      <ownedRule xmi:id="_b-fXOA69EeW1-5BGWb2MDw" name="input_caduDataExists" constrainedElement="_b-fXNg69EeW1-5BGWb2MDw">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_b-fXOQ69EeW1-5BGWb2MDw">
+          <language>OCL</language>
+          <body>self.cadu->size() > 0</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_b-fXOg69EeW1-5BGWb2MDw" name="cadu" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" isOrdered="true" aggregation="composite" association="_b-fXQg69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXOw69EeW1-5BGWb2MDw" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXPA69EeW1-5BGWb2MDw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXPQ69EeW1-5BGWb2MDw" name="transmissionData" visibility="private" type="_b-fWzQ69EeW1-5BGWb2MDw" association="_b-fXQw69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXPg69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXPw69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXQA69EeW1-5BGWb2MDw" name="hasExtendedCadu" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_b-fXQQ69EeW1-5BGWb2MDw" name="caduHeaderIncludesMpdu" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXQg69EeW1-5BGWb2MDw" memberEnd="_b-fXOg69EeW1-5BGWb2MDw _b-fXBg69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXQw69EeW1-5BGWb2MDw" memberEnd="_b-fW0Q69EeW1-5BGWb2MDw _b-fXPQ69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_b-fXRA69EeW1-5BGWb2MDw" name="ExtendedCaduInfo">
+      <ownedAttribute xmi:id="_b-fXRQ69EeW1-5BGWb2MDw" name="value" visibility="private" type="_b-fUdw69EeW1-5BGWb2MDw"/>
+      <ownedAttribute xmi:id="_b-fXRg69EeW1-5BGWb2MDw" name="cadu" visibility="private" type="_b-fW3Q69EeW1-5BGWb2MDw" association="_b-fXSQ69EeW1-5BGWb2MDw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_b-fXRw69EeW1-5BGWb2MDw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_b-fXSA69EeW1-5BGWb2MDw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXSQ69EeW1-5BGWb2MDw" memberEnd="_b-fXRg69EeW1-5BGWb2MDw _b-fXCQ69EeW1-5BGWb2MDw"/>
+    
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXTA69EeW1-5BGWb2MDw" memberEnd="_b-fVng69EeW1-5BGWb2MDw _b-fVhg69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXTQ69EeW1-5BGWb2MDw" memberEnd="_b-fVlw69EeW1-5BGWb2MDw _b-fVPQ69EeW1-5BGWb2MDw"/>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXTw69EeW1-5BGWb2MDw" memberEnd="_b-fViQ69EeW1-5BGWb2MDw _b-fVdQ69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXUA69EeW1-5BGWb2MDw" memberEnd="_b-fVfA69EeW1-5BGWb2MDw _b-fVWw69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXUQ69EeW1-5BGWb2MDw" memberEnd="_b-fVWA69EeW1-5BGWb2MDw _b-fVVA69EeW1-5BGWb2MDw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXUg69EeW1-5BGWb2MDw" memberEnd="_b-fVSA69EeW1-5BGWb2MDw _b-fVRA69EeW1-5BGWb2MDw"/>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="_b-fXVA69EeW1-5BGWb2MDw" memberEnd="_b-fVpA69EeW1-5BGWb2MDw _b-fW1A69EeW1-5BGWb2MDw"/> 
+    
+  </uml:Package>

@@ -1,0 +1,69 @@
+import 'TaxCard.ecore'
+
+package TaxCard
+
+context Physical_Person
+
+def: getAge(year : Integer): Integer = 
+
+	if(self.birth_year>=year) then 0 
+	else
+		let age:Integer=year-self.birth_year+1 in
+		if(self.birth_month=1 and self.birth_day=1) then
+			age+1
+		else age endif
+	endif
+	
+def: getLegalUnionRecord(year:Integer):Legal_Union_Record = 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select( ((individual_A=self or individual_B=self))) in
+			
+			if(legel_unions->size()=0) then
+			invalid
+			else
+			let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=year)in
+			let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in
+			if(lasted_union.end_year=-1)then
+			lasted_union
+			else
+			invalid
+			endif
+			endif
+	
+def: getSpouse(year:Integer):Physical_Person = 
+let legel_unions:Set(Legal_Union_Record)=Legal_Union_Record.allInstances()->select( ((individual_A=self or individual_B=self))) in
+			
+			if(legel_unions->size()=0) then
+			let union:Legal_Union_Record=self.getLegalUnionRecord(year) in 
+			if(union.oclIsInvalid())then
+			invalid
+			else
+	        if(union.individual_B=self) then union.individual_A.oclAsType(Physical_Person) else union.individual_B.oclAsType(Physical_Person) endif endif
+			else
+			let possible_unions:Set(Legal_Union_Record)=legel_unions->select(start_year<=year)in
+			let lasted_union:Legal_Union_Record= possible_unions->select(start_year=possible_unions.start_year->max())->any(true) in
+			if(lasted_union.end_year=-1)then
+			
+			if(lasted_union.individual_A=self)then
+			lasted_union.individual_B
+			else
+			lasted_union.individual_A
+			endif
+			else
+			invalid
+			endif
+			endif
+				
+context External_Allowance
+
+def: round_lower_euros(amount:Real):Real = 
+let p1:Integer = amount.floor() in
+			p1.toString().toReal()
+
+def: getAmount(base:Real, dep_age:Integer, is_disabled:Boolean):Real = 
+if(dep_age>=6 and dep_age<=11) then
+ round_lower_euros(base + 16.17)
+  else if (dep_age>=12) then round_lower_euros(base + 48.52) else 
+  if(is_disabled) then round_lower_euros(base + 185.60) else base endif endif endif
+
+
+endpackage

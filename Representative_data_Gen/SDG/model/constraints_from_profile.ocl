@@ -1,0 +1,20 @@
+import 'TaxCard.ecore'  
+package TaxCard 
+
+context PhysicalPerson inv inv1: 
+self.addresses->size() >= 1
+
+context TaxPayer inv inv2: 
+self.incomes->size() >= 1
+
+context Child inv inv3: 
+self.responsible.oclIsUndefined() = false 
+
+context Income inv inv4: 
+self.taxpayer.oclIsUndefined() = false 
+
+context TaxCard inv inv5: 
+self.income.oclIsUndefined() = false 
+
+
+endpackage

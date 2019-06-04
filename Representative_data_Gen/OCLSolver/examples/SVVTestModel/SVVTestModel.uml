@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_Ga9V4ITjEeKt8bFPzUYOwg" name="SVVTestModel">
+  <packageImport xmi:id="_Ga9V44TjEeKt8bFPzUYOwg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Ji4wIITjEeKt8bFPzUYOwg" name="Person">
+    <ownedAttribute xmi:id="_8r6oQITjEeKt8bFPzUYOwg" name="incomes" visibility="private" type="_rxP24ITjEeKt8bFPzUYOwg" association="_8r5aIITjEeKt8bFPzUYOwg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8r72YYTjEeKt8bFPzUYOwg" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8r72YITjEeKt8bFPzUYOwg"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_bPpQUITkEeKt8bFPzUYOwg" name="addresses" visibility="private" type="_DtwTUITkEeKt8bFPzUYOwg" association="_bPoCMITkEeKt8bFPzUYOwg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bPqecYTkEeKt8bFPzUYOwg" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bPqecITkEeKt8bFPzUYOwg"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_vqgSIIctEeKMdL_StYPLOw" name="name" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_wZ684IctEeKMdL_StYPLOw" name="SSNo" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_exzdgKqiEeOOvPo8C7Ns5w" name="orderedClass" visibility="private" type="_aaA94KqiEeOOvPo8C7Ns5w" aggregation="composite" association="_exsv0KqiEeOOvPo8C7Ns5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ex2g0KqiEeOOvPo8C7Ns5w" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ex15wKqiEeOOvPo8C7Ns5w"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rxP24ITjEeKt8bFPzUYOwg" name="Income">
+    <ownedAttribute xmi:id="_8r9EgITjEeKt8bFPzUYOwg" name="person" visibility="private" type="_Ji4wIITjEeKt8bFPzUYOwg" association="_8r5aIITjEeKt8bFPzUYOwg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8r-SoITjEeKt8bFPzUYOwg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8r9rkITjEeKt8bFPzUYOwg" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_9CEJIIctEeKMdL_StYPLOw" name="income_amount" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_tg7r0ITjEeKt8bFPzUYOwg" name="LocalIncome">
+    <generalization xmi:id="_xPlH0ITjEeKt8bFPzUYOwg" general="_rxP24ITjEeKt8bFPzUYOwg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uiYhwITjEeKt8bFPzUYOwg" name="ForeignIncome">
+    <generalization xmi:id="_x-_LgITjEeKt8bFPzUYOwg" general="_rxP24ITjEeKt8bFPzUYOwg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_8r5aIITjEeKt8bFPzUYOwg" name="has" memberEnd="_8r6oQITjEeKt8bFPzUYOwg _8r9EgITjEeKt8bFPzUYOwg"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_DtwTUITkEeKt8bFPzUYOwg" name="Address">
+    <ownedAttribute xmi:id="_bPrskITkEeKt8bFPzUYOwg" name="person" visibility="private" type="_Ji4wIITjEeKt8bFPzUYOwg" association="_bPoCMITkEeKt8bFPzUYOwg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bPs6sITkEeKt8bFPzUYOwg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bPsToITkEeKt8bFPzUYOwg" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_7RFq8IWREeK6dbBwKnx1zQ" name="country" visibility="public" type="_98cd8IWREeK6dbBwKnx1zQ">
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_OASl8IWbEeK6dbBwKnx1zQ" name="LU" type="_98cd8IWREeK6dbBwKnx1zQ" instance="_CD0jAIWSEeK6dbBwKnx1zQ"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_f3VUUIctEeKMdL_StYPLOw" name="street" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_jPXnIIctEeKMdL_StYPLOw" name="zipCode" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_kJrTQIctEeKMdL_StYPLOw" name="city" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_bPoCMITkEeKt8bFPzUYOwg" name="lives" memberEnd="_bPpQUITkEeKt8bFPzUYOwg _bPrskITkEeKt8bFPzUYOwg"/>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_98cd8IWREeK6dbBwKnx1zQ" name="Country">
+    <ownedLiteral xmi:id="_CD0jAIWSEeK6dbBwKnx1zQ" name="LU"/>
+    <ownedLiteral xmi:id="_ENJnAIWSEeK6dbBwKnx1zQ" name="FR"/>
+    <ownedLiteral xmi:id="_FPyIsIWSEeK6dbBwKnx1zQ" name="BE"/>
+    <ownedLiteral xmi:id="_GpQdEIWSEeK6dbBwKnx1zQ" name="DE"/>
+    <ownedLiteral xmi:id="_HP4YMIWSEeK6dbBwKnx1zQ" name="NL"/>
+    <ownedLiteral xmi:id="_HwEUIIWSEeK6dbBwKnx1zQ" name="OTHER"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_aaA94KqiEeOOvPo8C7Ns5w" name="OrderedClass">
+    <ownedAttribute xmi:id="_ex3H4KqiEeOOvPo8C7Ns5w" name="person" visibility="private" type="_Ji4wIITjEeKt8bFPzUYOwg" association="_exsv0KqiEeOOvPo8C7Ns5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ex3u8aqiEeOOvPo8C7Ns5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ex3u8KqiEeOOvPo8C7Ns5w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_lGmcYKqiEeOOvPo8C7Ns5w" name="previous" visibility="private" type="_aaA94KqiEeOOvPo8C7Ns5w" association="_lGlOQKqiEeOOvPo8C7Ns5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lGnqgaqiEeOOvPo8C7Ns5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lGnqgKqiEeOOvPo8C7Ns5w" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_lGoRkKqiEeOOvPo8C7Ns5w" name="next" visibility="private" type="_aaA94KqiEeOOvPo8C7Ns5w" association="_lGlOQKqiEeOOvPo8C7Ns5w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lGpfsaqiEeOOvPo8C7Ns5w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lGpfsKqiEeOOvPo8C7Ns5w"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_exsv0KqiEeOOvPo8C7Ns5w" memberEnd="_exzdgKqiEeOOvPo8C7Ns5w _ex3H4KqiEeOOvPo8C7Ns5w"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_lGlOQKqiEeOOvPo8C7Ns5w" name="prev" memberEnd="_lGmcYKqiEeOOvPo8C7Ns5w _lGoRkKqiEeOOvPo8C7Ns5w"/>
+  <profileApplication xmi:id="_Ga9V5ITjEeKt8bFPzUYOwg">
+    <eAnnotations xmi:id="_Ga9V5YTjEeKt8bFPzUYOwg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+  </profileApplication>
+</uml:Package>
